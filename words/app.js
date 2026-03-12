@@ -1,6 +1,7 @@
 (() => {
   const KEY = 'word_game_v2';
   const BACKUP_KEY = 'word_game_v2_backup';
+  const DAY_OVERRIDE_KEY = 'ash_words_day_override';
   const LEGACY_KEYS = ['word_card_game_v1', 'word_game_v1'];
   const BASE_ROUND = 20;
 
@@ -14,7 +15,7 @@
     restart: $('restart'), replayWrong: $('replayWrong'),
     modeCard: $('modeCard'), modeDictation: $('modeDictation'), modeSpelling: $('modeSpelling'), today50: $('today50'), continueBtn: $('continueBtn'), tomorrowBtn: $('tomorrowBtn'),
     statsBtn: $('statsBtn'), masteredMgrBtn: $('masteredMgrBtn'), wrongDrillBtn: $('wrongDrillBtn'),
-    exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'), customVocabBtn: $('customVocabBtn'), customVocabFile: $('customVocabFile'),
+    exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'), customVocabBtn: $('customVocabBtn'), customVocabFile: $('customVocabFile'), selectDayBtn: $('selectDayBtn'),
     tomorrowPanel: $('tomorrowPanel'), tomorrowNewCount: $('tomorrowNewCount'), tomorrowReviewCount: $('tomorrowReviewCount'), tomorrowNewList: $('tomorrowNewList'), tomorrowReviewList: $('tomorrowReviewList'),
     statsPanel: $('statsPanel'), statsRuns: $('statsRuns'), statsHigh: $('statsHigh'), statsMastered: $('statsMastered'), statsFav: $('statsFav'),
     masteredPanel: $('masteredPanel'), masteredList: $('masteredList'),
@@ -153,8 +154,13 @@
   const DAILY_NEW = 20;
   const DAILY_MAX = 120;
 
+  function effectiveTodayDate() {
+    const v = localStorage.getItem(DAY_OVERRIDE_KEY);
+    if (v && /^\d{4}-\d{2}-\d{2}$/.test(v)) return new Date(v + 'T00:00:00');
+    return new Date();
+  }
   function todayStr() {
-    const d = new Date();
+    const d = effectiveTodayDate();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
   function addDays(dateStr, n) {
@@ -798,6 +804,20 @@
   }
 
   el.customVocabBtn?.addEventListener('click', () => el.customVocabFile?.click());
+  el.selectDayBtn?.addEventListener('click', () => {
+    const cur = localStorage.getItem(DAY_OVERRIDE_KEY) || todayStr();
+    const v = prompt('输入学习日期（YYYY-MM-DD），留空=恢复今天', cur) || '';
+    if (!v.trim()) {
+      localStorage.removeItem(DAY_OVERRIDE_KEY);
+      alert('已恢复为今天学习进度。');
+      location.reload();
+      return;
+    }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v.trim())) { alert('日期格式不正确'); return; }
+    localStorage.setItem(DAY_OVERRIDE_KEY, v.trim());
+    alert('学习日期已切换，页面将刷新。');
+    location.reload();
+  });
   el.customVocabFile?.addEventListener('change', async (e) => {
     const f = e.target.files?.[0];
     if (!f) return;

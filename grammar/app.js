@@ -1,5 +1,6 @@
 const KEY='ash_grammar_v1';
 const BACKUP_KEY='ash_grammar_v1_backup';
+const DAY_OVERRIDE_KEY='ash_grammar_day_override';
 const TARGET_CORRECT=50;
 const DICTATION_COUNT=10;
 
@@ -90,7 +91,24 @@ const state=load();
 const meta=document.getElementById('meta');
 const view=document.getElementById('view');
 const quickGrammarBtn=document.getElementById('quickGrammar');
+const selectDayBtn=document.getElementById('selectDayBtn');
 if(quickGrammarBtn){ quickGrammarBtn.addEventListener('click', openGrammarPanel); }
+if(selectDayBtn){
+  selectDayBtn.addEventListener('click', ()=>{
+    const cur = localStorage.getItem(DAY_OVERRIDE_KEY) || today();
+    const v = prompt('输入学习日期（YYYY-MM-DD），留空=恢复今天', cur) || '';
+    if(!v.trim()){
+      localStorage.removeItem(DAY_OVERRIDE_KEY);
+      alert('已恢复为今天学习进度。');
+      location.reload();
+      return;
+    }
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(v.trim())){ alert('日期格式不正确'); return; }
+    localStorage.setItem(DAY_OVERRIDE_KEY, v.trim());
+    alert('学习日期已切换，页面将刷新。');
+    location.reload();
+  });
+}
 
 function buildExplainHtml(topic){
   const d=lessonExplain(topic);
@@ -116,8 +134,16 @@ function closeGrammarPanel(){
   if(currentQ()) render(); else showIntro();
 }
 
-function today(){return new Date().toISOString().slice(0,10)}
-function dayNum(){return Math.floor(Date.now()/86400000)}
+function effectiveDate(){
+  const v=localStorage.getItem(DAY_OVERRIDE_KEY);
+  if(v && /^\d{4}-\d{2}-\d{2}$/.test(v)) return new Date(v+'T00:00:00');
+  return new Date();
+}
+function today(){
+  const d=effectiveDate();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function dayNum(){return Math.floor(effectiveDate().getTime()/86400000)}
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
 function save(){const s=JSON.stringify(state);localStorage.setItem(KEY,s);localStorage.setItem(BACKUP_KEY,s)}
 

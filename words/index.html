@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <div class="app">
@@ -37,6 +37,7 @@
           <input id="importFile" type="file" accept="application/json" style="display:none;" />
           <button id="customVocabBtn" class="mini">自定义词库</button>
           <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
+          <button id="selectDayBtn" class="mini">选择学习日期</button>
           <button id="speakEn" class="mini">🔊 英文</button>
           <button id="speakZh" class="mini">🔊 中文</button>
           <button id="favCurrent" class="mini">☆ 收藏当前词</button>
@@ -122,8 +123,8 @@
     </section>
   </div>
 
-  <script src="words.js?v=9"></script>
-  <script src="app.js?v=9"></script>
+  <script src="words.js?v=10"></script>
+  <script src="app.js?v=10"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
