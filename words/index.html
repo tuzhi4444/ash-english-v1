@@ -25,18 +25,14 @@
           <summary>学习工具</summary>
           <div class="modebar">
           <button id="modeCard" class="mini on">普通卡片</button>
-          <button id="modeDictation" class="mini">听写模式</button>
           <button id="modeSpelling" class="mini">拼写模式</button>
-          <button id="today50" class="mini">今日艾宾浩斯</button>
           <button id="tomorrowBtn" class="mini">明日计划</button>
           <button id="statsBtn" class="mini">学习统计</button>
           <button id="masteredMgrBtn" class="mini">已掌握管理</button>
-          <button id="wrongDrillBtn" class="mini">错词专项</button>
           <button id="customVocabBtn" class="mini">自定义词库</button>
           <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
           <button id="selectDayBtn" class="mini">选择学习日期</button>
           <button id="speakEn" class="mini">🔊 英文</button>
-          <button id="favCurrent" class="mini">☆ 收藏当前词</button>
           <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
           <button id="autoSpeak" class="mini">自动发音：关</button>
         </div>
@@ -122,7 +118,7 @@
   </div>
 
   <script src="words.js?v=12"></script>
-  <script src="app.js?v=12"></script>
+  <script src="app.js?v=13"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

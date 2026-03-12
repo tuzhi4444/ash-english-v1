@@ -224,27 +224,37 @@
   }
 
   function getTomorrowPlan() {
+    const selectedDay = getSelectedDayNumber();
+    if (selectedDay >= 1) {
+      const tomorrowDay = selectedDay + 1;
+      const fresh = buildFixedDayQueue(tomorrowDay);
+      const full = buildDayPlanQueue(tomorrowDay);
+      const freshSet = new Set(fresh.map(w => w.en));
+      const review = full.filter(w => !freshSet.has(w.en));
+      return { review, fresh };
+    }
+
     const tmr = addDays(todayStr(), 1);
     const e = store.ebbinghaus;
+    const words = getWordList();
 
     const reviewIdx = [];
-    for (let i = 0; i < getWordList().length; i++) {
-      if (store.mastered && store.mastered[getWordList()[i].en]) continue;
-      const p = e.progress[getWordList()[i].en];
+    for (let i = 0; i < words.length; i++) {
+      if (store.mastered && store.mastered[words[i].en]) continue;
+      const p = e.progress[words[i].en];
       if (p && p.nextDue === tmr) reviewIdx.push(i);
     }
 
-    // 估算明日新词：按当前 cursor 往后取 20
     const newIdx = [];
     let c = e.cursor || 0;
-    while (newIdx.length < DAILY_NEW && c < getWordList().length) {
-      if (!(store.mastered && store.mastered[getWordList()[c].en])) newIdx.push(c);
+    while (newIdx.length < DAILY_NEW && c < words.length) {
+      if (!(store.mastered && store.mastered[words[c].en])) newIdx.push(c);
       c += 1;
     }
 
     return {
-      review: reviewIdx.map(i => getWordList()[i]),
-      fresh: newIdx.map(i => getWordList()[i])
+      review: reviewIdx.map(i => words[i]),
+      fresh: newIdx.map(i => words[i])
     };
   }
 
@@ -709,9 +719,9 @@
   }
 
   function setModeButton(mode) {
-    el.modeCard.classList.toggle('on', mode === 'card');
-    el.modeDictation.classList.toggle('on', mode === 'dictation');
-    el.modeSpelling.classList.toggle('on', mode === 'spelling');
+    el.modeCard?.classList.toggle('on', mode === 'card');
+    el.modeDictation?.classList.toggle('on', mode === 'dictation');
+    el.modeSpelling?.classList.toggle('on', mode === 'spelling');
   }
 
   // events
@@ -722,25 +732,25 @@
   el.checkInput.addEventListener('click', checkInput);
   el.dictInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkInput(); });
 
-  el.modeCard.addEventListener('click', () => {
+  el.modeCard?.addEventListener('click', () => {
     setModeButton('card');
     const q = buildEbbinghausQueue();
     init('card', q, q.length);
     hidePanels();
   });
-  el.modeDictation.addEventListener('click', () => {
+  el.modeDictation?.addEventListener('click', () => {
     setModeButton('dictation');
     const q = buildEbbinghausQueue();
     init('dictation', q, q.length);
     hidePanels();
   });
-  el.modeSpelling.addEventListener('click', () => {
+  el.modeSpelling?.addEventListener('click', () => {
     setModeButton('spelling');
     const q = buildEbbinghausQueue();
     init('spelling', q, q.length);
     hidePanels();
   });
-  el.today50.addEventListener('click', () => {
+  el.today50?.addEventListener('click', () => {
     const q = buildEbbinghausQueue();
     init(state.mode || 'card', q, q.length);
     hidePanels();
