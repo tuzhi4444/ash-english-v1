@@ -21,4 +21,4 @@
 .fav-btn{border:1px solid #d1d5db;background:#fff;color:#f59e0b;border-radius:8px;padding:2px 8px;font-size:14px;cursor:pointer}
 .fav-on{background:#f59e0b33;border-color:#f59e0b}
 
-@media(max-width:680px){.topbar{grid-template-columns:repeat(4,1fr);gap:6px}.stat{padding:5px 4px;min-height:52px}.stat span{font-size:10px}.stat strong{font-size:14px}}
+@media(max-width:680px){.topbar{grid-template-columns:repeat(3,1fr);gap:6px}.stat{padding:8px 4px;min-height:52px}.stat span{font-size:11px}.stat strong{font-size:16px}}
