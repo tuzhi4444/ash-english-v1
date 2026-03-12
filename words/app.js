@@ -510,8 +510,7 @@
     }
 
     if (state.mode === 'spelling') {
-      // 拼写模式：提交后自动判分并下一题
-      reveal();
+      // 拼写模式：不展示英文答案，提交后直接判分并下一题
       setTimeout(() => judge(ok ? 'know' : 'dont'), 450);
       return;
     }
