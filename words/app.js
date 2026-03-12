@@ -465,7 +465,9 @@
     state.spellGate = type;
     el.dictationBox.classList.remove('hidden');
     el.dictInput.value = '';
-    el.dictInput.focus();
+    // 手机上避免输入框触发浏览器自动放大
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+    if (!isMobile) el.dictInput.focus();
     el.checkInput.textContent = '提交拼写';
     el.dictResult.textContent = `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
     lockJudge(true);
