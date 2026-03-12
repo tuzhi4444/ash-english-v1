@@ -21,9 +21,11 @@
 
     <main id="gameView" class="view active">
       <div class="toolbar-row">
-        <details class="toolbox">
-          <summary>⚙️ 学习工具</summary>
-          <div class="modebar">
+        <button id="toolBtn" class="tool-btn" onclick="document.getElementById('toolPanel').style.display=document.getElementById('toolPanel').style.display?'none':'block'">⚙️ 学习工具</button>
+        <button id="dailyReviewBtn" class="tool-btn">📅 单日复习</button>
+      </div>
+      <div id="toolPanel" class="tool-panel" style="display:none;">
+        <div class="modebar">
           <button id="modeCard" class="mini on">普通卡片</button>
           <button id="modeSpelling" class="mini">拼写模式</button>
           <button id="tomorrowBtn" class="mini">明日计划</button>
@@ -36,8 +38,6 @@
           <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
           <button id="autoSpeak" class="mini">自动发音：关</button>
         </div>
-        </details>
-        <button id="dailyReviewBtn" class="tool-btn">📅 单日复习</button>
       </div>
 
       <section class="card-wrap">
