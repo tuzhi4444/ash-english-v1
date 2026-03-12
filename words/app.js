@@ -404,6 +404,7 @@
     el.card.classList.remove('revealed');
     el.prompt.textContent = w.zh;
     el.answer.textContent = w.en;
+    el.answer.style.display = '';
     el.dictInput.value = '';
     el.dictResult.textContent = '';
 
@@ -452,6 +453,7 @@
   function reveal() {
     if (state.revealed) return;
     state.revealed = true;
+    el.answer.style.display = '';
     el.card.classList.add('revealed');
     el.flip.disabled = true;
     lockJudge(false);
@@ -466,6 +468,7 @@
     // 进入拼写闸门时，强制隐藏英文答案
     state.revealed = false;
     el.card.classList.remove('revealed');
+    el.answer.style.display = 'none';
     el.dictationBox.classList.remove('hidden');
     el.dictInput.value = '';
     // 手机上避免输入框触发浏览器自动放大

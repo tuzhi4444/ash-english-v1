@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body>
   <div class="app">
@@ -122,12 +122,12 @@
     </section>
   </div>
 
-  <script src="words.js?v=8"></script>
-  <script src="app.js?v=8"></script>
+  <script src="words.js?v=9"></script>
+  <script src="app.js?v=9"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=2').catch(() => {});
+        navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
       });
     }
   </script>
