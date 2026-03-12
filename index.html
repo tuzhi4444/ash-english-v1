@@ -27,101 +27,27 @@
     <div class="tabs">
       <button id="tabWords" class="tab on">单词学习</button>
       <button id="tabGrammar" class="tab">语法学习</button>
-      <button id="tabRoute" class="tab">今日路线</button>
-      <button id="tabWeekly" class="tab">周报</button>
     </div>
   </div>
 
-  <section id="routePanel" class="panel" style="display:none;grid-template-columns:1fr;max-width:980px;">
-    <div class="card">
-      <h3>今日路线（10~20分钟）</h3>
-      <div class="small">建议顺序：语法15题 → 单词35词。完成后自动进入错因复习。</div>
-      <button id="goGrammar" class="btn">先做语法</button>
-      <button id="goWords" class="btn">再做单词</button>
-      <button id="goWrong" class="btn">错因专项复习</button>
-    </div>
-  </section>
 
-  <section id="weeklyPanel" class="panel" style="display:none;grid-template-columns:1fr;max-width:980px;">
-    <div class="card">
-      <h3>周报（最近7天）</h3>
-      <div id="weekly" class="small">加载中...</div>
-      <button id="refreshWeekly" class="btn">刷新周报</button>
-    </div>
-  </section>
-
-  <iframe id="wordsFrame" class="frame show" src="./words/index.html?v=13"></iframe>
-  <iframe id="grammarFrame" class="frame" src="./grammar/index.html?v=5"></iframe>
+  <iframe id="wordsFrame" class="frame show" src="./words/index.html?v=14"></iframe>
+  <iframe id="grammarFrame" class="frame" src="./grammar/index.html?v=6"></iframe>
 
   <script>
     const tabWords=document.getElementById('tabWords');
     const tabGrammar=document.getElementById('tabGrammar');
-    const tabRoute=document.getElementById('tabRoute');
-    const tabWeekly=document.getElementById('tabWeekly');
     const wordsFrame=document.getElementById('wordsFrame');
     const grammarFrame=document.getElementById('grammarFrame');
-    const routePanel=document.getElementById('routePanel');
-    const weeklyPanel=document.getElementById('weeklyPanel');
 
     function show(which){
       tabWords.classList.toggle('on',which==='words');
       tabGrammar.classList.toggle('on',which==='grammar');
-      tabRoute.classList.toggle('on',which==='route');
-      tabWeekly.classList.toggle('on',which==='weekly');
-
       wordsFrame.classList.toggle('show',which==='words');
       grammarFrame.classList.toggle('show',which==='grammar');
-      routePanel.style.display = which==='route' ? 'grid' : 'none';
-      weeklyPanel.style.display = which==='weekly' ? 'grid' : 'none';
     }
     tabWords.onclick=()=>show('words');
     tabGrammar.onclick=()=>show('grammar');
-    tabRoute.onclick=()=>show('route');
-    tabWeekly.onclick=()=>show('weekly');
-
-    document.getElementById('goGrammar').onclick=()=>show('grammar');
-    document.getElementById('goWords').onclick=()=>show('words');
-    document.getElementById('goWrong').onclick=()=>{
-      show('grammar');
-      setTimeout(()=>{
-        try{ grammarFrame.contentWindow.startWrongDrill && grammarFrame.contentWindow.startWrongDrill(); }catch(e){}
-      },300);
-    };
-
-    function todayMinus(n){
-      const d=new Date(); d.setDate(d.getDate()-n);
-      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    }
-
-    function renderWeekly(){
-      const weekly=document.getElementById('weekly');
-      const g=JSON.parse(localStorage.getItem('ash_grammar_v1')||'{}');
-      const w=JSON.parse(localStorage.getItem('word_game_v2')||'{}');
-
-      const days=new Set(Array.from({length:7},(_,i)=>todayMinus(i)));
-      const gh=(g.history||[]).filter(x=>days.has(x.day));
-      const gDone=gh.length;
-      const gAcc=gh.length?Math.round(gh.reduce((a,b)=>a+(b.attempts?Math.round((50/b.attempts)*100):0),0)/gh.length):0;
-      const wrongMap={};
-      gh.forEach(h=>(h.weak||[]).forEach(([k,v])=>wrongMap[k]=(wrongMap[k]||0)+v));
-      const topWrong=Object.entries(wrongMap).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]}(${x[1]})`).join('、')||'暂无';
-
-      const runsNow=w.totalRuns||0;
-      const lastRuns=Number(localStorage.getItem('ash_weekly_runs_base')||runsNow);
-      const wordRuns=Math.max(0,runsNow-lastRuns);
-
-      weekly.innerHTML = `语法完成天数：${gDone}/7<br/>语法平均正确率：${gAcc}%<br/>单词练习次数（近7天估算）：${wordRuns}<br/>薄弱点Top：${topWrong}`;
-
-      const markKey='ash_weekly_mark_date';
-      const now=new Date();
-      const ymd=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-      if(localStorage.getItem(markKey)!==ymd && now.getDay()===1){
-        localStorage.setItem('ash_weekly_runs_base', String(runsNow));
-        localStorage.setItem(markKey, ymd);
-      }
-    }
-    document.getElementById('refreshWeekly').onclick=renderWeekly;
-    renderWeekly();
   </script>
 </body>
 </html>

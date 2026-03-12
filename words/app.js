@@ -940,13 +940,14 @@
 
   el.dailyReviewBtn?.addEventListener('click', () => {
     const maxDay = Math.max(1, Math.ceil(getWordList().length / DAILY_NEW));
-    const v = prompt(`输入要复习第几天（1-${maxDay}）`, '1') || '';
+    const v = prompt(`输入要复习第几天（1-${maxDay}）\n将按艾宾浩斯：复习(1/2/4/7/15天) + 当天新词20`, '1') || '';
     const n = Number(v.trim());
     if (!Number.isInteger(n) || n < 1 || n > maxDay) {
       alert(`请输入 1 到 ${maxDay} 的整数`);
       return;
     }
-    const q = buildFixedDayQueue(n);
+    const q = buildDayPlanQueue(n);
+    const fresh = buildFixedDayQueue(n);
     if (!q.length) {
       alert('该天暂无可复习单词');
       return;
@@ -954,7 +955,7 @@
     localStorage.removeItem(DAY_NUMBER_KEY);
     setModeButton('card');
     hidePanels();
-    init('card', q, q.length, { planLabel: `单日复习：第${n}天（${(n - 1) * DAILY_NEW + 1}-${(n - 1) * DAILY_NEW + q.length}词）` });
+    init('card', q, q.length, { planLabel: `单日复习：第${n}天（复习+新词${fresh.length}）` });
   });
   el.customVocabFile?.addEventListener('change', async (e) => {
     const f = e.target.files?.[0];
