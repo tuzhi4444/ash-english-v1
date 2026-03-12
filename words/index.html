@@ -20,27 +20,30 @@
     </header>
 
     <main id="gameView" class="view active">
-      <div class="modebar">
-        <button id="modeCard" class="mini on">普通卡片</button>
-        <button id="modeDictation" class="mini">听写模式</button>
-        <button id="modeSpelling" class="mini">拼写模式</button>
-        <button id="today50" class="mini">今日艾宾浩斯</button>
-        <button id="continueBtn" class="mini">继续上次学习</button>
-        <button id="tomorrowBtn" class="mini">明日计划</button>
-        <button id="statsBtn" class="mini">学习统计</button>
-        <button id="masteredMgrBtn" class="mini">已掌握管理</button>
-        <button id="wrongDrillBtn" class="mini">错词专项</button>
-        <button id="exportBtn" class="mini">导出进度</button>
-        <button id="importBtn" class="mini">导入进度</button>
-        <input id="importFile" type="file" accept="application/json" style="display:none;" />
-        <button id="customVocabBtn" class="mini">自定义词库</button>
-        <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
-        <button id="speakEn" class="mini">🔊 英文</button>
-        <button id="speakZh" class="mini">🔊 中文</button>
-        <button id="favCurrent" class="mini">☆ 收藏当前词</button>
-        <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
-        <button id="autoSpeak" class="mini">自动发音：关</button>
-      </div>
+      <details class="toolbox">
+        <summary>学习工具（点击展开）</summary>
+        <div class="modebar">
+          <button id="modeCard" class="mini on">普通卡片</button>
+          <button id="modeDictation" class="mini">听写模式</button>
+          <button id="modeSpelling" class="mini">拼写模式</button>
+          <button id="today50" class="mini">今日艾宾浩斯</button>
+          <button id="continueBtn" class="mini">继续上次学习</button>
+          <button id="tomorrowBtn" class="mini">明日计划</button>
+          <button id="statsBtn" class="mini">学习统计</button>
+          <button id="masteredMgrBtn" class="mini">已掌握管理</button>
+          <button id="wrongDrillBtn" class="mini">错词专项</button>
+          <button id="exportBtn" class="mini">导出进度</button>
+          <button id="importBtn" class="mini">导入进度</button>
+          <input id="importFile" type="file" accept="application/json" style="display:none;" />
+          <button id="customVocabBtn" class="mini">自定义词库</button>
+          <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
+          <button id="speakEn" class="mini">🔊 英文</button>
+          <button id="speakZh" class="mini">🔊 中文</button>
+          <button id="favCurrent" class="mini">☆ 收藏当前词</button>
+          <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
+          <button id="autoSpeak" class="mini">自动发音：关</button>
+        </div>
+      </details>
 
       <section class="card-wrap">
         <div class="card" id="card">
