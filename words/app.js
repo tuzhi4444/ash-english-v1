@@ -378,7 +378,6 @@
     if (type === 'know') {
       stage = Math.min(stage + 1, EBB_GAPS.length - 1);
       nextDue = addDays(t, EBB_GAPS[stage]);
-    } else if (type === 'blur') {
       nextDue = addDays(t, 1);
     } else {
       stage = 0;
@@ -615,7 +614,6 @@
       const m = masteryOf(w);
       if (gateType === 'know') {
         state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
-      }
       } else {
         state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
       }
@@ -638,14 +636,13 @@
     const m = masteryOf(w);
 
     // 第一遍：选择“模糊/不认识”后，必须拼写通过才进入下一题
-    if ((type === 'blur' || type === 'dont') && !state.spellGate && state.mode !== 'spelling') {
+    if (type === 'dont' && !state.spellGate && state.mode !== 'spelling') {
       startSpellGate(type);
       return;
     }
 
     if (type === 'know') {
       state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
-    }
     } else {
       state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
     }
@@ -695,7 +692,7 @@
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
     el.rKnow.textContent = state.know;
-    el.rBlur.textContent = state.blur;
+    
     el.rDont.textContent = state.dont;
     el.rStreak.textContent = state.maxStreak;
     el.rRuns.textContent = store.totalRuns;
@@ -725,7 +722,6 @@
   // events
   el.flip.addEventListener('click', reveal);
   el.know.addEventListener('click', () => judge('know'));
-  el.blur.addEventListener('click', () => judge('blur'));
   el.dont.addEventListener('click', () => judge('dont'));
   el.checkInput.addEventListener('click', checkInput);
   el.dictInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkInput(); });
@@ -868,7 +864,6 @@
     if (!el.gameView.classList.contains('active')) return;
     if (e.code === 'Space') { e.preventDefault(); reveal(); }
     if (e.key === '1' && !el.know.disabled) judge('know');
-    if (e.key === '2' && !el.blur.disabled) judge('blur');
     if (e.key === '3' && !el.dont.disabled) judge('dont');
   });
 
