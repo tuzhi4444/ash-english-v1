@@ -20,9 +20,10 @@
     </header>
 
     <main id="gameView" class="view active">
-      <details class="toolbox">
-        <summary>学习工具</summary>
-        <div class="modebar">
+      <div class="toolrow">
+        <details class="toolbox">
+          <summary>学习工具</summary>
+          <div class="modebar">
           <button id="modeCard" class="mini on">普通卡片</button>
           <button id="modeDictation" class="mini">听写模式</button>
           <button id="modeSpelling" class="mini">拼写模式</button>
@@ -39,7 +40,9 @@
           <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
           <button id="autoSpeak" class="mini">自动发音：关</button>
         </div>
-      </details>
+        </details>
+        <button id="dailyReviewBtn" class="mini tool-inline">单日复习</button>
+      </div>
 
       <section class="card-wrap">
         <div class="card" id="card">

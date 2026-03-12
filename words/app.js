@@ -16,7 +16,7 @@
     restart: $('restart'), replayWrong: $('replayWrong'),
     modeCard: $('modeCard'), modeDictation: $('modeDictation'), modeSpelling: $('modeSpelling'), today50: $('today50'), continueBtn: $('continueBtn'), tomorrowBtn: $('tomorrowBtn'),
     statsBtn: $('statsBtn'), masteredMgrBtn: $('masteredMgrBtn'), wrongDrillBtn: $('wrongDrillBtn'),
-    exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'), customVocabBtn: $('customVocabBtn'), customVocabFile: $('customVocabFile'), selectDayBtn: $('selectDayBtn'),
+    exportBtn: $('exportBtn'), importBtn: $('importBtn'), importFile: $('importFile'), customVocabBtn: $('customVocabBtn'), customVocabFile: $('customVocabFile'), selectDayBtn: $('selectDayBtn'), dailyReviewBtn: $('dailyReviewBtn'),
     tomorrowPanel: $('tomorrowPanel'), tomorrowNewCount: $('tomorrowNewCount'), tomorrowReviewCount: $('tomorrowReviewCount'), tomorrowNewList: $('tomorrowNewList'), tomorrowReviewList: $('tomorrowReviewList'),
     statsPanel: $('statsPanel'), statsRuns: $('statsRuns'), statsHigh: $('statsHigh'), statsMastered: $('statsMastered'), statsFav: $('statsFav'),
     masteredPanel: $('masteredPanel'), masteredList: $('masteredList'),
@@ -155,6 +155,41 @@
   const DAILY_NEW = 20;
   const DAILY_MAX = 120;
 
+  function buildFixedDayQueue(dayNum) {
+    const words = getWordList();
+    const start = (dayNum - 1) * DAILY_NEW;
+    if (start >= words.length) return [];
+    return words.slice(start, Math.min(start + DAILY_NEW, words.length));
+  }
+
+  function buildDayPlanQueue(dayNum) {
+    const words = getWordList();
+    const picked = [];
+    const seen = new Set();
+
+    const addDayChunk = (d) => {
+      const start = (d - 1) * DAILY_NEW;
+      const end = Math.min(start + DAILY_NEW, words.length);
+      for (let i = start; i < end; i++) {
+        const w = words[i];
+        if (!w) continue;
+        if (store.mastered && store.mastered[w.en]) continue;
+        if (seen.has(w.en)) continue;
+        seen.add(w.en);
+        picked.push(w);
+      }
+    };
+
+    // 先复习，再新学：按艾宾浩斯间隔回看前几天
+    const reviewDays = EBB_GAPS.map(g => dayNum - g).filter(d => d >= 1);
+    for (const d of reviewDays) addDayChunk(d);
+
+    // 当天新词
+    addDayChunk(dayNum);
+
+    return picked.slice(0, DAILY_MAX);
+  }
+
   function getStartDate() {
     const saved = localStorage.getItem(START_DATE_KEY);
     if (saved && /^\d{4}-\d{2}-\d{2}$/.test(saved)) return new Date(saved + 'T00:00:00');
@@ -164,8 +199,13 @@
     return new Date(ymd + 'T00:00:00');
   }
 
+  function getSelectedDayNumber() {
+    const n = Number(localStorage.getItem(DAY_NUMBER_KEY) || 0);
+    return Number.isInteger(n) && n >= 1 ? n : 0;
+  }
+
   function effectiveTodayDate() {
-    const dayNum = Number(localStorage.getItem(DAY_NUMBER_KEY) || 0);
+    const dayNum = getSelectedDayNumber();
     if (dayNum >= 1) {
       const d = getStartDate();
       d.setDate(d.getDate() + dayNum - 1);
@@ -265,16 +305,27 @@
   }
 
   function buildEbbinghausQueue() {
+    const words = getWordList();
+    const selectedDay = getSelectedDayNumber();
+
+    // 选择“第N天”时：按艾宾浩斯计划（复习前几天 + 当天新词）
+    if (selectedDay >= 1) {
+      const planQueue = buildDayPlanQueue(selectedDay);
+      const fresh = buildFixedDayQueue(selectedDay);
+      store.ebbinghaus.todayFreshEns = fresh.map(w => w.en);
+      return planQueue;
+    }
+
     const t = todayStr();
     const e = store.ebbinghaus;
 
     if (e.lastPlanDate === t && e.todayQueue.length) {
-      return e.todayQueue.map(idx => getWordList()[idx]).filter(Boolean);
+      return e.todayQueue.map(idx => words[idx]).filter(Boolean);
     }
 
     const due = [];
-    for (let i = 0; i < getWordList().length; i++) {
-      const key = getWordList()[i].en;
+    for (let i = 0; i < words.length; i++) {
+      const key = words[i].en;
       if (store.mastered && store.mastered[key]) continue; // 已掌握不再复习
       const p = e.progress[key];
       if (p && p.nextDue && p.nextDue <= t) due.push(i);
@@ -284,12 +335,14 @@
     const queueIdx = due.slice(0, DAILY_MAX);
     const remain = DAILY_MAX - queueIdx.length;
     const allowNew = Math.min(DAILY_NEW, Math.max(0, remain));
+    const newIdx = [];
 
     let addNew = 0;
-    while (addNew < allowNew && e.cursor < getWordList().length) {
-      const w = getWordList()[e.cursor];
+    while (addNew < allowNew && e.cursor < words.length) {
+      const w = words[e.cursor];
       if (!(store.mastered && store.mastered[w.en])) {
         queueIdx.push(e.cursor);
+        newIdx.push(e.cursor);
         addNew += 1;
       }
       e.cursor += 1;
@@ -297,10 +350,10 @@
 
     e.lastPlanDate = t;
     e.todayQueue = queueIdx;
-    e.todayFreshEns = newIdx.map(i => getWordList()[i]?.en).filter(Boolean);
+    e.todayFreshEns = newIdx.map(i => words[i]?.en).filter(Boolean);
     save();
 
-    return queueIdx.map(i => getWordList()[i]).filter(Boolean);
+    return queueIdx.map(i => words[i]).filter(Boolean);
   }
 
   function updateEbbinghausProgress(word, type) {
@@ -397,35 +450,31 @@
     return pool.slice(0, n);
   }
 
-  function init(mode = 'card', pool = getWordList(), roundSize = BASE_ROUND) {
-    const restored = tryRestoreProgress(mode);
-    if (restored) {
-      state = restored;
-      state.spellGate = null;
-      state.spellGateFresh = false;
-      state.todayFreshSet = new Set((store.ebbinghaus?.todayFreshEns || []).filter(Boolean));
-      state.spelledFresh = state.spelledFresh || {};
-    } else {
-      state = {
-        mode, pool, deck: buildDeck(pool, Math.min(roundSize, Math.max(1, pool.length))),
-        idx: 0, revealed: false,
-        score: 0, streak: 0, maxStreak: 0,
-        know: 0, blur: 0, dont: 0,
-        wrongMap: new Map(), checkedInput: false,
-        autoSpeak: Boolean(store.autoSpeak),
-        spellGate: null,
-        spellGateFresh: false,
-        todayFreshSet: new Set((store.ebbinghaus?.todayFreshEns || []).filter(Boolean)),
-        spelledFresh: {}
-      };
-    }
+  function init(mode = 'card', pool = getWordList(), roundSize = BASE_ROUND, options = {}) {
+    const deck = buildDeck(pool, Math.min(roundSize, Math.max(1, pool.length)));
+    state = {
+      mode, pool, deck,
+      idx: 0, revealed: false,
+      score: 0, streak: 0, maxStreak: 0,
+      know: 0, blur: 0, dont: 0,
+      wrongMap: new Map(), checkedInput: false,
+      autoSpeak: Boolean(store.autoSpeak),
+      spellGate: null,
+      phase2Active: false,
+      phase2Deck: deck,
+      phase2Idx: 0,
+      phase2Round: 2,
+      phase2WrongMap: new Map(),
+      planLabel: options.planLabel || ''
+    };
     el.totalQ.textContent = state.deck.length;
     switchView('game');
     renderCurrent();
   }
 
   function renderCurrent() {
-    const w = state.deck[state.idx];
+    const w = state.phase2Active ? state.phase2Deck[state.phase2Idx] : state.deck[state.idx];
+    if (!w) return finish();
     state.revealed = false;
     state.checkedInput = false;
     el.card.classList.remove('revealed');
@@ -435,19 +484,27 @@
     el.dictInput.value = '';
     el.dictResult.textContent = '';
 
-    const left = state.deck.length - state.idx;
-    el.currentQ.textContent = state.idx + 1;
+    const left = state.phase2Active ? (state.phase2Deck.length - state.phase2Idx) : (state.deck.length - state.idx);
+    el.currentQ.textContent = (state.phase2Active ? state.phase2Idx : state.idx) + 1;
     el.remain.textContent = `剩余 ${left} 题`;
-    el.modeInfo.textContent = state.mode === 'dictation'
+    const baseModeText = state.planLabel || (state.mode === 'dictation'
       ? '听写模式（艾宾浩斯计划）'
       : state.mode === 'spelling'
         ? '拼写模式（艾宾浩斯计划）'
-        : '普通模式（艾宾浩斯计划）';
+        : '普通模式（艾宾浩斯计划）');
+    el.modeInfo.textContent = state.phase2Active ? `第${state.phase2Round}遍拼写校验（错题自动进入下一遍）` : baseModeText;
     el.score.textContent = state.score;
     el.highScore.textContent = store.highScore;
     el.streak.textContent = state.streak;
 
-    if (state.spellGate) {
+    if (state.phase2Active) {
+      el.dictationBox.classList.remove('hidden');
+      el.flip.textContent = `第${state.phase2Round}遍拼写中`;
+      el.checkInput.textContent = '提交拼写';
+      el.dictResult.textContent = '本轮拼写错误会进入下一遍错题拼写';
+      el.flip.disabled = true;
+      lockJudge(true);
+    } else if (state.spellGate) {
       el.dictationBox.classList.remove('hidden');
       el.flip.textContent = '请先完成拼写';
       el.checkInput.textContent = '提交拼写';
@@ -468,8 +525,10 @@
     }
     renderTomorrowPlan();
 
-    lockJudge(true);
-    el.flip.disabled = state.mode === 'spelling' || Boolean(state.spellGate);
+    if (!state.phase2Active) {
+      lockJudge(true);
+      el.flip.disabled = state.mode === 'spelling' || Boolean(state.spellGate);
+    }
     persistProgress();
   }
 
@@ -490,30 +549,25 @@
     }
   }
 
-  function startSpellGate(type, isFresh = false) {
+  function startSpellGate(type) {
     state.spellGate = type;
-    state.spellGateFresh = Boolean(isFresh);
-    // 进入拼写闸门时，强制隐藏英文答案
     state.revealed = false;
     el.card.classList.remove('revealed');
     el.answer.style.display = 'none';
     el.dictationBox.classList.remove('hidden');
     el.dictInput.value = '';
-    // 手机上避免输入框触发浏览器自动放大
     const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
     if (!isMobile) el.dictInput.focus();
     el.checkInput.textContent = '提交拼写';
-    el.dictResult.textContent = isFresh
-      ? '今日新词需拼写正确后才计入完成'
-      : `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
+    el.dictResult.textContent = `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
     lockJudge(true);
     el.flip.disabled = true;
     persistProgress();
   }
 
   function checkInput() {
-    if (state.mode !== 'dictation' && state.mode !== 'spelling' && !state.spellGate) return;
-    const w = state.deck[state.idx];
+    if (state.mode !== 'dictation' && state.mode !== 'spelling' && !state.spellGate && !state.phase2Active) return;
+    const w = state.phase2Active ? state.phase2Deck[state.phase2Idx] : state.deck[state.idx];
     const user = el.dictInput.value.trim().toLowerCase();
     const ans = String(w.en).trim().toLowerCase();
     if (!user) { el.dictResult.textContent = '先输入再检查'; return; }
@@ -527,14 +581,26 @@
 
     state.checkedInput = true;
 
+    // 第二遍及之后：错误词自动进入下一遍，直到一整遍0错误
+    if (state.phase2Active) {
+      if (!ok) {
+        state.phase2WrongMap.set(w.en, w);
+        state.wrongMap.set(w.en, w);
+      }
+      state.phase2Idx++;
+      if (state.phase2Idx >= state.phase2Deck.length) {
+        advancePhase2Round();
+      } else {
+        renderCurrent();
+      }
+      return;
+    }
+
     // 模糊/不认识强制拼写通过闸门
     if (state.spellGate) {
       if (!ok) return;
       const gateType = state.spellGate;
-      const isFresh = Boolean(state.spellGateFresh);
       state.spellGate = null;
-      state.spellGateFresh = false;
-      if (isFresh) state.spelledFresh[w.en] = true;
       // 闸门通过后执行原评分并进入下一题
       const m = masteryOf(w);
       if (gateType === 'know') {
@@ -551,12 +617,10 @@
     }
 
     if (state.mode === 'spelling') {
-      // 拼写模式：不展示英文答案，提交后直接判分并下一题
       setTimeout(() => judge(ok ? 'know' : 'dont'), 450);
       return;
     }
 
-    // 听写模式：先翻卡，再手动三档评价
     reveal();
   }
 
@@ -564,16 +628,9 @@
     const w = state.deck[state.idx];
     const m = masteryOf(w);
 
-    // 新词规则：今日新词必须拼写正确后，才计入当天完成
-    const needsFreshSpell = state.todayFreshSet?.has(w.en) && !state.spelledFresh?.[w.en] && state.mode !== 'spelling';
-    if (needsFreshSpell && !state.spellGate) {
-      startSpellGate(type, true);
-      return;
-    }
-
-    // 原规则：选择“模糊/不认识”后，必须拼写通过才进入下一题
+    // 第一遍：选择“模糊/不认识”后，必须拼写通过才进入下一题
     if ((type === 'blur' || type === 'dont') && !state.spellGate && state.mode !== 'spelling') {
-      startSpellGate(type, false);
+      startSpellGate(type);
       return;
     }
 
@@ -589,9 +646,32 @@
     next();
   }
 
+  function advancePhase2Round() {
+    const wrongList = [...state.phase2WrongMap.values()];
+    if (!wrongList.length) {
+      return finish();
+    }
+    state.phase2Round += 1;
+    state.phase2Deck = wrongList;
+    state.phase2Idx = 0;
+    state.phase2WrongMap = new Map();
+    alert(`第${state.phase2Round - 1}遍完成，仍有${wrongList.length}个错词，进入第${state.phase2Round}遍拼写。`);
+    renderCurrent();
+  }
+
+  function startSecondPass() {
+    state.phase2Active = true;
+    state.phase2Deck = state.deck.slice();
+    state.phase2Idx = 0;
+    state.phase2Round = 2;
+    state.phase2WrongMap = new Map();
+    alert('第一遍已完成，进入第二遍拼写校验：错误词会自动进入下一遍，直到0错误才完成今日任务。');
+    renderCurrent();
+  }
+
   function next() {
     state.idx++;
-    if (state.idx >= state.deck.length) return finish();
+    if (state.idx >= state.deck.length) return startSecondPass();
     renderCurrent();
   }
 
@@ -601,6 +681,8 @@
     if (isNew) store.highScore = state.score;
     delete store.resume;
     save();
+
+    alert('✅ 今天的学习任务已完成！');
 
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
@@ -740,7 +822,7 @@
   });
 
   el.speakEn.addEventListener('click', () => {
-    const w = state.deck[state.idx];
+    const w = state.phase2Active ? state.phase2Deck[state.phase2Idx] : state.deck[state.idx];
     speak(w?.en || '', 'en-US');
   });
   el.speakZh?.addEventListener('click', () => {
@@ -842,7 +924,7 @@
   el.customVocabBtn?.addEventListener('click', () => el.customVocabFile?.click());
   el.selectDayBtn?.addEventListener('click', () => {
     const cur = localStorage.getItem(DAY_NUMBER_KEY) || '1';
-    const v = prompt('输入学习第几天（1/2/3/4/5...），留空=恢复今天', cur) || '';
+    const v = prompt('输入学习第几天（1/2/3/4/5...）\n规则：当天=前序复习(1/2/4/7/15天) + 当天20个新词\n例：第5天新词=81-100词，并复习第4/3/1天内容\n留空=恢复今天', cur) || '';
     if (!v.trim()) {
       localStorage.removeItem(DAY_NUMBER_KEY);
       alert('已恢复为今天学习进度。');
@@ -854,6 +936,25 @@
     localStorage.setItem(DAY_NUMBER_KEY, String(n));
     alert(`已切换到第${n}天，页面将刷新。`);
     location.reload();
+  });
+
+  el.dailyReviewBtn?.addEventListener('click', () => {
+    const maxDay = Math.max(1, Math.ceil(getWordList().length / DAILY_NEW));
+    const v = prompt(`输入要复习第几天（1-${maxDay}）`, '1') || '';
+    const n = Number(v.trim());
+    if (!Number.isInteger(n) || n < 1 || n > maxDay) {
+      alert(`请输入 1 到 ${maxDay} 的整数`);
+      return;
+    }
+    const q = buildFixedDayQueue(n);
+    if (!q.length) {
+      alert('该天暂无可复习单词');
+      return;
+    }
+    localStorage.removeItem(DAY_NUMBER_KEY);
+    setModeButton('card');
+    hidePanels();
+    init('card', q, q.length, { planLabel: `单日复习：第${n}天（${(n - 1) * DAILY_NEW + 1}-${(n - 1) * DAILY_NEW + q.length}词）` });
   });
   el.customVocabFile?.addEventListener('change', async (e) => {
     const f = e.target.files?.[0];

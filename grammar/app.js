@@ -162,7 +162,7 @@ function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Mat
 function save(){const s=JSON.stringify(state);localStorage.setItem(KEY,s);localStorage.setItem(BACKUP_KEY,s)}
 
 function load(){
-  const base={day:'',mode:'learn',queue:[],done:0,attempts:0,score:0,wrongTopics:{},wrongRules:{},history:[],schedule:{startDay:dayNum(),todayTopics:[],reviewMode:false}};
+  const base={day:'',mode:'learn',queue:[],done:0,attempts:0,score:0,wrongTopics:{},wrongRules:{},history:[],round:1,nextRoundQueue:[],schedule:{startDay:dayNum(),todayTopics:[],reviewMode:false}};
   try{return Object.assign(base,JSON.parse(localStorage.getItem(KEY)||localStorage.getItem(BACKUP_KEY)||'{}'));}
   catch{return base;}
 }
@@ -283,7 +283,7 @@ function buildDailyQueue(topics, newTopics=[], reviewTopics=[]){
 function ensureSession(){
   const t=today();
   if(state.day!==t){
-    state.day=t;state.done=0;state.attempts=0;state.score=0;state.wrongTopics={};state.wrongRules={};
+    state.day=t;state.done=0;state.attempts=0;state.score=0;state.wrongTopics={};state.wrongRules={};state.round=1;state.nextRoundQueue=[];
 
     const plan=buildTopicPlanForToday();
     state.schedule.todayTopics=(plan.newTopics&&plan.newTopics.length)?plan.newTopics:plan.topics.slice(0,3);
@@ -363,7 +363,7 @@ function currentQ(){ return state.queue[0]; }
 function render(){
   const item=currentQ(); if(!item){ finish(); return; }
   const accuracy=state.attempts?Math.round((state.done/state.attempts)*100):100;
-  meta.textContent=`${state.mode==='review'?'复习模式':'学习模式'} · 已正确 ${state.done}/${TARGET_CORRECT} · 尝试 ${state.attempts} · 当前正确率 ${accuracy}%`;
+  meta.textContent=`${state.mode==='review'?'复习模式':'学习模式'} · 第${state.round||1}遍 · 已正确 ${state.done}/${TARGET_CORRECT} · 尝试 ${state.attempts} · 当前正确率 ${accuracy}%`;
 
   if(item.type==='dictation'){
     view.innerHTML=`<div class='card'>
@@ -413,7 +413,7 @@ function judge(i, forceOk=null, userInput=''){
   }else{
     state.wrongTopics[item.topic]=(state.wrongTopics[item.topic]||0)+1;
     state.wrongRules[explain]=(state.wrongRules[explain]||0)+1;
-    state.queue.push(replacementSameTopic(item.topic,item.q));
+    state.nextRoundQueue.push(item);
   }
 
   const rightAns = item.type==='dictation' ? item.en : item.a[item.ok];
@@ -422,19 +422,44 @@ function judge(i, forceOk=null, userInput=''){
   save();
 }
 
+function dedupByQuestion(list){
+  const m=new Map();
+  for(const x of list){ if(x&&x.q&&!m.has(x.q)) m.set(x.q,x); }
+  return [...m.values()];
+}
+
+function advanceRoundOrFinish(){
+  if(state.queue.length>0) return render();
+
+  const wrongNext = dedupByQuestion(state.nextRoundQueue||[]);
+  if(wrongNext.length>0){
+    state.round = (state.round||1) + 1;
+    state.queue = shuffle(wrongNext);
+    state.nextRoundQueue = [];
+    save();
+    view.innerHTML=`<div class='card bad'>
+      <h3>进入第${state.round}遍</h3>
+      <p>上一遍有 ${wrongNext.length} 道错题，已自动加入本遍继续作答。</p>
+      <button class='next' onclick='render()'>继续</button>
+    </div>`;
+    return;
+  }
+
+  finish();
+}
+
 function nextQ(){
-  if(state.done>=TARGET_CORRECT){ finish(); return; }
-  if(state.done>0 && state.done%10===0){
+  if(state.done>0 && state.done%10===0 && state.queue.length>0){
     const accuracy=Math.round((state.done/state.attempts)*100);
     view.innerHTML=`<div class='card'>
       <h3>📌 阶段小结</h3>
-      <p>已正确：${state.done}/${TARGET_CORRECT}</p>
+      <p>第${state.round||1}遍 · 已正确：${state.done}/${TARGET_CORRECT}</p>
       <p>当前正确率：${accuracy}%</p>
       <button class='next' onclick='render()'>继续</button>
     </div>`;
     return;
   }
-  render();
+  advanceRoundOrFinish();
 }
 
 function finish(){
@@ -442,7 +467,8 @@ function finish(){
   const weakRules=Object.entries(state.wrongRules||{}).sort((a,b)=>b[1]-a[1]).slice(0,3);
   state.history.push({day:state.day,mode:state.mode,score:state.score,attempts:state.attempts,weak,weakRules,topics:state.schedule.todayTopics});
   view.innerHTML=`<div class='card ok'>
-    <h2>今日完成</h2>
+    <h2>✅ 今日完成任务</h2>
+    <p>完成遍数：第${state.round||1}遍结束（本遍0错误）</p>
     <p>累计答对：${state.done}/${TARGET_CORRECT}</p>
     <p>总尝试：${state.attempts}</p>
     <p>得分：${state.score}</p>
@@ -454,7 +480,7 @@ function finish(){
 }
 
 function restartToday(){
-  state.done=0; state.attempts=0; state.score=0; state.wrongTopics={};
+  state.done=0; state.attempts=0; state.score=0; state.wrongTopics={}; state.wrongRules={}; state.round=1; state.nextRoundQueue=[];
   state.queue=buildDailyQueue(
     state.schedule.allTopics || state.schedule.todayTopics,
     state.schedule.todayTopics || [],
