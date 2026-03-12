@@ -297,6 +297,7 @@
 
     e.lastPlanDate = t;
     e.todayQueue = queueIdx;
+    e.todayFreshEns = newIdx.map(i => getWordList()[i]?.en).filter(Boolean);
     save();
 
     return queueIdx.map(i => getWordList()[i]).filter(Boolean);
@@ -401,6 +402,9 @@
     if (restored) {
       state = restored;
       state.spellGate = null;
+      state.spellGateFresh = false;
+      state.todayFreshSet = new Set((store.ebbinghaus?.todayFreshEns || []).filter(Boolean));
+      state.spelledFresh = state.spelledFresh || {};
     } else {
       state = {
         mode, pool, deck: buildDeck(pool, Math.min(roundSize, Math.max(1, pool.length))),
@@ -409,7 +413,10 @@
         know: 0, blur: 0, dont: 0,
         wrongMap: new Map(), checkedInput: false,
         autoSpeak: Boolean(store.autoSpeak),
-        spellGate: null
+        spellGate: null,
+        spellGateFresh: false,
+        todayFreshSet: new Set((store.ebbinghaus?.todayFreshEns || []).filter(Boolean)),
+        spelledFresh: {}
       };
     }
     el.totalQ.textContent = state.deck.length;
@@ -483,8 +490,9 @@
     }
   }
 
-  function startSpellGate(type) {
+  function startSpellGate(type, isFresh = false) {
     state.spellGate = type;
+    state.spellGateFresh = Boolean(isFresh);
     // 进入拼写闸门时，强制隐藏英文答案
     state.revealed = false;
     el.card.classList.remove('revealed');
@@ -495,7 +503,9 @@
     const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
     if (!isMobile) el.dictInput.focus();
     el.checkInput.textContent = '提交拼写';
-    el.dictResult.textContent = `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
+    el.dictResult.textContent = isFresh
+      ? '今日新词需拼写正确后才计入完成'
+      : `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
     lockJudge(true);
     el.flip.disabled = true;
     persistProgress();
@@ -521,10 +531,15 @@
     if (state.spellGate) {
       if (!ok) return;
       const gateType = state.spellGate;
+      const isFresh = Boolean(state.spellGateFresh);
       state.spellGate = null;
+      state.spellGateFresh = false;
+      if (isFresh) state.spelledFresh[w.en] = true;
       // 闸门通过后执行原评分并进入下一题
       const m = masteryOf(w);
-      if (gateType === 'blur') {
+      if (gateType === 'know') {
+        state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
+      } else if (gateType === 'blur') {
         state.score += 1; state.blur++; state.streak = 0; setMastery(w, m); state.wrongMap.set(w.en, w);
       } else {
         state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
@@ -549,9 +564,16 @@
     const w = state.deck[state.idx];
     const m = masteryOf(w);
 
-    // 新规则：选择“模糊/不认识”后，必须拼写通过才进入下一题
+    // 新词规则：今日新词必须拼写正确后，才计入当天完成
+    const needsFreshSpell = state.todayFreshSet?.has(w.en) && !state.spelledFresh?.[w.en] && state.mode !== 'spelling';
+    if (needsFreshSpell && !state.spellGate) {
+      startSpellGate(type, true);
+      return;
+    }
+
+    // 原规则：选择“模糊/不认识”后，必须拼写通过才进入下一题
     if ((type === 'blur' || type === 'dont') && !state.spellGate && state.mode !== 'spelling') {
-      startSpellGate(type);
+      startSpellGate(type, false);
       return;
     }
 
@@ -721,7 +743,7 @@
     const w = state.deck[state.idx];
     speak(w?.en || '', 'en-US');
   });
-  el.speakZh.addEventListener('click', () => {
+  el.speakZh?.addEventListener('click', () => {
     const w = state.deck[state.idx];
     speak(w?.zh || '', 'zh-CN');
   });
