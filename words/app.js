@@ -463,6 +463,9 @@
 
   function startSpellGate(type) {
     state.spellGate = type;
+    // 进入拼写闸门时，强制隐藏英文答案
+    state.revealed = false;
+    el.card.classList.remove('revealed');
     el.dictationBox.classList.remove('hidden');
     el.dictInput.value = '';
     // 手机上避免输入框触发浏览器自动放大
