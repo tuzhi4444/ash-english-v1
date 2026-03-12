@@ -1,7 +1,8 @@
 (() => {
   const KEY = 'word_game_v2';
   const BACKUP_KEY = 'word_game_v2_backup';
-  const DAY_OVERRIDE_KEY = 'ash_words_day_override';
+  const DAY_NUMBER_KEY = 'ash_words_day_number';
+  const START_DATE_KEY = 'ash_words_start_date';
   const LEGACY_KEYS = ['word_card_game_v1', 'word_game_v1'];
   const BASE_ROUND = 20;
 
@@ -154,9 +155,22 @@
   const DAILY_NEW = 20;
   const DAILY_MAX = 120;
 
+  function getStartDate() {
+    const saved = localStorage.getItem(START_DATE_KEY);
+    if (saved && /^\d{4}-\d{2}-\d{2}$/.test(saved)) return new Date(saved + 'T00:00:00');
+    const now = new Date();
+    const ymd = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    localStorage.setItem(START_DATE_KEY, ymd);
+    return new Date(ymd + 'T00:00:00');
+  }
+
   function effectiveTodayDate() {
-    const v = localStorage.getItem(DAY_OVERRIDE_KEY);
-    if (v && /^\d{4}-\d{2}-\d{2}$/.test(v)) return new Date(v + 'T00:00:00');
+    const dayNum = Number(localStorage.getItem(DAY_NUMBER_KEY) || 0);
+    if (dayNum >= 1) {
+      const d = getStartDate();
+      d.setDate(d.getDate() + dayNum - 1);
+      return d;
+    }
     return new Date();
   }
   function todayStr() {
@@ -805,17 +819,18 @@
 
   el.customVocabBtn?.addEventListener('click', () => el.customVocabFile?.click());
   el.selectDayBtn?.addEventListener('click', () => {
-    const cur = localStorage.getItem(DAY_OVERRIDE_KEY) || todayStr();
-    const v = prompt('输入学习日期（YYYY-MM-DD），留空=恢复今天', cur) || '';
+    const cur = localStorage.getItem(DAY_NUMBER_KEY) || '1';
+    const v = prompt('输入学习第几天（1/2/3/4/5...），留空=恢复今天', cur) || '';
     if (!v.trim()) {
-      localStorage.removeItem(DAY_OVERRIDE_KEY);
+      localStorage.removeItem(DAY_NUMBER_KEY);
       alert('已恢复为今天学习进度。');
       location.reload();
       return;
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(v.trim())) { alert('日期格式不正确'); return; }
-    localStorage.setItem(DAY_OVERRIDE_KEY, v.trim());
-    alert('学习日期已切换，页面将刷新。');
+    const n = Number(v.trim());
+    if (!Number.isInteger(n) || n < 1) { alert('请输入正整数天数，如 1、2、3'); return; }
+    localStorage.setItem(DAY_NUMBER_KEY, String(n));
+    alert(`已切换到第${n}天，页面将刷新。`);
     location.reload();
   });
   el.customVocabFile?.addEventListener('change', async (e) => {
