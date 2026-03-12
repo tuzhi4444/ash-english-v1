@@ -7,13 +7,11 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=17" />
 </head>
 <body>
   <div class="app">
     <div class="logo-wrap"><img src="logo.png" alt="Ash单词Logo" class="logo"></div>
-    
-    <!-- 顶部状态栏：分数、最高分、连击 -->
     <header class="topbar">
       <div class="stat"><span>分数</span><strong id="score">0</strong></div>
       <div class="stat"><span>最高分</span><strong id="highScore">0</strong></div>
@@ -21,7 +19,6 @@
     </header>
 
     <main id="gameView" class="view active">
-      <!-- 学习工具和单日复习按钮 -->
       <div class="toolbar-row">
         <details class="toolbox">
           <summary class="tool-btn">⚙️ 学习工具</summary>
@@ -42,7 +39,6 @@
         <button id="dailyReviewBtn" class="tool-btn">📅 单日复习</button>
       </div>
 
-      <!-- 单词卡片 -->
       <section class="card-wrap">
         <div class="card" id="card">
           <div id="prompt" class="prompt">中文提示</div>
@@ -50,7 +46,6 @@
         </div>
       </section>
 
-      <!-- 拼写输入框 -->
       <section id="dictationBox" class="dictation hidden">
         <input id="dictInput" type="text" placeholder="输入你想到的英文..." autocomplete="off" />
         <button id="checkInput" class="btn btn-flip">检查</button>
@@ -59,7 +54,6 @@
 
       <div class="hint"><span id="remain">剩余 20 题</span><span id="modeInfo">普通模式</span></div>
 
-      <!-- 明日计划面板 -->
       <section id="tomorrowPanel" class="result-card" style="display:none; margin-top:10px;">
         <h3 style="margin:0 0 10px;">明日学习计划</h3>
         <div class="grid">
@@ -76,7 +70,6 @@
         </div>
       </section>
 
-      <!-- 学习统计面板 -->
       <section id="statsPanel" class="result-card" style="display:none; margin-top:10px;">
         <h3 style="margin:0 0 10px;">学习统计</h3>
         <div class="grid">
@@ -87,13 +80,11 @@
         </div>
       </section>
 
-      <!-- 已掌握管理面板 -->
       <section id="masteredPanel" class="result-card" style="display:none; margin-top:10px;">
         <h3 style="margin:0 0 10px;">已掌握词管理（点取消）</h3>
         <div id="masteredList" class="scroll-cards"></div>
       </section>
 
-      <!-- 操作按钮 -->
       <section class="actions">
         <button id="flip" class="btn btn-flip">翻卡</button>
         <div class="judge-row">
@@ -103,7 +94,6 @@
       </section>
     </main>
 
-    <!-- 结果页面 -->
     <section id="resultView" class="view">
       <div class="result-card">
         <h2>本局完成 🎯</h2>
@@ -135,3 +125,4 @@
   </script>
 </body>
 </html>
+Thu Mar 12 20:42:58 WET 2026

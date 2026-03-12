@@ -12,7 +12,7 @@
     card: $('card'), prompt: $('prompt'), answer: $('answer'),
     flip: $('flip'), know: $('know'), dont: $('dont'),
     gameView: $('gameView'), resultView: $('resultView'),
-    rScore: $('rScore'), rHigh: $('rHigh'), rKnow: $('rKnow'), rDont: $('rDont'), rStreak: $('rStreak'), rRuns: $('rRuns'), rNew: $('rNew'),
+    rScore: $('rScore'), rHigh: $('rHigh'), rKnow: $('rKnow'), rBlur: $('rBlur'), rDont: $('rDont'), rStreak: $('rStreak'), rRuns: $('rRuns'), rNew: $('rNew'),
     restart: $('restart'), replayWrong: $('replayWrong'),
     modeCard: $('modeCard'), modeDictation: $('modeDictation'), modeSpelling: $('modeSpelling'), today50: $('today50'), continueBtn: $('continueBtn'), tomorrowBtn: $('tomorrowBtn'),
     statsBtn: $('statsBtn'), masteredMgrBtn: $('masteredMgrBtn'), wrongDrillBtn: $('wrongDrillBtn'),
@@ -109,7 +109,7 @@
       streak: state.streak,
       maxStreak: state.maxStreak,
       know: state.know,
-      
+
       dont: state.dont,
       wrongEns: [...state.wrongMap.keys()],
       autoSpeak: state.autoSpeak
@@ -378,6 +378,8 @@
     if (type === 'know') {
       stage = Math.min(stage + 1, EBB_GAPS.length - 1);
       nextDue = addDays(t, EBB_GAPS[stage]);
+    } else if (type === 'blur') {
+      nextDue = addDays(t, 1);
     } else {
       stage = 0;
       nextDue = addDays(t, 1);
@@ -516,7 +518,7 @@
       el.dictationBox.classList.remove('hidden');
       el.flip.textContent = '请先完成拼写';
       el.checkInput.textContent = '提交拼写';
-      el.dictResult.textContent = `需拼写通过才可继续（${ 不认识}）`;
+      el.dictResult.textContent = `需拼写通过才可继续`;
     } else if (state.mode === 'dictation' || state.mode === 'spelling') {
       el.dictationBox.classList.remove('hidden');
       el.flip.textContent = state.mode === 'spelling' ? '拼写后自动翻卡' : '翻卡(可跳过输入)';
@@ -567,7 +569,7 @@
     const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
     if (!isMobile) el.dictInput.focus();
     el.checkInput.textContent = '提交拼写';
-    el.dictResult.textContent = `需拼写通过才可继续（${不认识}）`;
+    el.dictResult.textContent = `需拼写通过才可继续`;
     lockJudge(true);
     el.flip.disabled = true;
     persistProgress();
@@ -613,6 +615,7 @@
       const m = masteryOf(w);
       if (gateType === 'know') {
         state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
+      }
       } else {
         state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
       }
@@ -635,13 +638,14 @@
     const m = masteryOf(w);
 
     // 第一遍：选择“模糊/不认识”后，必须拼写通过才进入下一题
-    if (type === 'dont' && !state.spellGate && state.mode !== 'spelling') {
+    if ((type === 'blur' || type === 'dont') && !state.spellGate && state.mode !== 'spelling') {
       startSpellGate(type);
       return;
     }
 
     if (type === 'know') {
       state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
+    }
     } else {
       state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
     }
@@ -691,7 +695,7 @@
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
     el.rKnow.textContent = state.know;
-
+    el.rBlur.textContent = state.blur;
     el.rDont.textContent = state.dont;
     el.rStreak.textContent = state.maxStreak;
     el.rRuns.textContent = store.totalRuns;
@@ -721,6 +725,7 @@
   // events
   el.flip.addEventListener('click', reveal);
   el.know.addEventListener('click', () => judge('know'));
+  el.blur.addEventListener('click', () => judge('blur'));
   el.dont.addEventListener('click', () => judge('dont'));
   el.checkInput.addEventListener('click', checkInput);
   el.dictInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkInput(); });
@@ -863,6 +868,7 @@
     if (!el.gameView.classList.contains('active')) return;
     if (e.code === 'Space') { e.preventDefault(); reveal(); }
     if (e.key === '1' && !el.know.disabled) judge('know');
+    if (e.key === '2' && !el.blur.disabled) judge('blur');
     if (e.key === '3' && !el.dont.disabled) judge('dont');
   });
 
