@@ -1,0 +1,5695 @@
+// 来自中小学1500词_单词表.xlsx（含中文释义）
+const WORDS = [
+  {
+    "zh": "关于；大约",
+    "en": "about"
+  },
+  {
+    "zh": "在……上面",
+    "en": "above"
+  },
+  {
+    "zh": "行动；动作",
+    "en": "action"
+  },
+  {
+    "zh": "演员",
+    "en": "actor"
+  },
+  {
+    "zh": "加法；添加",
+    "en": "addition"
+  },
+  {
+    "zh": "钦佩；赞美",
+    "en": "admire"
+  },
+  {
+    "zh": "着火的",
+    "en": "afire"
+  },
+  {
+    "zh": "在……之后",
+    "en": "after"
+  },
+  {
+    "zh": "下午",
+    "en": "afternoon"
+  },
+  {
+    "zh": "再一次",
+    "en": "again"
+  },
+  {
+    "zh": "年龄；时代",
+    "en": "age"
+  },
+  {
+    "zh": "以前",
+    "en": "ago"
+  },
+  {
+    "zh": "空气",
+    "en": "air"
+  },
+  {
+    "zh": "飞机",
+    "en": "airplane"
+  },
+  {
+    "zh": "闹钟；警报",
+    "en": "alarm"
+  },
+  {
+    "zh": "相册；专辑",
+    "en": "album"
+  },
+  {
+    "zh": "所有的；全部",
+    "en": "all"
+  },
+  {
+    "zh": "杏仁",
+    "en": "almond"
+  },
+  {
+    "zh": "独自的",
+    "en": "alone"
+  },
+  {
+    "zh": "沿着",
+    "en": "along"
+  },
+  {
+    "zh": "大声地",
+    "en": "aloud"
+  },
+  {
+    "zh": "也；同样",
+    "en": "also"
+  },
+  {
+    "zh": "总是；一直",
+    "en": "always"
+  },
+  {
+    "zh": "是（I am）",
+    "en": "am"
+  },
+  {
+    "zh": "令人惊叹的",
+    "en": "amazing"
+  },
+  {
+    "zh": "在……之中",
+    "en": "among"
+  },
+  {
+    "zh": "一个（用于元音前）",
+    "en": "an"
+  },
+  {
+    "zh": "锚；主播",
+    "en": "anchor"
+  },
+  {
+    "zh": "和；与",
+    "en": "and"
+  },
+  {
+    "zh": "生气的",
+    "en": "angry"
+  },
+  {
+    "zh": "动物",
+    "en": "animal"
+  },
+  {
+    "zh": "脚踝",
+    "en": "ankle"
+  },
+  {
+    "zh": "使烦恼",
+    "en": "annoy"
+  },
+  {
+    "zh": "蚂蚁",
+    "en": "ant"
+  },
+  {
+    "zh": "焦虑的",
+    "en": "anxious"
+  },
+  {
+    "zh": "任何的",
+    "en": "any"
+  },
+  {
+    "zh": "任何事物",
+    "en": "anything"
+  },
+  {
+    "zh": "任何地方",
+    "en": "anywhere"
+  },
+  {
+    "zh": "分开地",
+    "en": "apart"
+  },
+  {
+    "zh": "每个",
+    "en": "apiece"
+  },
+  {
+    "zh": "苹果",
+    "en": "apple"
+  },
+  {
+    "zh": "四月",
+    "en": "april"
+  },
+  {
+    "zh": "是（复数）",
+    "en": "are"
+  },
+  {
+    "zh": "地区；面积",
+    "en": "area"
+  },
+  {
+    "zh": "争论",
+    "en": "argue"
+  },
+  {
+    "zh": "方舟",
+    "en": "ark"
+  },
+  {
+    "zh": "在……周围",
+    "en": "around"
+  },
+  {
+    "zh": "艺术",
+    "en": "art"
+  },
+  {
+    "zh": "作为；像",
+    "en": "as"
+  },
+  {
+    "zh": "问；请求",
+    "en": "ask"
+  },
+  {
+    "zh": "在",
+    "en": "at"
+  },
+  {
+    "zh": "参加；出席",
+    "en": "attend"
+  },
+  {
+    "zh": "注意力",
+    "en": "attention"
+  },
+  {
+    "zh": "八月",
+    "en": "august"
+  },
+  {
+    "zh": "作者",
+    "en": "author"
+  },
+  {
+    "zh": "秋天",
+    "en": "autumn"
+  },
+  {
+    "zh": "避免",
+    "en": "avoid"
+  },
+  {
+    "zh": "醒着的",
+    "en": "awake"
+  },
+  {
+    "zh": "奖品；奖励",
+    "en": "award"
+  },
+  {
+    "zh": "离开；远离",
+    "en": "away"
+  },
+  {
+    "zh": "糟糕的",
+    "en": "awful"
+  },
+  {
+    "zh": "婴儿",
+    "en": "baby"
+  },
+  {
+    "zh": "背部；回来",
+    "en": "back"
+  },
+  {
+    "zh": "背景",
+    "en": "background"
+  },
+  {
+    "zh": "坏的",
+    "en": "bad"
+  },
+  {
+    "zh": "包；袋子",
+    "en": "bag"
+  },
+  {
+    "zh": "烘焙",
+    "en": "bake"
+  },
+  {
+    "zh": "大捆",
+    "en": "bale"
+  },
+  {
+    "zh": "球",
+    "en": "ball"
+  },
+  {
+    "zh": "芭蕾舞",
+    "en": "ballet"
+  },
+  {
+    "zh": "气球",
+    "en": "balloon"
+  },
+  {
+    "zh": "竹子",
+    "en": "bamboo"
+  },
+  {
+    "zh": "禁止",
+    "en": "ban"
+  },
+  {
+    "zh": "香蕉",
+    "en": "banana"
+  },
+  {
+    "zh": "乐队；带子",
+    "en": "band"
+  },
+  {
+    "zh": "银行；河岸",
+    "en": "bank"
+  },
+  {
+    "zh": "酒吧；条",
+    "en": "bar"
+  },
+  {
+    "zh": "树皮；吠叫",
+    "en": "bark"
+  },
+  {
+    "zh": "谷仓",
+    "en": "barn"
+  },
+  {
+    "zh": "棒球",
+    "en": "baseball"
+  },
+  {
+    "zh": "篮子",
+    "en": "basket"
+  },
+  {
+    "zh": "篮球",
+    "en": "basketball"
+  },
+  {
+    "zh": "蝙蝠；球棒",
+    "en": "bat"
+  },
+  {
+    "zh": "洗澡",
+    "en": "bath"
+  },
+  {
+    "zh": "浴室",
+    "en": "bathroom"
+  },
+  {
+    "zh": "海湾",
+    "en": "bay"
+  },
+  {
+    "zh": "是；存在",
+    "en": "be"
+  },
+  {
+    "zh": "海滩",
+    "en": "beach"
+  },
+  {
+    "zh": "豆子",
+    "en": "bean"
+  },
+  {
+    "zh": "熊；忍受",
+    "en": "bear"
+  },
+  {
+    "zh": "胡须",
+    "en": "beard"
+  },
+  {
+    "zh": "美丽的",
+    "en": "beautiful"
+  },
+  {
+    "zh": "因为",
+    "en": "because"
+  },
+  {
+    "zh": "床",
+    "en": "bed"
+  },
+  {
+    "zh": "卧室",
+    "en": "bedroom"
+  },
+  {
+    "zh": "蜜蜂",
+    "en": "bee"
+  },
+  {
+    "zh": "（be的过去分词）",
+    "en": "been"
+  },
+  {
+    "zh": "啤酒",
+    "en": "beer"
+  },
+  {
+    "zh": "蜜蜂（复数）",
+    "en": "bees"
+  },
+  {
+    "zh": "在……之前",
+    "en": "before"
+  },
+  {
+    "zh": "乞求",
+    "en": "beg"
+  },
+  {
+    "zh": "乞丐",
+    "en": "beggar"
+  },
+  {
+    "zh": "在……后面",
+    "en": "behind"
+  },
+  {
+    "zh": "铃；钟",
+    "en": "bell"
+  },
+  {
+    "zh": "在……下面",
+    "en": "below"
+  },
+  {
+    "zh": "弯曲",
+    "en": "bend"
+  },
+  {
+    "zh": "最好的",
+    "en": "best"
+  },
+  {
+    "zh": "打赌",
+    "en": "bet"
+  },
+  {
+    "zh": "更好的",
+    "en": "better"
+  },
+  {
+    "zh": "在……之间",
+    "en": "between"
+  },
+  {
+    "zh": "偏见",
+    "en": "bias"
+  },
+  {
+    "zh": "自行车",
+    "en": "bicycle"
+  },
+  {
+    "zh": "出价；投标",
+    "en": "bid"
+  },
+  {
+    "zh": "大的",
+    "en": "big"
+  },
+  {
+    "zh": "自行车",
+    "en": "bike"
+  },
+  {
+    "zh": "账单；钞票",
+    "en": "bill"
+  },
+  {
+    "zh": "垃圾箱",
+    "en": "bin"
+  },
+  {
+    "zh": "鸟",
+    "en": "bird"
+  },
+  {
+    "zh": "出生",
+    "en": "birth"
+  },
+  {
+    "zh": "生日",
+    "en": "birthday"
+  },
+  {
+    "zh": "饼干",
+    "en": "biscuit"
+  },
+  {
+    "zh": "一点；少量",
+    "en": "bit"
+  },
+  {
+    "zh": "咬",
+    "en": "bite"
+  },
+  {
+    "zh": "黑色的",
+    "en": "black"
+  },
+  {
+    "zh": "黑板",
+    "en": "blackboard"
+  },
+  {
+    "zh": "空白的",
+    "en": "blank"
+  },
+  {
+    "zh": "保佑；祝福",
+    "en": "bless"
+  },
+  {
+    "zh": "街区；阻塞",
+    "en": "block"
+  },
+  {
+    "zh": "血液",
+    "en": "blood"
+  },
+  {
+    "zh": "开花",
+    "en": "bloom"
+  },
+  {
+    "zh": "吹",
+    "en": "blow"
+  },
+  {
+    "zh": "蓝色的",
+    "en": "blue"
+  },
+  {
+    "zh": "蓝莓",
+    "en": "blueberry"
+  },
+  {
+    "zh": "脸红",
+    "en": "blush"
+  },
+  {
+    "zh": "板；董事会",
+    "en": "board"
+  },
+  {
+    "zh": "船",
+    "en": "boat"
+  },
+  {
+    "zh": "身体",
+    "en": "body"
+  },
+  {
+    "zh": "煮沸",
+    "en": "boil"
+  },
+  {
+    "zh": "炸弹",
+    "en": "bomb"
+  },
+  {
+    "zh": "骨头",
+    "en": "bone"
+  },
+  {
+    "zh": "奖金；额外的",
+    "en": "bonus"
+  },
+  {
+    "zh": "书",
+    "en": "book"
+  },
+  {
+    "zh": "书呆子气的",
+    "en": "bookish"
+  },
+  {
+    "zh": "书店",
+    "en": "bookstore"
+  },
+  {
+    "zh": "无聊的",
+    "en": "boring"
+  },
+  {
+    "zh": "出生的",
+    "en": "born"
+  },
+  {
+    "zh": "借入",
+    "en": "borrow"
+  },
+  {
+    "zh": "两者都",
+    "en": "both"
+  },
+  {
+    "zh": "瓶子",
+    "en": "bottle"
+  },
+  {
+    "zh": "买（过去式）",
+    "en": "bought"
+  },
+  {
+    "zh": "弓；鞠躬",
+    "en": "bow"
+  },
+  {
+    "zh": "碗",
+    "en": "bowl"
+  },
+  {
+    "zh": "盒子",
+    "en": "box"
+  },
+  {
+    "zh": "男孩",
+    "en": "boy"
+  },
+  {
+    "zh": "大脑",
+    "en": "brain"
+  },
+  {
+    "zh": "品牌",
+    "en": "brand"
+  },
+  {
+    "zh": "勇敢的",
+    "en": "brave"
+  },
+  {
+    "zh": "面包",
+    "en": "bread"
+  },
+  {
+    "zh": "打破；休息",
+    "en": "break"
+  },
+  {
+    "zh": "早餐",
+    "en": "breakfast"
+  },
+  {
+    "zh": "呼吸",
+    "en": "breath"
+  },
+  {
+    "zh": "砖",
+    "en": "brick"
+  },
+  {
+    "zh": "新娘",
+    "en": "bride"
+  },
+  {
+    "zh": "桥",
+    "en": "bridge"
+  },
+  {
+    "zh": "边缘",
+    "en": "brim"
+  },
+  {
+    "zh": "带来",
+    "en": "bring"
+  },
+  {
+    "zh": "破碎的",
+    "en": "broken"
+  },
+  {
+    "zh": "扫帚",
+    "en": "broom"
+  },
+  {
+    "zh": "带来（过去式）",
+    "en": "brought"
+  },
+  {
+    "zh": "棕色的",
+    "en": "brown"
+  },
+  {
+    "zh": "刷子；刷",
+    "en": "brush"
+  },
+  {
+    "zh": "雄鹿；美元",
+    "en": "buck"
+  },
+  {
+    "zh": "建造",
+    "en": "build"
+  },
+  {
+    "zh": "小圆面包",
+    "en": "bun"
+  },
+  {
+    "zh": "燃烧",
+    "en": "burn"
+  },
+  {
+    "zh": "公共汽车",
+    "en": "bus"
+  },
+  {
+    "zh": "商业；生意",
+    "en": "business"
+  },
+  {
+    "zh": "商人",
+    "en": "businessman"
+  },
+  {
+    "zh": "忙碌的",
+    "en": "busy"
+  },
+  {
+    "zh": "但是",
+    "en": "but"
+  },
+  {
+    "zh": "蝴蝶",
+    "en": "butterfly"
+  },
+  {
+    "zh": "买",
+    "en": "buy"
+  },
+  {
+    "zh": "通过；在旁边",
+    "en": "by"
+  },
+  {
+    "zh": "再见",
+    "en": "bye"
+  },
+  {
+    "zh": "蛋糕",
+    "en": "cake"
+  },
+  {
+    "zh": "打电话；叫",
+    "en": "call"
+  },
+  {
+    "zh": "平静的",
+    "en": "calm"
+  },
+  {
+    "zh": "来（过去式）",
+    "en": "came"
+  },
+  {
+    "zh": "照相机",
+    "en": "camera"
+  },
+  {
+    "zh": "营地；露营",
+    "en": "camp"
+  },
+  {
+    "zh": "能；罐头",
+    "en": "can"
+  },
+  {
+    "zh": "糖果",
+    "en": "candy"
+  },
+  {
+    "zh": "大炮",
+    "en": "cannon"
+  },
+  {
+    "zh": "独木舟",
+    "en": "canoe"
+  },
+  {
+    "zh": "首都；资本",
+    "en": "capital"
+  },
+  {
+    "zh": "捕获",
+    "en": "capture"
+  },
+  {
+    "zh": "汽车",
+    "en": "car"
+  },
+  {
+    "zh": "卡片",
+    "en": "card"
+  },
+  {
+    "zh": "小心的",
+    "en": "careful"
+  },
+  {
+    "zh": "胡萝卜",
+    "en": "carrot"
+  },
+  {
+    "zh": "搬运；携带",
+    "en": "carry"
+  },
+  {
+    "zh": "城堡",
+    "en": "castle"
+  },
+  {
+    "zh": "猫",
+    "en": "cat"
+  },
+  {
+    "zh": "抓住",
+    "en": "catch"
+  },
+  {
+    "zh": "抓住（过去式）",
+    "en": "caught"
+  },
+  {
+    "zh": "原因；导致",
+    "en": "cause"
+  },
+  {
+    "zh": "谨慎的",
+    "en": "cautious"
+  },
+  {
+    "zh": "洞穴",
+    "en": "cave"
+  },
+  {
+    "zh": "分（货币）",
+    "en": "cent"
+  },
+  {
+    "zh": "椅子",
+    "en": "chair"
+  },
+  {
+    "zh": "粉笔",
+    "en": "chalk"
+  },
+  {
+    "zh": "香槟",
+    "en": "champagne"
+  },
+  {
+    "zh": "角色；性格",
+    "en": "character"
+  },
+  {
+    "zh": "图表",
+    "en": "chart"
+  },
+  {
+    "zh": "便宜的",
+    "en": "cheap"
+  },
+  {
+    "zh": "脸颊",
+    "en": "cheek"
+  },
+  {
+    "zh": "欢呼",
+    "en": "cheer"
+  },
+  {
+    "zh": "厨师",
+    "en": "chef"
+  },
+  {
+    "zh": "樱桃",
+    "en": "cherry"
+  },
+  {
+    "zh": "国际象棋",
+    "en": "chess"
+  },
+  {
+    "zh": "小鸡",
+    "en": "chick"
+  },
+  {
+    "zh": "鸡；鸡肉",
+    "en": "chicken"
+  },
+  {
+    "zh": "孩子",
+    "en": "child"
+  },
+  {
+    "zh": "幼稚的",
+    "en": "childish"
+  },
+  {
+    "zh": "下巴",
+    "en": "chin"
+  },
+  {
+    "zh": "薯片；芯片",
+    "en": "chip"
+  },
+  {
+    "zh": "巧克力",
+    "en": "chocolate"
+  },
+  {
+    "zh": "选择",
+    "en": "choice"
+  },
+  {
+    "zh": "选择",
+    "en": "choose"
+  },
+  {
+    "zh": "砍；切",
+    "en": "chop"
+  },
+  {
+    "zh": "家务；杂事",
+    "en": "chore"
+  },
+  {
+    "zh": "圣诞节",
+    "en": "christmas"
+  },
+  {
+    "zh": "扔；抛",
+    "en": "chuck"
+  },
+  {
+    "zh": "圆；圈",
+    "en": "circle"
+  },
+  {
+    "zh": "城市",
+    "en": "city"
+  },
+  {
+    "zh": "拍手",
+    "en": "clap"
+  },
+  {
+    "zh": "班级；课",
+    "en": "class"
+  },
+  {
+    "zh": "同学",
+    "en": "classmate"
+  },
+  {
+    "zh": "教室",
+    "en": "classroom"
+  },
+  {
+    "zh": "黏土",
+    "en": "clay"
+  },
+  {
+    "zh": "干净的；打扫",
+    "en": "clean"
+  },
+  {
+    "zh": "清楚的",
+    "en": "clear"
+  },
+  {
+    "zh": "职员",
+    "en": "clerk"
+  },
+  {
+    "zh": "点击",
+    "en": "click"
+  },
+  {
+    "zh": "攀爬",
+    "en": "climb"
+  },
+  {
+    "zh": "时钟",
+    "en": "clock"
+  },
+  {
+    "zh": "关闭；近的",
+    "en": "close"
+  },
+  {
+    "zh": "关闭的",
+    "en": "closed"
+  },
+  {
+    "zh": "衣服",
+    "en": "clothes"
+  },
+  {
+    "zh": "云",
+    "en": "cloud"
+  },
+  {
+    "zh": "小丑",
+    "en": "clown"
+  },
+  {
+    "zh": "俱乐部",
+    "en": "club"
+  },
+  {
+    "zh": "线索",
+    "en": "clue"
+  },
+  {
+    "zh": "教练",
+    "en": "coach"
+  },
+  {
+    "zh": "外套",
+    "en": "coat"
+  },
+  {
+    "zh": "椰子",
+    "en": "coconut"
+  },
+  {
+    "zh": "咖啡",
+    "en": "coffee"
+  },
+  {
+    "zh": "硬币",
+    "en": "coin"
+  },
+  {
+    "zh": "冷的；感冒",
+    "en": "cold"
+  },
+  {
+    "zh": "颜色",
+    "en": "color"
+  },
+  {
+    "zh": "多彩的",
+    "en": "colorful"
+  },
+  {
+    "zh": "梳子；梳",
+    "en": "comb"
+  },
+  {
+    "zh": "来",
+    "en": "come"
+  },
+  {
+    "zh": "来（第三人称）",
+    "en": "comes"
+  },
+  {
+    "zh": "漫画；喜剧的",
+    "en": "comic"
+  },
+  {
+    "zh": "比赛；竞赛",
+    "en": "contest"
+  },
+  {
+    "zh": "继续",
+    "en": "continue"
+  },
+  {
+    "zh": "凉爽的；酷的",
+    "en": "cool"
+  },
+  {
+    "zh": "核心",
+    "en": "core"
+  },
+  {
+    "zh": "玉米",
+    "en": "corn"
+  },
+  {
+    "zh": "咳嗽",
+    "en": "cough"
+  },
+  {
+    "zh": "数；计算",
+    "en": "count"
+  },
+  {
+    "zh": "乡村",
+    "en": "countryside"
+  },
+  {
+    "zh": "一对；夫妻",
+    "en": "couple"
+  },
+  {
+    "zh": "课程；过程",
+    "en": "course"
+  },
+  {
+    "zh": "堂/表兄弟姐妹",
+    "en": "cousin"
+  },
+  {
+    "zh": "母牛",
+    "en": "cow"
+  },
+  {
+    "zh": "螃蟹",
+    "en": "crab"
+  },
+  {
+    "zh": "蜡笔",
+    "en": "crayon"
+  },
+  {
+    "zh": "疯狂的",
+    "en": "crazy"
+  },
+  {
+    "zh": "创造者",
+    "en": "creator"
+  },
+  {
+    "zh": "生物",
+    "en": "creature"
+  },
+  {
+    "zh": "船员；团队",
+    "en": "crew"
+  },
+  {
+    "zh": "哭（过去式）",
+    "en": "cried"
+  },
+  {
+    "zh": "庄稼",
+    "en": "crop"
+  },
+  {
+    "zh": "穿过；十字",
+    "en": "cross"
+  },
+  {
+    "zh": "人群",
+    "en": "crowd"
+  },
+  {
+    "zh": "王冠",
+    "en": "crown"
+  },
+  {
+    "zh": "压碎",
+    "en": "crush"
+  },
+  {
+    "zh": "哭；喊",
+    "en": "cry"
+  },
+  {
+    "zh": "立方体",
+    "en": "cube"
+  },
+  {
+    "zh": "文化",
+    "en": "culture"
+  },
+  {
+    "zh": "切；剪",
+    "en": "cut"
+  },
+  {
+    "zh": "可爱的",
+    "en": "cute"
+  },
+  {
+    "zh": "爸爸",
+    "en": "dad"
+  },
+  {
+    "zh": "潮湿的",
+    "en": "damp"
+  },
+  {
+    "zh": "跳舞",
+    "en": "dance"
+  },
+  {
+    "zh": "舞者",
+    "en": "dancer"
+  },
+  {
+    "zh": "危险",
+    "en": "danger"
+  },
+  {
+    "zh": "危险的",
+    "en": "dangerous"
+  },
+  {
+    "zh": "黑暗的",
+    "en": "dark"
+  },
+  {
+    "zh": "日期；约会",
+    "en": "date"
+  },
+  {
+    "zh": "女儿",
+    "en": "daughter"
+  },
+  {
+    "zh": "天；白天",
+    "en": "day"
+  },
+  {
+    "zh": "死的",
+    "en": "dead"
+  },
+  {
+    "zh": "交易；处理",
+    "en": "deal"
+  },
+  {
+    "zh": "十二月",
+    "en": "december"
+  },
+  {
+    "zh": "决定",
+    "en": "decide"
+  },
+  {
+    "zh": "决定",
+    "en": "decision"
+  },
+  {
+    "zh": "深的",
+    "en": "deep"
+  },
+  {
+    "zh": "鹿",
+    "en": "deer"
+  },
+  {
+    "zh": "度；学位",
+    "en": "degree"
+  },
+  {
+    "zh": "删除",
+    "en": "delete"
+  },
+  {
+    "zh": "美味的",
+    "en": "delicious"
+  },
+  {
+    "zh": "依靠",
+    "en": "depend"
+  },
+  {
+    "zh": "描述",
+    "en": "describe"
+  },
+  {
+    "zh": "沙漠",
+    "en": "desert"
+  },
+  {
+    "zh": "书桌",
+    "en": "desk"
+  },
+  {
+    "zh": "破坏",
+    "en": "destroy"
+  },
+  {
+    "zh": "绕道",
+    "en": "detour"
+  },
+  {
+    "zh": "露水",
+    "en": "dew"
+  },
+  {
+    "zh": "做（过去式）",
+    "en": "did"
+  },
+  {
+    "zh": "困难的",
+    "en": "difficult"
+  },
+  {
+    "zh": "挖",
+    "en": "dig"
+  },
+  {
+    "zh": "晚餐",
+    "en": "dinner"
+  },
+  {
+    "zh": "讨论",
+    "en": "discuss"
+  },
+  {
+    "zh": "讨论",
+    "en": "discussion"
+  },
+  {
+    "zh": "盘子；菜",
+    "en": "dish"
+  },
+  {
+    "zh": "除法；分割",
+    "en": "division"
+  },
+  {
+    "zh": "狗",
+    "en": "dog"
+  },
+  {
+    "zh": "美元",
+    "en": "dollar"
+  },
+  {
+    "zh": "海豚",
+    "en": "dolphin"
+  },
+  {
+    "zh": "完成的",
+    "en": "done"
+  },
+  {
+    "zh": "驴",
+    "en": "donkey"
+  },
+  {
+    "zh": "门",
+    "en": "door"
+  },
+  {
+    "zh": "门铃",
+    "en": "doorbell"
+  },
+  {
+    "zh": "双倍的",
+    "en": "double"
+  },
+  {
+    "zh": "向下",
+    "en": "down"
+  },
+  {
+    "zh": "拖拽",
+    "en": "drag"
+  },
+  {
+    "zh": "龙",
+    "en": "dragon"
+  },
+  {
+    "zh": "戏剧",
+    "en": "drama"
+  },
+  {
+    "zh": "喝（过去式）",
+    "en": "drank"
+  },
+  {
+    "zh": "画；拉",
+    "en": "draw"
+  },
+  {
+    "zh": "梦；梦想",
+    "en": "dream"
+  },
+  {
+    "zh": "连衣裙；穿衣",
+    "en": "dress"
+  },
+  {
+    "zh": "画（过去式）",
+    "en": "drew"
+  },
+  {
+    "zh": "钻头；训练",
+    "en": "drill"
+  },
+  {
+    "zh": "喝；饮料",
+    "en": "drink"
+  },
+  {
+    "zh": "开车；驾驶",
+    "en": "drive"
+  },
+  {
+    "zh": "司机",
+    "en": "driver"
+  },
+  {
+    "zh": "掉落；滴",
+    "en": "drop"
+  },
+  {
+    "zh": "鼓",
+    "en": "drum"
+  },
+  {
+    "zh": "喝醉的",
+    "en": "drunk"
+  },
+  {
+    "zh": "鸭子",
+    "en": "duck"
+  },
+  {
+    "zh": "小鸭子",
+    "en": "duckling"
+  },
+  {
+    "zh": "哑的；愚蠢的",
+    "en": "dumb"
+  },
+  {
+    "zh": "倾倒",
+    "en": "dump"
+  },
+  {
+    "zh": "沙丘",
+    "en": "dune"
+  },
+  {
+    "zh": "每个",
+    "en": "each"
+  },
+  {
+    "zh": "耳朵",
+    "en": "ear"
+  },
+  {
+    "zh": "伯爵",
+    "en": "earl"
+  },
+  {
+    "zh": "早的",
+    "en": "early"
+  },
+  {
+    "zh": "赚取",
+    "en": "earn"
+  },
+  {
+    "zh": "容易的",
+    "en": "easy"
+  },
+  {
+    "zh": "吃（进行时）",
+    "en": "eating"
+  },
+  {
+    "zh": "编辑",
+    "en": "editor"
+  },
+  {
+    "zh": "鸡蛋",
+    "en": "egg"
+  },
+  {
+    "zh": "十八",
+    "en": "eighteen"
+  },
+  {
+    "zh": "八十",
+    "en": "eighty"
+  },
+  {
+    "zh": "任一；也",
+    "en": "either"
+  },
+  {
+    "zh": "肘部",
+    "en": "elbow"
+  },
+  {
+    "zh": "电工",
+    "en": "electrician"
+  },
+  {
+    "zh": "电",
+    "en": "electricity"
+  },
+  {
+    "zh": "大象",
+    "en": "elephant"
+  },
+  {
+    "zh": "结束；末端",
+    "en": "end"
+  },
+  {
+    "zh": "结局",
+    "en": "ending"
+  },
+  {
+    "zh": "能量；精力",
+    "en": "energy"
+  },
+  {
+    "zh": "英语",
+    "en": "english"
+  },
+  {
+    "zh": "享受",
+    "en": "enjoy"
+  },
+  {
+    "zh": "享受（进行时）",
+    "en": "enjoying"
+  },
+  {
+    "zh": "足够的",
+    "en": "enough"
+  },
+  {
+    "zh": "确保",
+    "en": "ensure"
+  },
+  {
+    "zh": "嫉妒的",
+    "en": "envious"
+  },
+  {
+    "zh": "橡皮擦",
+    "en": "eraser"
+  },
+  {
+    "zh": "前夕",
+    "en": "eve"
+  },
+  {
+    "zh": "晚上",
+    "en": "evening"
+  },
+  {
+    "zh": "一切",
+    "en": "everything"
+  },
+  {
+    "zh": "到处",
+    "en": "everywhere"
+  },
+  {
+    "zh": "精确的",
+    "en": "exact"
+  },
+  {
+    "zh": "考试",
+    "en": "exam"
+  },
+  {
+    "zh": "例子",
+    "en": "example"
+  },
+  {
+    "zh": "兴奋的",
+    "en": "excited"
+  },
+  {
+    "zh": "借口；原谅",
+    "en": "excuse"
+  },
+  {
+    "zh": "锻炼；练习",
+    "en": "exercise"
+  },
+  {
+    "zh": "存在",
+    "en": "exist"
+  },
+  {
+    "zh": "扩展",
+    "en": "expansion"
+  },
+  {
+    "zh": "期望",
+    "en": "expect"
+  },
+  {
+    "zh": "昂贵的",
+    "en": "expensive"
+  },
+  {
+    "zh": "表达；快递",
+    "en": "express"
+  },
+  {
+    "zh": "表达；表情",
+    "en": "expression"
+  },
+  {
+    "zh": "眼睛",
+    "en": "eye"
+  },
+  {
+    "zh": "寓言",
+    "en": "fable"
+  },
+  {
+    "zh": "工厂",
+    "en": "factory"
+  },
+  {
+    "zh": "公平的；集市",
+    "en": "fair"
+  },
+  {
+    "zh": "落下；秋天",
+    "en": "fall"
+  },
+  {
+    "zh": "错误的；假的",
+    "en": "false"
+  },
+  {
+    "zh": "名声",
+    "en": "fame"
+  },
+  {
+    "zh": "家庭",
+    "en": "family"
+  },
+  {
+    "zh": "著名的",
+    "en": "famous"
+  },
+  {
+    "zh": "风扇；粉丝",
+    "en": "fan"
+  },
+  {
+    "zh": "远的",
+    "en": "far"
+  },
+  {
+    "zh": "农场",
+    "en": "farm"
+  },
+  {
+    "zh": "快的",
+    "en": "fast"
+  },
+  {
+    "zh": "系紧",
+    "en": "fasten"
+  },
+  {
+    "zh": "胖的；脂肪",
+    "en": "fat"
+  },
+  {
+    "zh": "命运",
+    "en": "fate"
+  },
+  {
+    "zh": "父亲",
+    "en": "father"
+  },
+  {
+    "zh": "围裙甲",
+    "en": "fauld"
+  },
+  {
+    "zh": "错误；过失",
+    "en": "fault"
+  },
+  {
+    "zh": "最喜欢的",
+    "en": "favorite"
+  },
+  {
+    "zh": "害怕；恐惧",
+    "en": "fear"
+  },
+  {
+    "zh": "壮举",
+    "en": "feat"
+  },
+  {
+    "zh": "特征",
+    "en": "feature"
+  },
+  {
+    "zh": "二月",
+    "en": "february"
+  },
+  {
+    "zh": "喂养",
+    "en": "feed"
+  },
+  {
+    "zh": "感觉（过去式）",
+    "en": "felt"
+  },
+  {
+    "zh": "渡船",
+    "en": "ferry"
+  },
+  {
+    "zh": "很少的",
+    "en": "few"
+  },
+  {
+    "zh": "小说；虚构",
+    "en": "fiction"
+  },
+  {
+    "zh": "田地；领域",
+    "en": "field"
+  },
+  {
+    "zh": "十五",
+    "en": "fifteen"
+  },
+  {
+    "zh": "第五",
+    "en": "fifth"
+  },
+  {
+    "zh": "五十",
+    "en": "fifty"
+  },
+  {
+    "zh": "打架；战斗",
+    "en": "fight"
+  },
+  {
+    "zh": "鱼片",
+    "en": "filet"
+  },
+  {
+    "zh": "填满",
+    "en": "fill"
+  },
+  {
+    "zh": "电影；胶卷",
+    "en": "film"
+  },
+  {
+    "zh": "找到",
+    "en": "find"
+  },
+  {
+    "zh": "完成",
+    "en": "finish"
+  },
+  {
+    "zh": "火；解雇",
+    "en": "fire"
+  },
+  {
+    "zh": "被解雇的",
+    "en": "fired"
+  },
+  {
+    "zh": "第一",
+    "en": "first"
+  },
+  {
+    "zh": "鱼",
+    "en": "fish"
+  },
+  {
+    "zh": "钓鱼",
+    "en": "fishing"
+  },
+  {
+    "zh": "裂缝",
+    "en": "fissure"
+  },
+  {
+    "zh": "拳头",
+    "en": "fist"
+  },
+  {
+    "zh": "适合；健康的",
+    "en": "fit"
+  },
+  {
+    "zh": "五",
+    "en": "five"
+  },
+  {
+    "zh": "固定的",
+    "en": "fixed"
+  },
+  {
+    "zh": "旗帜",
+    "en": "flag"
+  },
+  {
+    "zh": "拍打",
+    "en": "flap"
+  },
+  {
+    "zh": "闪光",
+    "en": "flash"
+  },
+  {
+    "zh": "手电筒",
+    "en": "flashlight"
+  },
+  {
+    "zh": "逃跑（过去式）",
+    "en": "fled"
+  },
+  {
+    "zh": "逃跑",
+    "en": "flee"
+  },
+  {
+    "zh": "飞（过去式）",
+    "en": "flew"
+  },
+  {
+    "zh": "航班；飞行",
+    "en": "flight"
+  },
+  {
+    "zh": "洪水",
+    "en": "flood"
+  },
+  {
+    "zh": "地板；楼层",
+    "en": "floor"
+  },
+  {
+    "zh": "面粉",
+    "en": "flour"
+  },
+  {
+    "zh": "花",
+    "en": "flower"
+  },
+  {
+    "zh": "流感",
+    "en": "flu"
+  },
+  {
+    "zh": "飞；苍蝇",
+    "en": "fly"
+  },
+  {
+    "zh": "跟随",
+    "en": "follow"
+  },
+  {
+    "zh": "脚；英尺",
+    "en": "foot"
+  },
+  {
+    "zh": "足球",
+    "en": "football"
+  },
+  {
+    "zh": "为了",
+    "en": "for"
+  },
+  {
+    "zh": "力量；强迫",
+    "en": "force"
+  },
+  {
+    "zh": "额头",
+    "en": "forehead"
+  },
+  {
+    "zh": "森林",
+    "en": "forest"
+  },
+  {
+    "zh": "忘记",
+    "en": "forget"
+  },
+  {
+    "zh": "叉子",
+    "en": "fork"
+  },
+  {
+    "zh": "四十",
+    "en": "forty"
+  },
+  {
+    "zh": "四",
+    "en": "four"
+  },
+  {
+    "zh": "第四",
+    "en": "fourth"
+  },
+  {
+    "zh": "狐狸",
+    "en": "fox"
+  },
+  {
+    "zh": "新鲜的",
+    "en": "fresh"
+  },
+  {
+    "zh": "星期五",
+    "en": "friday"
+  },
+  {
+    "zh": "朋友",
+    "en": "friend"
+  },
+  {
+    "zh": "友好的",
+    "en": "friendly"
+  },
+  {
+    "zh": "青蛙",
+    "en": "frog"
+  },
+  {
+    "zh": "从",
+    "en": "from"
+  },
+  {
+    "zh": "前面",
+    "en": "front"
+  },
+  {
+    "zh": "水果",
+    "en": "fruit"
+  },
+  {
+    "zh": "油炸",
+    "en": "fry"
+  },
+  {
+    "zh": "燃料",
+    "en": "fuel"
+  },
+  {
+    "zh": "满的",
+    "en": "full"
+  },
+  {
+    "zh": "乐趣",
+    "en": "fun"
+  },
+  {
+    "zh": "家具",
+    "en": "furniture"
+  },
+  {
+    "zh": "未来",
+    "en": "future"
+  },
+  {
+    "zh": "游戏",
+    "en": "game"
+  },
+  {
+    "zh": "大门",
+    "en": "gate"
+  },
+  {
+    "zh": "手势",
+    "en": "gesture"
+  },
+  {
+    "zh": "得到",
+    "en": "get"
+  },
+  {
+    "zh": "礼物",
+    "en": "gift"
+  },
+  {
+    "zh": "长颈鹿",
+    "en": "giraffe"
+  },
+  {
+    "zh": "女孩",
+    "en": "girl"
+  },
+  {
+    "zh": "少女般的",
+    "en": "girlish"
+  },
+  {
+    "zh": "给",
+    "en": "give"
+  },
+  {
+    "zh": "高兴的",
+    "en": "glad"
+  },
+  {
+    "zh": "玻璃；杯子",
+    "en": "glass"
+  },
+  {
+    "zh": "眼镜",
+    "en": "glasses"
+  },
+  {
+    "zh": "地球仪",
+    "en": "globe"
+  },
+  {
+    "zh": "光泽",
+    "en": "gloss"
+  },
+  {
+    "zh": "手套",
+    "en": "glove"
+  },
+  {
+    "zh": "发光",
+    "en": "glow"
+  },
+  {
+    "zh": "胶水",
+    "en": "glue"
+  },
+  {
+    "zh": "去",
+    "en": "go"
+  },
+  {
+    "zh": "目标；进球",
+    "en": "goal"
+  },
+  {
+    "zh": "山羊",
+    "en": "goat"
+  },
+  {
+    "zh": "上帝",
+    "en": "god"
+  },
+  {
+    "zh": "去（第三人称）",
+    "en": "goes"
+  },
+  {
+    "zh": "好的",
+    "en": "good"
+  },
+  {
+    "zh": "得到（过去式）",
+    "en": "got"
+  },
+  {
+    "zh": "年级；等级",
+    "en": "grade"
+  },
+  {
+    "zh": "语法",
+    "en": "grammar"
+  },
+  {
+    "zh": "宏伟的",
+    "en": "grand"
+  },
+  {
+    "zh": "孙女",
+    "en": "granddaughter"
+  },
+  {
+    "zh": "祖父",
+    "en": "grandfather"
+  },
+  {
+    "zh": "奶奶/外婆",
+    "en": "grandma"
+  },
+  {
+    "zh": "祖母",
+    "en": "grandmother"
+  },
+  {
+    "zh": "爷爷/外公",
+    "en": "grandpa"
+  },
+  {
+    "zh": "孙子",
+    "en": "grandson"
+  },
+  {
+    "zh": "葡萄",
+    "en": "grape"
+  },
+  {
+    "zh": "草",
+    "en": "grass"
+  },
+  {
+    "zh": "伟大的；极好的",
+    "en": "great"
+  },
+  {
+    "zh": "非常地",
+    "en": "greatly"
+  },
+  {
+    "zh": "绿色的",
+    "en": "green"
+  },
+  {
+    "zh": "问候",
+    "en": "greet"
+  },
+  {
+    "zh": "生长（过去式）",
+    "en": "grew"
+  },
+  {
+    "zh": "灰色的",
+    "en": "grey"
+  },
+  {
+    "zh": "组；群",
+    "en": "group"
+  },
+  {
+    "zh": "生长",
+    "en": "grow"
+  },
+  {
+    "zh": "猜测",
+    "en": "guess"
+  },
+  {
+    "zh": "指导；导游",
+    "en": "guide"
+  },
+  {
+    "zh": "内疚",
+    "en": "guilt"
+  },
+  {
+    "zh": "吉他",
+    "en": "guitar"
+  },
+  {
+    "zh": "涌出",
+    "en": "gush"
+  },
+  {
+    "zh": "体育馆",
+    "en": "gym"
+  },
+  {
+    "zh": "习惯",
+    "en": "habit"
+  },
+  {
+    "zh": "有（过去式）",
+    "en": "had"
+  },
+  {
+    "zh": "发刷",
+    "en": "hairbrush"
+  },
+  {
+    "zh": "一半",
+    "en": "half"
+  },
+  {
+    "zh": "汉堡包",
+    "en": "hamburger"
+  },
+  {
+    "zh": "手",
+    "en": "hand"
+  },
+  {
+    "zh": "手球",
+    "en": "handball"
+  },
+  {
+    "zh": "困难的；硬的",
+    "en": "hard"
+  },
+  {
+    "zh": "野兔",
+    "en": "hare"
+  },
+  {
+    "zh": "有害的",
+    "en": "harmful"
+  },
+  {
+    "zh": "帽子",
+    "en": "hat"
+  },
+  {
+    "zh": "讨厌",
+    "en": "hate"
+  },
+  {
+    "zh": "拖；拉",
+    "en": "haul"
+  },
+  {
+    "zh": "拖拉",
+    "en": "hauld"
+  },
+  {
+    "zh": "有",
+    "en": "have"
+  },
+  {
+    "zh": "鹰",
+    "en": "hawk"
+  },
+  {
+    "zh": "他",
+    "en": "he"
+  },
+  {
+    "zh": "头",
+    "en": "head"
+  },
+  {
+    "zh": "健康",
+    "en": "health"
+  },
+  {
+    "zh": "听到",
+    "en": "hear"
+  },
+  {
+    "zh": "热量；加热",
+    "en": "heat"
+  },
+  {
+    "zh": "注意；留心",
+    "en": "heed"
+  },
+  {
+    "zh": "继承人",
+    "en": "heir"
+  },
+  {
+    "zh": "你好",
+    "en": "hello"
+  },
+  {
+    "zh": "帮助",
+    "en": "help"
+  },
+  {
+    "zh": "有帮助的",
+    "en": "helpful"
+  },
+  {
+    "zh": "母鸡",
+    "en": "hen"
+  },
+  {
+    "zh": "她的",
+    "en": "her"
+  },
+  {
+    "zh": "这里",
+    "en": "here"
+  },
+  {
+    "zh": "嘿",
+    "en": "hey"
+  },
+  {
+    "zh": "隐藏",
+    "en": "hide"
+  },
+  {
+    "zh": "高的",
+    "en": "high"
+  },
+  {
+    "zh": "小山",
+    "en": "hill"
+  },
+  {
+    "zh": "他（宾格）",
+    "en": "him"
+  },
+  {
+    "zh": "臀部",
+    "en": "hip"
+  },
+  {
+    "zh": "雇用",
+    "en": "hire"
+  },
+  {
+    "zh": "他的",
+    "en": "his"
+  },
+  {
+    "zh": "打；击中",
+    "en": "hit"
+  },
+  {
+    "zh": "爱好",
+    "en": "hobby"
+  },
+  {
+    "zh": "曲棍球",
+    "en": "hockey"
+  },
+  {
+    "zh": "握住；举行",
+    "en": "hold"
+  },
+  {
+    "zh": "洞",
+    "en": "hole"
+  },
+  {
+    "zh": "假日",
+    "en": "holiday"
+  },
+  {
+    "zh": "家",
+    "en": "home"
+  },
+  {
+    "zh": "家庭作业",
+    "en": "homework"
+  },
+  {
+    "zh": "诚实的",
+    "en": "honest"
+  },
+  {
+    "zh": "蜂蜜",
+    "en": "honey"
+  },
+  {
+    "zh": "荣誉",
+    "en": "honor"
+  },
+  {
+    "zh": "有希望的",
+    "en": "hopeful"
+  },
+  {
+    "zh": "马",
+    "en": "horse"
+  },
+  {
+    "zh": "主人；主持",
+    "en": "host"
+  },
+  {
+    "zh": "热的",
+    "en": "hot"
+  },
+  {
+    "zh": "旅馆",
+    "en": "hotel"
+  },
+  {
+    "zh": "小时",
+    "en": "hour"
+  },
+  {
+    "zh": "房子",
+    "en": "house"
+  },
+  {
+    "zh": "怎样",
+    "en": "how"
+  },
+  {
+    "zh": "巨大的",
+    "en": "huge"
+  },
+  {
+    "zh": "人类的",
+    "en": "human"
+  },
+  {
+    "zh": "幽默的",
+    "en": "humorous"
+  },
+  {
+    "zh": "百",
+    "en": "hundred"
+  },
+  {
+    "zh": "饥饿的",
+    "en": "hungry"
+  },
+  {
+    "zh": "伤害；受伤",
+    "en": "hurt"
+  },
+  {
+    "zh": "如果",
+    "en": "if"
+  },
+  {
+    "zh": "生病的",
+    "en": "ill"
+  },
+  {
+    "zh": "在……里面",
+    "en": "in"
+  },
+  {
+    "zh": "墨水",
+    "en": "ink"
+  },
+  {
+    "zh": "昆虫",
+    "en": "insect"
+  },
+  {
+    "zh": "投保",
+    "en": "insure"
+  },
+  {
+    "zh": "进入",
+    "en": "into"
+  },
+  {
+    "zh": "发明",
+    "en": "invent"
+  },
+  {
+    "zh": "发明",
+    "en": "invention"
+  },
+  {
+    "zh": "是",
+    "en": "is"
+  },
+  {
+    "zh": "它",
+    "en": "it"
+  },
+  {
+    "zh": "它的",
+    "en": "its"
+  },
+  {
+    "zh": "夹克",
+    "en": "jacket"
+  },
+  {
+    "zh": "果酱；堵塞",
+    "en": "jam"
+  },
+  {
+    "zh": "一月",
+    "en": "january"
+  },
+  {
+    "zh": "下巴",
+    "en": "jaw"
+  },
+  {
+    "zh": "吉普车",
+    "en": "jeep"
+  },
+  {
+    "zh": "喷气式飞机",
+    "en": "jet"
+  },
+  {
+    "zh": "吉尔（人名）",
+    "en": "jill"
+  },
+  {
+    "zh": "工作",
+    "en": "job"
+  },
+  {
+    "zh": "慢跑",
+    "en": "jog"
+  },
+  {
+    "zh": "加入",
+    "en": "join"
+  },
+  {
+    "zh": "笑话",
+    "en": "joke"
+  },
+  {
+    "zh": "旅程",
+    "en": "journey"
+  },
+  {
+    "zh": "快乐",
+    "en": "joy"
+  },
+  {
+    "zh": "果汁",
+    "en": "juice"
+  },
+  {
+    "zh": "多汁的",
+    "en": "juicy"
+  },
+  {
+    "zh": "七月",
+    "en": "july"
+  },
+  {
+    "zh": "跳",
+    "en": "jump"
+  },
+  {
+    "zh": "六月",
+    "en": "june"
+  },
+  {
+    "zh": "初级的",
+    "en": "junior"
+  },
+  {
+    "zh": "垃圾",
+    "en": "junk"
+  },
+  {
+    "zh": "刚刚；只是",
+    "en": "just"
+  },
+  {
+    "zh": "袋鼠",
+    "en": "kangaroo"
+  },
+  {
+    "zh": "热衷的",
+    "en": "keen"
+  },
+  {
+    "zh": "保持",
+    "en": "keep"
+  },
+  {
+    "zh": "钥匙；关键",
+    "en": "key"
+  },
+  {
+    "zh": "杀死",
+    "en": "kill"
+  },
+  {
+    "zh": "亲属",
+    "en": "kin"
+  },
+  {
+    "zh": "善良的；种类",
+    "en": "kind"
+  },
+  {
+    "zh": "国王",
+    "en": "king"
+  },
+  {
+    "zh": "亲吻",
+    "en": "kiss"
+  },
+  {
+    "zh": "工具包",
+    "en": "kit"
+  },
+  {
+    "zh": "厨房",
+    "en": "kitchen"
+  },
+  {
+    "zh": "风筝",
+    "en": "kite"
+  },
+  {
+    "zh": "小猫",
+    "en": "kitten"
+  },
+  {
+    "zh": "诀窍",
+    "en": "knack"
+  },
+  {
+    "zh": "膝盖",
+    "en": "knee"
+  },
+  {
+    "zh": "跪下",
+    "en": "kneel"
+  },
+  {
+    "zh": "刀",
+    "en": "knife"
+  },
+  {
+    "zh": "骑士",
+    "en": "knight"
+  },
+  {
+    "zh": "编织",
+    "en": "knit"
+  },
+  {
+    "zh": "敲",
+    "en": "knock"
+  },
+  {
+    "zh": "小丘",
+    "en": "knoll"
+  },
+  {
+    "zh": "结",
+    "en": "knot"
+  },
+  {
+    "zh": "知道",
+    "en": "know"
+  },
+  {
+    "zh": "知识",
+    "en": "knowledge"
+  },
+  {
+    "zh": "已知的",
+    "en": "known"
+  },
+  {
+    "zh": "女士",
+    "en": "lady"
+  },
+  {
+    "zh": "湖",
+    "en": "lake"
+  },
+  {
+    "zh": "羊羔",
+    "en": "lamb"
+  },
+  {
+    "zh": "灯",
+    "en": "lamp"
+  },
+  {
+    "zh": "陆地；着陆",
+    "en": "land"
+  },
+  {
+    "zh": "大的",
+    "en": "large"
+  },
+  {
+    "zh": "最后的；持续",
+    "en": "last"
+  },
+  {
+    "zh": "迟的",
+    "en": "late"
+  },
+  {
+    "zh": "法律",
+    "en": "law"
+  },
+  {
+    "zh": "领导；铅",
+    "en": "lead"
+  },
+  {
+    "zh": "泄漏",
+    "en": "leak"
+  },
+  {
+    "zh": "学习",
+    "en": "learn"
+  },
+  {
+    "zh": "学习",
+    "en": "learning"
+  },
+  {
+    "zh": "离开",
+    "en": "leave"
+  },
+  {
+    "zh": "讲座",
+    "en": "lecture"
+  },
+  {
+    "zh": "左边；离开（过去式）",
+    "en": "left"
+  },
+  {
+    "zh": "腿",
+    "en": "leg"
+  },
+  {
+    "zh": "休闲",
+    "en": "leisure"
+  },
+  {
+    "zh": "借出",
+    "en": "lend"
+  },
+  {
+    "zh": "课；教训",
+    "en": "lesson"
+  },
+  {
+    "zh": "让",
+    "en": "let"
+  },
+  {
+    "zh": "水平；级别",
+    "en": "level"
+  },
+  {
+    "zh": "骗子",
+    "en": "liar"
+  },
+  {
+    "zh": "舔",
+    "en": "lick"
+  },
+  {
+    "zh": "盖子",
+    "en": "lid"
+  },
+  {
+    "zh": "躺；说谎",
+    "en": "lie"
+  },
+  {
+    "zh": "光；轻的",
+    "en": "light"
+  },
+  {
+    "zh": "闪电",
+    "en": "lightning"
+  },
+  {
+    "zh": "喜欢；像",
+    "en": "like"
+  },
+  {
+    "zh": "肢体；树枝",
+    "en": "limb"
+  },
+  {
+    "zh": "线；排",
+    "en": "line"
+  },
+  {
+    "zh": "嘴唇",
+    "en": "lip"
+  },
+  {
+    "zh": "列表；清单",
+    "en": "list"
+  },
+  {
+    "zh": "听",
+    "en": "listen"
+  },
+  {
+    "zh": "小的；少的",
+    "en": "little"
+  },
+  {
+    "zh": "住；活的",
+    "en": "live"
+  },
+  {
+    "zh": "活泼的",
+    "en": "lively"
+  },
+  {
+    "zh": "定位",
+    "en": "locate"
+  },
+  {
+    "zh": "位置",
+    "en": "location"
+  },
+  {
+    "zh": "锁",
+    "en": "lock"
+  },
+  {
+    "zh": "原木；日志",
+    "en": "log"
+  },
+  {
+    "zh": "长的",
+    "en": "long"
+  },
+  {
+    "zh": "看",
+    "en": "look"
+  },
+  {
+    "zh": "看（进行时）",
+    "en": "looking"
+  },
+  {
+    "zh": "丢失；输",
+    "en": "lose"
+  },
+  {
+    "zh": "失去（进行时）",
+    "en": "losing"
+  },
+  {
+    "zh": "丢失的",
+    "en": "lost"
+  },
+  {
+    "zh": "许多",
+    "en": "lot"
+  },
+  {
+    "zh": "莲花",
+    "en": "lotus"
+  },
+  {
+    "zh": "大声的",
+    "en": "loud"
+  },
+  {
+    "zh": "爱",
+    "en": "love"
+  },
+  {
+    "zh": "低的",
+    "en": "low"
+  },
+  {
+    "zh": "忠诚的",
+    "en": "loyal"
+  },
+  {
+    "zh": "运气",
+    "en": "luck"
+  },
+  {
+    "zh": "幸运的",
+    "en": "lucky"
+  },
+  {
+    "zh": "块；肿块",
+    "en": "lump"
+  },
+  {
+    "zh": "月亮的",
+    "en": "lunar"
+  },
+  {
+    "zh": "茂盛的",
+    "en": "lush"
+  },
+  {
+    "zh": "机器",
+    "en": "machine"
+  },
+  {
+    "zh": "疯狂的；生气的",
+    "en": "mad"
+  },
+  {
+    "zh": "制作（过去式）",
+    "en": "made"
+  },
+  {
+    "zh": "杂志",
+    "en": "magazine"
+  },
+  {
+    "zh": "魔法",
+    "en": "magic"
+  },
+  {
+    "zh": "魔术师",
+    "en": "magician"
+  },
+  {
+    "zh": "邮件",
+    "en": "mail"
+  },
+  {
+    "zh": "邮寄的",
+    "en": "mailed"
+  },
+  {
+    "zh": "制作；使",
+    "en": "make"
+  },
+  {
+    "zh": "购物中心",
+    "en": "mall"
+  },
+  {
+    "zh": "男人",
+    "en": "man"
+  },
+  {
+    "zh": "男子气的",
+    "en": "mannish"
+  },
+  {
+    "zh": "豪宅",
+    "en": "mansion"
+  },
+  {
+    "zh": "许多",
+    "en": "many"
+  },
+  {
+    "zh": "三月；行进",
+    "en": "march"
+  },
+  {
+    "zh": "标记；分数",
+    "en": "mark"
+  },
+  {
+    "zh": "市场",
+    "en": "market"
+  },
+  {
+    "zh": "垫子",
+    "en": "mat"
+  },
+  {
+    "zh": "比赛；匹配",
+    "en": "match"
+  },
+  {
+    "zh": "数学",
+    "en": "math"
+  },
+  {
+    "zh": "事情；物质",
+    "en": "matter"
+  },
+  {
+    "zh": "可以；五月",
+    "en": "may"
+  },
+  {
+    "zh": "我（宾格）",
+    "en": "me"
+  },
+  {
+    "zh": "遇见",
+    "en": "meet"
+  },
+  {
+    "zh": "会议",
+    "en": "meeting"
+  },
+  {
+    "zh": "男人们",
+    "en": "men"
+  },
+  {
+    "zh": "修补",
+    "en": "mend"
+  },
+  {
+    "zh": "提到",
+    "en": "mention"
+  },
+  {
+    "zh": "混乱",
+    "en": "mess"
+  },
+  {
+    "zh": "米；仪表",
+    "en": "meter"
+  },
+  {
+    "zh": "午夜",
+    "en": "midnight"
+  },
+  {
+    "zh": "牛奶",
+    "en": "milk"
+  },
+  {
+    "zh": "磨坊",
+    "en": "mill"
+  },
+  {
+    "zh": "分钟",
+    "en": "minute"
+  },
+  {
+    "zh": "想念；错过",
+    "en": "miss"
+  },
+  {
+    "zh": "任务",
+    "en": "mission"
+  },
+  {
+    "zh": "螨虫；小东西",
+    "en": "mite"
+  },
+  {
+    "zh": "混合",
+    "en": "mix"
+  },
+  {
+    "zh": "混合物",
+    "en": "mixture"
+  },
+  {
+    "zh": "星期一",
+    "en": "monday"
+  },
+  {
+    "zh": "钱",
+    "en": "money"
+  },
+  {
+    "zh": "猴子",
+    "en": "monkey"
+  },
+  {
+    "zh": "月",
+    "en": "month"
+  },
+  {
+    "zh": "月光",
+    "en": "moonlight"
+  },
+  {
+    "zh": "更多的",
+    "en": "more"
+  },
+  {
+    "zh": "早上",
+    "en": "morning"
+  },
+  {
+    "zh": "最多的",
+    "en": "most"
+  },
+  {
+    "zh": "汽车旅馆",
+    "en": "motel"
+  },
+  {
+    "zh": "母亲",
+    "en": "mother"
+  },
+  {
+    "zh": "山",
+    "en": "mountain"
+  },
+  {
+    "zh": "老鼠；鼠标",
+    "en": "mouse"
+  },
+  {
+    "zh": "嘴",
+    "en": "mouth"
+  },
+  {
+    "zh": "许多",
+    "en": "much"
+  },
+  {
+    "zh": "泥",
+    "en": "mud"
+  },
+  {
+    "zh": "乘法",
+    "en": "multiplication"
+  },
+  {
+    "zh": "博物馆",
+    "en": "museum"
+  },
+  {
+    "zh": "糊状物",
+    "en": "mush"
+  },
+  {
+    "zh": "音乐",
+    "en": "music"
+  },
+  {
+    "zh": "必须",
+    "en": "must"
+  },
+  {
+    "zh": "沉默的",
+    "en": "mute"
+  },
+  {
+    "zh": "我的",
+    "en": "my"
+  },
+  {
+    "zh": "钉子；指甲",
+    "en": "nail"
+  },
+  {
+    "zh": "名字",
+    "en": "name"
+  },
+  {
+    "zh": "国家",
+    "en": "nation"
+  },
+  {
+    "zh": "自然",
+    "en": "nature"
+  },
+  {
+    "zh": "淘气的",
+    "en": "naughty"
+  },
+  {
+    "zh": "近的",
+    "en": "near"
+  },
+  {
+    "zh": "整洁的",
+    "en": "neat"
+  },
+  {
+    "zh": "脖子",
+    "en": "neck"
+  },
+  {
+    "zh": "需要",
+    "en": "need"
+  },
+  {
+    "zh": "需要（第三人称）",
+    "en": "needs"
+  },
+  {
+    "zh": "侄子",
+    "en": "nephew"
+  },
+  {
+    "zh": "巢",
+    "en": "nest"
+  },
+  {
+    "zh": "网",
+    "en": "net"
+  },
+  {
+    "zh": "从不",
+    "en": "never"
+  },
+  {
+    "zh": "新的",
+    "en": "new"
+  },
+  {
+    "zh": "下一个",
+    "en": "next"
+  },
+  {
+    "zh": "好的",
+    "en": "nice"
+  },
+  {
+    "zh": "侄女",
+    "en": "niece"
+  },
+  {
+    "zh": "夜晚",
+    "en": "night"
+  },
+  {
+    "zh": "九",
+    "en": "nine"
+  },
+  {
+    "zh": "十九",
+    "en": "nineteen"
+  },
+  {
+    "zh": "九十",
+    "en": "ninety"
+  },
+  {
+    "zh": "第九",
+    "en": "ninth"
+  },
+  {
+    "zh": "不",
+    "en": "no"
+  },
+  {
+    "zh": "点头",
+    "en": "nod"
+  },
+  {
+    "zh": "噪音",
+    "en": "noise"
+  },
+  {
+    "zh": "北方",
+    "en": "north"
+  },
+  {
+    "zh": "鼻子",
+    "en": "nose"
+  },
+  {
+    "zh": "不",
+    "en": "not"
+  },
+  {
+    "zh": "笔记；注意",
+    "en": "note"
+  },
+  {
+    "zh": "没有东西",
+    "en": "nothing"
+  },
+  {
+    "zh": "十一月",
+    "en": "november"
+  },
+  {
+    "zh": "现在",
+    "en": "now"
+  },
+  {
+    "zh": "麻木的",
+    "en": "numb"
+  },
+  {
+    "zh": "数字",
+    "en": "number"
+  },
+  {
+    "zh": "众多的",
+    "en": "numerous"
+  },
+  {
+    "zh": "护士",
+    "en": "nurse"
+  },
+  {
+    "zh": "橡树",
+    "en": "oak"
+  },
+  {
+    "zh": "桨",
+    "en": "oar"
+  },
+  {
+    "zh": "服从",
+    "en": "obey"
+  },
+  {
+    "zh": "十月",
+    "en": "october"
+  },
+  {
+    "zh": "……的",
+    "en": "of"
+  },
+  {
+    "zh": "离开；关",
+    "en": "off"
+  },
+  {
+    "zh": "办公室",
+    "en": "office"
+  },
+  {
+    "zh": "经常",
+    "en": "often"
+  },
+  {
+    "zh": "哦",
+    "en": "oh"
+  },
+  {
+    "zh": "好的",
+    "en": "ok"
+  },
+  {
+    "zh": "老的；旧的",
+    "en": "old"
+  },
+  {
+    "zh": "在……上",
+    "en": "on"
+  },
+  {
+    "zh": "一次；曾经",
+    "en": "once"
+  },
+  {
+    "zh": "一",
+    "en": "one"
+  },
+  {
+    "zh": "打开",
+    "en": "open"
+  },
+  {
+    "zh": "或者",
+    "en": "or"
+  },
+  {
+    "zh": "橙子；橙色",
+    "en": "orange"
+  },
+  {
+    "zh": "其他的",
+    "en": "other"
+  },
+  {
+    "zh": "哎哟",
+    "en": "ouch"
+  },
+  {
+    "zh": "我们的",
+    "en": "our"
+  },
+  {
+    "zh": "出去",
+    "en": "out"
+  },
+  {
+    "zh": "外面",
+    "en": "outside"
+  },
+  {
+    "zh": "椭圆形的",
+    "en": "oval"
+  },
+  {
+    "zh": "在……上方",
+    "en": "over"
+  },
+  {
+    "zh": "一夜之间",
+    "en": "overnight"
+  },
+  {
+    "zh": "睡过头",
+    "en": "oversleep"
+  },
+  {
+    "zh": "猫头鹰",
+    "en": "owl"
+  },
+  {
+    "zh": "自己的；拥有",
+    "en": "own"
+  },
+  {
+    "zh": "打包",
+    "en": "pack"
+  },
+  {
+    "zh": "页",
+    "en": "page"
+  },
+  {
+    "zh": "疼痛",
+    "en": "pain"
+  },
+  {
+    "zh": "痛苦的",
+    "en": "painful"
+  },
+  {
+    "zh": "画；油漆",
+    "en": "paint"
+  },
+  {
+    "zh": "一对",
+    "en": "pair"
+  },
+  {
+    "zh": "苍白的",
+    "en": "pale"
+  },
+  {
+    "zh": "手掌；棕榈",
+    "en": "palm"
+  },
+  {
+    "zh": "平底锅",
+    "en": "pan"
+  },
+  {
+    "zh": "熊猫",
+    "en": "panda"
+  },
+  {
+    "zh": "裤子",
+    "en": "pants"
+  },
+  {
+    "zh": "父/母",
+    "en": "parent"
+  },
+  {
+    "zh": "公园；停车",
+    "en": "park"
+  },
+  {
+    "zh": "鹦鹉",
+    "en": "parrot"
+  },
+  {
+    "zh": "聚会；政党",
+    "en": "party"
+  },
+  {
+    "zh": "爪子",
+    "en": "paw"
+  },
+  {
+    "zh": "支付",
+    "en": "pay"
+  },
+  {
+    "zh": "和平",
+    "en": "peace"
+  },
+  {
+    "zh": "孔雀",
+    "en": "peacock"
+  },
+  {
+    "zh": "花生",
+    "en": "peanut"
+  },
+  {
+    "zh": "偷看",
+    "en": "peek"
+  },
+  {
+    "zh": "钢笔",
+    "en": "pen"
+  },
+  {
+    "zh": "铅笔",
+    "en": "pencil"
+  },
+  {
+    "zh": "人们",
+    "en": "people"
+  },
+  {
+    "zh": "完美的",
+    "en": "perfect"
+  },
+  {
+    "zh": "人",
+    "en": "person"
+  },
+  {
+    "zh": "害虫",
+    "en": "pest"
+  },
+  {
+    "zh": "宠物",
+    "en": "pet"
+  },
+  {
+    "zh": "凤凰",
+    "en": "phoenix"
+  },
+  {
+    "zh": "电话",
+    "en": "phone"
+  },
+  {
+    "zh": "照片",
+    "en": "photo"
+  },
+  {
+    "zh": "医生",
+    "en": "physician"
+  },
+  {
+    "zh": "挑选；摘",
+    "en": "pick"
+  },
+  {
+    "zh": "馅饼",
+    "en": "pie"
+  },
+  {
+    "zh": "片；块",
+    "en": "piece"
+  },
+  {
+    "zh": "猪",
+    "en": "pig"
+  },
+  {
+    "zh": "药丸",
+    "en": "pill"
+  },
+  {
+    "zh": "飞行员",
+    "en": "pilot"
+  },
+  {
+    "zh": "别针",
+    "en": "pin"
+  },
+  {
+    "zh": "菠萝",
+    "en": "pineapple"
+  },
+  {
+    "zh": "地方",
+    "en": "place"
+  },
+  {
+    "zh": "朴素的；平原",
+    "en": "plain"
+  },
+  {
+    "zh": "计划",
+    "en": "plan"
+  },
+  {
+    "zh": "飞机",
+    "en": "plane"
+  },
+  {
+    "zh": "植物；种植",
+    "en": "plant"
+  },
+  {
+    "zh": "盘子",
+    "en": "plate"
+  },
+  {
+    "zh": "玩；播放",
+    "en": "play"
+  },
+  {
+    "zh": "运动员；播放器",
+    "en": "player"
+  },
+  {
+    "zh": "操场",
+    "en": "playground"
+  },
+  {
+    "zh": "请",
+    "en": "please"
+  },
+  {
+    "zh": "情节；阴谋",
+    "en": "plot"
+  },
+  {
+    "zh": "李子",
+    "en": "plum"
+  },
+  {
+    "zh": "口袋",
+    "en": "pocket"
+  },
+  {
+    "zh": "点；指",
+    "en": "point"
+  },
+  {
+    "zh": "毒药",
+    "en": "poison"
+  },
+  {
+    "zh": "警察",
+    "en": "police"
+  },
+  {
+    "zh": "警察",
+    "en": "policeman"
+  },
+  {
+    "zh": "擦亮",
+    "en": "polish"
+  },
+  {
+    "zh": "有礼貌的",
+    "en": "polite"
+  },
+  {
+    "zh": "政治家",
+    "en": "politician"
+  },
+  {
+    "zh": "政治",
+    "en": "politics"
+  },
+  {
+    "zh": "游泳池",
+    "en": "pool"
+  },
+  {
+    "zh": "流行的",
+    "en": "pop"
+  },
+  {
+    "zh": "猪肉",
+    "en": "pork"
+  },
+  {
+    "zh": "邮寄；柱子",
+    "en": "post"
+  },
+  {
+    "zh": "姿势",
+    "en": "posture"
+  },
+  {
+    "zh": "锅；壶",
+    "en": "pot"
+  },
+  {
+    "zh": "土豆",
+    "en": "potato"
+  },
+  {
+    "zh": "倒；灌",
+    "en": "pour"
+  },
+  {
+    "zh": "练习",
+    "en": "practice"
+  },
+  {
+    "zh": "赞扬",
+    "en": "praise"
+  },
+  {
+    "zh": "珍贵的",
+    "en": "precious"
+  },
+  {
+    "zh": "礼物；现在的",
+    "en": "present"
+  },
+  {
+    "zh": "压力",
+    "en": "pressure"
+  },
+  {
+    "zh": "价格",
+    "en": "price"
+  },
+  {
+    "zh": "打印",
+    "en": "print"
+  },
+  {
+    "zh": "奖品",
+    "en": "prize"
+  },
+  {
+    "zh": "问题",
+    "en": "problem"
+  },
+  {
+    "zh": "生产",
+    "en": "produce"
+  },
+  {
+    "zh": "生产",
+    "en": "production"
+  },
+  {
+    "zh": "程序；节目",
+    "en": "program"
+  },
+  {
+    "zh": "进步",
+    "en": "progress"
+  },
+  {
+    "zh": "拉",
+    "en": "pull"
+  },
+  {
+    "zh": "惩罚",
+    "en": "punishment"
+  },
+  {
+    "zh": "学生；瞳孔",
+    "en": "pupil"
+  },
+  {
+    "zh": "小狗",
+    "en": "puppy"
+  },
+  {
+    "zh": "紫色的",
+    "en": "purple"
+  },
+  {
+    "zh": "推",
+    "en": "push"
+  },
+  {
+    "zh": "放",
+    "en": "put"
+  },
+  {
+    "zh": "谜；困惑",
+    "en": "puzzle"
+  },
+  {
+    "zh": "嘎嘎叫",
+    "en": "quack"
+  },
+  {
+    "zh": "四分之一",
+    "en": "quarter"
+  },
+  {
+    "zh": "女王",
+    "en": "queen"
+  },
+  {
+    "zh": "问题",
+    "en": "question"
+  },
+  {
+    "zh": "快的",
+    "en": "quick"
+  },
+  {
+    "zh": "安静的",
+    "en": "quiet"
+  },
+  {
+    "zh": "被子",
+    "en": "quilt"
+  },
+  {
+    "zh": "退出",
+    "en": "quit"
+  },
+  {
+    "zh": "相当",
+    "en": "quite"
+  },
+  {
+    "zh": "兔子",
+    "en": "rabbit"
+  },
+  {
+    "zh": "浣熊",
+    "en": "raccoon"
+  },
+  {
+    "zh": "收音机",
+    "en": "radio"
+  },
+  {
+    "zh": "抹布",
+    "en": "rag"
+  },
+  {
+    "zh": "雨",
+    "en": "rain"
+  },
+  {
+    "zh": "下雨的",
+    "en": "rainy"
+  },
+  {
+    "zh": "生的",
+    "en": "raw"
+  },
+  {
+    "zh": "光线",
+    "en": "ray"
+  },
+  {
+    "zh": "读",
+    "en": "read"
+  },
+  {
+    "zh": "真正地",
+    "en": "really"
+  },
+  {
+    "zh": "长方形",
+    "en": "rectangle"
+  },
+  {
+    "zh": "回收",
+    "en": "recycle"
+  },
+  {
+    "zh": "红色的",
+    "en": "red"
+  },
+  {
+    "zh": "后悔",
+    "en": "regret"
+  },
+  {
+    "zh": "放松",
+    "en": "relax"
+  },
+  {
+    "zh": "解脱",
+    "en": "relief"
+  },
+  {
+    "zh": "报告",
+    "en": "report"
+  },
+  {
+    "zh": "休息",
+    "en": "rest"
+  },
+  {
+    "zh": "奖励",
+    "en": "reward"
+  },
+  {
+    "zh": "米饭",
+    "en": "rice"
+  },
+  {
+    "zh": "富有的",
+    "en": "rich"
+  },
+  {
+    "zh": "骑",
+    "en": "ride"
+  },
+  {
+    "zh": "右边；正确的",
+    "en": "right"
+  },
+  {
+    "zh": "边缘",
+    "en": "rim"
+  },
+  {
+    "zh": "戒指；铃声",
+    "en": "ring"
+  },
+  {
+    "zh": "溜冰场",
+    "en": "rink"
+  },
+  {
+    "zh": "成熟",
+    "en": "ripen"
+  },
+  {
+    "zh": "上升",
+    "en": "rise"
+  },
+  {
+    "zh": "河流",
+    "en": "river"
+  },
+  {
+    "zh": "路",
+    "en": "road"
+  },
+  {
+    "zh": "机器人",
+    "en": "robot"
+  },
+  {
+    "zh": "岩石；摇滚",
+    "en": "rock"
+  },
+  {
+    "zh": "火箭",
+    "en": "rocket"
+  },
+  {
+    "zh": "房间",
+    "en": "room"
+  },
+  {
+    "zh": "绳子",
+    "en": "rope"
+  },
+  {
+    "zh": "玫瑰",
+    "en": "rose"
+  },
+  {
+    "zh": "排；划船",
+    "en": "row"
+  },
+  {
+    "zh": "垃圾",
+    "en": "rubbish"
+  },
+  {
+    "zh": "粗鲁的",
+    "en": "rude"
+  },
+  {
+    "zh": "规则",
+    "en": "rule"
+  },
+  {
+    "zh": "尺子；统治者",
+    "en": "ruler"
+  },
+  {
+    "zh": "跑",
+    "en": "run"
+  },
+  {
+    "zh": "冲；匆忙",
+    "en": "rush"
+  },
+  {
+    "zh": "生锈",
+    "en": "rust"
+  },
+  {
+    "zh": "沙沙声",
+    "en": "rustle"
+  },
+  {
+    "zh": "悲伤的",
+    "en": "sad"
+  },
+  {
+    "zh": "说（过去式）",
+    "en": "said"
+  },
+  {
+    "zh": "航行",
+    "en": "sail"
+  },
+  {
+    "zh": "水手",
+    "en": "sailor"
+  },
+  {
+    "zh": "沙拉",
+    "en": "salad"
+  },
+  {
+    "zh": "销售",
+    "en": "sale"
+  },
+  {
+    "zh": "盐",
+    "en": "salt"
+  },
+  {
+    "zh": "相同的",
+    "en": "same"
+  },
+  {
+    "zh": "沙子",
+    "en": "sand"
+  },
+  {
+    "zh": "砂光机",
+    "en": "sander"
+  },
+  {
+    "zh": "三明治",
+    "en": "sandwich"
+  },
+  {
+    "zh": "沉（过去式）",
+    "en": "sank"
+  },
+  {
+    "zh": "坐（过去式）",
+    "en": "sat"
+  },
+  {
+    "zh": "星期六",
+    "en": "saturday"
+  },
+  {
+    "zh": "酱汁",
+    "en": "sauce"
+  },
+  {
+    "zh": "救；节省",
+    "en": "save"
+  },
+  {
+    "zh": "看见（过去式）；锯",
+    "en": "saw"
+  },
+  {
+    "zh": "说",
+    "en": "say"
+  },
+  {
+    "zh": "规模；秤",
+    "en": "scale"
+  },
+  {
+    "zh": "扫描",
+    "en": "scan"
+  },
+  {
+    "zh": "扫描仪",
+    "en": "scanner"
+  },
+  {
+    "zh": "围巾",
+    "en": "scarf"
+  },
+  {
+    "zh": "可怕的",
+    "en": "scary"
+  },
+  {
+    "zh": "场景",
+    "en": "scene"
+  },
+  {
+    "zh": "计划；方案",
+    "en": "scheme"
+  },
+  {
+    "zh": "学者",
+    "en": "scholar"
+  },
+  {
+    "zh": "奖学金",
+    "en": "scholarship"
+  },
+  {
+    "zh": "学校",
+    "en": "school"
+  },
+  {
+    "zh": "书包",
+    "en": "schoolbag"
+  },
+  {
+    "zh": "校友",
+    "en": "schoolmate"
+  },
+  {
+    "zh": "校园",
+    "en": "schoolyard"
+  },
+  {
+    "zh": "剪刀",
+    "en": "scissors"
+  },
+  {
+    "zh": "分数",
+    "en": "score"
+  },
+  {
+    "zh": "抓；划痕",
+    "en": "scratch"
+  },
+  {
+    "zh": "尖叫",
+    "en": "scream"
+  },
+  {
+    "zh": "屏幕",
+    "en": "screen"
+  },
+  {
+    "zh": "剧本；手稿",
+    "en": "script"
+  },
+  {
+    "zh": "海",
+    "en": "sea"
+  },
+  {
+    "zh": "季节",
+    "en": "season"
+  },
+  {
+    "zh": "第二；秒",
+    "en": "second"
+  },
+  {
+    "zh": "秘密",
+    "en": "secret"
+  },
+  {
+    "zh": "看见",
+    "en": "see"
+  },
+  {
+    "zh": "种子",
+    "en": "seed"
+  },
+  {
+    "zh": "寻找",
+    "en": "seek"
+  },
+  {
+    "zh": "似乎",
+    "en": "seem"
+  },
+  {
+    "zh": "看见（过去分词）",
+    "en": "seen"
+  },
+  {
+    "zh": "跷跷板",
+    "en": "seesaw"
+  },
+  {
+    "zh": "卖",
+    "en": "sell"
+  },
+  {
+    "zh": "发送",
+    "en": "send"
+  },
+  {
+    "zh": "发送（过去式）",
+    "en": "sent"
+  },
+  {
+    "zh": "九月",
+    "en": "september"
+  },
+  {
+    "zh": "严肃的",
+    "en": "serious"
+  },
+  {
+    "zh": "服务",
+    "en": "serve"
+  },
+  {
+    "zh": "设置；一套",
+    "en": "set"
+  },
+  {
+    "zh": "十七",
+    "en": "seventeen"
+  },
+  {
+    "zh": "第七",
+    "en": "seventh"
+  },
+  {
+    "zh": "影子",
+    "en": "shadow"
+  },
+  {
+    "zh": "将要",
+    "en": "shall"
+  },
+  {
+    "zh": "分享",
+    "en": "share"
+  },
+  {
+    "zh": "鲨鱼",
+    "en": "shark"
+  },
+  {
+    "zh": "她",
+    "en": "she"
+  },
+  {
+    "zh": "棚子",
+    "en": "shed"
+  },
+  {
+    "zh": "绵羊",
+    "en": "sheep"
+  },
+  {
+    "zh": "壳",
+    "en": "shell"
+  },
+  {
+    "zh": "发光",
+    "en": "shine"
+  },
+  {
+    "zh": "船",
+    "en": "ship"
+  },
+  {
+    "zh": "衬衫",
+    "en": "shirt"
+  },
+  {
+    "zh": "鞋",
+    "en": "shoe"
+  },
+  {
+    "zh": "射击",
+    "en": "shoot"
+  },
+  {
+    "zh": "商店",
+    "en": "shop"
+  },
+  {
+    "zh": "短的；矮的",
+    "en": "short"
+  },
+  {
+    "zh": "短裤",
+    "en": "shorts"
+  },
+  {
+    "zh": "射击；镜头",
+    "en": "shot"
+  },
+  {
+    "zh": "应该",
+    "en": "should"
+  },
+  {
+    "zh": "肩膀",
+    "en": "shoulder"
+  },
+  {
+    "zh": "喊叫",
+    "en": "shout"
+  },
+  {
+    "zh": "展示",
+    "en": "show"
+  },
+  {
+    "zh": "虾",
+    "en": "shrimp"
+  },
+  {
+    "zh": "缩小",
+    "en": "shrink"
+  },
+  {
+    "zh": "灌木",
+    "en": "shrub"
+  },
+  {
+    "zh": "关闭",
+    "en": "shut"
+  },
+  {
+    "zh": "害羞的",
+    "en": "shy"
+  },
+  {
+    "zh": "生病的",
+    "en": "sick"
+  },
+  {
+    "zh": "视力；景象",
+    "en": "sight"
+  },
+  {
+    "zh": "真诚的",
+    "en": "sincere"
+  },
+  {
+    "zh": "唱歌",
+    "en": "sing"
+  },
+  {
+    "zh": "唱歌",
+    "en": "singing"
+  },
+  {
+    "zh": "水槽；下沉",
+    "en": "sink"
+  },
+  {
+    "zh": "姐妹",
+    "en": "sister"
+  },
+  {
+    "zh": "坐",
+    "en": "sit"
+  },
+  {
+    "zh": "六",
+    "en": "six"
+  },
+  {
+    "zh": "十六",
+    "en": "sixteen"
+  },
+  {
+    "zh": "第六",
+    "en": "sixth"
+  },
+  {
+    "zh": "六十",
+    "en": "sixty"
+  },
+  {
+    "zh": "大小",
+    "en": "size"
+  },
+  {
+    "zh": "滑冰",
+    "en": "skate"
+  },
+  {
+    "zh": "滑冰者",
+    "en": "skater"
+  },
+  {
+    "zh": "滑冰",
+    "en": "skating"
+  },
+  {
+    "zh": "斜视",
+    "en": "skeen"
+  },
+  {
+    "zh": "滑雪",
+    "en": "ski"
+  },
+  {
+    "zh": "皮肤",
+    "en": "skin"
+  },
+  {
+    "zh": "裙子",
+    "en": "skirt"
+  },
+  {
+    "zh": "臭鼬",
+    "en": "skunk"
+  },
+  {
+    "zh": "拍打",
+    "en": "slap"
+  },
+  {
+    "zh": "雪橇",
+    "en": "sled"
+  },
+  {
+    "zh": "睡觉",
+    "en": "sleep"
+  },
+  {
+    "zh": "失眠的",
+    "en": "sleepless"
+  },
+  {
+    "zh": "困倦的",
+    "en": "sleepy"
+  },
+  {
+    "zh": "滑动",
+    "en": "slide"
+  },
+  {
+    "zh": "滑倒",
+    "en": "slip"
+  },
+  {
+    "zh": "慢的",
+    "en": "slow"
+  },
+  {
+    "zh": "小的",
+    "en": "small"
+  },
+  {
+    "zh": "聪明的",
+    "en": "smart"
+  },
+  {
+    "zh": "闻；气味",
+    "en": "smell"
+  },
+  {
+    "zh": "闻到（过去式）",
+    "en": "smelled"
+  },
+  {
+    "zh": "微笑",
+    "en": "smile"
+  },
+  {
+    "zh": "雾霾",
+    "en": "smog"
+  },
+  {
+    "zh": "烟；吸烟",
+    "en": "smoke"
+  },
+  {
+    "zh": "零食",
+    "en": "snack"
+  },
+  {
+    "zh": "蜗牛",
+    "en": "snail"
+  },
+  {
+    "zh": "蛇",
+    "en": "snake"
+  },
+  {
+    "zh": "折断",
+    "en": "snap"
+  },
+  {
+    "zh": "雪",
+    "en": "snow"
+  },
+  {
+    "zh": "下雪的",
+    "en": "snowy"
+  },
+  {
+    "zh": "所以；如此",
+    "en": "so"
+  },
+  {
+    "zh": "肥皂",
+    "en": "soap"
+  },
+  {
+    "zh": "社会的",
+    "en": "social"
+  },
+  {
+    "zh": "袜子",
+    "en": "sock"
+  },
+  {
+    "zh": "沙发",
+    "en": "sofa"
+  },
+  {
+    "zh": "土壤",
+    "en": "soil"
+  },
+  {
+    "zh": "一些",
+    "en": "some"
+  },
+  {
+    "zh": "某事",
+    "en": "something"
+  },
+  {
+    "zh": "歌曲",
+    "en": "song"
+  },
+  {
+    "zh": "不久",
+    "en": "soon"
+  },
+  {
+    "zh": "疼痛的",
+    "en": "sore"
+  },
+  {
+    "zh": "对不起",
+    "en": "sorry"
+  },
+  {
+    "zh": "声音",
+    "en": "sound"
+  },
+  {
+    "zh": "酸的",
+    "en": "sour"
+  },
+  {
+    "zh": "空间；太空",
+    "en": "space"
+  },
+  {
+    "zh": "说话",
+    "en": "speak"
+  },
+  {
+    "zh": "特别的",
+    "en": "special"
+  },
+  {
+    "zh": "速度",
+    "en": "speed"
+  },
+  {
+    "zh": "拼写",
+    "en": "spell"
+  },
+  {
+    "zh": "花费",
+    "en": "spend"
+  },
+  {
+    "zh": "花费（过去式）",
+    "en": "spent"
+  },
+  {
+    "zh": "球体",
+    "en": "sphere"
+  },
+  {
+    "zh": "吐",
+    "en": "spit"
+  },
+  {
+    "zh": "溅",
+    "en": "splash"
+  },
+  {
+    "zh": "辉煌的",
+    "en": "splendid"
+  },
+  {
+    "zh": "分裂",
+    "en": "split"
+  },
+  {
+    "zh": "宠坏；破坏",
+    "en": "spoil"
+  },
+  {
+    "zh": "勺子",
+    "en": "spoon"
+  },
+  {
+    "zh": "运动",
+    "en": "sport"
+  },
+  {
+    "zh": "运动",
+    "en": "sports"
+  },
+  {
+    "zh": "喷雾",
+    "en": "spray"
+  },
+  {
+    "zh": "传播",
+    "en": "spread"
+  },
+  {
+    "zh": "春天；弹簧",
+    "en": "spring"
+  },
+  {
+    "zh": "精灵",
+    "en": "sprite"
+  },
+  {
+    "zh": "广场；正方形",
+    "en": "square"
+  },
+  {
+    "zh": "挤压",
+    "en": "squeeze"
+  },
+  {
+    "zh": "鱿鱼",
+    "en": "squid"
+  },
+  {
+    "zh": "茎；跟踪",
+    "en": "stalk"
+  },
+  {
+    "zh": "站立",
+    "en": "stand"
+  },
+  {
+    "zh": "星星",
+    "en": "star"
+  },
+  {
+    "zh": "开始",
+    "en": "start"
+  },
+  {
+    "zh": "状态；州",
+    "en": "state"
+  },
+  {
+    "zh": "车站",
+    "en": "station"
+  },
+  {
+    "zh": "停留",
+    "en": "stay"
+  },
+  {
+    "zh": "牛排",
+    "en": "steak"
+  },
+  {
+    "zh": "棍子（复数）",
+    "en": "sticks"
+  },
+  {
+    "zh": "仍然",
+    "en": "still"
+  },
+  {
+    "zh": "胃",
+    "en": "stomach"
+  },
+  {
+    "zh": "石头",
+    "en": "stone"
+  },
+  {
+    "zh": "站（过去式）",
+    "en": "stood"
+  },
+  {
+    "zh": "停止",
+    "en": "stop"
+  },
+  {
+    "zh": "商店；储存",
+    "en": "store"
+  },
+  {
+    "zh": "故事",
+    "en": "story"
+  },
+  {
+    "zh": "故事书",
+    "en": "storybook"
+  },
+  {
+    "zh": "直的",
+    "en": "straight"
+  },
+  {
+    "zh": "奇怪的",
+    "en": "strange"
+  },
+  {
+    "zh": "草莓",
+    "en": "strawberry"
+  },
+  {
+    "zh": "街道",
+    "en": "street"
+  },
+  {
+    "zh": "严格的",
+    "en": "strict"
+  },
+  {
+    "zh": "强壮的",
+    "en": "strong"
+  },
+  {
+    "zh": "卡住的",
+    "en": "stuck"
+  },
+  {
+    "zh": "学生",
+    "en": "student"
+  },
+  {
+    "zh": "潜水艇",
+    "en": "submarine"
+  },
+  {
+    "zh": "字幕",
+    "en": "subtitle"
+  },
+  {
+    "zh": "减法",
+    "en": "subtraction"
+  },
+  {
+    "zh": "地铁",
+    "en": "subway"
+  },
+  {
+    "zh": "吸",
+    "en": "suck"
+  },
+  {
+    "zh": "糖",
+    "en": "sugar"
+  },
+  {
+    "zh": "适合；套装",
+    "en": "suit"
+  },
+  {
+    "zh": "夏天",
+    "en": "summer"
+  },
+  {
+    "zh": "太阳",
+    "en": "sun"
+  },
+  {
+    "zh": "星期日",
+    "en": "sunday"
+  },
+  {
+    "zh": "阳光",
+    "en": "sunlight"
+  },
+  {
+    "zh": "晴朗的",
+    "en": "sunny"
+  },
+  {
+    "zh": "超级的",
+    "en": "super"
+  },
+  {
+    "zh": "超人",
+    "en": "superman"
+  },
+  {
+    "zh": "超市",
+    "en": "supermarket"
+  },
+  {
+    "zh": "确定的",
+    "en": "sure"
+  },
+  {
+    "zh": "天鹅",
+    "en": "swan"
+  },
+  {
+    "zh": "毛衣",
+    "en": "sweater"
+  },
+  {
+    "zh": "甜的",
+    "en": "sweet"
+  },
+  {
+    "zh": "游泳",
+    "en": "swim"
+  },
+  {
+    "zh": "摇摆",
+    "en": "swing"
+  },
+  {
+    "zh": "音节",
+    "en": "syllable"
+  },
+  {
+    "zh": "桌子",
+    "en": "table"
+  },
+  {
+    "zh": "标签",
+    "en": "tag"
+  },
+  {
+    "zh": "尾巴",
+    "en": "tail"
+  },
+  {
+    "zh": "拿；带",
+    "en": "take"
+  },
+  {
+    "zh": "更高的",
+    "en": "taller"
+  },
+  {
+    "zh": "坦克；水箱",
+    "en": "tank"
+  },
+  {
+    "zh": "磁带；胶带",
+    "en": "tape"
+  },
+  {
+    "zh": "任务",
+    "en": "task"
+  },
+  {
+    "zh": "茶",
+    "en": "tea"
+  },
+  {
+    "zh": "教",
+    "en": "teach"
+  },
+  {
+    "zh": "老师",
+    "en": "teacher"
+  },
+  {
+    "zh": "团队",
+    "en": "team"
+  },
+  {
+    "zh": "茶壶",
+    "en": "teapot"
+  },
+  {
+    "zh": "电视",
+    "en": "television"
+  },
+  {
+    "zh": "十",
+    "en": "ten"
+  },
+  {
+    "zh": "紧张",
+    "en": "tension"
+  },
+  {
+    "zh": "帐篷",
+    "en": "tent"
+  },
+  {
+    "zh": "第十",
+    "en": "tenth"
+  },
+  {
+    "zh": "学期；术语",
+    "en": "term"
+  },
+  {
+    "zh": "可怕的",
+    "en": "terrible"
+  },
+  {
+    "zh": "测试",
+    "en": "test"
+  },
+  {
+    "zh": "文本",
+    "en": "text"
+  },
+  {
+    "zh": "比",
+    "en": "than"
+  },
+  {
+    "zh": "感谢",
+    "en": "thank"
+  },
+  {
+    "zh": "感激的",
+    "en": "thankful"
+  },
+  {
+    "zh": "那个",
+    "en": "that"
+  },
+  {
+    "zh": "这/那（定冠词）",
+    "en": "the"
+  },
+  {
+    "zh": "他们（宾格）",
+    "en": "them"
+  },
+  {
+    "zh": "然后",
+    "en": "then"
+  },
+  {
+    "zh": "那里",
+    "en": "there"
+  },
+  {
+    "zh": "这些",
+    "en": "these"
+  },
+  {
+    "zh": "他们",
+    "en": "they"
+  },
+  {
+    "zh": "小偷",
+    "en": "thief"
+  },
+  {
+    "zh": "薄的；瘦的",
+    "en": "thin"
+  },
+  {
+    "zh": "东西",
+    "en": "thing"
+  },
+  {
+    "zh": "想；认为",
+    "en": "think"
+  },
+  {
+    "zh": "第三",
+    "en": "third"
+  },
+  {
+    "zh": "口渴",
+    "en": "thirst"
+  },
+  {
+    "zh": "十三",
+    "en": "thirteen"
+  },
+  {
+    "zh": "三十",
+    "en": "thirty"
+  },
+  {
+    "zh": "这个",
+    "en": "this"
+  },
+  {
+    "zh": "那些",
+    "en": "those"
+  },
+  {
+    "zh": "想法",
+    "en": "thought"
+  },
+  {
+    "zh": "千",
+    "en": "thousand"
+  },
+  {
+    "zh": "线",
+    "en": "thread"
+  },
+  {
+    "zh": "威胁",
+    "en": "threat"
+  },
+  {
+    "zh": "三",
+    "en": "three"
+  },
+  {
+    "zh": "扔（过去式）",
+    "en": "threw"
+  },
+  {
+    "zh": "茁壮成长",
+    "en": "thrive"
+  },
+  {
+    "zh": "王座",
+    "en": "throne"
+  },
+  {
+    "zh": "通过",
+    "en": "through"
+  },
+  {
+    "zh": "扔",
+    "en": "throw"
+  },
+  {
+    "zh": "星期四",
+    "en": "thursday"
+  },
+  {
+    "zh": "票",
+    "en": "ticket"
+  },
+  {
+    "zh": "领带；系",
+    "en": "tie"
+  },
+  {
+    "zh": "老虎",
+    "en": "tiger"
+  },
+  {
+    "zh": "紧的",
+    "en": "tight"
+  },
+  {
+    "zh": "直到",
+    "en": "till"
+  },
+  {
+    "zh": "时间",
+    "en": "time"
+  },
+  {
+    "zh": "次数；时代",
+    "en": "times"
+  },
+  {
+    "zh": "微小的",
+    "en": "tiny"
+  },
+  {
+    "zh": "疲倦的",
+    "en": "tired"
+  },
+  {
+    "zh": "到；向",
+    "en": "to"
+  },
+  {
+    "zh": "今天",
+    "en": "today"
+  },
+  {
+    "zh": "脚趾",
+    "en": "toe"
+  },
+  {
+    "zh": "厕所",
+    "en": "toilet"
+  },
+  {
+    "zh": "番茄",
+    "en": "tomato"
+  },
+  {
+    "zh": "坟墓",
+    "en": "tomb"
+  },
+  {
+    "zh": "明天",
+    "en": "tomorrow"
+  },
+  {
+    "zh": "舌头",
+    "en": "tongue"
+  },
+  {
+    "zh": "今晚",
+    "en": "tonight"
+  },
+  {
+    "zh": "也；太",
+    "en": "too"
+  },
+  {
+    "zh": "工具",
+    "en": "tool"
+  },
+  {
+    "zh": "牙齿",
+    "en": "tooth"
+  },
+  {
+    "zh": "牙刷",
+    "en": "toothbrush"
+  },
+  {
+    "zh": "顶部",
+    "en": "top"
+  },
+  {
+    "zh": "触摸",
+    "en": "touch"
+  },
+  {
+    "zh": "坚韧的",
+    "en": "tough"
+  },
+  {
+    "zh": "旅行",
+    "en": "tour"
+  },
+  {
+    "zh": "拖",
+    "en": "tow"
+  },
+  {
+    "zh": "塔",
+    "en": "tower"
+  },
+  {
+    "zh": "城镇",
+    "en": "town"
+  },
+  {
+    "zh": "玩具",
+    "en": "toy"
+  },
+  {
+    "zh": "轨道；跟踪",
+    "en": "track"
+  },
+  {
+    "zh": "传统的",
+    "en": "traditional"
+  },
+  {
+    "zh": "交通",
+    "en": "traffic"
+  },
+  {
+    "zh": "旅行",
+    "en": "travel"
+  },
+  {
+    "zh": "宝藏",
+    "en": "treasure"
+  },
+  {
+    "zh": "树",
+    "en": "tree"
+  },
+  {
+    "zh": "三角形",
+    "en": "triangle"
+  },
+  {
+    "zh": "尝试（过去式）",
+    "en": "tried"
+  },
+  {
+    "zh": "旅行",
+    "en": "trip"
+  },
+  {
+    "zh": "麻烦",
+    "en": "trouble"
+  },
+  {
+    "zh": "裤子",
+    "en": "trousers"
+  },
+  {
+    "zh": "卡车",
+    "en": "truck"
+  },
+  {
+    "zh": "小号",
+    "en": "trumpet"
+  },
+  {
+    "zh": "树干；后备箱",
+    "en": "trunk"
+  },
+  {
+    "zh": "尝试",
+    "en": "try"
+  },
+  {
+    "zh": "管子",
+    "en": "tube"
+  },
+  {
+    "zh": "星期二",
+    "en": "tuesday"
+  },
+  {
+    "zh": "转弯",
+    "en": "turn"
+  },
+  {
+    "zh": "海龟",
+    "en": "turtle"
+  },
+  {
+    "zh": "十二",
+    "en": "twelve"
+  },
+  {
+    "zh": "二十",
+    "en": "twenty"
+  },
+  {
+    "zh": "二",
+    "en": "two"
+  },
+  {
+    "zh": "类型；打字",
+    "en": "type"
+  },
+  {
+    "zh": "丑陋的",
+    "en": "ugly"
+  },
+  {
+    "zh": "雨伞",
+    "en": "umbrella"
+  },
+  {
+    "zh": "叔叔",
+    "en": "uncle"
+  },
+  {
+    "zh": "在……下面",
+    "en": "under"
+  },
+  {
+    "zh": "地下的",
+    "en": "underground"
+  },
+  {
+    "zh": "理解",
+    "en": "understand"
+  },
+  {
+    "zh": "理解（过去式）",
+    "en": "understood"
+  },
+  {
+    "zh": "不公平的",
+    "en": "unfair"
+  },
+  {
+    "zh": "大学",
+    "en": "university"
+  },
+  {
+    "zh": "不幸地",
+    "en": "unluckily"
+  },
+  {
+    "zh": "不幸的",
+    "en": "unlucky"
+  },
+  {
+    "zh": "不确定的",
+    "en": "unsure"
+  },
+  {
+    "zh": "直到",
+    "en": "until"
+  },
+  {
+    "zh": "不寻常的",
+    "en": "unusual"
+  },
+  {
+    "zh": "向上",
+    "en": "up"
+  },
+  {
+    "zh": "在……上",
+    "en": "upon"
+  },
+  {
+    "zh": "沮丧的",
+    "en": "upset"
+  },
+  {
+    "zh": "楼上",
+    "en": "upstairs"
+  },
+  {
+    "zh": "我们（宾格）",
+    "en": "us"
+  },
+  {
+    "zh": "使用",
+    "en": "use"
+  },
+  {
+    "zh": "有用的",
+    "en": "useful"
+  },
+  {
+    "zh": "通常",
+    "en": "usually"
+  },
+  {
+    "zh": "价值",
+    "en": "value"
+  },
+  {
+    "zh": "非常",
+    "en": "very"
+  },
+  {
+    "zh": "背心",
+    "en": "vest"
+  },
+  {
+    "zh": "兽医",
+    "en": "vet"
+  },
+  {
+    "zh": "胜利",
+    "en": "victory"
+  },
+  {
+    "zh": "视频",
+    "en": "video"
+  },
+  {
+    "zh": "村庄",
+    "en": "village"
+  },
+  {
+    "zh": "藤蔓",
+    "en": "vine"
+  },
+  {
+    "zh": "小提琴",
+    "en": "violin"
+  },
+  {
+    "zh": "视力；愿景",
+    "en": "vision"
+  },
+  {
+    "zh": "参观",
+    "en": "visit"
+  },
+  {
+    "zh": "访客",
+    "en": "visitor"
+  },
+  {
+    "zh": "声音",
+    "en": "voice"
+  },
+  {
+    "zh": "音量；体积",
+    "en": "volume"
+  },
+  {
+    "zh": "投票",
+    "en": "vote"
+  },
+  {
+    "zh": "摇摆",
+    "en": "wag"
+  },
+  {
+    "zh": "工资",
+    "en": "wages"
+  },
+  {
+    "zh": "等待",
+    "en": "wait"
+  },
+  {
+    "zh": "醒来",
+    "en": "wake"
+  },
+  {
+    "zh": "走路",
+    "en": "walk"
+  },
+  {
+    "zh": "墙",
+    "en": "wall"
+  },
+  {
+    "zh": "钱包",
+    "en": "wallet"
+  },
+  {
+    "zh": "核桃",
+    "en": "walnut"
+  },
+  {
+    "zh": "想要",
+    "en": "want"
+  },
+  {
+    "zh": "战争",
+    "en": "war"
+  },
+  {
+    "zh": "温暖的",
+    "en": "warm"
+  },
+  {
+    "zh": "温暖",
+    "en": "warmth"
+  },
+  {
+    "zh": "警告",
+    "en": "warn"
+  },
+  {
+    "zh": "是（过去式）",
+    "en": "was"
+  },
+  {
+    "zh": "洗",
+    "en": "wash"
+  },
+  {
+    "zh": "手表；观看",
+    "en": "watch"
+  },
+  {
+    "zh": "水",
+    "en": "water"
+  },
+  {
+    "zh": "西瓜",
+    "en": "watermelon"
+  },
+  {
+    "zh": "方式；路",
+    "en": "way"
+  },
+  {
+    "zh": "我们",
+    "en": "we"
+  },
+  {
+    "zh": "穿",
+    "en": "wear"
+  },
+  {
+    "zh": "天气",
+    "en": "weather"
+  },
+  {
+    "zh": "星期三",
+    "en": "wednesday"
+  },
+  {
+    "zh": "周",
+    "en": "week"
+  },
+  {
+    "zh": "周末",
+    "en": "weekend"
+  },
+  {
+    "zh": "好；井",
+    "en": "well"
+  },
+  {
+    "zh": "去（过去式）",
+    "en": "went"
+  },
+  {
+    "zh": "是（过去式复数）",
+    "en": "were"
+  },
+  {
+    "zh": "西方",
+    "en": "west"
+  },
+  {
+    "zh": "湿的",
+    "en": "wet"
+  },
+  {
+    "zh": "什么",
+    "en": "what"
+  },
+  {
+    "zh": "当……时候",
+    "en": "when"
+  },
+  {
+    "zh": "哪里",
+    "en": "where"
+  },
+  {
+    "zh": "哪个",
+    "en": "which"
+  },
+  {
+    "zh": "当……时候",
+    "en": "while"
+  },
+  {
+    "zh": "口哨",
+    "en": "whistle"
+  },
+  {
+    "zh": "白色的",
+    "en": "white"
+  },
+  {
+    "zh": "谁",
+    "en": "who"
+  },
+  {
+    "zh": "整个的",
+    "en": "whole"
+  },
+  {
+    "zh": "谁（宾格）",
+    "en": "whom"
+  },
+  {
+    "zh": "谁的",
+    "en": "whose"
+  },
+  {
+    "zh": "将要",
+    "en": "will"
+  },
+  {
+    "zh": "赢",
+    "en": "win"
+  },
+  {
+    "zh": "窗户",
+    "en": "window"
+  },
+  {
+    "zh": "有风的",
+    "en": "windy"
+  },
+  {
+    "zh": "葡萄酒",
+    "en": "wine"
+  },
+  {
+    "zh": "冬天",
+    "en": "winter"
+  },
+  {
+    "zh": "希望",
+    "en": "wish"
+  },
+  {
+    "zh": "和；用",
+    "en": "with"
+  },
+  {
+    "zh": "狼",
+    "en": "wolf"
+  },
+  {
+    "zh": "女人",
+    "en": "woman"
+  },
+  {
+    "zh": "木头",
+    "en": "wood"
+  },
+  {
+    "zh": "羊毛",
+    "en": "wool"
+  },
+  {
+    "zh": "单词",
+    "en": "word"
+  },
+  {
+    "zh": "工人",
+    "en": "worker"
+  },
+  {
+    "zh": "作品；工厂",
+    "en": "works"
+  },
+  {
+    "zh": "世界",
+    "en": "world"
+  },
+  {
+    "zh": "蠕虫",
+    "en": "worm"
+  },
+  {
+    "zh": "更糟的",
+    "en": "worse"
+  },
+  {
+    "zh": "值得",
+    "en": "worth"
+  },
+  {
+    "zh": "伤口",
+    "en": "wound"
+  },
+  {
+    "zh": "哇",
+    "en": "wow"
+  },
+  {
+    "zh": "包裹",
+    "en": "wrap"
+  },
+  {
+    "zh": "花环",
+    "en": "wreath"
+  },
+  {
+    "zh": "残骸",
+    "en": "wreck"
+  },
+  {
+    "zh": "摔跤",
+    "en": "wrestle"
+  },
+  {
+    "zh": "蠕动",
+    "en": "wriggle"
+  },
+  {
+    "zh": "皱纹",
+    "en": "wrinkle"
+  },
+  {
+    "zh": "手腕",
+    "en": "wrist"
+  },
+  {
+    "zh": "作家",
+    "en": "writer"
+  },
+  {
+    "zh": "错误的",
+    "en": "wrong"
+  },
+  {
+    "zh": "年",
+    "en": "year"
+  },
+  {
+    "zh": "喊叫",
+    "en": "yell"
+  },
+  {
+    "zh": "黄色的",
+    "en": "yellow"
+  },
+  {
+    "zh": "是的",
+    "en": "yes"
+  },
+  {
+    "zh": "昨天",
+    "en": "yesterday"
+  },
+  {
+    "zh": "还；然而",
+    "en": "yet"
+  },
+  {
+    "zh": "你",
+    "en": "you"
+  },
+  {
+    "zh": "年轻的",
+    "en": "young"
+  },
+  {
+    "zh": "你的",
+    "en": "your"
+  },
+  {
+    "zh": "斑马",
+    "en": "zebra"
+  },
+  {
+    "zh": "零",
+    "en": "zero"
+  },
+  {
+    "zh": "拉链",
+    "en": "zip"
+  },
+  {
+    "zh": "区域",
+    "en": "zone"
+  },
+  {
+    "zh": "动物园",
+    "en": "zoo"
+  }
+];

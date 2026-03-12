@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ash单词v1.0</title>
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="logo-wrap"><img src="logo.png" alt="Ash单词Logo" class="logo"></div>
+    <header class="topbar">
+      <div class="stat"><span>分数</span><strong id="score">0</strong></div>
+      <div class="stat"><span>最高分</span><strong id="highScore">0</strong></div>
+      <div class="stat"><span>连击</span><strong id="streak">0</strong></div>
+      <div class="stat"><span>进度</span><strong><span id="currentQ">1</span>/<span id="totalQ">20</span></strong></div>
+    </header>
+
+    <main id="gameView" class="view active">
+      <div class="modebar">
+        <button id="modeCard" class="mini on">普通卡片</button>
+        <button id="modeDictation" class="mini">听写模式</button>
+        <button id="modeSpelling" class="mini">拼写模式</button>
+        <button id="today50" class="mini">今日艾宾浩斯</button>
+        <button id="continueBtn" class="mini">继续上次学习</button>
+        <button id="tomorrowBtn" class="mini">明日计划</button>
+        <button id="statsBtn" class="mini">学习统计</button>
+        <button id="masteredMgrBtn" class="mini">已掌握管理</button>
+        <button id="wrongDrillBtn" class="mini">错词专项</button>
+        <button id="exportBtn" class="mini">导出进度</button>
+        <button id="importBtn" class="mini">导入进度</button>
+        <input id="importFile" type="file" accept="application/json" style="display:none;" />
+        <button id="customVocabBtn" class="mini">自定义词库</button>
+        <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
+        <button id="speakEn" class="mini">🔊 英文</button>
+        <button id="speakZh" class="mini">🔊 中文</button>
+        <button id="favCurrent" class="mini">☆ 收藏当前词</button>
+        <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
+        <button id="autoSpeak" class="mini">自动发音：关</button>
+      </div>
+
+      <section class="card-wrap">
+        <div class="card" id="card">
+          <div id="prompt" class="prompt">中文提示</div>
+          <div id="answer" class="answer">english</div>
+        </div>
+      </section>
+
+      <section id="dictationBox" class="dictation hidden">
+        <input id="dictInput" type="text" placeholder="输入你想到的英文..." autocomplete="off" />
+        <button id="checkInput" class="btn btn-flip">检查</button>
+        <div id="dictResult" class="dict-result"></div>
+      </section>
+
+      <div class="hint"><span id="remain">剩余 20 题</span><span id="modeInfo">普通模式</span></div>
+
+      <section id="tomorrowPanel" class="result-card" style="display:none; margin-top:10px;">
+        <h3 style="margin:0 0 10px;">明日学习计划</h3>
+        <div class="grid">
+          <div>
+            <span>明日新学（最多20）</span>
+            <strong id="tomorrowNewCount">0</strong>
+            <div id="tomorrowNewList" class="scroll-cards"></div>
+          </div>
+          <div>
+            <span>明日复习</span>
+            <strong id="tomorrowReviewCount">0</strong>
+            <div id="tomorrowReviewList" class="scroll-cards"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="statsPanel" class="result-card" style="display:none; margin-top:10px;">
+        <h3 style="margin:0 0 10px;">学习统计</h3>
+        <div class="grid">
+          <div><span>总练习次数</span><strong id="statsRuns">0</strong></div>
+          <div><span>最高分</span><strong id="statsHigh">0</strong></div>
+          <div><span>已掌握词数</span><strong id="statsMastered">0</strong></div>
+          <div><span>已收藏词数</span><strong id="statsFav">0</strong></div>
+        </div>
+      </section>
+
+      <section id="masteredPanel" class="result-card" style="display:none; margin-top:10px;">
+        <h3 style="margin:0 0 10px;">已掌握词管理（点取消）</h3>
+        <div id="masteredList" class="scroll-cards"></div>
+      </section>
+
+      <section class="actions">
+        <button id="flip" class="btn btn-flip">翻卡</button>
+        <div class="judge-row">
+          <button id="know" class="btn btn-know" disabled>认识</button>
+          <button id="blur" class="btn btn-blur" disabled>模糊</button>
+          <button id="dont" class="btn btn-dont" disabled>不认识</button>
+        </div>
+      </section>
+    </main>
+
+    <section id="resultView" class="view">
+      <div class="result-card">
+        <h2>本局完成 🎯</h2>
+        <div class="grid">
+          <div><span>本轮得分</span><strong id="rScore"></strong></div>
+          <div><span>最高分</span><strong id="rHigh"></strong></div>
+          <div><span>认识</span><strong id="rKnow"></strong></div>
+          <div><span>模糊</span><strong id="rBlur"></strong></div>
+          <div><span>不认识</span><strong id="rDont"></strong></div>
+          <div><span>最高连击</span><strong id="rStreak"></strong></div>
+          <div><span>总练习次数</span><strong id="rRuns"></strong></div>
+          <div><span>新纪录</span><strong id="rNew"></strong></div>
+        </div>
+        <div class="result-actions">
+          <button id="restart" class="btn btn-flip">再来一局</button>
+          <button id="replayWrong" class="btn btn-blur">再练错题</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
