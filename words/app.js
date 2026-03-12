@@ -10,7 +10,7 @@
   const el = {
     score: $('score'), highScore: $('highScore'), streak: $('streak'), currentQ: $('currentQ'), totalQ: $('totalQ'), remain: $('remain'), modeInfo: $('modeInfo'),
     card: $('card'), prompt: $('prompt'), answer: $('answer'),
-    flip: $('flip'), know: $('know'), blur: $('blur'), dont: $('dont'),
+    flip: $('flip'), know: $('know'), dont: $('dont'),
     gameView: $('gameView'), resultView: $('resultView'),
     rScore: $('rScore'), rHigh: $('rHigh'), rKnow: $('rKnow'), rBlur: $('rBlur'), rDont: $('rDont'), rStreak: $('rStreak'), rRuns: $('rRuns'), rNew: $('rNew'),
     restart: $('restart'), replayWrong: $('replayWrong'),
@@ -109,7 +109,7 @@
       streak: state.streak,
       maxStreak: state.maxStreak,
       know: state.know,
-      blur: state.blur,
+
       dont: state.dont,
       wrongEns: [...state.wrongMap.keys()],
       autoSpeak: state.autoSpeak
@@ -143,7 +143,7 @@
       streak: r.streak || 0,
       maxStreak: r.maxStreak || 0,
       know: r.know || 0,
-      blur: r.blur || 0,
+
       dont: r.dont || 0,
       wrongMap,
       checkedInput: false,
@@ -466,7 +466,7 @@
       mode, pool, deck,
       idx: 0, revealed: false,
       score: 0, streak: 0, maxStreak: 0,
-      know: 0, blur: 0, dont: 0,
+      know: 0, dont: 0,
       wrongMap: new Map(), checkedInput: false,
       autoSpeak: Boolean(store.autoSpeak),
       spellGate: null,
@@ -518,7 +518,7 @@
       el.dictationBox.classList.remove('hidden');
       el.flip.textContent = '请先完成拼写';
       el.checkInput.textContent = '提交拼写';
-      el.dictResult.textContent = `需拼写通过才可继续（${state.spellGate === 'blur' ? '模糊' : '不认识'}）`;
+      el.dictResult.textContent = `需拼写通过才可继续`;
     } else if (state.mode === 'dictation' || state.mode === 'spelling') {
       el.dictationBox.classList.remove('hidden');
       el.flip.textContent = state.mode === 'spelling' ? '拼写后自动翻卡' : '翻卡(可跳过输入)';
@@ -543,7 +543,7 @@
   }
 
   function lockJudge(lock) {
-    el.know.disabled = lock; el.blur.disabled = lock; el.dont.disabled = lock;
+    el.know.disabled = lock; el.dont.disabled = lock;
   }
 
   function reveal() {
@@ -569,7 +569,7 @@
     const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
     if (!isMobile) el.dictInput.focus();
     el.checkInput.textContent = '提交拼写';
-    el.dictResult.textContent = `需拼写通过才可继续（${type === 'blur' ? '模糊' : '不认识'}）`;
+    el.dictResult.textContent = `需拼写通过才可继续`;
     lockJudge(true);
     el.flip.disabled = true;
     persistProgress();
@@ -615,8 +615,7 @@
       const m = masteryOf(w);
       if (gateType === 'know') {
         state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
-      } else if (gateType === 'blur') {
-        state.score += 1; state.blur++; state.streak = 0; setMastery(w, m); state.wrongMap.set(w.en, w);
+      }
       } else {
         state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
       }
@@ -646,8 +645,7 @@
 
     if (type === 'know') {
       state.score += 2; state.know++; state.streak++; state.maxStreak = Math.max(state.maxStreak, state.streak); setMastery(w, m + 1);
-    } else if (type === 'blur') {
-      state.score += 1; state.blur++; state.streak = 0; setMastery(w, m); state.wrongMap.set(w.en, w);
+    }
     } else {
       state.dont++; state.streak = 0; setMastery(w, m - 1); state.wrongMap.set(w.en, w);
     }
