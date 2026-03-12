@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="stylesheet" href="style.css?v=17" />
 </head>
 <body>
   <div class="app">
@@ -16,28 +16,27 @@
       <div class="stat"><span>分数</span><strong id="score">0</strong></div>
       <div class="stat"><span>最高分</span><strong id="highScore">0</strong></div>
       <div class="stat"><span>连击</span><strong id="streak">0</strong></div>
-
     </header>
 
     <main id="gameView" class="view active">
       <div class="toolbar-row">
-        <div class="tool-btn">⚙️ 学习工具</div>
+        <details class="toolbox">
+          <summary class="tool-btn">⚙️ 学习工具</summary>
+          <div class="modebar">
+            <button id="modeCard" class="mini on">普通卡片</button>
+            <button id="modeSpelling" class="mini">拼写模式</button>
+            <button id="tomorrowBtn" class="mini">明日计划</button>
+            <button id="statsBtn" class="mini">学习统计</button>
+            <button id="masteredMgrBtn" class="mini">已掌握管理</button>
+            <button id="customVocabBtn" class="mini">自定义词库</button>
+            <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
+            <button id="selectDayBtn" class="mini">选择学习日期</button>
+            <button id="speakEn" class="mini">🔊 英文</button>
+            <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
+            <button id="autoSpeak" class="mini">自动发音：关</button>
+          </div>
+        </details>
         <button id="dailyReviewBtn" class="tool-btn">📅 单日复习</button>
-      </div>
-      <div id="toolPanel" class="tool-panel">
-        <div class="modebar">
-          <button id="modeCard" class="mini on">普通卡片</button>
-          <button id="modeSpelling" class="mini">拼写模式</button>
-          <button id="tomorrowBtn" class="mini">明日计划</button>
-          <button id="statsBtn" class="mini">学习统计</button>
-          <button id="masteredMgrBtn" class="mini">已掌握管理</button>
-          <button id="customVocabBtn" class="mini">自定义词库</button>
-          <input id="customVocabFile" type="file" accept=".json,.csv,.txt" style="display:none;" />
-          <button id="selectDayBtn" class="mini">选择学习日期</button>
-          <button id="speakEn" class="mini">🔊 英文</button>
-          <button id="masterCurrent" class="mini">✅ 标记已掌握</button>
-          <button id="autoSpeak" class="mini">自动发音：关</button>
-        </div>
       </div>
 
       <section class="card-wrap">
@@ -90,7 +89,6 @@
         <button id="flip" class="btn btn-flip">翻卡</button>
         <div class="judge-row">
           <button id="know" class="btn btn-know" disabled>认识</button>
-
           <button id="dont" class="btn btn-dont" disabled>不认识</button>
         </div>
       </section>
@@ -103,7 +101,6 @@
           <div><span>本轮得分</span><strong id="rScore"></strong></div>
           <div><span>最高分</span><strong id="rHigh"></strong></div>
           <div><span>认识</span><strong id="rKnow"></strong></div>
-          <div><span>模糊</span><strong id="rBlur"></strong></div>
           <div><span>不认识</span><strong id="rDont"></strong></div>
           <div><span>最高连击</span><strong id="rStreak"></strong></div>
           <div><span>总练习次数</span><strong id="rRuns"></strong></div>
@@ -111,7 +108,7 @@
         </div>
         <div class="result-actions">
           <button id="restart" class="btn btn-flip">再来一局</button>
-          <button id="replayWrong" class="btn btn-blur">再练错题</button>
+          <button id="replayWrong" class="btn btn-dont">再练错题</button>
         </div>
       </div>
     </section>
