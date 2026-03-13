@@ -133,13 +133,7 @@ function closeGrammarPanel(){
 
 let LESSON_GUIDE_CACHE=null;
 
-async function loadLessonGuide(){
-  if(LESSON_GUIDE_CACHE) return LESSON_GUIDE_CACHE;
-  let txt = (typeof window!=='undefined' && window.LESSON_GUIDE_MD) ? window.LESSON_GUIDE_MD : '';
-  if(!txt){
-    const url='71章节通俗版-逐课.md?v=1';
-    txt=await fetch(url).then(r=>r.text());
-  }
+function parseLessonGuideText(txt){
   const sections=[];
   const regex=/^##\s*Lesson\s*(\d+)\s+(.+)$/gm;
   let m, indices=[];
@@ -154,8 +148,26 @@ async function loadLessonGuide(){
     const body=txt.slice(start,end).trim();
     sections.push({num:cur.num,title:cur.title,body});
   }
-  LESSON_GUIDE_CACHE=sections;
   return sections;
+}
+
+function loadLessonGuideSync(){
+  if(LESSON_GUIDE_CACHE) return LESSON_GUIDE_CACHE;
+  const txt = (typeof window!=='undefined' && window.LESSON_GUIDE_MD) ? window.LESSON_GUIDE_MD : '';
+  if(!txt) return [];
+  LESSON_GUIDE_CACHE=parseLessonGuideText(txt);
+  return LESSON_GUIDE_CACHE;
+}
+
+async function loadLessonGuide(){
+  if(LESSON_GUIDE_CACHE) return LESSON_GUIDE_CACHE;
+  let txt = (typeof window!=='undefined' && window.LESSON_GUIDE_MD) ? window.LESSON_GUIDE_MD : '';
+  if(!txt){
+    const url='71章节通俗版-逐课.md?v=1';
+    txt=await fetch(url).then(r=>r.text());
+  }
+  LESSON_GUIDE_CACHE=parseLessonGuideText(txt);
+  return LESSON_GUIDE_CACHE;
 }
 
 function formatGuideBody(body){
@@ -395,7 +407,34 @@ function lessonExplain(topic){
 }
 
 function renderIntroTopics(){
+  const lessons=loadLessonGuideSync();
+  const mapPattern=(topic)=>{
+    if(topic.includes('名词')) return /名词|冠词/;
+    if(topic.includes('代词')) return /代词|所有格/;
+    if(topic.includes('介词')) return /介词/;
+    if(topic.includes('be动词')) return /be\s*动词/;
+    if(topic.includes('there be')) return /there\s*be/;
+    if(topic.includes('一般现在时')) return /一般现在时/;
+    if(topic.includes('现在进行时')) return /现在进行时/;
+    if(topic.includes('一般将来时')) return /一般将来时|will/;
+    if(topic.includes('一般过去时')) return /一般过去时/;
+    if(topic.includes('现在完成时')) return /现在完成时/;
+    if(topic.includes('形容词')) return /形容词/;
+    if(topic.includes('副词')) return /副词/;
+    if(topic.includes('连词')) return /连词/;
+    if(topic.includes('句型')||topic.includes('语气')) return /句子类型|陈述句|疑问句|祈使句|感叹句/;
+    return new RegExp(topic);
+  };
+
   return state.schedule.todayTopics.slice(0,3).map((topic,idx)=>{
+    const pattern=mapPattern(topic);
+    const hit=lessons.find(x=>pattern.test(x.title));
+    if(hit){
+      return `<div class='card'>
+        <h3>语法重点 ${idx+1}：${topic}（Lesson ${hit.num}）</h3>
+        <div style='text-align:left;line-height:1.65;'>${formatGuideBody(hit.body)}</div>
+      </div>`;
+    }
     const d=lessonExplain(topic);
     return `<div class='card'>
       <h3>语法重点 ${idx+1}：${topic}</h3>
