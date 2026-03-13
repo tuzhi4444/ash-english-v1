@@ -12,7 +12,7 @@ input,textarea,select{font-size:16px !important}
 .stat span{font-size:11px;color:var(--muted);display:block;line-height:1.1}
 .stat strong{font-size:16px;line-height:1.2}
 
-.toolbar-row{width:min(92vw,760px);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.toolbar-row{width:min(92vw,760px);margin:0 auto;display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
 .toolbox{width:100%}
 .tool-btn,.toolbox summary{cursor:pointer;list-style:none;border:1px solid #d1d5db;background:#fff;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:600;line-height:1.2;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;box-sizing:border-box}
 .toolbox summary::-webkit-details-marker{display:none}
@@ -65,6 +65,6 @@ input,textarea,select{font-size:16px !important}
   .topbar{grid-template-columns:repeat(3,1fr);gap:6px}
   .stat{padding:8px 4px;min-height:52px}
   .stat strong{font-size:15px}
-  .toolbar-row{gap:8px;grid-template-columns:1fr 1fr}
+  .toolbar-row{gap:8px;grid-template-columns:1fr}
   .tool-btn,.toolbox summary{padding:10px 10px;font-size:13px;min-height:42px;justify-content:center;text-align:center}
 }
