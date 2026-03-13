@@ -176,8 +176,6 @@ async function openLessonGuide(){
     const options=lessons.map(x=>`<option value='${x.num}'>Lesson ${x.num} ${x.title}</option>`).join('');
     view.innerHTML=`
       <div class='card'>
-        <h3>语法讲解（逐课通俗版）</h3>
-        <p>每课含：概念解释 / 比喻 / 人话 / 核心句型 / 英语避坑</p>
         <select id='lessonPick' style='width:100%;padding:8px;margin:8px 0;'>${options}</select>
         <div id='lessonGuideBox' style='text-align:left;line-height:1.7;'></div>
       </div>
