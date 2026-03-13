@@ -446,11 +446,11 @@ function render(){
   if(item.type==='dictation'){
     view.innerHTML=`<div class='card'>
       <h3>${item.q}</h3>
-      <input id='spellInput' class='spell' placeholder='请输入英文单词或短语' autocomplete='off' />
+      <input id='spellInput' class='spell' placeholder='请输入英文单词或短语' autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false' inputmode='latin' />
       <button class='next' onclick='submitSpell()'>提交</button>
     </div>`;
     const input=document.getElementById('spellInput');
-    input.focus();
+    // iOS 内置浏览器会因自动 focus 触发视觉放大/跳动，这里改为手动点击输入
     input.addEventListener('keydown',e=>{if(e.key==='Enter')submitSpell();});
     return;
   }
