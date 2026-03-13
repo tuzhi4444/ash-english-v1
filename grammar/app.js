@@ -141,7 +141,7 @@ async function loadLessonGuide(){
     txt=await fetch(url).then(r=>r.text());
   }
   const sections=[];
-  const regex=/^##\s*Lesson\s*(\d+)\s+(.+)$/gm;
+  const regex=/^(?:##\s*)?Lesson\s*(\d+)\s+(.+)$/gm;
   let m, indices=[];
   while((m=regex.exec(txt))!==null){
     indices.push({num:Number(m[1]),title:m[2].trim(),idx:m.index,headLen:m[0].length});
@@ -407,21 +407,8 @@ function renderIntroTopics(){
 }
 
 function showIntro(){
-  const title = state.mode==='review' ? '第4天复习日（混合巩固）' : '今日学习任务';
-  const reviewTips=(state.schedule.reviewTopics||[]).slice(0,6);
-  const hasWrong=Object.keys(state.wrongTopics||{}).length>0;
-  view.innerHTML=`<div class='card'>
-    <h2>${title}</h2>
-    <p><span class='badge'>每日50题</span><span class='badge'>40道选择 + 10道中文拼写</span><span class='badge'>艾宾浩斯间隔复习</span><span class='badge'>错题同类重做</span></p>
-    <p class='small'>出题结构：新学知识点 + 前面学过内容（1/2/4/7/15天回顾）。完成标准：累计答对50题。</p>
-    ${reviewTips.length?`<p class='small'><b>今日回顾点：</b>${reviewTips.join('、')}</p>`:''}
-  </div>
-  ${renderIntroTopics()}
-  <div class='card'>
-    <details><summary>课程全范围（按讲义目录）</summary><p class='small'>${SYLLABUS.join('；')}</p></details>
-    <button class='next' onclick='startSession()'>开始学习</button>
-    ${hasWrong?"<button class='next' style='margin-top:8px;background:#b45309;border-color:#b45309' onclick='startWrongDrill()'>错因专项复习</button>":''}
-  </div>`;
+  // 按用户要求：语法首页直接展示完整语法讲解内容
+  openLessonGuide();
 }
 
 function startWrongDrill(){
