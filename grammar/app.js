@@ -248,49 +248,43 @@ function getRecentAccuracy(){
   return Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
 }
 
-function getEbbinghausReviewTopics(offset){
-  // 艾宾浩斯间隔：1/2/4/7/15天
+function getLessonIdFromQuestion(q){
+  const m=String(q||'').match(/\[L(\d+)-/i);
+  return m?Number(m[1]):null;
+}
+
+const LESSON_IDS=[...new Set(QUESTION_BANK.map(x=>getLessonIdFromQuestion(x.q)).filter(Boolean))].sort((a,b)=>a-b);
+
+function lessonNumsByDayIndex(dayIdx){
+  const n=LESSON_IDS.length||1;
+  const start=(Math.max(dayIdx,0)*3)%n;
+  return [LESSON_IDS[start], LESSON_IDS[(start+1)%n], LESSON_IDS[(start+2)%n]];
+}
+
+function getEbbinghausReviewLessons(offset){
+  // 艾宾浩斯：1/2/4/7/15天
   const intervals=[1,2,4,7,15];
   const out=[];
   for(const gap of intervals){
     const idx=offset-gap;
     if(idx<0) continue;
-    out.push(...pickNewTopicsByIndex(idx));
+    out.push(...lessonNumsByDayIndex(idx));
   }
   return [...new Set(out)];
 }
 
-function buildTopicPlanForToday(){
+function buildLessonPlanForToday(){
   const dn=dayNum();
   const offset = dn - (state.schedule.startDay || dn);
-  const cycleDay = ((offset % 4) + 4) % 4; // 0,1,2 新学；3 复习
-
-  if(cycleDay===3){
-    // 第4天：复习前3天 + 艾宾浩斯回顾点
-    const t1 = pickNewTopicsByIndex(offset-3);
-    const t2 = pickNewTopicsByIndex(offset-2);
-    const t3 = pickNewTopicsByIndex(offset-1);
-    const base=[...new Set([...t1,...t2,...t3])];
-    const eb=getEbbinghausReviewTopics(offset).filter(x=>!base.includes(x));
-    const topics=[...base,...eb].slice(0,12);
-    return {reviewMode:true, topics, newTopics:[], reviewTopics:topics};
-  }
-
-  const newTopics = pickNewTopicsByIndex(offset);
-  const reviewTopics = getEbbinghausReviewTopics(offset).filter(x=>!newTopics.includes(x)).slice(0,6);
-  const topics=[...newTopics,...reviewTopics];
-  return {reviewMode:false, topics, newTopics, reviewTopics};
+  const newLessons = lessonNumsByDayIndex(offset);
+  const reviewLessons = getEbbinghausReviewLessons(offset).filter(x=>!newLessons.includes(x));
+  const lessons=[...newLessons,...reviewLessons];
+  return {reviewMode:false, lessons, newLessons, reviewLessons};
 }
 
-function pickNewTopicsByIndex(offset){
-  // 每个新学日固定3个知识点，按顺序滚动
-  const dayIdx = Math.floor(Math.max(offset,0) / 1); // 每天推进
-  const start = (dayIdx * 3) % TOPIC_ORDER.length;
-  return [TOPIC_ORDER[start], TOPIC_ORDER[(start+1)%TOPIC_ORDER.length], TOPIC_ORDER[(start+2)%TOPIC_ORDER.length]];
-}
-
-function pickChoiceFromTopics(topics, count){
-  const pool=shuffle(QUESTION_BANK.filter(q=>topics.includes(q.topic)));
+function pickChoiceFromLessons(lessons, count){
+  const set=new Set(lessons||[]);
+  const pool=shuffle(QUESTION_BANK.filter(q=>set.has(getLessonIdFromQuestion(q.q))));
   const out=[]; const seen=new Set();
   for(const item of pool){
     if(seen.has(item.q)) continue;
@@ -301,23 +295,28 @@ function pickChoiceFromTopics(topics, count){
   return out;
 }
 
-function buildDailyQueue(topics, newTopics=[], reviewTopics=[]){
+function lessonTopics(lessons){
+  const set=new Set(lessons||[]);
+  return [...new Set(QUESTION_BANK.filter(q=>set.has(getLessonIdFromQuestion(q.q))).map(q=>q.topic))];
+}
+
+function buildDailyQueue(lessons, newLessons=[], reviewLessons=[]){
   const choiceTarget = TARGET_CORRECT - DICTATION_COUNT;
 
-  const primaryTopics = newTopics.length ? newTopics : topics.slice(0,3);
-  const spacedTopics = reviewTopics.length ? reviewTopics : topics.filter(t=>!primaryTopics.includes(t));
+  const primaryLessons = newLessons.length ? newLessons : (lessons||[]).slice(0,3);
+  const spacedLessons = reviewLessons.length ? reviewLessons : (lessons||[]).filter(x=>!primaryLessons.includes(x));
 
   const acc=getRecentAccuracy();
-  let primaryChoiceTarget = spacedTopics.length ? 26 : choiceTarget;
-  if(spacedTopics.length){
-    if(acc<70) primaryChoiceTarget = 18;      // 低准确率：多复习
-    else if(acc>85) primaryChoiceTarget = 30; // 高准确率：多新题
+  let primaryChoiceTarget = spacedLessons.length ? 26 : choiceTarget;
+  if(spacedLessons.length){
+    if(acc<70) primaryChoiceTarget = 18;
+    else if(acc>85) primaryChoiceTarget = 30;
   }
   const reviewChoiceTarget = choiceTarget - primaryChoiceTarget;
 
   let choices=[
-    ...pickChoiceFromTopics(primaryTopics, primaryChoiceTarget),
-    ...pickChoiceFromTopics(spacedTopics, reviewChoiceTarget)
+    ...pickChoiceFromLessons(primaryLessons, primaryChoiceTarget),
+    ...pickChoiceFromLessons(spacedLessons, reviewChoiceTarget)
   ];
 
   if(choices.length<choiceTarget){
@@ -330,9 +329,10 @@ function buildDailyQueue(topics, newTopics=[], reviewTopics=[]){
     }
   }
 
-  // 10道中文->英文拼写：新学6 + 复习4（有复习点时）
+  const primaryTopics = lessonTopics(primaryLessons);
+  const spacedTopics = lessonTopics(spacedLessons);
+
   const dictPrimaryTarget = spacedTopics.length ? 6 : DICTATION_COUNT;
-  const dictReviewTarget = DICTATION_COUNT - dictPrimaryTarget;
   const dict=[];
 
   const dictPrimary=shuffle(DICTATION_BANK.filter(x=>primaryTopics.includes(x.topic)));
@@ -359,14 +359,20 @@ function ensureSession(){
   if(state.day!==t){
     state.day=t;state.done=0;state.attempts=0;state.score=0;state.wrongTopics={};state.wrongRules={};state.round=1;state.nextRoundQueue=[];
 
-    const plan=buildTopicPlanForToday();
-    state.schedule.todayTopics=(plan.newTopics&&plan.newTopics.length)?plan.newTopics:plan.topics.slice(0,3);
-    state.schedule.reviewTopics=plan.reviewTopics||[];
-    state.schedule.allTopics=plan.topics;
+    const plan=buildLessonPlanForToday();
+    state.schedule.todayLessons=plan.newLessons||[];
+    state.schedule.reviewLessons=plan.reviewLessons||[];
+    state.schedule.allLessons=plan.lessons||[];
+
+    // 兼容旧字段（用于历史显示）
+    state.schedule.todayTopics=(plan.newLessons||[]).map(n=>`Lesson ${n}`);
+    state.schedule.reviewTopics=(plan.reviewLessons||[]).map(n=>`Lesson ${n}`);
+    state.schedule.allTopics=(plan.lessons||[]).map(n=>`Lesson ${n}`);
+
     state.schedule.reviewMode=plan.reviewMode;
     state.mode=plan.reviewMode?'review':'learn';
 
-    state.queue=buildDailyQueue(plan.topics, plan.newTopics||[], plan.reviewTopics||[]);
+    state.queue=buildDailyQueue(plan.lessons, plan.newLessons||[], plan.reviewLessons||[]);
     save();
   }
 }
@@ -412,8 +418,10 @@ function showIntro(){
 function startWrongDrill(){
   const topTopics=Object.entries(state.wrongTopics||{}).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
   if(!topTopics.length) return;
+  const lessons=[...new Set(QUESTION_BANK.filter(q=>topTopics.includes(q.topic)).map(q=>getLessonIdFromQuestion(q.q)).filter(Boolean))];
+  if(!lessons.length) return;
   state.mode='review';
-  state.queue=buildDailyQueue(topTopics, [], topTopics).slice(0,30);
+  state.queue=buildDailyQueue(lessons, [], lessons).slice(0,30);
   state.done=0; state.attempts=0; state.score=0;
   render();
 }
