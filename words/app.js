@@ -322,6 +322,8 @@
 
   function buildEbbinghausQueue() {
     const words = getWordList();
+    // 强制从第1天开始，确保词库顺序正确
+    localStorage.removeItem('ash_words_day_number');
     const selectedDay = getSelectedDayNumber();
 
     // 选择"第N天"时：按艾宾浩斯计划（复习前几天 + 当天新词）
