@@ -321,9 +321,11 @@
   }
 
   function buildEbbinghausQueue() {
-    const words = getWordList();
-    // 强制从第1天开始，确保词库顺序正确
+    // 清除所有旧数据，强制从第1天开始
     localStorage.removeItem('ash_words_day_number');
+    localStorage.removeItem('word_game_v2');
+    
+    const words = getWordList();
     const selectedDay = getSelectedDayNumber();
 
     // 选择"第N天"时：按艾宾浩斯计划（复习前几天 + 当天新词）
@@ -958,6 +960,10 @@
   });
 
   // start（默认进入今日艾宾浩斯计划）
+  if (typeof WORDS === 'undefined') {
+    alert('词库加载失败，请刷新页面');
+    return;
+  }
   setModeButton('card');
   const todayQueue = buildEbbinghausQueue();
   init('card', todayQueue, todayQueue.length);
