@@ -200,8 +200,14 @@
   }
 
   function getSelectedDayNumber() {
-    const n = Number(localStorage.getItem(DAY_NUMBER_KEY) || 0);
-    return Number.isInteger(n) && n >= 1 ? n : 0;
+    // 首次打开默认从第1天开始
+    const raw = localStorage.getItem(DAY_NUMBER_KEY);
+    if (raw === null) {
+      localStorage.setItem(DAY_NUMBER_KEY, '1');
+      return 1;
+    }
+    const n = Number(raw || 1);
+    return Number.isInteger(n) && n >= 1 ? n : 1;
   }
 
   function effectiveTodayDate() {
