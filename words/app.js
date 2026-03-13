@@ -314,11 +314,17 @@
     el.masteredMgrBtn?.classList.remove('on');
   }
 
+  function getCurrentDayNumber() {
+    const e = store.ebbinghaus;
+    if (!e.cursor || e.cursor === 0) return 1;
+    return Math.floor(e.cursor / DAILY_NEW) + 1;
+  }
+
   function buildEbbinghausQueue() {
     const words = getWordList();
     const selectedDay = getSelectedDayNumber();
 
-    // 选择“第N天”时：按艾宾浩斯计划（复习前几天 + 当天新词）
+    // 选择"第N天"时：按艾宾浩斯计划（复习前几天 + 当天新词）
     if (selectedDay >= 1) {
       const planQueue = buildDayPlanQueue(selectedDay);
       const fresh = buildFixedDayQueue(selectedDay);
@@ -326,44 +332,12 @@
       return planQueue;
     }
 
-    const t = todayStr();
-    const e = store.ebbinghaus;
-
-    if (e.lastPlanDate === t && e.todayQueue.length) {
-      return e.todayQueue.map(idx => words[idx]).filter(Boolean);
-    }
-
-    const due = [];
-    for (let i = 0; i < words.length; i++) {
-      const key = words[i].en;
-      if (store.mastered && store.mastered[key]) continue; // 已掌握不再复习
-      const p = e.progress[key];
-      if (p && p.nextDue && p.nextDue <= t) due.push(i);
-    }
-
-    // 按词表顺序 due + new
-    const queueIdx = due.slice(0, DAILY_MAX);
-    const remain = DAILY_MAX - queueIdx.length;
-    const allowNew = Math.min(DAILY_NEW, Math.max(0, remain));
-    const newIdx = [];
-
-    let addNew = 0;
-    while (addNew < allowNew && e.cursor < words.length) {
-      const w = words[e.cursor];
-      if (!(store.mastered && store.mastered[w.en])) {
-        queueIdx.push(e.cursor);
-        newIdx.push(e.cursor);
-        addNew += 1;
-      }
-      e.cursor += 1;
-    }
-
-    e.lastPlanDate = t;
-    e.todayQueue = queueIdx;
-    e.todayFreshEns = newIdx.map(i => words[i]?.en).filter(Boolean);
-    save();
-
-    return queueIdx.map(i => words[i]).filter(Boolean);
+    // 默认：按词库顺序第N天（每天20词）
+    const currentDay = getCurrentDayNumber();
+    const planQueue = buildDayPlanQueue(currentDay);
+    const fresh = buildFixedDayQueue(currentDay);
+    store.ebbinghaus.todayFreshEns = fresh.map(w => w.en);
+    return planQueue;
   }
 
   function updateEbbinghausProgress(word, type) {
@@ -635,7 +609,7 @@
     const w = state.deck[state.idx];
     const m = masteryOf(w);
 
-    // 第一遍：选择“模糊/不认识”后，必须拼写通过才进入下一题
+    // 第一遍：选择"模糊/不认识"后，必须拼写通过才进入下一题
     if (type === 'dont' && !state.spellGate && state.mode !== 'spelling') {
       startSpellGate(type);
       return;
@@ -692,7 +666,7 @@
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
     el.rKnow.textContent = state.know;
-    
+
     el.rDont.textContent = state.dont;
     el.rStreak.textContent = state.maxStreak;
     el.rRuns.textContent = store.totalRuns;
