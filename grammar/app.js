@@ -5,6 +5,8 @@ const START_DATE_KEY='ash_grammar_start_date';
 const TARGET_CORRECT=50;
 const DICTATION_COUNT=10;
 
+const PLAN_VERSION=2;
+
 const DICTATION_BANK=[
   {topic:'一般现在时',zh:'去（第三人称单数）',en:'goes'},
   {topic:'一般现在时',zh:'喜欢（第三人称单数）',en:'likes'},
@@ -356,8 +358,14 @@ function buildDailyQueue(lessons, newLessons=[], reviewLessons=[]){
 
 function ensureSession(){
   const t=today();
-  if(state.day!==t){
+  const needReset = (state.day!==t) || (state.planVersion!==PLAN_VERSION);
+  if(needReset){
     state.day=t;state.done=0;state.attempts=0;state.score=0;state.wrongTopics={};state.wrongRules={};state.round=1;state.nextRoundQueue=[];
+
+    // 策略版本升级时，课程从第1天重新对齐（名词开始）
+    if(state.planVersion!==PLAN_VERSION){
+      state.schedule.startDay=dayNum();
+    }
 
     const plan=buildLessonPlanForToday();
     state.schedule.todayLessons=plan.newLessons||[];
@@ -371,6 +379,7 @@ function ensureSession(){
 
     state.schedule.reviewMode=plan.reviewMode;
     state.mode=plan.reviewMode?'review':'learn';
+    state.planVersion=PLAN_VERSION;
 
     state.queue=buildDailyQueue(plan.lessons, plan.newLessons||[], plan.reviewLessons||[]);
     save();
