@@ -454,7 +454,7 @@
       phase2WrongMap: new Map(),
       planLabel: options.planLabel || ''
     };
-    el.totalQ.textContent = state.deck.length;
+    if (el.totalQ) el.totalQ.textContent = state.deck.length;
     switchView('game');
     renderCurrent();
   }
@@ -472,7 +472,7 @@
     el.dictResult.textContent = '';
 
     const left = state.phase2Active ? (state.phase2Deck.length - state.phase2Idx) : (state.deck.length - state.idx);
-    el.currentQ.textContent = (state.phase2Active ? state.phase2Idx : state.idx) + 1;
+    if (el.currentQ) el.currentQ.textContent = (state.phase2Active ? state.phase2Idx : state.idx) + 1;
     el.remain.textContent = `剩余 ${left} 题`;
     const baseModeText = state.planLabel || (state.mode === 'dictation'
       ? '听写模式（艾宾浩斯计划）'
@@ -520,7 +520,8 @@
   }
 
   function lockJudge(lock) {
-    el.know.disabled = lock; el.dont.disabled = lock;
+    el.know.disabled = lock;
+    el.dont.disabled = lock;
   }
 
   function reveal() {
@@ -670,7 +671,6 @@
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
     el.rKnow.textContent = state.know;
-
     el.rDont.textContent = state.dont;
     el.rStreak.textContent = state.maxStreak;
     el.rRuns.textContent = store.totalRuns;

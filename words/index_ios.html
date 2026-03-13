@@ -14,16 +14,16 @@
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#fff;color:var(--text)}
 .app{max-width:900px;margin:0 auto;min-height:100vh;padding:16px;display:flex;flex-direction:column;gap:14px}
 .logo-wrap{display:flex;justify-content:center;margin-top:6px}.logo{width:96px;height:auto}
-.topbar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:10px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{font-size:20px}
+.topbar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:10px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{font-size:20px}
 .modebar{display:flex;gap:8px;flex-wrap:wrap}.mini{border:1px solid #d1d5db;background:#fff;color:#111827;border-radius:999px;padding:8px 12px;cursor:pointer}.mini.on{background:#dbeafe;border-color:#3b82f6}
 .card-wrap{display:flex;justify-content:center}.card{width:min(92vw,760px);min-height:280px;background:#fff;border:1px solid #e5e7eb;border-radius:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;transition:.2s}.card.revealed{border-color:#3b82f699;box-shadow:0 10px 24px #3b82f633}
 .prompt{font-size:clamp(28px,5vw,54px);font-weight:800;text-align:center}.answer{display:none;margin-top:12px;font-size:clamp(24px,4.5vw,46px);color:#1d4ed8;font-weight:700;word-break:break-word}.card.revealed .answer{display:block}
 .dictation{width:min(92vw,760px);margin:0 auto;display:flex;gap:8px;align-items:center}.dictation input{flex:1;padding:12px;border-radius:10px;border:1px solid #d1d5db;background:#fff;color:#111827;font-size:16px}.dict-result{min-height:22px;color:var(--muted)}.hidden{display:none}
 .hint{width:min(92vw,760px);margin:0 auto;display:flex;justify-content:space-between;color:var(--muted)}
-.actions{width:min(92vw,760px);margin:0 auto;display:flex;flex-direction:column;gap:10px}.judge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.actions{width:min(92vw,760px);margin:0 auto;display:flex;flex-direction:column;gap:10px}.judge-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .btn{border:none;border-radius:12px;padding:14px 12px;color:#fff;font-weight:700;cursor:pointer}.btn:disabled{opacity:.45;cursor:not-allowed}.btn-flip{background:var(--flip)}.btn-know{background:var(--know)}.btn-blur{background:var(--blur)}.btn-dont{background:var(--dont)}
 .view{display:none}.view.active{display:block}.result-card{width:min(92vw,760px);margin:20px auto;background:linear-gradient(160deg,var(--card),var(--panel));border:1px solid #ffffff1f;border-radius:18px;padding:20px}.result-card h2{margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid>div{background:#ffffff0a;border:1px solid #ffffff1f;border-radius:10px;padding:10px}.grid span{display:block;color:var(--muted);font-size:12px}.grid strong{font-size:20px}.result-actions{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:680px){.topbar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.topbar{grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:8px 6px}.stat strong{font-size:18px}}
 </style>
 </head>
 <body>
@@ -33,7 +33,6 @@
       <div class="stat"><span>分数</span><strong id="score">0</strong></div>
       <div class="stat"><span>最高分</span><strong id="highScore">0</strong></div>
       <div class="stat"><span>连击</span><strong id="streak">0</strong></div>
-      <div class="stat"><span>进度</span><strong><span id="currentQ">1</span>/<span id="totalQ">20</span></strong></div>
     </header>
 
     <main id="gameView" class="view active">
@@ -68,7 +67,6 @@
         <button id="flip" class="btn btn-flip">翻卡</button>
         <div class="judge-row">
           <button id="know" class="btn btn-know" disabled>认识</button>
-          <button id="blur" class="btn btn-blur" disabled>模糊</button>
           <button id="dont" class="btn btn-dont" disabled>不认识</button>
         </div>
       </section>
@@ -81,7 +79,6 @@
           <div><span>本轮得分</span><strong id="rScore"></strong></div>
           <div><span>最高分</span><strong id="rHigh"></strong></div>
           <div><span>认识</span><strong id="rKnow"></strong></div>
-          <div><span>模糊</span><strong id="rBlur"></strong></div>
           <div><span>不认识</span><strong id="rDont"></strong></div>
           <div><span>最高连击</span><strong id="rStreak"></strong></div>
           <div><span>总练习次数</span><strong id="rRuns"></strong></div>
@@ -5947,7 +5944,7 @@ const WORDS = [
       wrongMap: new Map(), checkedInput: false,
       autoSpeak: Boolean(store.autoSpeak)
     };
-    el.totalQ.textContent = state.deck.length;
+    if (el.totalQ) el.totalQ.textContent = state.deck.length;
     switchView('game');
     renderCurrent();
   }
@@ -5963,7 +5960,7 @@ const WORDS = [
     el.dictResult.textContent = '';
 
     const left = state.deck.length - state.idx;
-    el.currentQ.textContent = state.idx + 1;
+    if (el.currentQ) el.currentQ.textContent = state.idx + 1;
     el.remain.textContent = `剩余 ${left} 题`;
     el.modeInfo.textContent = state.mode === 'dictation'
       ? '听写模式（艾宾浩斯计划）'
@@ -5989,7 +5986,9 @@ const WORDS = [
   }
 
   function lockJudge(lock) {
-    el.know.disabled = lock; el.blur.disabled = lock; el.dont.disabled = lock;
+    el.know.disabled = lock;
+    if (el.blur) el.blur.disabled = lock;
+    el.dont.disabled = lock;
   }
 
   function reveal() {
@@ -6062,7 +6061,7 @@ const WORDS = [
     el.rScore.textContent = state.score;
     el.rHigh.textContent = store.highScore;
     el.rKnow.textContent = state.know;
-    el.rBlur.textContent = state.blur;
+    if (el.rBlur) el.rBlur.textContent = state.blur;
     el.rDont.textContent = state.dont;
     el.rStreak.textContent = state.maxStreak;
     el.rRuns.textContent = store.totalRuns;
@@ -6092,7 +6091,7 @@ const WORDS = [
   // events
   el.flip.addEventListener('click', reveal);
   el.know.addEventListener('click', () => judge('know'));
-  el.blur.addEventListener('click', () => judge('blur'));
+  el.blur?.addEventListener('click', () => judge('blur'));
   el.dont.addEventListener('click', () => judge('dont'));
   el.checkInput.addEventListener('click', checkInput);
   el.dictInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkInput(); });
@@ -6146,7 +6145,7 @@ const WORDS = [
     if (!el.gameView.classList.contains('active')) return;
     if (e.code === 'Space') { e.preventDefault(); reveal(); }
     if (e.key === '1' && !el.know.disabled) judge('know');
-    if (e.key === '2' && !el.blur.disabled) judge('blur');
+    if (e.key === '2' && el.blur && !el.blur.disabled) judge('blur');
     if (e.key === '3' && !el.dont.disabled) judge('dont');
   });
 
