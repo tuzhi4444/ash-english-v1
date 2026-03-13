@@ -1,0 +1,501 @@
+window.LESSON_GUIDE_MD = `# 71章节通俗版（逐课改进）
+
+格式：**概念解释（≤100字） / 比喻 / 人话（逐课唯一） / 核心句型 / 避坑（英语例子）**
+
+## Lesson 1 什么是名词
+- 概念解释：名词是给人、事、物、地点和抽象概念“命名”的词，在句子里常做主语、宾语或表语。先能识别“叫什么”，语法才有抓手。
+- 比喻：比喻：这课像给房间贴标签，先知道每件东西“叫什么”。
+- 人话：这节《什么是名词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第1课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 1).
+
+## Lesson 2 可数名词复数（规则变化）
+- 概念解释：可数名词表示“能数”的东西，数量大于一时要变复数。规则变化以-s/-es为主，发音和拼写会随词尾变化，这是基础高频点。
+- 比喻：比喻：第2课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《可数名词复数（规则变化）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第2课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ two book / two watchs  ✅ two books / two watches.
+
+## Lesson 3 可数名词复数（不规则变化）
+- 概念解释：不规则复数不按-s/-es套公式，而是词形整体变化，如man→men。记忆重点是高频词，先会用再逐步扩充。
+- 比喻：比喻：第3课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《可数名词复数（不规则变化）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第3课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ three mans / two childs  ✅ three men / two children.
+
+## Lesson 4 不可数名词
+- 概念解释：不可数名词通常不能直接与数字连用，表达数量时要借助量词（a piece of / a cup of）。它们一般不直接加-s。
+- 比喻：比喻：第4课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《不可数名词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第4课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ two waters  ✅ two bottles of water / some water.
+
+## Lesson 5 不定冠词 a/an
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第5课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《不定冠词 a/an》先只练1个可直接开口的句型，再做2次替换（人称/时间），第5课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ a apple  ✅ an apple; ❌ an university  ✅ a university.
+
+## Lesson 6 定冠词 the
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第6课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《定冠词 the》先只练1个可直接开口的句型，再做2次替换（人称/时间），第6课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ I like the dogs (泛指)  ✅ I like dogs.
+
+## Lesson 7 零冠词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第7课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《零冠词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第7课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ play the basketball  ✅ play basketball.
+
+## Lesson 8 复习课（名词和冠词）
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第8课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（名词和冠词）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第8课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ only reread notes  ✅ redo wrong questions and rewrite correct sentences.
+
+## Lesson 9 人称代词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第9课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《人称代词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第9课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ Me am happy.  ✅ I am happy. / She likes him.
+
+## Lesson 10 物主代词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第10课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《物主代词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第10课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ This is her's bag.  ✅ This is her bag.
+
+## Lesson 11 名词所有格
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第11课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《名词所有格》先只练1个可直接开口的句型，再做2次替换（人称/时间），第11课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ Tom book  ✅ Tom's book / the roof of the house.
+
+## Lesson 12 指示代词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第12课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《指示代词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第12课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ This are books.  ✅ These are books.
+
+## Lesson 13 复习课（代词 + be 动词 + 名词所有格）
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第13课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（代词 + be 动词 + 名词所有格）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第13课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ Tom book  ✅ Tom's book / the roof of the house.
+
+## Lesson 14 时间介词 in/on/at
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：in/on/at像三层抽屉：大时间、中时间、点时间。
+- 人话：这节《时间介词 in/on/at》先只练1个可直接开口的句型，再做2次替换（人称/时间），第14课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ in Monday / at May  ✅ on Monday / in May.
+
+## Lesson 15 时间介词 in/on/at 用法拓展
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第15课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《时间介词 in/on/at 用法拓展》先只练1个可直接开口的句型，再做2次替换（人称/时间），第15课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ in Monday / at May  ✅ on Monday / in May.
+
+## Lesson 16 时间介词 from/until/in
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第16课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《时间介词 from/until/in》先只练1个可直接开口的句型，再做2次替换（人称/时间），第16课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ in Monday / at May  ✅ on Monday / in May.
+
+## Lesson 17 时间介词 before/during/after/within
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第17课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《时间介词 before/during/after/within》先只练1个可直接开口的句型，再做2次替换（人称/时间），第17课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ in Monday / at May  ✅ on Monday / in May.
+
+## Lesson 18 地点介词 in/at/on
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第18课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《地点介词 in/at/on》先只练1个可直接开口的句型，再做2次替换（人称/时间），第18课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ in the bus stop  ✅ at the bus stop.
+
+## Lesson 19 方位介词 on/under/beside/next to/between
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第19课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《方位介词 on/under/beside/next to/between》先只练1个可直接开口的句型，再做2次替换（人称/时间），第19课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ between A to B  ✅ between A and B.
+
+## Lesson 20 方位介词 inside/outside/in front of/behind
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第20课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《方位介词 inside/outside/in front of/behind》先只练1个可直接开口的句型，再做2次替换（人称/时间），第20课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ between A to B  ✅ between A and B.
+
+## Lesson 21 其他介词 on/by
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第21课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《其他介词 on/by》先只练1个可直接开口的句型，再做2次替换（人称/时间），第21课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 21).
+
+## Lesson 22 其他介词 with/without/about
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第22课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《其他介词 with/without/about》先只练1个可直接开口的句型，再做2次替换（人称/时间），第22课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 22).
+
+## Lesson 23 复习课（介词）
+- 概念解释：介词用于表达时间、地点、方向、方式等关系。先判断语义关系，再选介词，准确率会明显提升。
+- 比喻：比喻：第23课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（介词）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第23课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ only reread notes  ✅ redo wrong questions and rewrite correct sentences.
+
+## Lesson 24 基数词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第24课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《基数词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第24课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ two hundreds  ✅ two hundred.
+
+## Lesson 25 序数词
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第25课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《序数词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第25课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ first time (缺冠词)  ✅ the first time.
+
+## Lesson 26 时间的表达
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第26课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《时间的表达》先只练1个可直接开口的句型，再做2次替换（人称/时间），第26课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ six and twenty  ✅ six twenty / twenty past six.
+
+## Lesson 27 时间的表达 past/to/quarter/half
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第27课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《时间的表达 past/to/quarter/half》先只练1个可直接开口的句型，再做2次替换（人称/时间），第27课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ quarter to six (6:15)  ✅ quarter past six (6:15).
+
+## Lesson 28 什么是动词
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第28课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《什么是动词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第28课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 28).
+
+## Lesson 29 be 动词（肯定与否定）
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第29课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《be 动词（肯定与否定）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第29课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He are not ready.  ✅ He isn't ready.
+
+## Lesson 30 be 动词（疑问句与回答）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第30课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《be 动词（疑问句与回答）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第30课当天就能用。
+- 核心句型：Do/Does/Is + subject + ... ?
+- 避坑：English pitfall: ❌ Do he a teacher?  ✅ Is he a teacher?
+
+## Lesson 31 there be 句型
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第31课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《there be 句型》先只练1个可直接开口的句型，再做2次替换（人称/时间），第31课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ There have many books.  ✅ There are many books.
+
+## Lesson 32 there be 句型的否定和疑问
+- 概念解释：本课概念是把语法点放进真实句子里，先会用，再总结规则。
+- 比喻：比喻：第32课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《there be 句型的否定和疑问》先只练1个可直接开口的句型，再做2次替换（人称/时间），第32课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ There have many books.  ✅ There are many books.
+
+## Lesson 33 动词第三人称单数
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第33课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《动词第三人称单数》先只练1个可直接开口的句型，再做2次替换（人称/时间），第33课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He go to school.  ✅ He goes to school.
+
+## Lesson 34 用 do/does 表示否定
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第34课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《用 do/does 表示否定》先只练1个可直接开口的句型，再做2次替换（人称/时间），第34课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He doesn't likes coffee.  ✅ He doesn't like coffee.
+
+## Lesson 35 用 do/does 提问
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第35课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《用 do/does 提问》先只练1个可直接开口的句型，再做2次替换（人称/时间），第35课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ Does she likes music?  ✅ Does she like music?
+
+## Lesson 36 情态动词
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第36课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《情态动词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第36课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ She can sings.  ✅ She can sing.
+
+## Lesson 37 情态动词的否定
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第37课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《情态动词的否定》先只练1个可直接开口的句型，再做2次替换（人称/时间），第37课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ She can sings.  ✅ She can sing.
+
+## Lesson 38 情态动词的疑问句
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第38课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《情态动词的疑问句》先只练1个可直接开口的句型，再做2次替换（人称/时间），第38课当天就能用。
+- 核心句型：Do/Does/Is + subject + ... ?
+- 避坑：English pitfall: ❌ She can sings.  ✅ She can sing.
+
+## Lesson 39 情态动词的应用
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第39课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《情态动词的应用》先只练1个可直接开口的句型，再做2次替换（人称/时间），第39课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ She can sings.  ✅ She can sing.
+
+## Lesson 40 复习课（动词）
+- 概念解释：动词是句子核心，决定动作或状态。先识别动词类型，再套对应结构。
+- 比喻：比喻：第40课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（动词）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第40课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ only reread notes  ✅ redo wrong questions and rewrite correct sentences.
+
+## Lesson 41 什么是形容词
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第41课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《什么是形容词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第41课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 41).
+
+## Lesson 42 形容词比较级
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第42课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《形容词比较级》先只练1个可直接开口的句型，再做2次替换（人称/时间），第42课当天就能用。
+- 核心句型：A + be + comparative + than + B.
+- 避坑：English pitfall: ❌ more taller  ✅ taller.
+
+## Lesson 43 形容词比较级的应用
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第43课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《形容词比较级的应用》先只练1个可直接开口的句型，再做2次替换（人称/时间），第43课当天就能用。
+- 核心句型：A + be + comparative + than + B.
+- 避坑：English pitfall: ❌ more taller  ✅ taller.
+
+## Lesson 44 形容词最高级
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第44课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《形容词最高级》先只练1个可直接开口的句型，再做2次替换（人称/时间），第44课当天就能用。
+- 核心句型：Subject + be + the + superlative + range.
+- 避坑：English pitfall: ❌ He is tallest.  ✅ He is the tallest.
+
+## Lesson 45 什么是副词
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第45课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《什么是副词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第45课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He runs quick.  ✅ He runs quickly.
+
+## Lesson 46 副词分类
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第46课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《副词分类》先只练1个可直接开口的句型，再做2次替换（人称/时间），第46课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He runs quick.  ✅ He runs quickly.
+
+## Lesson 47 副词比较级和最高级
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第47课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《副词比较级和最高级》先只练1个可直接开口的句型，再做2次替换（人称/时间），第47课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He runs quick.  ✅ He runs quickly.
+
+## Lesson 48 复习课（形容词和副词）
+- 概念解释：形容词和副词的核心区别是“修饰对象”。判断修饰谁，比背定义更实用。
+- 比喻：比喻：第48课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（形容词和副词）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第48课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ He runs quick.  ✅ He runs quickly.
+
+## Lesson 49 什么是连词以及并列连词
+- 概念解释：连词用于连接词、短语和分句，并表达逻辑关系。先定逻辑再选连词。
+- 比喻：比喻：第49课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《什么是连词以及并列连词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第49课当天就能用。
+- 核心句型：Clause A + conjunction + Clause B.
+- 避坑：English pitfall: ❌ Because... so...  ✅ Because... / So... (choose one).
+
+## Lesson 50 从属连词
+- 概念解释：连词用于连接词、短语和分句，并表达逻辑关系。先定逻辑再选连词。
+- 比喻：比喻：第50课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《从属连词》先只练1个可直接开口的句型，再做2次替换（人称/时间），第50课当天就能用。
+- 核心句型：Clause A + conjunction + Clause B.
+- 避坑：English pitfall: ❌ Because... so...  ✅ Because... / So... (choose one).
+
+## Lesson 51 一般现在时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：一般现在时像作息表，记录长期习惯。
+- 人话：这节《一般现在时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第51课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ She go every day.  ✅ She goes every day.
+
+## Lesson 52 一般现在时的否定和疑问
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第52课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般现在时的否定和疑问》先只练1个可直接开口的句型，再做2次替换（人称/时间），第52课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ She go every day.  ✅ She goes every day.
+
+## Lesson 53 现在进行时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第53课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《现在进行时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第53课当天就能用。
+- 核心句型：Subject + be + V-ing + ...
+- 避坑：English pitfall: ❌ She reading now.  ✅ She is reading now.
+
+## Lesson 54 现在进行时的否定和疑问
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第54课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《现在进行时的否定和疑问》先只练1个可直接开口的句型，再做2次替换（人称/时间），第54课当天就能用。
+- 核心句型：Subject + be + V-ing + ...
+- 避坑：English pitfall: ❌ She reading now.  ✅ She is reading now.
+
+## Lesson 55 一般现在时 VS 现在进行时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第55课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般现在时 VS 现在进行时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第55课当天就能用。
+- 核心句型：Subject + be + V-ing + ...
+- 避坑：English pitfall: ❌ She go every day.  ✅ She goes every day.
+
+## Lesson 56 一般将来时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第56课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般将来时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第56课当天就能用。
+- 核心句型：Subject + will + V ... / be going to + V ...
+- 避坑：English pitfall: ❌ He will to go.  ✅ He will go.
+
+## Lesson 57 一般将来时中的 will
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第57课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般将来时中的 will》先只练1个可直接开口的句型，再做2次替换（人称/时间），第57课当天就能用。
+- 核心句型：Subject + will + V ... / be going to + V ...
+- 避坑：English pitfall: ❌ He will to go.  ✅ He will go.
+
+## Lesson 58 一般过去时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第58课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般过去时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第58课当天就能用。
+- 核心句型：Subject + V-ed/V2 + ... / Did + subject + V ... ?
+- 避坑：English pitfall: ❌ Did you went?  ✅ Did you go?
+
+## Lesson 59 一般过去时（实义动词）
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第59课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般过去时（实义动词）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第59课当天就能用。
+- 核心句型：Subject + V-ed/V2 + ... / Did + subject + V ... ?
+- 避坑：English pitfall: ❌ Did you went?  ✅ Did you go?
+
+## Lesson 60 一般过去时（实义动词的否定与疑问）
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第60课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《一般过去时（实义动词的否定与疑问）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第60课当天就能用。
+- 核心句型：Subject + V-ed/V2 + ... / Did + subject + V ... ?
+- 避坑：English pitfall: ❌ Did you went?  ✅ Did you go?
+
+## Lesson 61 现在完成时
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第61课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《现在完成时》先只练1个可直接开口的句型，再做2次替换（人称/时间），第61课当天就能用。
+- 核心句型：Subject + have/has + V3 + ...
+- 避坑：English pitfall: ❌ I have saw it.  ✅ I have seen it.
+
+## Lesson 62 现在完成时（常见句型）
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第62课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《现在完成时（常见句型）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第62课当天就能用。
+- 核心句型：Subject + have/has + V3 + ...
+- 避坑：English pitfall: ❌ I have saw it.  ✅ I have seen it.
+
+## Lesson 63 复习课（时态）
+- 概念解释：时态决定动作发生在什么时间。先看时间语境，再选结构，是避免混用时态的关键。
+- 比喻：比喻：第63课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《复习课（时态）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第63课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ only reread notes  ✅ redo wrong questions and rewrite correct sentences.
+
+## Lesson 64 句子类型（主系表）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第64课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型（主系表）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第64课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 64).
+
+## Lesson 65 句子类型（主谓和主谓宾）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第65课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型（主谓和主谓宾）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第65课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 65).
+
+## Lesson 66 句子类型（主谓双宾和主谓宾宾补）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第66课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型（主谓双宾和主谓宾宾补）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第66课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ literal translation first  ✅ build sentence with pattern first (Lesson 66).
+
+## Lesson 67 句子类型 - 陈述句
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第67课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型 - 陈述句》先只练1个可直接开口的句型，再做2次替换（人称/时间），第67课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ Is raining today.  ✅ It is raining today.
+
+## Lesson 68 句子类型 - 疑问句
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第68课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型 - 疑问句》先只练1个可直接开口的句型，再做2次替换（人称/时间），第68课当天就能用。
+- 核心句型：Do/Does/Is + subject + ... ?
+- 避坑：English pitfall: ❌ You are ready?  ✅ Are you ready?
+
+## Lesson 69 句子类型 - 祈使句（肯定形式）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第69课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型 - 祈使句（肯定形式）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第69课当天就能用。
+- 核心句型：Verb (base form) + ... / Don't + Verb + ...
+- 避坑：English pitfall: ❌ Don't to open it.  ✅ Don't open it.
+
+## Lesson 70 句子类型 - 祈使句（否定形式和综合练习）
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第70课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型 - 祈使句（否定形式和综合练习）》先只练1个可直接开口的句型，再做2次替换（人称/时间），第70课当天就能用。
+- 核心句型：Verb (base form) + ... / Don't + Verb + ...
+- 避坑：English pitfall: ❌ Don't to open it.  ✅ Don't open it.
+
+## Lesson 71 句子类型 - 感叹句
+- 概念解释：句子类型决定表达目的：说明、提问、命令或感叹。先判功能再写结构更稳。
+- 比喻：比喻：第71课像一个独立关卡，过关后再解锁下一层表达能力。
+- 人话：这节《句子类型 - 感叹句》先只练1个可直接开口的句型，再做2次替换（人称/时间），第71课当天就能用。
+- 核心句型：Use one short model sentence, then replace subject/time/place once.
+- 避坑：English pitfall: ❌ What beautiful!  ✅ How beautiful! / What a beautiful day!
+`;

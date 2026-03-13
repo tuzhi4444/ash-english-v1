@@ -123,17 +123,93 @@ function buildExplainHtml(topic){
 }
 
 function openGrammarPanel(){
-  const topics = state.schedule.allTopics || state.schedule.todayTopics || [];
-  const show = topics.length ? topics.slice(0,6) : (state.schedule.todayTopics||[]);
-  const html = show.length
-    ? show.map(t=>buildExplainHtml(t)).join('')
-    : `<div class='card'><h3>语法讲解</h3><p>当前暂无可显示内容，请先开始今日学习任务。</p></div>`;
-
-  view.innerHTML = `${html}<button class='next' onclick='closeGrammarPanel()'>返回做题</button>`;
+  // 按用户要求：语法讲解直接显示71课通俗详解（替代旧内容）
+  openLessonGuide();
 }
 
 function closeGrammarPanel(){
   if(currentQ()) render(); else showIntro();
+}
+
+let LESSON_GUIDE_CACHE=null;
+
+async function loadLessonGuide(){
+  if(LESSON_GUIDE_CACHE) return LESSON_GUIDE_CACHE;
+  let txt = (typeof window!=='undefined' && window.LESSON_GUIDE_MD) ? window.LESSON_GUIDE_MD : '';
+  if(!txt){
+    const url='71章节通俗版-逐课.md?v=1';
+    txt=await fetch(url).then(r=>r.text());
+  }
+  const sections=[];
+  const regex=/^##\s*Lesson\s*(\d+)\s+(.+)$/gm;
+  let m, indices=[];
+  while((m=regex.exec(txt))!==null){
+    indices.push({num:Number(m[1]),title:m[2].trim(),idx:m.index,headLen:m[0].length});
+  }
+  for(let i=0;i<indices.length;i++){
+    const cur=indices[i];
+    const next=indices[i+1];
+    const start=cur.idx+cur.headLen;
+    const end=next?next.idx:txt.length;
+    const body=txt.slice(start,end).trim();
+    sections.push({num:cur.num,title:cur.title,body});
+  }
+  LESSON_GUIDE_CACHE=sections;
+  return sections;
+}
+
+function formatGuideBody(body){
+  return body
+    .replace(/\n- /g,'<br>• ')
+    .replace(/^-/,'•')
+    .replace(/\n/g,'<br>');
+}
+
+async function openLessonGuide(){
+  try{
+    const lessons=await loadLessonGuide();
+    if(!lessons.length){
+      view.innerHTML=`<div class='card'><h3>通俗详解</h3><p>未找到逐课讲解内容。</p></div><button class='next' onclick='closeGrammarPanel()'>返回做题</button>`;
+      return;
+    }
+
+    const options=lessons.map(x=>`<option value='${x.num}'>Lesson ${x.num} ${x.title}</option>`).join('');
+    view.innerHTML=`
+      <div class='card'>
+        <h3>语法讲解（逐课通俗版）</h3>
+        <p>每课含：概念解释 / 比喻 / 人话 / 核心句型 / 英语避坑</p>
+        <select id='lessonPick' style='width:100%;padding:8px;margin:8px 0;'>${options}</select>
+        <div id='lessonGuideBox' style='text-align:left;line-height:1.7;'></div>
+      </div>
+      <div class='row'>
+        <button id='prevLesson'>上一课</button>
+        <button id='nextLesson'>下一课</button>
+      </div>
+      <button class='next' onclick='closeGrammarPanel()'>返回做题</button>
+    `;
+
+    const pick=document.getElementById('lessonPick');
+    const box=document.getElementById('lessonGuideBox');
+    const prevBtn=document.getElementById('prevLesson');
+    const nextBtn=document.getElementById('nextLesson');
+
+    const renderOne=(num)=>{
+      const i=lessons.findIndex(x=>x.num===Number(num));
+      const item=lessons[i<0?0:i];
+      pick.value=String(item.num);
+      box.innerHTML=`<h4>Lesson ${item.num} ${item.title}</h4><div>${formatGuideBody(item.body)}</div>`;
+      prevBtn.disabled=item.num<=1;
+      nextBtn.disabled=item.num>=lessons.length;
+    };
+
+    pick.addEventListener('change',()=>renderOne(Number(pick.value)));
+    prevBtn.addEventListener('click',()=>renderOne(Math.max(1,Number(pick.value)-1)));
+    nextBtn.addEventListener('click',()=>renderOne(Math.min(lessons.length,Number(pick.value)+1)));
+
+    renderOne(1);
+  }catch(e){
+    view.innerHTML=`<div class='card'><h3>通俗详解</h3><p>加载失败：${String(e)}</p></div><button class='next' onclick='closeGrammarPanel()'>返回做题</button>`;
+  }
 }
 
 function getStartDate(){
