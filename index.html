@@ -405,15 +405,13 @@
       document.getElementById('promptText').textContent = word.zh;
       document.getElementById('answerText').textContent = word.en;
       
-      // 例句
+      // 例句（翻卡后才显示）
       if (word.pos && word.example) {
         document.getElementById('exampleLabel').textContent = '📝 例句（' + word.pos + '）';
         document.getElementById('exampleEn').textContent = word.example;
         document.getElementById('exampleZh').textContent = word.exampleZh;
-        document.getElementById('exampleBox').classList.remove('hidden');
-      } else {
-        document.getElementById('exampleBox').classList.add('hidden');
       }
+      document.getElementById('exampleBox').classList.add('hidden');
       
       // 重置状态
       state.revealed = false;
@@ -465,6 +463,9 @@
       document.getElementById('answerText').classList.remove('hidden');
       document.getElementById('answerPlaceholder').classList.add('hidden');
       document.getElementById('wordCard').classList.add('revealed');
+      
+      // 翻卡后才显示例句
+      document.getElementById('exampleBox').classList.remove('hidden');
       
       if (state.mode === 'dictation') {
         // 听写模式：翻卡后显示认识/不认识按钮
