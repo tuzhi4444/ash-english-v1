@@ -330,7 +330,7 @@
     // 加载词库
     async function loadWords() {
       try {
-        const response = await fetch('../words/words.js');
+        const response = await fetch('./words/words.js');
         const text = await response.text();
         // 提取 JSON 数据
         const jsonStr = text.replace('module.exports = ', '');
