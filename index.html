@@ -5,256 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ASH英语 - 单词学习</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      color: #333;
+      display: flex; flex-direction: column; color: #333;
     }
-
     .header {
-      background: rgba(255,255,255,0.95);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: rgba(255,255,255,0.95); padding: 15px 20px;
+      display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    .header h1 {
-      font-size: 20px;
-      color: #667eea;
-    }
-
-    .stats {
-      display: flex;
-      gap: 15px;
-      font-size: 14px;
-      color: #666;
-    }
-
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .mode-selector {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-
+    .header h1 { font-size: 20px; color: #667eea; }
+    .stats { display: flex; gap: 15px; font-size: 14px; color: #666; }
+    .main { flex:1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+    .mode-selector { display: flex; gap: 10px; margin-bottom: 30px; }
     .mode-btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s;
-      background: white;
-      color: #667eea;
+      padding: 12px 24px; border: none; border-radius: 25px; font-size: 16px;
+      cursor: pointer; transition: all 0.3s; background: white; color: #667eea;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
-    .mode-btn.active {
-      background: #667eea;
-      color: white;
-    }
-
+    .mode-btn.active { background: #667eea; color: white; }
     .card-container {
-      perspective: 1000px;
-      width: 90%;
-      max-width: 400px;
-      height: 300px;
-      margin-bottom: 30px;
+      perspective: 1000px; width: 90%; max-width: 400px; height: 300px; margin-bottom: 30px;
     }
-
     .card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-      cursor: pointer;
+      width: 100%; height: 100%; position: relative;
+      transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer;
     }
-
-    .card.flipped {
-      transform: rotateY(180deg);
-    }
-
+    .card.flipped { transform: rotateY(180deg); }
     .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; border-radius: 20px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
-
-    .card-front {
-      background: white;
-    }
-
+    .card-front { background: white; }
     .card-back {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      transform: rotateY(180deg);
+      color: white; transform: rotateY(180deg);
     }
-
-    .word-en {
-      font-size: 48px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #667eea;
-    }
-
-    .card-back .word-en {
-      color: white;
-      font-size: 36px;
-    }
-
-    .word-zh {
-      font-size: 24px;
-      color: #666;
-    }
-
-    .card-back .word-zh {
-      color: rgba(255,255,255,0.9);
-      font-size: 20px;
-    }
-
-    .example-section {
-      margin-top: 20px;
-      text-align: left;
-      width: 100%;
-    }
-
-    .example-pos {
-      font-size: 14px;
-      opacity: 0.8;
-      margin-bottom: 8px;
-    }
-
-    .example-en {
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 8px;
-      font-style: italic;
-    }
-
-    .example-zh {
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .controls {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
+    .word-en { font-size: 48px; font-weight: bold; margin-bottom: 10px; color: #667eea; }
+    .card-back .word-en { color: white; font-size: 36px; }
+    .word-zh { font-size: 24px; color: #666; }
+    .card-back .word-zh { color: rgba(255,255,255,0.9); font-size: 20px; }
+    .example-section { margin-top: 20px; text-align: left; width: 100%; }
+    .example-pos { font-size: 14px; opacity: 0.8; margin-bottom: 8px; }
+    .example-en { font-size: 16px; line-height:1.5; margin-bottom: 8px; font-style: italic; }
+    .example-zh { font-size: 14px; opacity: 0.9; }
+    .controls { display: flex; gap: 15px; margin-top: 20px; }
     .ctrl-btn {
-      padding: 12px 30px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s;
-      background: white;
-      color: #667eea;
+      padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px;
+      cursor: pointer; transition: all 0.3s; background: white; color: #667eea;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
-    .ctrl-btn:active {
-      transform: scale(0.95);
-    }
-
-    .spelling-mode {
-      display: none;
-      width: 90%;
-      max-width: 400px;
-    }
-
-    .spelling-mode.active {
-      display: block;
-    }
-
-    .flashcard-mode {
-      display: none;
-    }
-
-    .flashcard-mode.active {
-      display: block;
-    }
-
+    .spelling-mode { display: none; width: 90%; max-width: 400px; }
+    .spelling-mode.active { display: block; }
+    .flashcard-mode { display: none; }
+    .flashcard-mode.active { display: block; }
     .spelling-input {
-      width: 100%;
-      padding: 15px;
-      font-size: 24px;
-      border: 2px solid #667eea;
-      border-radius: 10px;
-      text-align: center;
-      margin-bottom: 20px;
-      outline: none;
+      width: 100%; padding: 15px; font-size: 24px;
+      border: 2px solid #667eea; border-radius: 10px;
+      text-align: center; margin-bottom: 20px; outline: none;
     }
-
-    .spelling-input.correct {
-      border-color: #4caf50;
-      background: #e8f5e9;
-    }
-
-    .spelling-input.wrong {
-      border-color: #f44336;
-      background: #ffebee;
-    }
-
-    .hint-text {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
+    .spelling-input.correct { border-color: #4caf50; background: #e8f5e9; }
+    .spelling-input.wrong { border-color: #f44336; background: #ffebee; }
+    .hint-text { font-size: 18px; color: white; margin-bottom: 20px; text-align: center; }
     .progress-bar {
-      width: 90%;
-      max-width: 400px;
-      height: 8px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 4px;
-      margin-top: 20px;
-      overflow: hidden;
+      width: 90%; max-width: 400px; height: 8px;
+      background: rgba(255,255,255,0.3); border-radius: 4px;
+      margin-top: 20px; overflow: hidden;
     }
-
-    .progress-fill {
-      height: 100%;
-      background: white;
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
-
-    .progress-text {
-      color: white;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 480px) {
-      .word-en { font-size: 36px; }
-      .card-container { height: 250px; }
-    }
+    .progress-fill { height: 100%; background: white; border-radius: 4px; transition: width 0.3s; }
+    .progress-text { color: white; margin-top: 10px; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -262,7 +86,7 @@
     <h1>📚 ASH英语</h1>
     <div class="stats">
       <span>第 <strong id="dayNum">1</strong> 天</span>
-      <span>最高分 <strong id="highScore">0</strong></span>
+      <span>已学 <strong id="learnedCount">0</strong> 词</span>
     </div>
   </div>
 
@@ -314,46 +138,75 @@
   </div>
 
   <script>
-    // 词库数据（简化版，实际应从外部加载）
-    let words = [];
+    // 词库数据（前 50 个单词作为示例）
+    const WORDS = [
+      {en: "about", zh: "关于；大约", pos: "prep.", example: "This book is about animals.", exampleZh: "这本书是关于动物的。"},
+      {en: "above", zh: "在……上面", pos: "prep.", example: "The bird is flying above the tree.", exampleZh: "鸟儿在树上飞。"},
+      {en: "across", zh: "穿过；横过", pos: "prep.", example: "Walk across the street carefully.", exampleZh: "小心地过马路。"},
+      {en: "action", zh: "行动；动作", pos: "n.", example: "We need to take action now.", exampleZh: "我们现在需要采取行动。"},
+      {en: "actor", zh: "演员", pos: "n.", example: "He wants to be an actor.", exampleZh: "他想成为一名演员。"},
+      {en: "actress", zh: "女演员", pos: "n.", example: "She is a famous actress.", exampleZh: "她是一位著名的女演员。"},
+      {en: "address", zh: "地址", pos: "n.", example: "What is your home address?", exampleZh: "你的家庭地址是什么？"},
+      {en: "adult", zh: "成年人", pos: "n.", example: "An adult should take responsibility.", exampleZh: "成年人应该承担责任。"},
+      {en: "adventure", zh: "冒险；奇遇", pos: "n.", example: "They went on an adventure in the forest.", exampleZh: "他们去森林里冒险了。"},
+      {en: "advice", zh: "建议；忠告", pos: "n.", example: "Can you give me some advice?", exampleZh: "你能给我一些建议吗？"},
+      {en: "afraid", zh: "害怕的", pos: "adj.", example: "She is afraid of dogs.", exampleZh: "她害怕狗。"},
+      {en: "after", zh: "在……之后", pos: "prep.", example: "Let's play after school.", exampleZh: "放学后我们玩吧。"},
+      {en: "afternoon", zh: "下午", pos: "n.", example: "I have a meeting this afternoon.", exampleZh: "我今天下午有个会议。"},
+      {en: "again", zh: "再次；又", pos: "adv.", example: "Can you say that again?", exampleZh: "你能再说一遍吗？"},
+      {en: "against", zh: "反对；靠着", pos: "prep.", example: "He is against the plan.", exampleZh: "他反对这个计划。"},
+      {en: "age", zh: "年龄；时代", pos: "n.", example: "What is your age?", exampleZh: "你多大了？"},
+      {en: "ago", zh: "以前", pos: "adv.", example: "He left home two years ago.", exampleZh: "他两年前离开了家。"},
+      {en: "agree", zh: "同意", pos: "v.", example: "I agree with you.", exampleZh: "我同意你的看法。"},
+      {en: "air", zh: "空气", pos: "n.", example: "The air is fresh in the mountains.", exampleZh: "山里的空气很新鲜。"},
+      {en: "airport", zh: "机场", pos: "n.", example: "We arrived at the airport early.", exampleZh: "我们很早就到了机场。"},
+      {en: "alive", zh: "活着的", pos: "adj.", example: "The fish is still alive.", exampleZh: "这条鱼还活着。"},
+      {en: "all", zh: "所有的；全部", pos: "adj.", example: "All students are here.", exampleZh: "所有的学生都在这儿。"},
+      {en: "allow", zh: "允许", pos: "v.", example: "My parents allow me to watch TV.", exampleZh: "我父母允许我看电视。"},
+      {en: "almost", zh: "几乎；差不多", pos: "adv.", example: "It's almost 5 o'clock.", exampleZh: "差不多5点钟了。"},
+      {en: "alone", zh: "独自的", pos: "adj.", example: "She lives alone in the city.", exampleZh: "她独自住在城市里。"},
+      {en: "along", zh: "沿着", pos: "prep.", example: "Walk along the river.", exampleZh: "沿着河走。"},
+      {en: "aloud", zh: "大声地", pos: "adv.", example: "Please read the text aloud.", exampleZh: "请大声朗读课文。"},
+      {en: "already", zh: "已经", pos: "adv.", example: "I have already finished my homework.", exampleZh: "我已经做完作业了。"},
+      {en: "also", zh: "也；还", pos: "adv.", example: "I also like playing basketball.", exampleZh: "我也喜欢打篮球。"},
+      {en: "although", zh: "虽然；尽管", pos: "conj.", example: "Although it rained, we went out.", exampleZh: "虽然下雨了，我们还是出去了。"},
+      {en: "always", zh: "总是；一直", pos: "adv.", example: "She always gets up early.", exampleZh: "她总是早起。"},
+      {en: "amazing", zh: "令人惊奇的", pos: "adj.", example: "The view from the top is amazing.", exampleZh: "从山顶看下去的景色令人惊叹。"},
+      {en: "ambulance", zh: "救护车", pos: "n.", example: "Call an ambulance quickly!", exampleZh: "快叫救护车！"},
+      {en: "America", zh: "美国；美洲", pos: "n.", example: "He traveled across America.", exampleZh: "他穿越了美国。"},
+      {en: "among", zh: "在……之间", pos: "prep.", example: "She is the tallest among her friends.", exampleZh: "她在朋友中是最高的。"},
+      {en: "ancient", zh: "古代的", pos: "adj.", example: "China has a long ancient history.", exampleZh: "中国有着悠久的古代历史。"},
+      {en: "and", zh: "和；与", pos: "conj.", example: "I like apples and bananas.", exampleZh: "我喜欢苹果和香蕉。"},
+      {en: "angry", zh: "生气的", pos: "adj.", example: "Don't be angry with me.", exampleZh: "别生我的气。"},
+      {en: "animal", zh: "动物", pos: "n.", example: "The zoo has many animals.", exampleZh: "动物园里有很多动物。"},
+      {en: "another", zh: "另一个", pos: "adj.", example: "Can I have another cup of tea?", exampleZh: "我能再要一杯茶吗？"},
+      {en: "answer", zh: "回答；答案", pos: "n.", example: "Please answer my question.", exampleZh: "请回答我的问题。"},
+      {en: "any", zh: "任何的", pos: "adj.", example: "Do you have any questions?", exampleZh: "你有任何问题吗？"},
+      {en: "anyone", zh: "任何人", pos: "pron.", example: "Anyone can join the club.", exampleZh: "任何人都可以加入这个俱乐部。"},
+      {en: "anything", zh: "任何事", pos: "pron.", example: "Is there anything I can help?", exampleZh: "有什么我能帮忙的吗？"},
+      {en: "anywhere", zh: "任何地方", pos: "adv.", example: "You can sit anywhere you like.", exampleZh: "你可以坐在任何你喜欢的地方。"},
+      {en: "apologize", zh: "道歉", pos: "v.", example: "I apologize for being late.", exampleZh: "我为迟到道歉。"},
+      {en: "appear", zh: "出现；显得", pos: "v.", example: "The sun appeared from behind the clouds.", exampleZh: "太阳从云后出现。"},
+      {en: "apple", zh: "苹果", pos: "n.", example: "An apple a day keeps the doctor away.", exampleZh: "一天一苹果，医生远离我。"}
+    ];
+
     let currentIndex = 0;
     let currentMode = 'flashcard';
-    let studiedToday = new Set();
+    let learnedWords = new Set();
 
     // 初始化
-    async function init() {
-      await loadWords();
+    function init() {
       loadProgress();
       showWord();
     }
 
-    // 加载词库
-    async function loadWords() {
-      try {
-        const response = await fetch('./words/words.js');
-        const text = await response.text();
-        // 提取 JSON 数据
-        const jsonStr = text.replace('module.exports = ', '');
-        words = eval(jsonStr);
-        console.log('加载了 ' + words.length + ' 个单词');
-      } catch (e) {
-        console.error('加载词库失败:', e);
-        // 使用内置示例数据
-        words = [
-          {en: 'about', zh: '关于；大约', pos: 'prep.', example: 'It\'s about 5 o\'clock.', exampleZh: '现在大约5点钟。'},
-          {en: 'above', zh: '在...上面', pos: 'prep.', example: 'The bird is flying above the tree.', exampleZh: '鸟儿在树上飞。'},
-          {en: 'across', zh: '穿过；横过', pos: 'prep.', example: 'Walk across the street carefully.', exampleZh: '小心地过马路。'}
-        ];
-      }
-    }
-
     // 加载进度
     function loadProgress() {
-      const saved = localStorage.getItem('ash_english_progress');
+      const saved = localStorage.getItem('ash_english_web_progress');
       if (saved) {
         const data = JSON.parse(saved);
         currentIndex = data.currentIndex || 0;
-        studiedToday = new Set(data.studiedToday || []);
+        learnedWords = new Set(data.learnedWords || []);
       }
       updateStats();
     }
@@ -362,27 +215,23 @@
     function saveProgress() {
       const data = {
         currentIndex,
-        studiedToday: Array.from(studiedToday),
-        lastStudyDate: new Date().toDateString()
+        learnedWords: Array.from(learnedWords)
       };
-      localStorage.setItem('ash_english_progress', JSON.stringify(data));
+      localStorage.setItem('ash_english_web_progress', JSON.stringify(data));
     }
 
     // 显示单词
     function showWord() {
-      if (words.length === 0) return;
+      if (WORDS.length === 0) return;
       
-      const word = words[currentIndex];
+      const word = WORDS[currentIndex];
       
-      // 更新正面
       document.getElementById('frontWord').textContent = word.en;
       document.getElementById('frontHint').textContent = '点击翻卡查看中文';
       
-      // 更新背面
       document.getElementById('backEn').textContent = word.en;
       document.getElementById('backZh').textContent = word.zh;
       
-      // 更新例句
       if (word.pos && word.example) {
         document.getElementById('examplePos').textContent = word.pos;
         document.getElementById('exampleEn').textContent = word.example;
@@ -393,10 +242,7 @@
         document.getElementById('exampleZh').textContent = '';
       }
       
-      // 重置卡片状态
       document.querySelector('.card').classList.remove('flipped');
-      
-      // 更新进度
       updateProgress();
       saveProgress();
     }
@@ -408,24 +254,22 @@
 
     // 上一个单词
     function prevWord() {
-      currentIndex = (currentIndex - 1 + words.length) % words.length;
+      currentIndex = (currentIndex - 1 + WORDS.length) % WORDS.length;
       showWord();
     }
 
     // 下一个单词
     function nextWord() {
-      currentIndex = (currentIndex + 1) % words.length;
-      studiedToday.add(currentIndex);
+      currentIndex = (currentIndex + 1) % WORDS.length;
+      learnedWords.add(currentIndex);
       showWord();
       
-      // 清空拼写输入
       const input = document.getElementById('spellingInput');
       input.value = '';
       input.className = 'spelling-input';
       
-      // 更新提示
       if (currentMode === 'spelling') {
-        const word = words[currentIndex];
+        const word = WORDS[currentIndex];
         document.getElementById('spellingHint').textContent = word.zh;
       }
     }
@@ -434,20 +278,17 @@
     function switchMode(mode) {
       currentMode = mode;
       
-      // 更新按钮状态
       document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       event.target.classList.add('active');
       
-      // 显示对应界面
       document.querySelector('.flashcard-mode').classList.remove('active');
       document.querySelector('.spelling-mode').classList.remove('active');
       document.querySelector('.' + mode + '-mode').classList.add('active');
       
-      // 拼写模式初始化
       if (mode === 'spelling') {
-        const word = words[currentIndex];
+        const word = WORDS[currentIndex];
         document.getElementById('spellingHint').textContent = word.zh;
         document.getElementById('spellingInput').focus();
       }
@@ -459,7 +300,7 @@
       
       const input = document.getElementById('spellingInput');
       const userInput = input.value.trim().toLowerCase();
-      const correctAnswer = words[currentIndex].en.toLowerCase();
+      const correctAnswer = WORDS[currentIndex].en.toLowerCase();
       
       if (userInput === correctAnswer) {
         input.classList.add('correct');
@@ -468,7 +309,6 @@
       } else {
         input.classList.add('wrong');
         input.classList.remove('correct');
-        // 显示正确答案
         setTimeout(() => {
           input.value = correctAnswer;
           input.classList.remove('wrong');
@@ -481,17 +321,16 @@
     // 更新统计
     function updateStats() {
       document.getElementById('dayNum').textContent = 
-        localStorage.getItem('ash_english_day') || '1';
-      document.getElementById('highScore').textContent = 
-        localStorage.getItem('ash_english_high_score') || '0';
+        localStorage.getItem('ash_english_web_day') || '1';
+      document.getElementById('learnedCount').textContent = learnedWords.size;
     }
 
     // 更新进度条
     function updateProgress() {
-      const progress = ((currentIndex + 1) / words.length * 100).toFixed(1);
+      const progress = ((currentIndex + 1) / WORDS.length * 100).toFixed(1);
       document.getElementById('progressFill').style.width = progress + '%';
       document.getElementById('progressText').textContent = 
-        `${currentIndex + 1} / ${words.length}`;
+        `${currentIndex + 1} / ${WORDS.length}`;
     }
 
     // 页面加载时初始化
