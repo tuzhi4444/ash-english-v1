@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ASH英语 - 单词学习</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #333;
+    }
+
+    .header {
+      background: rgba(255,255,255,0.95);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      font-size: 20px;
+      color: #667eea;
+    }
+
+    .stats {
+      display: flex;
+      gap: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .mode-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .mode-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: white;
+      color: #667eea;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .mode-btn.active {
+      background: #667eea;
+      color: white;
+    }
+
+    .card-container {
+      perspective: 1000px;
+      width: 90%;
+      max-width: 400px;
+      height: 300px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .card-front {
+      background: white;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .word-en {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #667eea;
+    }
+
+    .card-back .word-en {
+      color: white;
+      font-size: 36px;
+    }
+
+    .word-zh {
+      font-size: 24px;
+      color: #666;
+    }
+
+    .card-back .word-zh {
+      color: rgba(255,255,255,0.9);
+      font-size: 20px;
+    }
+
+    .example-section {
+      margin-top: 20px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .example-pos {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .example-en {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .example-zh {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .ctrl-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: white;
+      color: #667eea;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .ctrl-btn:active {
+      transform: scale(0.95);
+    }
+
+    .spelling-mode {
+      display: none;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .spelling-mode.active {
+      display: block;
+    }
+
+    .flashcard-mode {
+      display: none;
+    }
+
+    .flashcard-mode.active {
+      display: block;
+    }
+
+    .spelling-input {
+      width: 100%;
+      padding: 15px;
+      font-size: 24px;
+      border: 2px solid #667eea;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      outline: none;
+    }
+
+    .spelling-input.correct {
+      border-color: #4caf50;
+      background: #e8f5e9;
+    }
+
+    .spelling-input.wrong {
+      border-color: #f44336;
+      background: #ffebee;
+    }
+
+    .hint-text {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 90%;
+      max-width: 400px;
+      height: 8px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 4px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: white;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .progress-text {
+      color: white;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .word-en { font-size: 36px; }
+      .card-container { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📚 ASH英语</h1>
+    <div class="stats">
+      <span>第 <strong id="dayNum">1</strong> 天</span>
+      <span>最高分 <strong id="highScore">0</strong></span>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="mode-selector">
+      <button class="mode-btn active" onclick="switchMode('flashcard')">📖 翻卡</button>
+      <button class="mode-btn" onclick="switchMode('spelling')">✍️ 拼写</button>
+    </div>
+
+    <div class="flashcard-mode active">
+      <div class="card-container">
+        <div class="card" onclick="flipCard()">
+          <div class="card-face card-front">
+            <div class="word-en" id="frontWord">加载中...</div>
+            <div class="word-zh" id="frontHint">点击翻卡查看中文</div>
+          </div>
+          <div class="card-face card-back">
+            <div class="word-zh" id="backZh">中文</div>
+            <div class="word-en" id="backEn">English</div>
+            <div class="example-section">
+              <div class="example-pos" id="examplePos"></div>
+              <div class="example-en" id="exampleEn"></div>
+              <div class="example-zh" id="exampleZh"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn" onclick="prevWord()">← 上一个</button>
+        <button class="ctrl-btn" onclick="nextWord()">下一个 →</button>
+      </div>
+    </div>
+
+    <div class="spelling-mode">
+      <div class="hint-text" id="spellingHint">请输入英文单词</div>
+      <input type="text" class="spelling-input" id="spellingInput" 
+             placeholder="输入英文..." 
+             onkeypress="checkSpelling(event)"
+             autocomplete="off">
+      <div class="controls">
+        <button class="ctrl-btn" onclick="nextWord()">下一个</button>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <script>
+    // 词库数据（简化版，实际应从外部加载）
+    let words = [];
+    let currentIndex = 0;
+    let currentMode = 'flashcard';
+    let studiedToday = new Set();
+
+    // 初始化
+    async function init() {
+      await loadWords();
+      loadProgress();
+      showWord();
+    }
+
+    // 加载词库
+    async function loadWords() {
+      try {
+        const response = await fetch('../words/words.js');
+        const text = await response.text();
+        // 提取 JSON 数据
+        const jsonStr = text.replace('module.exports = ', '');
+        words = eval(jsonStr);
+        console.log('加载了 ' + words.length + ' 个单词');
+      } catch (e) {
+        console.error('加载词库失败:', e);
+        // 使用内置示例数据
+        words = [
+          {en: 'about', zh: '关于；大约', pos: 'prep.', example: 'It\'s about 5 o\'clock.', exampleZh: '现在大约5点钟。'},
+          {en: 'above', zh: '在...上面', pos: 'prep.', example: 'The bird is flying above the tree.', exampleZh: '鸟儿在树上飞。'},
+          {en: 'across', zh: '穿过；横过', pos: 'prep.', example: 'Walk across the street carefully.', exampleZh: '小心地过马路。'}
+        ];
+      }
+    }
+
+    // 加载进度
+    function loadProgress() {
+      const saved = localStorage.getItem('ash_english_progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        currentIndex = data.currentIndex || 0;
+        studiedToday = new Set(data.studiedToday || []);
+      }
+      updateStats();
+    }
+
+    // 保存进度
+    function saveProgress() {
+      const data = {
+        currentIndex,
+        studiedToday: Array.from(studiedToday),
+        lastStudyDate: new Date().toDateString()
+      };
+      localStorage.setItem('ash_english_progress', JSON.stringify(data));
+    }
+
+    // 显示单词
+    function showWord() {
+      if (words.length === 0) return;
+      
+      const word = words[currentIndex];
+      
+      // 更新正面
+      document.getElementById('frontWord').textContent = word.en;
+      document.getElementById('frontHint').textContent = '点击翻卡查看中文';
+      
+      // 更新背面
+      document.getElementById('backEn').textContent = word.en;
+      document.getElementById('backZh').textContent = word.zh;
+      
+      // 更新例句
+      if (word.pos && word.example) {
+        document.getElementById('examplePos').textContent = word.pos;
+        document.getElementById('exampleEn').textContent = word.example;
+        document.getElementById('exampleZh').textContent = word.exampleZh;
+      } else {
+        document.getElementById('examplePos').textContent = '';
+        document.getElementById('exampleEn').textContent = '';
+        document.getElementById('exampleZh').textContent = '';
+      }
+      
+      // 重置卡片状态
+      document.querySelector('.card').classList.remove('flipped');
+      
+      // 更新进度
+      updateProgress();
+      saveProgress();
+    }
+
+    // 翻卡
+    function flipCard() {
+      document.querySelector('.card').classList.toggle('flipped');
+    }
+
+    // 上一个单词
+    function prevWord() {
+      currentIndex = (currentIndex - 1 + words.length) % words.length;
+      showWord();
+    }
+
+    // 下一个单词
+    function nextWord() {
+      currentIndex = (currentIndex + 1) % words.length;
+      studiedToday.add(currentIndex);
+      showWord();
+      
+      // 清空拼写输入
+      const input = document.getElementById('spellingInput');
+      input.value = '';
+      input.className = 'spelling-input';
+      
+      // 更新提示
+      if (currentMode === 'spelling') {
+        const word = words[currentIndex];
+        document.getElementById('spellingHint').textContent = word.zh;
+      }
+    }
+
+    // 切换模式
+    function switchMode(mode) {
+      currentMode = mode;
+      
+      // 更新按钮状态
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // 显示对应界面
+      document.querySelector('.flashcard-mode').classList.remove('active');
+      document.querySelector('.spelling-mode').classList.remove('active');
+      document.querySelector('.' + mode + '-mode').classList.add('active');
+      
+      // 拼写模式初始化
+      if (mode === 'spelling') {
+        const word = words[currentIndex];
+        document.getElementById('spellingHint').textContent = word.zh;
+        document.getElementById('spellingInput').focus();
+      }
+    }
+
+    // 检查拼写
+    function checkSpelling(event) {
+      if (event.key !== 'Enter') return;
+      
+      const input = document.getElementById('spellingInput');
+      const userInput = input.value.trim().toLowerCase();
+      const correctAnswer = words[currentIndex].en.toLowerCase();
+      
+      if (userInput === correctAnswer) {
+        input.classList.add('correct');
+        input.classList.remove('wrong');
+        setTimeout(() => nextWord(), 500);
+      } else {
+        input.classList.add('wrong');
+        input.classList.remove('correct');
+        // 显示正确答案
+        setTimeout(() => {
+          input.value = correctAnswer;
+          input.classList.remove('wrong');
+          input.classList.add('correct');
+          setTimeout(() => nextWord(), 800);
+        }, 1000);
+      }
+    }
+
+    // 更新统计
+    function updateStats() {
+      document.getElementById('dayNum').textContent = 
+        localStorage.getItem('ash_english_day') || '1';
+      document.getElementById('highScore').textContent = 
+        localStorage.getItem('ash_english_high_score') || '0';
+    }
+
+    // 更新进度条
+    function updateProgress() {
+      const progress = ((currentIndex + 1) / words.length * 100).toFixed(1);
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressText').textContent = 
+        `${currentIndex + 1} / ${words.length}`;
+    }
+
+    // 页面加载时初始化
+    window.onload = init;
+  </script>
+</body>
+</html>
