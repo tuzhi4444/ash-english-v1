@@ -1,0 +1,7 @@
+{
+  "desc": "默认允许收录",
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+}

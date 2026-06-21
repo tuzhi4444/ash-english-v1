@@ -1,5695 +1,1425 @@
-// 来自中小学1500词_单词表.xlsx（含中文释义）
-const WORDS = [
-  {
-    "zh": "关于；大约",
-    "en": "about"
-  },
-  {
-    "zh": "在……上面",
-    "en": "above"
-  },
-  {
-    "zh": "行动；动作",
-    "en": "action"
-  },
-  {
-    "zh": "演员",
-    "en": "actor"
-  },
-  {
-    "zh": "加法；添加",
-    "en": "addition"
-  },
-  {
-    "zh": "钦佩；赞美",
-    "en": "admire"
-  },
-  {
-    "zh": "着火的",
-    "en": "afire"
-  },
-  {
-    "zh": "在……之后",
-    "en": "after"
-  },
-  {
-    "zh": "下午",
-    "en": "afternoon"
-  },
-  {
-    "zh": "再一次",
-    "en": "again"
-  },
-  {
-    "zh": "年龄；时代",
-    "en": "age"
-  },
-  {
-    "zh": "以前",
-    "en": "ago"
-  },
-  {
-    "zh": "空气",
-    "en": "air"
-  },
-  {
-    "zh": "飞机",
-    "en": "airplane"
-  },
-  {
-    "zh": "闹钟；警报",
-    "en": "alarm"
-  },
-  {
-    "zh": "相册；专辑",
-    "en": "album"
-  },
-  {
-    "zh": "所有的；全部",
-    "en": "all"
-  },
-  {
-    "zh": "杏仁",
-    "en": "almond"
-  },
-  {
-    "zh": "独自的",
-    "en": "alone"
-  },
-  {
-    "zh": "沿着",
-    "en": "along"
-  },
-  {
-    "zh": "大声地",
-    "en": "aloud"
-  },
-  {
-    "zh": "也；同样",
-    "en": "also"
-  },
-  {
-    "zh": "总是；一直",
-    "en": "always"
-  },
-  {
-    "zh": "是（I am）",
-    "en": "am"
-  },
-  {
-    "zh": "令人惊叹的",
-    "en": "amazing"
-  },
-  {
-    "zh": "在……之中",
-    "en": "among"
-  },
-  {
-    "zh": "一个（用于元音前）",
-    "en": "an"
-  },
-  {
-    "zh": "锚；主播",
-    "en": "anchor"
-  },
-  {
-    "zh": "和；与",
-    "en": "and"
-  },
-  {
-    "zh": "生气的",
-    "en": "angry"
-  },
-  {
-    "zh": "动物",
-    "en": "animal"
-  },
-  {
-    "zh": "脚踝",
-    "en": "ankle"
-  },
-  {
-    "zh": "使烦恼",
-    "en": "annoy"
-  },
-  {
-    "zh": "蚂蚁",
-    "en": "ant"
-  },
-  {
-    "zh": "焦虑的",
-    "en": "anxious"
-  },
-  {
-    "zh": "任何的",
-    "en": "any"
-  },
-  {
-    "zh": "任何事物",
-    "en": "anything"
-  },
-  {
-    "zh": "任何地方",
-    "en": "anywhere"
-  },
-  {
-    "zh": "分开地",
-    "en": "apart"
-  },
-  {
-    "zh": "每个",
-    "en": "apiece"
-  },
-  {
-    "zh": "苹果",
-    "en": "apple"
-  },
-  {
-    "zh": "四月",
-    "en": "april"
-  },
-  {
-    "zh": "是（复数）",
-    "en": "are"
-  },
-  {
-    "zh": "地区；面积",
-    "en": "area"
-  },
-  {
-    "zh": "争论",
-    "en": "argue"
-  },
-  {
-    "zh": "方舟",
-    "en": "ark"
-  },
-  {
-    "zh": "在……周围",
-    "en": "around"
-  },
-  {
-    "zh": "艺术",
-    "en": "art"
-  },
-  {
-    "zh": "作为；像",
-    "en": "as"
-  },
-  {
-    "zh": "问；请求",
-    "en": "ask"
-  },
-  {
-    "zh": "在",
-    "en": "at"
-  },
-  {
-    "zh": "参加；出席",
-    "en": "attend"
-  },
-  {
-    "zh": "注意力",
-    "en": "attention"
-  },
-  {
-    "zh": "八月",
-    "en": "august"
-  },
-  {
-    "zh": "作者",
-    "en": "author"
-  },
-  {
-    "zh": "秋天",
-    "en": "autumn"
-  },
-  {
-    "zh": "避免",
-    "en": "avoid"
-  },
-  {
-    "zh": "醒着的",
-    "en": "awake"
-  },
-  {
-    "zh": "奖品；奖励",
-    "en": "award"
-  },
-  {
-    "zh": "离开；远离",
-    "en": "away"
-  },
-  {
-    "zh": "糟糕的",
-    "en": "awful"
-  },
-  {
-    "zh": "婴儿",
-    "en": "baby"
-  },
-  {
-    "zh": "背部；回来",
-    "en": "back"
-  },
-  {
-    "zh": "背景",
-    "en": "background"
-  },
-  {
-    "zh": "坏的",
-    "en": "bad"
-  },
-  {
-    "zh": "包；袋子",
-    "en": "bag"
-  },
-  {
-    "zh": "烘焙",
-    "en": "bake"
-  },
-  {
-    "zh": "大捆",
-    "en": "bale"
-  },
-  {
-    "zh": "球",
-    "en": "ball"
-  },
-  {
-    "zh": "芭蕾舞",
-    "en": "ballet"
-  },
-  {
-    "zh": "气球",
-    "en": "balloon"
-  },
-  {
-    "zh": "竹子",
-    "en": "bamboo"
-  },
-  {
-    "zh": "禁止",
-    "en": "ban"
-  },
-  {
-    "zh": "香蕉",
-    "en": "banana"
-  },
-  {
-    "zh": "乐队；带子",
-    "en": "band"
-  },
-  {
-    "zh": "银行；河岸",
-    "en": "bank"
-  },
-  {
-    "zh": "酒吧；条",
-    "en": "bar"
-  },
-  {
-    "zh": "树皮；吠叫",
-    "en": "bark"
-  },
-  {
-    "zh": "谷仓",
-    "en": "barn"
-  },
-  {
-    "zh": "棒球",
-    "en": "baseball"
-  },
-  {
-    "zh": "篮子",
-    "en": "basket"
-  },
-  {
-    "zh": "篮球",
-    "en": "basketball"
-  },
-  {
-    "zh": "蝙蝠；球棒",
-    "en": "bat"
-  },
-  {
-    "zh": "洗澡",
-    "en": "bath"
-  },
-  {
-    "zh": "浴室",
-    "en": "bathroom"
-  },
-  {
-    "zh": "海湾",
-    "en": "bay"
-  },
-  {
-    "zh": "是；存在",
-    "en": "be"
-  },
-  {
-    "zh": "海滩",
-    "en": "beach"
-  },
-  {
-    "zh": "豆子",
-    "en": "bean"
-  },
-  {
-    "zh": "熊；忍受",
-    "en": "bear"
-  },
-  {
-    "zh": "胡须",
-    "en": "beard"
-  },
-  {
-    "zh": "美丽的",
-    "en": "beautiful"
-  },
-  {
-    "zh": "因为",
-    "en": "because"
-  },
-  {
-    "zh": "床",
-    "en": "bed"
-  },
-  {
-    "zh": "卧室",
-    "en": "bedroom"
-  },
-  {
-    "zh": "蜜蜂",
-    "en": "bee"
-  },
-  {
-    "zh": "（be的过去分词）",
-    "en": "been"
-  },
-  {
-    "zh": "啤酒",
-    "en": "beer"
-  },
-  {
-    "zh": "蜜蜂（复数）",
-    "en": "bees"
-  },
-  {
-    "zh": "在……之前",
-    "en": "before"
-  },
-  {
-    "zh": "乞求",
-    "en": "beg"
-  },
-  {
-    "zh": "乞丐",
-    "en": "beggar"
-  },
-  {
-    "zh": "在……后面",
-    "en": "behind"
-  },
-  {
-    "zh": "铃；钟",
-    "en": "bell"
-  },
-  {
-    "zh": "在……下面",
-    "en": "below"
-  },
-  {
-    "zh": "弯曲",
-    "en": "bend"
-  },
-  {
-    "zh": "最好的",
-    "en": "best"
-  },
-  {
-    "zh": "打赌",
-    "en": "bet"
-  },
-  {
-    "zh": "更好的",
-    "en": "better"
-  },
-  {
-    "zh": "在……之间",
-    "en": "between"
-  },
-  {
-    "zh": "偏见",
-    "en": "bias"
-  },
-  {
-    "zh": "自行车",
-    "en": "bicycle"
-  },
-  {
-    "zh": "出价；投标",
-    "en": "bid"
-  },
-  {
-    "zh": "大的",
-    "en": "big"
-  },
-  {
-    "zh": "自行车",
-    "en": "bike"
-  },
-  {
-    "zh": "账单；钞票",
-    "en": "bill"
-  },
-  {
-    "zh": "垃圾箱",
-    "en": "bin"
-  },
-  {
-    "zh": "鸟",
-    "en": "bird"
-  },
-  {
-    "zh": "出生",
-    "en": "birth"
-  },
-  {
-    "zh": "生日",
-    "en": "birthday"
-  },
-  {
-    "zh": "饼干",
-    "en": "biscuit"
-  },
-  {
-    "zh": "一点；少量",
-    "en": "bit"
-  },
-  {
-    "zh": "咬",
-    "en": "bite"
-  },
-  {
-    "zh": "黑色的",
-    "en": "black"
-  },
-  {
-    "zh": "黑板",
-    "en": "blackboard"
-  },
-  {
-    "zh": "空白的",
-    "en": "blank"
-  },
-  {
-    "zh": "保佑；祝福",
-    "en": "bless"
-  },
-  {
-    "zh": "街区；阻塞",
-    "en": "block"
-  },
-  {
-    "zh": "血液",
-    "en": "blood"
-  },
-  {
-    "zh": "开花",
-    "en": "bloom"
-  },
-  {
-    "zh": "吹",
-    "en": "blow"
-  },
-  {
-    "zh": "蓝色的",
-    "en": "blue"
-  },
-  {
-    "zh": "蓝莓",
-    "en": "blueberry"
-  },
-  {
-    "zh": "脸红",
-    "en": "blush"
-  },
-  {
-    "zh": "板；董事会",
-    "en": "board"
-  },
-  {
-    "zh": "船",
-    "en": "boat"
-  },
-  {
-    "zh": "身体",
-    "en": "body"
-  },
-  {
-    "zh": "煮沸",
-    "en": "boil"
-  },
-  {
-    "zh": "炸弹",
-    "en": "bomb"
-  },
-  {
-    "zh": "骨头",
-    "en": "bone"
-  },
-  {
-    "zh": "奖金；额外的",
-    "en": "bonus"
-  },
-  {
-    "zh": "书",
-    "en": "book"
-  },
-  {
-    "zh": "书呆子气的",
-    "en": "bookish"
-  },
-  {
-    "zh": "书店",
-    "en": "bookstore"
-  },
-  {
-    "zh": "无聊的",
-    "en": "boring"
-  },
-  {
-    "zh": "出生的",
-    "en": "born"
-  },
-  {
-    "zh": "借入",
-    "en": "borrow"
-  },
-  {
-    "zh": "两者都",
-    "en": "both"
-  },
-  {
-    "zh": "瓶子",
-    "en": "bottle"
-  },
-  {
-    "zh": "买（过去式）",
-    "en": "bought"
-  },
-  {
-    "zh": "弓；鞠躬",
-    "en": "bow"
-  },
-  {
-    "zh": "碗",
-    "en": "bowl"
-  },
-  {
-    "zh": "盒子",
-    "en": "box"
-  },
-  {
-    "zh": "男孩",
-    "en": "boy"
-  },
-  {
-    "zh": "大脑",
-    "en": "brain"
-  },
-  {
-    "zh": "品牌",
-    "en": "brand"
-  },
-  {
-    "zh": "勇敢的",
-    "en": "brave"
-  },
-  {
-    "zh": "面包",
-    "en": "bread"
-  },
-  {
-    "zh": "打破；休息",
-    "en": "break"
-  },
-  {
-    "zh": "早餐",
-    "en": "breakfast"
-  },
-  {
-    "zh": "呼吸",
-    "en": "breath"
-  },
-  {
-    "zh": "砖",
-    "en": "brick"
-  },
-  {
-    "zh": "新娘",
-    "en": "bride"
-  },
-  {
-    "zh": "桥",
-    "en": "bridge"
-  },
-  {
-    "zh": "边缘",
-    "en": "brim"
-  },
-  {
-    "zh": "带来",
-    "en": "bring"
-  },
-  {
-    "zh": "破碎的",
-    "en": "broken"
-  },
-  {
-    "zh": "扫帚",
-    "en": "broom"
-  },
-  {
-    "zh": "带来（过去式）",
-    "en": "brought"
-  },
-  {
-    "zh": "棕色的",
-    "en": "brown"
-  },
-  {
-    "zh": "刷子；刷",
-    "en": "brush"
-  },
-  {
-    "zh": "雄鹿；美元",
-    "en": "buck"
-  },
-  {
-    "zh": "建造",
-    "en": "build"
-  },
-  {
-    "zh": "小圆面包",
-    "en": "bun"
-  },
-  {
-    "zh": "燃烧",
-    "en": "burn"
-  },
-  {
-    "zh": "公共汽车",
-    "en": "bus"
-  },
-  {
-    "zh": "商业；生意",
-    "en": "business"
-  },
-  {
-    "zh": "商人",
-    "en": "businessman"
-  },
-  {
-    "zh": "忙碌的",
-    "en": "busy"
-  },
-  {
-    "zh": "但是",
-    "en": "but"
-  },
-  {
-    "zh": "蝴蝶",
-    "en": "butterfly"
-  },
-  {
-    "zh": "买",
-    "en": "buy"
-  },
-  {
-    "zh": "通过；在旁边",
-    "en": "by"
-  },
-  {
-    "zh": "再见",
-    "en": "bye"
-  },
-  {
-    "zh": "蛋糕",
-    "en": "cake"
-  },
-  {
-    "zh": "打电话；叫",
-    "en": "call"
-  },
-  {
-    "zh": "平静的",
-    "en": "calm"
-  },
-  {
-    "zh": "来（过去式）",
-    "en": "came"
-  },
-  {
-    "zh": "照相机",
-    "en": "camera"
-  },
-  {
-    "zh": "营地；露营",
-    "en": "camp"
-  },
-  {
-    "zh": "能；罐头",
-    "en": "can"
-  },
-  {
-    "zh": "糖果",
-    "en": "candy"
-  },
-  {
-    "zh": "大炮",
-    "en": "cannon"
-  },
-  {
-    "zh": "独木舟",
-    "en": "canoe"
-  },
-  {
-    "zh": "首都；资本",
-    "en": "capital"
-  },
-  {
-    "zh": "捕获",
-    "en": "capture"
-  },
-  {
-    "zh": "汽车",
-    "en": "car"
-  },
-  {
-    "zh": "卡片",
-    "en": "card"
-  },
-  {
-    "zh": "小心的",
-    "en": "careful"
-  },
-  {
-    "zh": "胡萝卜",
-    "en": "carrot"
-  },
-  {
-    "zh": "搬运；携带",
-    "en": "carry"
-  },
-  {
-    "zh": "城堡",
-    "en": "castle"
-  },
-  {
-    "zh": "猫",
-    "en": "cat"
-  },
-  {
-    "zh": "抓住",
-    "en": "catch"
-  },
-  {
-    "zh": "抓住（过去式）",
-    "en": "caught"
-  },
-  {
-    "zh": "原因；导致",
-    "en": "cause"
-  },
-  {
-    "zh": "谨慎的",
-    "en": "cautious"
-  },
-  {
-    "zh": "洞穴",
-    "en": "cave"
-  },
-  {
-    "zh": "分（货币）",
-    "en": "cent"
-  },
-  {
-    "zh": "椅子",
-    "en": "chair"
-  },
-  {
-    "zh": "粉笔",
-    "en": "chalk"
-  },
-  {
-    "zh": "香槟",
-    "en": "champagne"
-  },
-  {
-    "zh": "角色；性格",
-    "en": "character"
-  },
-  {
-    "zh": "图表",
-    "en": "chart"
-  },
-  {
-    "zh": "便宜的",
-    "en": "cheap"
-  },
-  {
-    "zh": "脸颊",
-    "en": "cheek"
-  },
-  {
-    "zh": "欢呼",
-    "en": "cheer"
-  },
-  {
-    "zh": "厨师",
-    "en": "chef"
-  },
-  {
-    "zh": "樱桃",
-    "en": "cherry"
-  },
-  {
-    "zh": "国际象棋",
-    "en": "chess"
-  },
-  {
-    "zh": "小鸡",
-    "en": "chick"
-  },
-  {
-    "zh": "鸡；鸡肉",
-    "en": "chicken"
-  },
-  {
-    "zh": "孩子",
-    "en": "child"
-  },
-  {
-    "zh": "幼稚的",
-    "en": "childish"
-  },
-  {
-    "zh": "下巴",
-    "en": "chin"
-  },
-  {
-    "zh": "薯片；芯片",
-    "en": "chip"
-  },
-  {
-    "zh": "巧克力",
-    "en": "chocolate"
-  },
-  {
-    "zh": "选择",
-    "en": "choice"
-  },
-  {
-    "zh": "选择",
-    "en": "choose"
-  },
-  {
-    "zh": "砍；切",
-    "en": "chop"
-  },
-  {
-    "zh": "家务；杂事",
-    "en": "chore"
-  },
-  {
-    "zh": "圣诞节",
-    "en": "christmas"
-  },
-  {
-    "zh": "扔；抛",
-    "en": "chuck"
-  },
-  {
-    "zh": "圆；圈",
-    "en": "circle"
-  },
-  {
-    "zh": "城市",
-    "en": "city"
-  },
-  {
-    "zh": "拍手",
-    "en": "clap"
-  },
-  {
-    "zh": "班级；课",
-    "en": "class"
-  },
-  {
-    "zh": "同学",
-    "en": "classmate"
-  },
-  {
-    "zh": "教室",
-    "en": "classroom"
-  },
-  {
-    "zh": "黏土",
-    "en": "clay"
-  },
-  {
-    "zh": "干净的；打扫",
-    "en": "clean"
-  },
-  {
-    "zh": "清楚的",
-    "en": "clear"
-  },
-  {
-    "zh": "职员",
-    "en": "clerk"
-  },
-  {
-    "zh": "点击",
-    "en": "click"
-  },
-  {
-    "zh": "攀爬",
-    "en": "climb"
-  },
-  {
-    "zh": "时钟",
-    "en": "clock"
-  },
-  {
-    "zh": "关闭；近的",
-    "en": "close"
-  },
-  {
-    "zh": "关闭的",
-    "en": "closed"
-  },
-  {
-    "zh": "衣服",
-    "en": "clothes"
-  },
-  {
-    "zh": "云",
-    "en": "cloud"
-  },
-  {
-    "zh": "小丑",
-    "en": "clown"
-  },
-  {
-    "zh": "俱乐部",
-    "en": "club"
-  },
-  {
-    "zh": "线索",
-    "en": "clue"
-  },
-  {
-    "zh": "教练",
-    "en": "coach"
-  },
-  {
-    "zh": "外套",
-    "en": "coat"
-  },
-  {
-    "zh": "椰子",
-    "en": "coconut"
-  },
-  {
-    "zh": "咖啡",
-    "en": "coffee"
-  },
-  {
-    "zh": "硬币",
-    "en": "coin"
-  },
-  {
-    "zh": "冷的；感冒",
-    "en": "cold"
-  },
-  {
-    "zh": "颜色",
-    "en": "color"
-  },
-  {
-    "zh": "多彩的",
-    "en": "colorful"
-  },
-  {
-    "zh": "梳子；梳",
-    "en": "comb"
-  },
-  {
-    "zh": "来",
-    "en": "come"
-  },
-  {
-    "zh": "来（第三人称）",
-    "en": "comes"
-  },
-  {
-    "zh": "漫画；喜剧的",
-    "en": "comic"
-  },
-  {
-    "zh": "比赛；竞赛",
-    "en": "contest"
-  },
-  {
-    "zh": "继续",
-    "en": "continue"
-  },
-  {
-    "zh": "凉爽的；酷的",
-    "en": "cool"
-  },
-  {
-    "zh": "核心",
-    "en": "core"
-  },
-  {
-    "zh": "玉米",
-    "en": "corn"
-  },
-  {
-    "zh": "咳嗽",
-    "en": "cough"
-  },
-  {
-    "zh": "数；计算",
-    "en": "count"
-  },
-  {
-    "zh": "乡村",
-    "en": "countryside"
-  },
-  {
-    "zh": "一对；夫妻",
-    "en": "couple"
-  },
-  {
-    "zh": "课程；过程",
-    "en": "course"
-  },
-  {
-    "zh": "堂/表兄弟姐妹",
-    "en": "cousin"
-  },
-  {
-    "zh": "母牛",
-    "en": "cow"
-  },
-  {
-    "zh": "螃蟹",
-    "en": "crab"
-  },
-  {
-    "zh": "蜡笔",
-    "en": "crayon"
-  },
-  {
-    "zh": "疯狂的",
-    "en": "crazy"
-  },
-  {
-    "zh": "创造者",
-    "en": "creator"
-  },
-  {
-    "zh": "生物",
-    "en": "creature"
-  },
-  {
-    "zh": "船员；团队",
-    "en": "crew"
-  },
-  {
-    "zh": "哭（过去式）",
-    "en": "cried"
-  },
-  {
-    "zh": "庄稼",
-    "en": "crop"
-  },
-  {
-    "zh": "穿过；十字",
-    "en": "cross"
-  },
-  {
-    "zh": "人群",
-    "en": "crowd"
-  },
-  {
-    "zh": "王冠",
-    "en": "crown"
-  },
-  {
-    "zh": "压碎",
-    "en": "crush"
-  },
-  {
-    "zh": "哭；喊",
-    "en": "cry"
-  },
-  {
-    "zh": "立方体",
-    "en": "cube"
-  },
-  {
-    "zh": "文化",
-    "en": "culture"
-  },
-  {
-    "zh": "切；剪",
-    "en": "cut"
-  },
-  {
-    "zh": "可爱的",
-    "en": "cute"
-  },
-  {
-    "zh": "爸爸",
-    "en": "dad"
-  },
-  {
-    "zh": "潮湿的",
-    "en": "damp"
-  },
-  {
-    "zh": "跳舞",
-    "en": "dance"
-  },
-  {
-    "zh": "舞者",
-    "en": "dancer"
-  },
-  {
-    "zh": "危险",
-    "en": "danger"
-  },
-  {
-    "zh": "危险的",
-    "en": "dangerous"
-  },
-  {
-    "zh": "黑暗的",
-    "en": "dark"
-  },
-  {
-    "zh": "日期；约会",
-    "en": "date"
-  },
-  {
-    "zh": "女儿",
-    "en": "daughter"
-  },
-  {
-    "zh": "天；白天",
-    "en": "day"
-  },
-  {
-    "zh": "死的",
-    "en": "dead"
-  },
-  {
-    "zh": "交易；处理",
-    "en": "deal"
-  },
-  {
-    "zh": "十二月",
-    "en": "december"
-  },
-  {
-    "zh": "决定",
-    "en": "decide"
-  },
-  {
-    "zh": "决定",
-    "en": "decision"
-  },
-  {
-    "zh": "深的",
-    "en": "deep"
-  },
-  {
-    "zh": "鹿",
-    "en": "deer"
-  },
-  {
-    "zh": "度；学位",
-    "en": "degree"
-  },
-  {
-    "zh": "删除",
-    "en": "delete"
-  },
-  {
-    "zh": "美味的",
-    "en": "delicious"
-  },
-  {
-    "zh": "依靠",
-    "en": "depend"
-  },
-  {
-    "zh": "描述",
-    "en": "describe"
-  },
-  {
-    "zh": "沙漠",
-    "en": "desert"
-  },
-  {
-    "zh": "书桌",
-    "en": "desk"
-  },
-  {
-    "zh": "破坏",
-    "en": "destroy"
-  },
-  {
-    "zh": "绕道",
-    "en": "detour"
-  },
-  {
-    "zh": "露水",
-    "en": "dew"
-  },
-  {
-    "zh": "做（过去式）",
-    "en": "did"
-  },
-  {
-    "zh": "困难的",
-    "en": "difficult"
-  },
-  {
-    "zh": "挖",
-    "en": "dig"
-  },
-  {
-    "zh": "晚餐",
-    "en": "dinner"
-  },
-  {
-    "zh": "讨论",
-    "en": "discuss"
-  },
-  {
-    "zh": "讨论",
-    "en": "discussion"
-  },
-  {
-    "zh": "盘子；菜",
-    "en": "dish"
-  },
-  {
-    "zh": "除法；分割",
-    "en": "division"
-  },
-  {
-    "zh": "狗",
-    "en": "dog"
-  },
-  {
-    "zh": "美元",
-    "en": "dollar"
-  },
-  {
-    "zh": "海豚",
-    "en": "dolphin"
-  },
-  {
-    "zh": "完成的",
-    "en": "done"
-  },
-  {
-    "zh": "驴",
-    "en": "donkey"
-  },
-  {
-    "zh": "门",
-    "en": "door"
-  },
-  {
-    "zh": "门铃",
-    "en": "doorbell"
-  },
-  {
-    "zh": "双倍的",
-    "en": "double"
-  },
-  {
-    "zh": "向下",
-    "en": "down"
-  },
-  {
-    "zh": "拖拽",
-    "en": "drag"
-  },
-  {
-    "zh": "龙",
-    "en": "dragon"
-  },
-  {
-    "zh": "戏剧",
-    "en": "drama"
-  },
-  {
-    "zh": "喝（过去式）",
-    "en": "drank"
-  },
-  {
-    "zh": "画；拉",
-    "en": "draw"
-  },
-  {
-    "zh": "梦；梦想",
-    "en": "dream"
-  },
-  {
-    "zh": "连衣裙；穿衣",
-    "en": "dress"
-  },
-  {
-    "zh": "画（过去式）",
-    "en": "drew"
-  },
-  {
-    "zh": "钻头；训练",
-    "en": "drill"
-  },
-  {
-    "zh": "喝；饮料",
-    "en": "drink"
-  },
-  {
-    "zh": "开车；驾驶",
-    "en": "drive"
-  },
-  {
-    "zh": "司机",
-    "en": "driver"
-  },
-  {
-    "zh": "掉落；滴",
-    "en": "drop"
-  },
-  {
-    "zh": "鼓",
-    "en": "drum"
-  },
-  {
-    "zh": "喝醉的",
-    "en": "drunk"
-  },
-  {
-    "zh": "鸭子",
-    "en": "duck"
-  },
-  {
-    "zh": "小鸭子",
-    "en": "duckling"
-  },
-  {
-    "zh": "哑的；愚蠢的",
-    "en": "dumb"
-  },
-  {
-    "zh": "倾倒",
-    "en": "dump"
-  },
-  {
-    "zh": "沙丘",
-    "en": "dune"
-  },
-  {
-    "zh": "每个",
-    "en": "each"
-  },
-  {
-    "zh": "耳朵",
-    "en": "ear"
-  },
-  {
-    "zh": "伯爵",
-    "en": "earl"
-  },
-  {
-    "zh": "早的",
-    "en": "early"
-  },
-  {
-    "zh": "赚取",
-    "en": "earn"
-  },
-  {
-    "zh": "容易的",
-    "en": "easy"
-  },
-  {
-    "zh": "吃（进行时）",
-    "en": "eating"
-  },
-  {
-    "zh": "编辑",
-    "en": "editor"
-  },
-  {
-    "zh": "鸡蛋",
-    "en": "egg"
-  },
-  {
-    "zh": "十八",
-    "en": "eighteen"
-  },
-  {
-    "zh": "八十",
-    "en": "eighty"
-  },
-  {
-    "zh": "任一；也",
-    "en": "either"
-  },
-  {
-    "zh": "肘部",
-    "en": "elbow"
-  },
-  {
-    "zh": "电工",
-    "en": "electrician"
-  },
-  {
-    "zh": "电",
-    "en": "electricity"
-  },
-  {
-    "zh": "大象",
-    "en": "elephant"
-  },
-  {
-    "zh": "结束；末端",
-    "en": "end"
-  },
-  {
-    "zh": "结局",
-    "en": "ending"
-  },
-  {
-    "zh": "能量；精力",
-    "en": "energy"
-  },
-  {
-    "zh": "英语",
-    "en": "english"
-  },
-  {
-    "zh": "享受",
-    "en": "enjoy"
-  },
-  {
-    "zh": "享受（进行时）",
-    "en": "enjoying"
-  },
-  {
-    "zh": "足够的",
-    "en": "enough"
-  },
-  {
-    "zh": "确保",
-    "en": "ensure"
-  },
-  {
-    "zh": "嫉妒的",
-    "en": "envious"
-  },
-  {
-    "zh": "橡皮擦",
-    "en": "eraser"
-  },
-  {
-    "zh": "前夕",
-    "en": "eve"
-  },
-  {
-    "zh": "晚上",
-    "en": "evening"
-  },
-  {
-    "zh": "一切",
-    "en": "everything"
-  },
-  {
-    "zh": "到处",
-    "en": "everywhere"
-  },
-  {
-    "zh": "精确的",
-    "en": "exact"
-  },
-  {
-    "zh": "考试",
-    "en": "exam"
-  },
-  {
-    "zh": "例子",
-    "en": "example"
-  },
-  {
-    "zh": "兴奋的",
-    "en": "excited"
-  },
-  {
-    "zh": "借口；原谅",
-    "en": "excuse"
-  },
-  {
-    "zh": "锻炼；练习",
-    "en": "exercise"
-  },
-  {
-    "zh": "存在",
-    "en": "exist"
-  },
-  {
-    "zh": "扩展",
-    "en": "expansion"
-  },
-  {
-    "zh": "期望",
-    "en": "expect"
-  },
-  {
-    "zh": "昂贵的",
-    "en": "expensive"
-  },
-  {
-    "zh": "表达；快递",
-    "en": "express"
-  },
-  {
-    "zh": "表达；表情",
-    "en": "expression"
-  },
-  {
-    "zh": "眼睛",
-    "en": "eye"
-  },
-  {
-    "zh": "寓言",
-    "en": "fable"
-  },
-  {
-    "zh": "工厂",
-    "en": "factory"
-  },
-  {
-    "zh": "公平的；集市",
-    "en": "fair"
-  },
-  {
-    "zh": "落下；秋天",
-    "en": "fall"
-  },
-  {
-    "zh": "错误的；假的",
-    "en": "false"
-  },
-  {
-    "zh": "名声",
-    "en": "fame"
-  },
-  {
-    "zh": "家庭",
-    "en": "family"
-  },
-  {
-    "zh": "著名的",
-    "en": "famous"
-  },
-  {
-    "zh": "风扇；粉丝",
-    "en": "fan"
-  },
-  {
-    "zh": "远的",
-    "en": "far"
-  },
-  {
-    "zh": "农场",
-    "en": "farm"
-  },
-  {
-    "zh": "快的",
-    "en": "fast"
-  },
-  {
-    "zh": "系紧",
-    "en": "fasten"
-  },
-  {
-    "zh": "胖的；脂肪",
-    "en": "fat"
-  },
-  {
-    "zh": "命运",
-    "en": "fate"
-  },
-  {
-    "zh": "父亲",
-    "en": "father"
-  },
-  {
-    "zh": "围裙甲",
-    "en": "fauld"
-  },
-  {
-    "zh": "错误；过失",
-    "en": "fault"
-  },
-  {
-    "zh": "最喜欢的",
-    "en": "favorite"
-  },
-  {
-    "zh": "害怕；恐惧",
-    "en": "fear"
-  },
-  {
-    "zh": "壮举",
-    "en": "feat"
-  },
-  {
-    "zh": "特征",
-    "en": "feature"
-  },
-  {
-    "zh": "二月",
-    "en": "february"
-  },
-  {
-    "zh": "喂养",
-    "en": "feed"
-  },
-  {
-    "zh": "感觉（过去式）",
-    "en": "felt"
-  },
-  {
-    "zh": "渡船",
-    "en": "ferry"
-  },
-  {
-    "zh": "很少的",
-    "en": "few"
-  },
-  {
-    "zh": "小说；虚构",
-    "en": "fiction"
-  },
-  {
-    "zh": "田地；领域",
-    "en": "field"
-  },
-  {
-    "zh": "十五",
-    "en": "fifteen"
-  },
-  {
-    "zh": "第五",
-    "en": "fifth"
-  },
-  {
-    "zh": "五十",
-    "en": "fifty"
-  },
-  {
-    "zh": "打架；战斗",
-    "en": "fight"
-  },
-  {
-    "zh": "鱼片",
-    "en": "filet"
-  },
-  {
-    "zh": "填满",
-    "en": "fill"
-  },
-  {
-    "zh": "电影；胶卷",
-    "en": "film"
-  },
-  {
-    "zh": "找到",
-    "en": "find"
-  },
-  {
-    "zh": "完成",
-    "en": "finish"
-  },
-  {
-    "zh": "火；解雇",
-    "en": "fire"
-  },
-  {
-    "zh": "被解雇的",
-    "en": "fired"
-  },
-  {
-    "zh": "第一",
-    "en": "first"
-  },
-  {
-    "zh": "鱼",
-    "en": "fish"
-  },
-  {
-    "zh": "钓鱼",
-    "en": "fishing"
-  },
-  {
-    "zh": "裂缝",
-    "en": "fissure"
-  },
-  {
-    "zh": "拳头",
-    "en": "fist"
-  },
-  {
-    "zh": "适合；健康的",
-    "en": "fit"
-  },
-  {
-    "zh": "五",
-    "en": "five"
-  },
-  {
-    "zh": "固定的",
-    "en": "fixed"
-  },
-  {
-    "zh": "旗帜",
-    "en": "flag"
-  },
-  {
-    "zh": "拍打",
-    "en": "flap"
-  },
-  {
-    "zh": "闪光",
-    "en": "flash"
-  },
-  {
-    "zh": "手电筒",
-    "en": "flashlight"
-  },
-  {
-    "zh": "逃跑（过去式）",
-    "en": "fled"
-  },
-  {
-    "zh": "逃跑",
-    "en": "flee"
-  },
-  {
-    "zh": "飞（过去式）",
-    "en": "flew"
-  },
-  {
-    "zh": "航班；飞行",
-    "en": "flight"
-  },
-  {
-    "zh": "洪水",
-    "en": "flood"
-  },
-  {
-    "zh": "地板；楼层",
-    "en": "floor"
-  },
-  {
-    "zh": "面粉",
-    "en": "flour"
-  },
-  {
-    "zh": "花",
-    "en": "flower"
-  },
-  {
-    "zh": "流感",
-    "en": "flu"
-  },
-  {
-    "zh": "飞；苍蝇",
-    "en": "fly"
-  },
-  {
-    "zh": "跟随",
-    "en": "follow"
-  },
-  {
-    "zh": "脚；英尺",
-    "en": "foot"
-  },
-  {
-    "zh": "足球",
-    "en": "football"
-  },
-  {
-    "zh": "为了",
-    "en": "for"
-  },
-  {
-    "zh": "力量；强迫",
-    "en": "force"
-  },
-  {
-    "zh": "额头",
-    "en": "forehead"
-  },
-  {
-    "zh": "森林",
-    "en": "forest"
-  },
-  {
-    "zh": "忘记",
-    "en": "forget"
-  },
-  {
-    "zh": "叉子",
-    "en": "fork"
-  },
-  {
-    "zh": "四十",
-    "en": "forty"
-  },
-  {
-    "zh": "四",
-    "en": "four"
-  },
-  {
-    "zh": "第四",
-    "en": "fourth"
-  },
-  {
-    "zh": "狐狸",
-    "en": "fox"
-  },
-  {
-    "zh": "新鲜的",
-    "en": "fresh"
-  },
-  {
-    "zh": "星期五",
-    "en": "friday"
-  },
-  {
-    "zh": "朋友",
-    "en": "friend"
-  },
-  {
-    "zh": "友好的",
-    "en": "friendly"
-  },
-  {
-    "zh": "青蛙",
-    "en": "frog"
-  },
-  {
-    "zh": "从",
-    "en": "from"
-  },
-  {
-    "zh": "前面",
-    "en": "front"
-  },
-  {
-    "zh": "水果",
-    "en": "fruit"
-  },
-  {
-    "zh": "油炸",
-    "en": "fry"
-  },
-  {
-    "zh": "燃料",
-    "en": "fuel"
-  },
-  {
-    "zh": "满的",
-    "en": "full"
-  },
-  {
-    "zh": "乐趣",
-    "en": "fun"
-  },
-  {
-    "zh": "家具",
-    "en": "furniture"
-  },
-  {
-    "zh": "未来",
-    "en": "future"
-  },
-  {
-    "zh": "游戏",
-    "en": "game"
-  },
-  {
-    "zh": "大门",
-    "en": "gate"
-  },
-  {
-    "zh": "手势",
-    "en": "gesture"
-  },
-  {
-    "zh": "得到",
-    "en": "get"
-  },
-  {
-    "zh": "礼物",
-    "en": "gift"
-  },
-  {
-    "zh": "长颈鹿",
-    "en": "giraffe"
-  },
-  {
-    "zh": "女孩",
-    "en": "girl"
-  },
-  {
-    "zh": "少女般的",
-    "en": "girlish"
-  },
-  {
-    "zh": "给",
-    "en": "give"
-  },
-  {
-    "zh": "高兴的",
-    "en": "glad"
-  },
-  {
-    "zh": "玻璃；杯子",
-    "en": "glass"
-  },
-  {
-    "zh": "眼镜",
-    "en": "glasses"
-  },
-  {
-    "zh": "地球仪",
-    "en": "globe"
-  },
-  {
-    "zh": "光泽",
-    "en": "gloss"
-  },
-  {
-    "zh": "手套",
-    "en": "glove"
-  },
-  {
-    "zh": "发光",
-    "en": "glow"
-  },
-  {
-    "zh": "胶水",
-    "en": "glue"
-  },
-  {
-    "zh": "去",
-    "en": "go"
-  },
-  {
-    "zh": "目标；进球",
-    "en": "goal"
-  },
-  {
-    "zh": "山羊",
-    "en": "goat"
-  },
-  {
-    "zh": "上帝",
-    "en": "god"
-  },
-  {
-    "zh": "去（第三人称）",
-    "en": "goes"
-  },
-  {
-    "zh": "好的",
-    "en": "good"
-  },
-  {
-    "zh": "得到（过去式）",
-    "en": "got"
-  },
-  {
-    "zh": "年级；等级",
-    "en": "grade"
-  },
-  {
-    "zh": "语法",
-    "en": "grammar"
-  },
-  {
-    "zh": "宏伟的",
-    "en": "grand"
-  },
-  {
-    "zh": "孙女",
-    "en": "granddaughter"
-  },
-  {
-    "zh": "祖父",
-    "en": "grandfather"
-  },
-  {
-    "zh": "奶奶/外婆",
-    "en": "grandma"
-  },
-  {
-    "zh": "祖母",
-    "en": "grandmother"
-  },
-  {
-    "zh": "爷爷/外公",
-    "en": "grandpa"
-  },
-  {
-    "zh": "孙子",
-    "en": "grandson"
-  },
-  {
-    "zh": "葡萄",
-    "en": "grape"
-  },
-  {
-    "zh": "草",
-    "en": "grass"
-  },
-  {
-    "zh": "伟大的；极好的",
-    "en": "great"
-  },
-  {
-    "zh": "非常地",
-    "en": "greatly"
-  },
-  {
-    "zh": "绿色的",
-    "en": "green"
-  },
-  {
-    "zh": "问候",
-    "en": "greet"
-  },
-  {
-    "zh": "生长（过去式）",
-    "en": "grew"
-  },
-  {
-    "zh": "灰色的",
-    "en": "grey"
-  },
-  {
-    "zh": "组；群",
-    "en": "group"
-  },
-  {
-    "zh": "生长",
-    "en": "grow"
-  },
-  {
-    "zh": "猜测",
-    "en": "guess"
-  },
-  {
-    "zh": "指导；导游",
-    "en": "guide"
-  },
-  {
-    "zh": "内疚",
-    "en": "guilt"
-  },
-  {
-    "zh": "吉他",
-    "en": "guitar"
-  },
-  {
-    "zh": "涌出",
-    "en": "gush"
-  },
-  {
-    "zh": "体育馆",
-    "en": "gym"
-  },
-  {
-    "zh": "习惯",
-    "en": "habit"
-  },
-  {
-    "zh": "有（过去式）",
-    "en": "had"
-  },
-  {
-    "zh": "发刷",
-    "en": "hairbrush"
-  },
-  {
-    "zh": "一半",
-    "en": "half"
-  },
-  {
-    "zh": "汉堡包",
-    "en": "hamburger"
-  },
-  {
-    "zh": "手",
-    "en": "hand"
-  },
-  {
-    "zh": "手球",
-    "en": "handball"
-  },
-  {
-    "zh": "困难的；硬的",
-    "en": "hard"
-  },
-  {
-    "zh": "野兔",
-    "en": "hare"
-  },
-  {
-    "zh": "有害的",
-    "en": "harmful"
-  },
-  {
-    "zh": "帽子",
-    "en": "hat"
-  },
-  {
-    "zh": "讨厌",
-    "en": "hate"
-  },
-  {
-    "zh": "拖；拉",
-    "en": "haul"
-  },
-  {
-    "zh": "拖拉",
-    "en": "hauld"
-  },
-  {
-    "zh": "有",
-    "en": "have"
-  },
-  {
-    "zh": "鹰",
-    "en": "hawk"
-  },
-  {
-    "zh": "他",
-    "en": "he"
-  },
-  {
-    "zh": "头",
-    "en": "head"
-  },
-  {
-    "zh": "健康",
-    "en": "health"
-  },
-  {
-    "zh": "听到",
-    "en": "hear"
-  },
-  {
-    "zh": "热量；加热",
-    "en": "heat"
-  },
-  {
-    "zh": "注意；留心",
-    "en": "heed"
-  },
-  {
-    "zh": "继承人",
-    "en": "heir"
-  },
-  {
-    "zh": "你好",
-    "en": "hello"
-  },
-  {
-    "zh": "帮助",
-    "en": "help"
-  },
-  {
-    "zh": "有帮助的",
-    "en": "helpful"
-  },
-  {
-    "zh": "母鸡",
-    "en": "hen"
-  },
-  {
-    "zh": "她的",
-    "en": "her"
-  },
-  {
-    "zh": "这里",
-    "en": "here"
-  },
-  {
-    "zh": "嘿",
-    "en": "hey"
-  },
-  {
-    "zh": "隐藏",
-    "en": "hide"
-  },
-  {
-    "zh": "高的",
-    "en": "high"
-  },
-  {
-    "zh": "小山",
-    "en": "hill"
-  },
-  {
-    "zh": "他（宾格）",
-    "en": "him"
-  },
-  {
-    "zh": "臀部",
-    "en": "hip"
-  },
-  {
-    "zh": "雇用",
-    "en": "hire"
-  },
-  {
-    "zh": "他的",
-    "en": "his"
-  },
-  {
-    "zh": "打；击中",
-    "en": "hit"
-  },
-  {
-    "zh": "爱好",
-    "en": "hobby"
-  },
-  {
-    "zh": "曲棍球",
-    "en": "hockey"
-  },
-  {
-    "zh": "握住；举行",
-    "en": "hold"
-  },
-  {
-    "zh": "洞",
-    "en": "hole"
-  },
-  {
-    "zh": "假日",
-    "en": "holiday"
-  },
-  {
-    "zh": "家",
-    "en": "home"
-  },
-  {
-    "zh": "家庭作业",
-    "en": "homework"
-  },
-  {
-    "zh": "诚实的",
-    "en": "honest"
-  },
-  {
-    "zh": "蜂蜜",
-    "en": "honey"
-  },
-  {
-    "zh": "荣誉",
-    "en": "honor"
-  },
-  {
-    "zh": "有希望的",
-    "en": "hopeful"
-  },
-  {
-    "zh": "马",
-    "en": "horse"
-  },
-  {
-    "zh": "主人；主持",
-    "en": "host"
-  },
-  {
-    "zh": "热的",
-    "en": "hot"
-  },
-  {
-    "zh": "旅馆",
-    "en": "hotel"
-  },
-  {
-    "zh": "小时",
-    "en": "hour"
-  },
-  {
-    "zh": "房子",
-    "en": "house"
-  },
-  {
-    "zh": "怎样",
-    "en": "how"
-  },
-  {
-    "zh": "巨大的",
-    "en": "huge"
-  },
-  {
-    "zh": "人类的",
-    "en": "human"
-  },
-  {
-    "zh": "幽默的",
-    "en": "humorous"
-  },
-  {
-    "zh": "百",
-    "en": "hundred"
-  },
-  {
-    "zh": "饥饿的",
-    "en": "hungry"
-  },
-  {
-    "zh": "伤害；受伤",
-    "en": "hurt"
-  },
-  {
-    "zh": "如果",
-    "en": "if"
-  },
-  {
-    "zh": "生病的",
-    "en": "ill"
-  },
-  {
-    "zh": "在……里面",
-    "en": "in"
-  },
-  {
-    "zh": "墨水",
-    "en": "ink"
-  },
-  {
-    "zh": "昆虫",
-    "en": "insect"
-  },
-  {
-    "zh": "投保",
-    "en": "insure"
-  },
-  {
-    "zh": "进入",
-    "en": "into"
-  },
-  {
-    "zh": "发明",
-    "en": "invent"
-  },
-  {
-    "zh": "发明",
-    "en": "invention"
-  },
-  {
-    "zh": "是",
-    "en": "is"
-  },
-  {
-    "zh": "它",
-    "en": "it"
-  },
-  {
-    "zh": "它的",
-    "en": "its"
-  },
-  {
-    "zh": "夹克",
-    "en": "jacket"
-  },
-  {
-    "zh": "果酱；堵塞",
-    "en": "jam"
-  },
-  {
-    "zh": "一月",
-    "en": "january"
-  },
-  {
-    "zh": "下巴",
-    "en": "jaw"
-  },
-  {
-    "zh": "吉普车",
-    "en": "jeep"
-  },
-  {
-    "zh": "喷气式飞机",
-    "en": "jet"
-  },
-  {
-    "zh": "吉尔（人名）",
-    "en": "jill"
-  },
-  {
-    "zh": "工作",
-    "en": "job"
-  },
-  {
-    "zh": "慢跑",
-    "en": "jog"
-  },
-  {
-    "zh": "加入",
-    "en": "join"
-  },
-  {
-    "zh": "笑话",
-    "en": "joke"
-  },
-  {
-    "zh": "旅程",
-    "en": "journey"
-  },
-  {
-    "zh": "快乐",
-    "en": "joy"
-  },
-  {
-    "zh": "果汁",
-    "en": "juice"
-  },
-  {
-    "zh": "多汁的",
-    "en": "juicy"
-  },
-  {
-    "zh": "七月",
-    "en": "july"
-  },
-  {
-    "zh": "跳",
-    "en": "jump"
-  },
-  {
-    "zh": "六月",
-    "en": "june"
-  },
-  {
-    "zh": "初级的",
-    "en": "junior"
-  },
-  {
-    "zh": "垃圾",
-    "en": "junk"
-  },
-  {
-    "zh": "刚刚；只是",
-    "en": "just"
-  },
-  {
-    "zh": "袋鼠",
-    "en": "kangaroo"
-  },
-  {
-    "zh": "热衷的",
-    "en": "keen"
-  },
-  {
-    "zh": "保持",
-    "en": "keep"
-  },
-  {
-    "zh": "钥匙；关键",
-    "en": "key"
-  },
-  {
-    "zh": "杀死",
-    "en": "kill"
-  },
-  {
-    "zh": "亲属",
-    "en": "kin"
-  },
-  {
-    "zh": "善良的；种类",
-    "en": "kind"
-  },
-  {
-    "zh": "国王",
-    "en": "king"
-  },
-  {
-    "zh": "亲吻",
-    "en": "kiss"
-  },
-  {
-    "zh": "工具包",
-    "en": "kit"
-  },
-  {
-    "zh": "厨房",
-    "en": "kitchen"
-  },
-  {
-    "zh": "风筝",
-    "en": "kite"
-  },
-  {
-    "zh": "小猫",
-    "en": "kitten"
-  },
-  {
-    "zh": "诀窍",
-    "en": "knack"
-  },
-  {
-    "zh": "膝盖",
-    "en": "knee"
-  },
-  {
-    "zh": "跪下",
-    "en": "kneel"
-  },
-  {
-    "zh": "刀",
-    "en": "knife"
-  },
-  {
-    "zh": "骑士",
-    "en": "knight"
-  },
-  {
-    "zh": "编织",
-    "en": "knit"
-  },
-  {
-    "zh": "敲",
-    "en": "knock"
-  },
-  {
-    "zh": "小丘",
-    "en": "knoll"
-  },
-  {
-    "zh": "结",
-    "en": "knot"
-  },
-  {
-    "zh": "知道",
-    "en": "know"
-  },
-  {
-    "zh": "知识",
-    "en": "knowledge"
-  },
-  {
-    "zh": "已知的",
-    "en": "known"
-  },
-  {
-    "zh": "女士",
-    "en": "lady"
-  },
-  {
-    "zh": "湖",
-    "en": "lake"
-  },
-  {
-    "zh": "羊羔",
-    "en": "lamb"
-  },
-  {
-    "zh": "灯",
-    "en": "lamp"
-  },
-  {
-    "zh": "陆地；着陆",
-    "en": "land"
-  },
-  {
-    "zh": "大的",
-    "en": "large"
-  },
-  {
-    "zh": "最后的；持续",
-    "en": "last"
-  },
-  {
-    "zh": "迟的",
-    "en": "late"
-  },
-  {
-    "zh": "法律",
-    "en": "law"
-  },
-  {
-    "zh": "领导；铅",
-    "en": "lead"
-  },
-  {
-    "zh": "泄漏",
-    "en": "leak"
-  },
-  {
-    "zh": "学习",
-    "en": "learn"
-  },
-  {
-    "zh": "学习",
-    "en": "learning"
-  },
-  {
-    "zh": "离开",
-    "en": "leave"
-  },
-  {
-    "zh": "讲座",
-    "en": "lecture"
-  },
-  {
-    "zh": "左边；离开（过去式）",
-    "en": "left"
-  },
-  {
-    "zh": "腿",
-    "en": "leg"
-  },
-  {
-    "zh": "休闲",
-    "en": "leisure"
-  },
-  {
-    "zh": "借出",
-    "en": "lend"
-  },
-  {
-    "zh": "课；教训",
-    "en": "lesson"
-  },
-  {
-    "zh": "让",
-    "en": "let"
-  },
-  {
-    "zh": "水平；级别",
-    "en": "level"
-  },
-  {
-    "zh": "骗子",
-    "en": "liar"
-  },
-  {
-    "zh": "舔",
-    "en": "lick"
-  },
-  {
-    "zh": "盖子",
-    "en": "lid"
-  },
-  {
-    "zh": "躺；说谎",
-    "en": "lie"
-  },
-  {
-    "zh": "光；轻的",
-    "en": "light"
-  },
-  {
-    "zh": "闪电",
-    "en": "lightning"
-  },
-  {
-    "zh": "喜欢；像",
-    "en": "like"
-  },
-  {
-    "zh": "肢体；树枝",
-    "en": "limb"
-  },
-  {
-    "zh": "线；排",
-    "en": "line"
-  },
-  {
-    "zh": "嘴唇",
-    "en": "lip"
-  },
-  {
-    "zh": "列表；清单",
-    "en": "list"
-  },
-  {
-    "zh": "听",
-    "en": "listen"
-  },
-  {
-    "zh": "小的；少的",
-    "en": "little"
-  },
-  {
-    "zh": "住；活的",
-    "en": "live"
-  },
-  {
-    "zh": "活泼的",
-    "en": "lively"
-  },
-  {
-    "zh": "定位",
-    "en": "locate"
-  },
-  {
-    "zh": "位置",
-    "en": "location"
-  },
-  {
-    "zh": "锁",
-    "en": "lock"
-  },
-  {
-    "zh": "原木；日志",
-    "en": "log"
-  },
-  {
-    "zh": "长的",
-    "en": "long"
-  },
-  {
-    "zh": "看",
-    "en": "look"
-  },
-  {
-    "zh": "看（进行时）",
-    "en": "looking"
-  },
-  {
-    "zh": "丢失；输",
-    "en": "lose"
-  },
-  {
-    "zh": "失去（进行时）",
-    "en": "losing"
-  },
-  {
-    "zh": "丢失的",
-    "en": "lost"
-  },
-  {
-    "zh": "许多",
-    "en": "lot"
-  },
-  {
-    "zh": "莲花",
-    "en": "lotus"
-  },
-  {
-    "zh": "大声的",
-    "en": "loud"
-  },
-  {
-    "zh": "爱",
-    "en": "love"
-  },
-  {
-    "zh": "低的",
-    "en": "low"
-  },
-  {
-    "zh": "忠诚的",
-    "en": "loyal"
-  },
-  {
-    "zh": "运气",
-    "en": "luck"
-  },
-  {
-    "zh": "幸运的",
-    "en": "lucky"
-  },
-  {
-    "zh": "块；肿块",
-    "en": "lump"
-  },
-  {
-    "zh": "月亮的",
-    "en": "lunar"
-  },
-  {
-    "zh": "茂盛的",
-    "en": "lush"
-  },
-  {
-    "zh": "机器",
-    "en": "machine"
-  },
-  {
-    "zh": "疯狂的；生气的",
-    "en": "mad"
-  },
-  {
-    "zh": "制作（过去式）",
-    "en": "made"
-  },
-  {
-    "zh": "杂志",
-    "en": "magazine"
-  },
-  {
-    "zh": "魔法",
-    "en": "magic"
-  },
-  {
-    "zh": "魔术师",
-    "en": "magician"
-  },
-  {
-    "zh": "邮件",
-    "en": "mail"
-  },
-  {
-    "zh": "邮寄的",
-    "en": "mailed"
-  },
-  {
-    "zh": "制作；使",
-    "en": "make"
-  },
-  {
-    "zh": "购物中心",
-    "en": "mall"
-  },
-  {
-    "zh": "男人",
-    "en": "man"
-  },
-  {
-    "zh": "男子气的",
-    "en": "mannish"
-  },
-  {
-    "zh": "豪宅",
-    "en": "mansion"
-  },
-  {
-    "zh": "许多",
-    "en": "many"
-  },
-  {
-    "zh": "三月；行进",
-    "en": "march"
-  },
-  {
-    "zh": "标记；分数",
-    "en": "mark"
-  },
-  {
-    "zh": "市场",
-    "en": "market"
-  },
-  {
-    "zh": "垫子",
-    "en": "mat"
-  },
-  {
-    "zh": "比赛；匹配",
-    "en": "match"
-  },
-  {
-    "zh": "数学",
-    "en": "math"
-  },
-  {
-    "zh": "事情；物质",
-    "en": "matter"
-  },
-  {
-    "zh": "可以；五月",
-    "en": "may"
-  },
-  {
-    "zh": "我（宾格）",
-    "en": "me"
-  },
-  {
-    "zh": "遇见",
-    "en": "meet"
-  },
-  {
-    "zh": "会议",
-    "en": "meeting"
-  },
-  {
-    "zh": "男人们",
-    "en": "men"
-  },
-  {
-    "zh": "修补",
-    "en": "mend"
-  },
-  {
-    "zh": "提到",
-    "en": "mention"
-  },
-  {
-    "zh": "混乱",
-    "en": "mess"
-  },
-  {
-    "zh": "米；仪表",
-    "en": "meter"
-  },
-  {
-    "zh": "午夜",
-    "en": "midnight"
-  },
-  {
-    "zh": "牛奶",
-    "en": "milk"
-  },
-  {
-    "zh": "磨坊",
-    "en": "mill"
-  },
-  {
-    "zh": "分钟",
-    "en": "minute"
-  },
-  {
-    "zh": "想念；错过",
-    "en": "miss"
-  },
-  {
-    "zh": "任务",
-    "en": "mission"
-  },
-  {
-    "zh": "螨虫；小东西",
-    "en": "mite"
-  },
-  {
-    "zh": "混合",
-    "en": "mix"
-  },
-  {
-    "zh": "混合物",
-    "en": "mixture"
-  },
-  {
-    "zh": "星期一",
-    "en": "monday"
-  },
-  {
-    "zh": "钱",
-    "en": "money"
-  },
-  {
-    "zh": "猴子",
-    "en": "monkey"
-  },
-  {
-    "zh": "月",
-    "en": "month"
-  },
-  {
-    "zh": "月光",
-    "en": "moonlight"
-  },
-  {
-    "zh": "更多的",
-    "en": "more"
-  },
-  {
-    "zh": "早上",
-    "en": "morning"
-  },
-  {
-    "zh": "最多的",
-    "en": "most"
-  },
-  {
-    "zh": "汽车旅馆",
-    "en": "motel"
-  },
-  {
-    "zh": "母亲",
-    "en": "mother"
-  },
-  {
-    "zh": "山",
-    "en": "mountain"
-  },
-  {
-    "zh": "老鼠；鼠标",
-    "en": "mouse"
-  },
-  {
-    "zh": "嘴",
-    "en": "mouth"
-  },
-  {
-    "zh": "许多",
-    "en": "much"
-  },
-  {
-    "zh": "泥",
-    "en": "mud"
-  },
-  {
-    "zh": "乘法",
-    "en": "multiplication"
-  },
-  {
-    "zh": "博物馆",
-    "en": "museum"
-  },
-  {
-    "zh": "糊状物",
-    "en": "mush"
-  },
-  {
-    "zh": "音乐",
-    "en": "music"
-  },
-  {
-    "zh": "必须",
-    "en": "must"
-  },
-  {
-    "zh": "沉默的",
-    "en": "mute"
-  },
-  {
-    "zh": "我的",
-    "en": "my"
-  },
-  {
-    "zh": "钉子；指甲",
-    "en": "nail"
-  },
-  {
-    "zh": "名字",
-    "en": "name"
-  },
-  {
-    "zh": "国家",
-    "en": "nation"
-  },
-  {
-    "zh": "自然",
-    "en": "nature"
-  },
-  {
-    "zh": "淘气的",
-    "en": "naughty"
-  },
-  {
-    "zh": "近的",
-    "en": "near"
-  },
-  {
-    "zh": "整洁的",
-    "en": "neat"
-  },
-  {
-    "zh": "脖子",
-    "en": "neck"
-  },
-  {
-    "zh": "需要",
-    "en": "need"
-  },
-  {
-    "zh": "需要（第三人称）",
-    "en": "needs"
-  },
-  {
-    "zh": "侄子",
-    "en": "nephew"
-  },
-  {
-    "zh": "巢",
-    "en": "nest"
-  },
-  {
-    "zh": "网",
-    "en": "net"
-  },
-  {
-    "zh": "从不",
-    "en": "never"
-  },
-  {
-    "zh": "新的",
-    "en": "new"
-  },
-  {
-    "zh": "下一个",
-    "en": "next"
-  },
-  {
-    "zh": "好的",
-    "en": "nice"
-  },
-  {
-    "zh": "侄女",
-    "en": "niece"
-  },
-  {
-    "zh": "夜晚",
-    "en": "night"
-  },
-  {
-    "zh": "九",
-    "en": "nine"
-  },
-  {
-    "zh": "十九",
-    "en": "nineteen"
-  },
-  {
-    "zh": "九十",
-    "en": "ninety"
-  },
-  {
-    "zh": "第九",
-    "en": "ninth"
-  },
-  {
-    "zh": "不",
-    "en": "no"
-  },
-  {
-    "zh": "点头",
-    "en": "nod"
-  },
-  {
-    "zh": "噪音",
-    "en": "noise"
-  },
-  {
-    "zh": "北方",
-    "en": "north"
-  },
-  {
-    "zh": "鼻子",
-    "en": "nose"
-  },
-  {
-    "zh": "不",
-    "en": "not"
-  },
-  {
-    "zh": "笔记；注意",
-    "en": "note"
-  },
-  {
-    "zh": "没有东西",
-    "en": "nothing"
-  },
-  {
-    "zh": "十一月",
-    "en": "november"
-  },
-  {
-    "zh": "现在",
-    "en": "now"
-  },
-  {
-    "zh": "麻木的",
-    "en": "numb"
-  },
-  {
-    "zh": "数字",
-    "en": "number"
-  },
-  {
-    "zh": "众多的",
-    "en": "numerous"
-  },
-  {
-    "zh": "护士",
-    "en": "nurse"
-  },
-  {
-    "zh": "橡树",
-    "en": "oak"
-  },
-  {
-    "zh": "桨",
-    "en": "oar"
-  },
-  {
-    "zh": "服从",
-    "en": "obey"
-  },
-  {
-    "zh": "十月",
-    "en": "october"
-  },
-  {
-    "zh": "……的",
-    "en": "of"
-  },
-  {
-    "zh": "离开；关",
-    "en": "off"
-  },
-  {
-    "zh": "办公室",
-    "en": "office"
-  },
-  {
-    "zh": "经常",
-    "en": "often"
-  },
-  {
-    "zh": "哦",
-    "en": "oh"
-  },
-  {
-    "zh": "好的",
-    "en": "ok"
-  },
-  {
-    "zh": "老的；旧的",
-    "en": "old"
-  },
-  {
-    "zh": "在……上",
-    "en": "on"
-  },
-  {
-    "zh": "一次；曾经",
-    "en": "once"
-  },
-  {
-    "zh": "一",
-    "en": "one"
-  },
-  {
-    "zh": "打开",
-    "en": "open"
-  },
-  {
-    "zh": "或者",
-    "en": "or"
-  },
-  {
-    "zh": "橙子；橙色",
-    "en": "orange"
-  },
-  {
-    "zh": "其他的",
-    "en": "other"
-  },
-  {
-    "zh": "哎哟",
-    "en": "ouch"
-  },
-  {
-    "zh": "我们的",
-    "en": "our"
-  },
-  {
-    "zh": "出去",
-    "en": "out"
-  },
-  {
-    "zh": "外面",
-    "en": "outside"
-  },
-  {
-    "zh": "椭圆形的",
-    "en": "oval"
-  },
-  {
-    "zh": "在……上方",
-    "en": "over"
-  },
-  {
-    "zh": "一夜之间",
-    "en": "overnight"
-  },
-  {
-    "zh": "睡过头",
-    "en": "oversleep"
-  },
-  {
-    "zh": "猫头鹰",
-    "en": "owl"
-  },
-  {
-    "zh": "自己的；拥有",
-    "en": "own"
-  },
-  {
-    "zh": "打包",
-    "en": "pack"
-  },
-  {
-    "zh": "页",
-    "en": "page"
-  },
-  {
-    "zh": "疼痛",
-    "en": "pain"
-  },
-  {
-    "zh": "痛苦的",
-    "en": "painful"
-  },
-  {
-    "zh": "画；油漆",
-    "en": "paint"
-  },
-  {
-    "zh": "一对",
-    "en": "pair"
-  },
-  {
-    "zh": "苍白的",
-    "en": "pale"
-  },
-  {
-    "zh": "手掌；棕榈",
-    "en": "palm"
-  },
-  {
-    "zh": "平底锅",
-    "en": "pan"
-  },
-  {
-    "zh": "熊猫",
-    "en": "panda"
-  },
-  {
-    "zh": "裤子",
-    "en": "pants"
-  },
-  {
-    "zh": "父/母",
-    "en": "parent"
-  },
-  {
-    "zh": "公园；停车",
-    "en": "park"
-  },
-  {
-    "zh": "鹦鹉",
-    "en": "parrot"
-  },
-  {
-    "zh": "聚会；政党",
-    "en": "party"
-  },
-  {
-    "zh": "爪子",
-    "en": "paw"
-  },
-  {
-    "zh": "支付",
-    "en": "pay"
-  },
-  {
-    "zh": "和平",
-    "en": "peace"
-  },
-  {
-    "zh": "孔雀",
-    "en": "peacock"
-  },
-  {
-    "zh": "花生",
-    "en": "peanut"
-  },
-  {
-    "zh": "偷看",
-    "en": "peek"
-  },
-  {
-    "zh": "钢笔",
-    "en": "pen"
-  },
-  {
-    "zh": "铅笔",
-    "en": "pencil"
-  },
-  {
-    "zh": "人们",
-    "en": "people"
-  },
-  {
-    "zh": "完美的",
-    "en": "perfect"
-  },
-  {
-    "zh": "人",
-    "en": "person"
-  },
-  {
-    "zh": "害虫",
-    "en": "pest"
-  },
-  {
-    "zh": "宠物",
-    "en": "pet"
-  },
-  {
-    "zh": "凤凰",
-    "en": "phoenix"
-  },
-  {
-    "zh": "电话",
-    "en": "phone"
-  },
-  {
-    "zh": "照片",
-    "en": "photo"
-  },
-  {
-    "zh": "医生",
-    "en": "physician"
-  },
-  {
-    "zh": "挑选；摘",
-    "en": "pick"
-  },
-  {
-    "zh": "馅饼",
-    "en": "pie"
-  },
-  {
-    "zh": "片；块",
-    "en": "piece"
-  },
-  {
-    "zh": "猪",
-    "en": "pig"
-  },
-  {
-    "zh": "药丸",
-    "en": "pill"
-  },
-  {
-    "zh": "飞行员",
-    "en": "pilot"
-  },
-  {
-    "zh": "别针",
-    "en": "pin"
-  },
-  {
-    "zh": "菠萝",
-    "en": "pineapple"
-  },
-  {
-    "zh": "地方",
-    "en": "place"
-  },
-  {
-    "zh": "朴素的；平原",
-    "en": "plain"
-  },
-  {
-    "zh": "计划",
-    "en": "plan"
-  },
-  {
-    "zh": "飞机",
-    "en": "plane"
-  },
-  {
-    "zh": "植物；种植",
-    "en": "plant"
-  },
-  {
-    "zh": "盘子",
-    "en": "plate"
-  },
-  {
-    "zh": "玩；播放",
-    "en": "play"
-  },
-  {
-    "zh": "运动员；播放器",
-    "en": "player"
-  },
-  {
-    "zh": "操场",
-    "en": "playground"
-  },
-  {
-    "zh": "请",
-    "en": "please"
-  },
-  {
-    "zh": "情节；阴谋",
-    "en": "plot"
-  },
-  {
-    "zh": "李子",
-    "en": "plum"
-  },
-  {
-    "zh": "口袋",
-    "en": "pocket"
-  },
-  {
-    "zh": "点；指",
-    "en": "point"
-  },
-  {
-    "zh": "毒药",
-    "en": "poison"
-  },
-  {
-    "zh": "警察",
-    "en": "police"
-  },
-  {
-    "zh": "警察",
-    "en": "policeman"
-  },
-  {
-    "zh": "擦亮",
-    "en": "polish"
-  },
-  {
-    "zh": "有礼貌的",
-    "en": "polite"
-  },
-  {
-    "zh": "政治家",
-    "en": "politician"
-  },
-  {
-    "zh": "政治",
-    "en": "politics"
-  },
-  {
-    "zh": "游泳池",
-    "en": "pool"
-  },
-  {
-    "zh": "流行的",
-    "en": "pop"
-  },
-  {
-    "zh": "猪肉",
-    "en": "pork"
-  },
-  {
-    "zh": "邮寄；柱子",
-    "en": "post"
-  },
-  {
-    "zh": "姿势",
-    "en": "posture"
-  },
-  {
-    "zh": "锅；壶",
-    "en": "pot"
-  },
-  {
-    "zh": "土豆",
-    "en": "potato"
-  },
-  {
-    "zh": "倒；灌",
-    "en": "pour"
-  },
-  {
-    "zh": "练习",
-    "en": "practice"
-  },
-  {
-    "zh": "赞扬",
-    "en": "praise"
-  },
-  {
-    "zh": "珍贵的",
-    "en": "precious"
-  },
-  {
-    "zh": "礼物；现在的",
-    "en": "present"
-  },
-  {
-    "zh": "压力",
-    "en": "pressure"
-  },
-  {
-    "zh": "价格",
-    "en": "price"
-  },
-  {
-    "zh": "打印",
-    "en": "print"
-  },
-  {
-    "zh": "奖品",
-    "en": "prize"
-  },
-  {
-    "zh": "问题",
-    "en": "problem"
-  },
-  {
-    "zh": "生产",
-    "en": "produce"
-  },
-  {
-    "zh": "生产",
-    "en": "production"
-  },
-  {
-    "zh": "程序；节目",
-    "en": "program"
-  },
-  {
-    "zh": "进步",
-    "en": "progress"
-  },
-  {
-    "zh": "拉",
-    "en": "pull"
-  },
-  {
-    "zh": "惩罚",
-    "en": "punishment"
-  },
-  {
-    "zh": "学生；瞳孔",
-    "en": "pupil"
-  },
-  {
-    "zh": "小狗",
-    "en": "puppy"
-  },
-  {
-    "zh": "紫色的",
-    "en": "purple"
-  },
-  {
-    "zh": "推",
-    "en": "push"
-  },
-  {
-    "zh": "放",
-    "en": "put"
-  },
-  {
-    "zh": "谜；困惑",
-    "en": "puzzle"
-  },
-  {
-    "zh": "嘎嘎叫",
-    "en": "quack"
-  },
-  {
-    "zh": "四分之一",
-    "en": "quarter"
-  },
-  {
-    "zh": "女王",
-    "en": "queen"
-  },
-  {
-    "zh": "问题",
-    "en": "question"
-  },
-  {
-    "zh": "快的",
-    "en": "quick"
-  },
-  {
-    "zh": "安静的",
-    "en": "quiet"
-  },
-  {
-    "zh": "被子",
-    "en": "quilt"
-  },
-  {
-    "zh": "退出",
-    "en": "quit"
-  },
-  {
-    "zh": "相当",
-    "en": "quite"
-  },
-  {
-    "zh": "兔子",
-    "en": "rabbit"
-  },
-  {
-    "zh": "浣熊",
-    "en": "raccoon"
-  },
-  {
-    "zh": "收音机",
-    "en": "radio"
-  },
-  {
-    "zh": "抹布",
-    "en": "rag"
-  },
-  {
-    "zh": "雨",
-    "en": "rain"
-  },
-  {
-    "zh": "下雨的",
-    "en": "rainy"
-  },
-  {
-    "zh": "生的",
-    "en": "raw"
-  },
-  {
-    "zh": "光线",
-    "en": "ray"
-  },
-  {
-    "zh": "读",
-    "en": "read"
-  },
-  {
-    "zh": "真正地",
-    "en": "really"
-  },
-  {
-    "zh": "长方形",
-    "en": "rectangle"
-  },
-  {
-    "zh": "回收",
-    "en": "recycle"
-  },
-  {
-    "zh": "红色的",
-    "en": "red"
-  },
-  {
-    "zh": "后悔",
-    "en": "regret"
-  },
-  {
-    "zh": "放松",
-    "en": "relax"
-  },
-  {
-    "zh": "解脱",
-    "en": "relief"
-  },
-  {
-    "zh": "报告",
-    "en": "report"
-  },
-  {
-    "zh": "休息",
-    "en": "rest"
-  },
-  {
-    "zh": "奖励",
-    "en": "reward"
-  },
-  {
-    "zh": "米饭",
-    "en": "rice"
-  },
-  {
-    "zh": "富有的",
-    "en": "rich"
-  },
-  {
-    "zh": "骑",
-    "en": "ride"
-  },
-  {
-    "zh": "右边；正确的",
-    "en": "right"
-  },
-  {
-    "zh": "边缘",
-    "en": "rim"
-  },
-  {
-    "zh": "戒指；铃声",
-    "en": "ring"
-  },
-  {
-    "zh": "溜冰场",
-    "en": "rink"
-  },
-  {
-    "zh": "成熟",
-    "en": "ripen"
-  },
-  {
-    "zh": "上升",
-    "en": "rise"
-  },
-  {
-    "zh": "河流",
-    "en": "river"
-  },
-  {
-    "zh": "路",
-    "en": "road"
-  },
-  {
-    "zh": "机器人",
-    "en": "robot"
-  },
-  {
-    "zh": "岩石；摇滚",
-    "en": "rock"
-  },
-  {
-    "zh": "火箭",
-    "en": "rocket"
-  },
-  {
-    "zh": "房间",
-    "en": "room"
-  },
-  {
-    "zh": "绳子",
-    "en": "rope"
-  },
-  {
-    "zh": "玫瑰",
-    "en": "rose"
-  },
-  {
-    "zh": "排；划船",
-    "en": "row"
-  },
-  {
-    "zh": "垃圾",
-    "en": "rubbish"
-  },
-  {
-    "zh": "粗鲁的",
-    "en": "rude"
-  },
-  {
-    "zh": "规则",
-    "en": "rule"
-  },
-  {
-    "zh": "尺子；统治者",
-    "en": "ruler"
-  },
-  {
-    "zh": "跑",
-    "en": "run"
-  },
-  {
-    "zh": "冲；匆忙",
-    "en": "rush"
-  },
-  {
-    "zh": "生锈",
-    "en": "rust"
-  },
-  {
-    "zh": "沙沙声",
-    "en": "rustle"
-  },
-  {
-    "zh": "悲伤的",
-    "en": "sad"
-  },
-  {
-    "zh": "说（过去式）",
-    "en": "said"
-  },
-  {
-    "zh": "航行",
-    "en": "sail"
-  },
-  {
-    "zh": "水手",
-    "en": "sailor"
-  },
-  {
-    "zh": "沙拉",
-    "en": "salad"
-  },
-  {
-    "zh": "销售",
-    "en": "sale"
-  },
-  {
-    "zh": "盐",
-    "en": "salt"
-  },
-  {
-    "zh": "相同的",
-    "en": "same"
-  },
-  {
-    "zh": "沙子",
-    "en": "sand"
-  },
-  {
-    "zh": "砂光机",
-    "en": "sander"
-  },
-  {
-    "zh": "三明治",
-    "en": "sandwich"
-  },
-  {
-    "zh": "沉（过去式）",
-    "en": "sank"
-  },
-  {
-    "zh": "坐（过去式）",
-    "en": "sat"
-  },
-  {
-    "zh": "星期六",
-    "en": "saturday"
-  },
-  {
-    "zh": "酱汁",
-    "en": "sauce"
-  },
-  {
-    "zh": "救；节省",
-    "en": "save"
-  },
-  {
-    "zh": "看见（过去式）；锯",
-    "en": "saw"
-  },
-  {
-    "zh": "说",
-    "en": "say"
-  },
-  {
-    "zh": "规模；秤",
-    "en": "scale"
-  },
-  {
-    "zh": "扫描",
-    "en": "scan"
-  },
-  {
-    "zh": "扫描仪",
-    "en": "scanner"
-  },
-  {
-    "zh": "围巾",
-    "en": "scarf"
-  },
-  {
-    "zh": "可怕的",
-    "en": "scary"
-  },
-  {
-    "zh": "场景",
-    "en": "scene"
-  },
-  {
-    "zh": "计划；方案",
-    "en": "scheme"
-  },
-  {
-    "zh": "学者",
-    "en": "scholar"
-  },
-  {
-    "zh": "奖学金",
-    "en": "scholarship"
-  },
-  {
-    "zh": "学校",
-    "en": "school"
-  },
-  {
-    "zh": "书包",
-    "en": "schoolbag"
-  },
-  {
-    "zh": "校友",
-    "en": "schoolmate"
-  },
-  {
-    "zh": "校园",
-    "en": "schoolyard"
-  },
-  {
-    "zh": "剪刀",
-    "en": "scissors"
-  },
-  {
-    "zh": "分数",
-    "en": "score"
-  },
-  {
-    "zh": "抓；划痕",
-    "en": "scratch"
-  },
-  {
-    "zh": "尖叫",
-    "en": "scream"
-  },
-  {
-    "zh": "屏幕",
-    "en": "screen"
-  },
-  {
-    "zh": "剧本；手稿",
-    "en": "script"
-  },
-  {
-    "zh": "海",
-    "en": "sea"
-  },
-  {
-    "zh": "季节",
-    "en": "season"
-  },
-  {
-    "zh": "第二；秒",
-    "en": "second"
-  },
-  {
-    "zh": "秘密",
-    "en": "secret"
-  },
-  {
-    "zh": "看见",
-    "en": "see"
-  },
-  {
-    "zh": "种子",
-    "en": "seed"
-  },
-  {
-    "zh": "寻找",
-    "en": "seek"
-  },
-  {
-    "zh": "似乎",
-    "en": "seem"
-  },
-  {
-    "zh": "看见（过去分词）",
-    "en": "seen"
-  },
-  {
-    "zh": "跷跷板",
-    "en": "seesaw"
-  },
-  {
-    "zh": "卖",
-    "en": "sell"
-  },
-  {
-    "zh": "发送",
-    "en": "send"
-  },
-  {
-    "zh": "发送（过去式）",
-    "en": "sent"
-  },
-  {
-    "zh": "九月",
-    "en": "september"
-  },
-  {
-    "zh": "严肃的",
-    "en": "serious"
-  },
-  {
-    "zh": "服务",
-    "en": "serve"
-  },
-  {
-    "zh": "设置；一套",
-    "en": "set"
-  },
-  {
-    "zh": "十七",
-    "en": "seventeen"
-  },
-  {
-    "zh": "第七",
-    "en": "seventh"
-  },
-  {
-    "zh": "影子",
-    "en": "shadow"
-  },
-  {
-    "zh": "将要",
-    "en": "shall"
-  },
-  {
-    "zh": "分享",
-    "en": "share"
-  },
-  {
-    "zh": "鲨鱼",
-    "en": "shark"
-  },
-  {
-    "zh": "她",
-    "en": "she"
-  },
-  {
-    "zh": "棚子",
-    "en": "shed"
-  },
-  {
-    "zh": "绵羊",
-    "en": "sheep"
-  },
-  {
-    "zh": "壳",
-    "en": "shell"
-  },
-  {
-    "zh": "发光",
-    "en": "shine"
-  },
-  {
-    "zh": "船",
-    "en": "ship"
-  },
-  {
-    "zh": "衬衫",
-    "en": "shirt"
-  },
-  {
-    "zh": "鞋",
-    "en": "shoe"
-  },
-  {
-    "zh": "射击",
-    "en": "shoot"
-  },
-  {
-    "zh": "商店",
-    "en": "shop"
-  },
-  {
-    "zh": "短的；矮的",
-    "en": "short"
-  },
-  {
-    "zh": "短裤",
-    "en": "shorts"
-  },
-  {
-    "zh": "射击；镜头",
-    "en": "shot"
-  },
-  {
-    "zh": "应该",
-    "en": "should"
-  },
-  {
-    "zh": "肩膀",
-    "en": "shoulder"
-  },
-  {
-    "zh": "喊叫",
-    "en": "shout"
-  },
-  {
-    "zh": "展示",
-    "en": "show"
-  },
-  {
-    "zh": "虾",
-    "en": "shrimp"
-  },
-  {
-    "zh": "缩小",
-    "en": "shrink"
-  },
-  {
-    "zh": "灌木",
-    "en": "shrub"
-  },
-  {
-    "zh": "关闭",
-    "en": "shut"
-  },
-  {
-    "zh": "害羞的",
-    "en": "shy"
-  },
-  {
-    "zh": "生病的",
-    "en": "sick"
-  },
-  {
-    "zh": "视力；景象",
-    "en": "sight"
-  },
-  {
-    "zh": "真诚的",
-    "en": "sincere"
-  },
-  {
-    "zh": "唱歌",
-    "en": "sing"
-  },
-  {
-    "zh": "唱歌",
-    "en": "singing"
-  },
-  {
-    "zh": "水槽；下沉",
-    "en": "sink"
-  },
-  {
-    "zh": "姐妹",
-    "en": "sister"
-  },
-  {
-    "zh": "坐",
-    "en": "sit"
-  },
-  {
-    "zh": "六",
-    "en": "six"
-  },
-  {
-    "zh": "十六",
-    "en": "sixteen"
-  },
-  {
-    "zh": "第六",
-    "en": "sixth"
-  },
-  {
-    "zh": "六十",
-    "en": "sixty"
-  },
-  {
-    "zh": "大小",
-    "en": "size"
-  },
-  {
-    "zh": "滑冰",
-    "en": "skate"
-  },
-  {
-    "zh": "滑冰者",
-    "en": "skater"
-  },
-  {
-    "zh": "滑冰",
-    "en": "skating"
-  },
-  {
-    "zh": "斜视",
-    "en": "skeen"
-  },
-  {
-    "zh": "滑雪",
-    "en": "ski"
-  },
-  {
-    "zh": "皮肤",
-    "en": "skin"
-  },
-  {
-    "zh": "裙子",
-    "en": "skirt"
-  },
-  {
-    "zh": "臭鼬",
-    "en": "skunk"
-  },
-  {
-    "zh": "拍打",
-    "en": "slap"
-  },
-  {
-    "zh": "雪橇",
-    "en": "sled"
-  },
-  {
-    "zh": "睡觉",
-    "en": "sleep"
-  },
-  {
-    "zh": "失眠的",
-    "en": "sleepless"
-  },
-  {
-    "zh": "困倦的",
-    "en": "sleepy"
-  },
-  {
-    "zh": "滑动",
-    "en": "slide"
-  },
-  {
-    "zh": "滑倒",
-    "en": "slip"
-  },
-  {
-    "zh": "慢的",
-    "en": "slow"
-  },
-  {
-    "zh": "小的",
-    "en": "small"
-  },
-  {
-    "zh": "聪明的",
-    "en": "smart"
-  },
-  {
-    "zh": "闻；气味",
-    "en": "smell"
-  },
-  {
-    "zh": "闻到（过去式）",
-    "en": "smelled"
-  },
-  {
-    "zh": "微笑",
-    "en": "smile"
-  },
-  {
-    "zh": "雾霾",
-    "en": "smog"
-  },
-  {
-    "zh": "烟；吸烟",
-    "en": "smoke"
-  },
-  {
-    "zh": "零食",
-    "en": "snack"
-  },
-  {
-    "zh": "蜗牛",
-    "en": "snail"
-  },
-  {
-    "zh": "蛇",
-    "en": "snake"
-  },
-  {
-    "zh": "折断",
-    "en": "snap"
-  },
-  {
-    "zh": "雪",
-    "en": "snow"
-  },
-  {
-    "zh": "下雪的",
-    "en": "snowy"
-  },
-  {
-    "zh": "所以；如此",
-    "en": "so"
-  },
-  {
-    "zh": "肥皂",
-    "en": "soap"
-  },
-  {
-    "zh": "社会的",
-    "en": "social"
-  },
-  {
-    "zh": "袜子",
-    "en": "sock"
-  },
-  {
-    "zh": "沙发",
-    "en": "sofa"
-  },
-  {
-    "zh": "土壤",
-    "en": "soil"
-  },
-  {
-    "zh": "一些",
-    "en": "some"
-  },
-  {
-    "zh": "某事",
-    "en": "something"
-  },
-  {
-    "zh": "歌曲",
-    "en": "song"
-  },
-  {
-    "zh": "不久",
-    "en": "soon"
-  },
-  {
-    "zh": "疼痛的",
-    "en": "sore"
-  },
-  {
-    "zh": "对不起",
-    "en": "sorry"
-  },
-  {
-    "zh": "声音",
-    "en": "sound"
-  },
-  {
-    "zh": "酸的",
-    "en": "sour"
-  },
-  {
-    "zh": "空间；太空",
-    "en": "space"
-  },
-  {
-    "zh": "说话",
-    "en": "speak"
-  },
-  {
-    "zh": "特别的",
-    "en": "special"
-  },
-  {
-    "zh": "速度",
-    "en": "speed"
-  },
-  {
-    "zh": "拼写",
-    "en": "spell"
-  },
-  {
-    "zh": "花费",
-    "en": "spend"
-  },
-  {
-    "zh": "花费（过去式）",
-    "en": "spent"
-  },
-  {
-    "zh": "球体",
-    "en": "sphere"
-  },
-  {
-    "zh": "吐",
-    "en": "spit"
-  },
-  {
-    "zh": "溅",
-    "en": "splash"
-  },
-  {
-    "zh": "辉煌的",
-    "en": "splendid"
-  },
-  {
-    "zh": "分裂",
-    "en": "split"
-  },
-  {
-    "zh": "宠坏；破坏",
-    "en": "spoil"
-  },
-  {
-    "zh": "勺子",
-    "en": "spoon"
-  },
-  {
-    "zh": "运动",
-    "en": "sport"
-  },
-  {
-    "zh": "运动",
-    "en": "sports"
-  },
-  {
-    "zh": "喷雾",
-    "en": "spray"
-  },
-  {
-    "zh": "传播",
-    "en": "spread"
-  },
-  {
-    "zh": "春天；弹簧",
-    "en": "spring"
-  },
-  {
-    "zh": "精灵",
-    "en": "sprite"
-  },
-  {
-    "zh": "广场；正方形",
-    "en": "square"
-  },
-  {
-    "zh": "挤压",
-    "en": "squeeze"
-  },
-  {
-    "zh": "鱿鱼",
-    "en": "squid"
-  },
-  {
-    "zh": "茎；跟踪",
-    "en": "stalk"
-  },
-  {
-    "zh": "站立",
-    "en": "stand"
-  },
-  {
-    "zh": "星星",
-    "en": "star"
-  },
-  {
-    "zh": "开始",
-    "en": "start"
-  },
-  {
-    "zh": "状态；州",
-    "en": "state"
-  },
-  {
-    "zh": "车站",
-    "en": "station"
-  },
-  {
-    "zh": "停留",
-    "en": "stay"
-  },
-  {
-    "zh": "牛排",
-    "en": "steak"
-  },
-  {
-    "zh": "棍子（复数）",
-    "en": "sticks"
-  },
-  {
-    "zh": "仍然",
-    "en": "still"
-  },
-  {
-    "zh": "胃",
-    "en": "stomach"
-  },
-  {
-    "zh": "石头",
-    "en": "stone"
-  },
-  {
-    "zh": "站（过去式）",
-    "en": "stood"
-  },
-  {
-    "zh": "停止",
-    "en": "stop"
-  },
-  {
-    "zh": "商店；储存",
-    "en": "store"
-  },
-  {
-    "zh": "故事",
-    "en": "story"
-  },
-  {
-    "zh": "故事书",
-    "en": "storybook"
-  },
-  {
-    "zh": "直的",
-    "en": "straight"
-  },
-  {
-    "zh": "奇怪的",
-    "en": "strange"
-  },
-  {
-    "zh": "草莓",
-    "en": "strawberry"
-  },
-  {
-    "zh": "街道",
-    "en": "street"
-  },
-  {
-    "zh": "严格的",
-    "en": "strict"
-  },
-  {
-    "zh": "强壮的",
-    "en": "strong"
-  },
-  {
-    "zh": "卡住的",
-    "en": "stuck"
-  },
-  {
-    "zh": "学生",
-    "en": "student"
-  },
-  {
-    "zh": "潜水艇",
-    "en": "submarine"
-  },
-  {
-    "zh": "字幕",
-    "en": "subtitle"
-  },
-  {
-    "zh": "减法",
-    "en": "subtraction"
-  },
-  {
-    "zh": "地铁",
-    "en": "subway"
-  },
-  {
-    "zh": "吸",
-    "en": "suck"
-  },
-  {
-    "zh": "糖",
-    "en": "sugar"
-  },
-  {
-    "zh": "适合；套装",
-    "en": "suit"
-  },
-  {
-    "zh": "夏天",
-    "en": "summer"
-  },
-  {
-    "zh": "太阳",
-    "en": "sun"
-  },
-  {
-    "zh": "星期日",
-    "en": "sunday"
-  },
-  {
-    "zh": "阳光",
-    "en": "sunlight"
-  },
-  {
-    "zh": "晴朗的",
-    "en": "sunny"
-  },
-  {
-    "zh": "超级的",
-    "en": "super"
-  },
-  {
-    "zh": "超人",
-    "en": "superman"
-  },
-  {
-    "zh": "超市",
-    "en": "supermarket"
-  },
-  {
-    "zh": "确定的",
-    "en": "sure"
-  },
-  {
-    "zh": "天鹅",
-    "en": "swan"
-  },
-  {
-    "zh": "毛衣",
-    "en": "sweater"
-  },
-  {
-    "zh": "甜的",
-    "en": "sweet"
-  },
-  {
-    "zh": "游泳",
-    "en": "swim"
-  },
-  {
-    "zh": "摇摆",
-    "en": "swing"
-  },
-  {
-    "zh": "音节",
-    "en": "syllable"
-  },
-  {
-    "zh": "桌子",
-    "en": "table"
-  },
-  {
-    "zh": "标签",
-    "en": "tag"
-  },
-  {
-    "zh": "尾巴",
-    "en": "tail"
-  },
-  {
-    "zh": "拿；带",
-    "en": "take"
-  },
-  {
-    "zh": "更高的",
-    "en": "taller"
-  },
-  {
-    "zh": "坦克；水箱",
-    "en": "tank"
-  },
-  {
-    "zh": "磁带；胶带",
-    "en": "tape"
-  },
-  {
-    "zh": "任务",
-    "en": "task"
-  },
-  {
-    "zh": "茶",
-    "en": "tea"
-  },
-  {
-    "zh": "教",
-    "en": "teach"
-  },
-  {
-    "zh": "老师",
-    "en": "teacher"
-  },
-  {
-    "zh": "团队",
-    "en": "team"
-  },
-  {
-    "zh": "茶壶",
-    "en": "teapot"
-  },
-  {
-    "zh": "电视",
-    "en": "television"
-  },
-  {
-    "zh": "十",
-    "en": "ten"
-  },
-  {
-    "zh": "紧张",
-    "en": "tension"
-  },
-  {
-    "zh": "帐篷",
-    "en": "tent"
-  },
-  {
-    "zh": "第十",
-    "en": "tenth"
-  },
-  {
-    "zh": "学期；术语",
-    "en": "term"
-  },
-  {
-    "zh": "可怕的",
-    "en": "terrible"
-  },
-  {
-    "zh": "测试",
-    "en": "test"
-  },
-  {
-    "zh": "文本",
-    "en": "text"
-  },
-  {
-    "zh": "比",
-    "en": "than"
-  },
-  {
-    "zh": "感谢",
-    "en": "thank"
-  },
-  {
-    "zh": "感激的",
-    "en": "thankful"
-  },
-  {
-    "zh": "那个",
-    "en": "that"
-  },
-  {
-    "zh": "这/那（定冠词）",
-    "en": "the"
-  },
-  {
-    "zh": "他们（宾格）",
-    "en": "them"
-  },
-  {
-    "zh": "然后",
-    "en": "then"
-  },
-  {
-    "zh": "那里",
-    "en": "there"
-  },
-  {
-    "zh": "这些",
-    "en": "these"
-  },
-  {
-    "zh": "他们",
-    "en": "they"
-  },
-  {
-    "zh": "小偷",
-    "en": "thief"
-  },
-  {
-    "zh": "薄的；瘦的",
-    "en": "thin"
-  },
-  {
-    "zh": "东西",
-    "en": "thing"
-  },
-  {
-    "zh": "想；认为",
-    "en": "think"
-  },
-  {
-    "zh": "第三",
-    "en": "third"
-  },
-  {
-    "zh": "口渴",
-    "en": "thirst"
-  },
-  {
-    "zh": "十三",
-    "en": "thirteen"
-  },
-  {
-    "zh": "三十",
-    "en": "thirty"
-  },
-  {
-    "zh": "这个",
-    "en": "this"
-  },
-  {
-    "zh": "那些",
-    "en": "those"
-  },
-  {
-    "zh": "想法",
-    "en": "thought"
-  },
-  {
-    "zh": "千",
-    "en": "thousand"
-  },
-  {
-    "zh": "线",
-    "en": "thread"
-  },
-  {
-    "zh": "威胁",
-    "en": "threat"
-  },
-  {
-    "zh": "三",
-    "en": "three"
-  },
-  {
-    "zh": "扔（过去式）",
-    "en": "threw"
-  },
-  {
-    "zh": "茁壮成长",
-    "en": "thrive"
-  },
-  {
-    "zh": "王座",
-    "en": "throne"
-  },
-  {
-    "zh": "通过",
-    "en": "through"
-  },
-  {
-    "zh": "扔",
-    "en": "throw"
-  },
-  {
-    "zh": "星期四",
-    "en": "thursday"
-  },
-  {
-    "zh": "票",
-    "en": "ticket"
-  },
-  {
-    "zh": "领带；系",
-    "en": "tie"
-  },
-  {
-    "zh": "老虎",
-    "en": "tiger"
-  },
-  {
-    "zh": "紧的",
-    "en": "tight"
-  },
-  {
-    "zh": "直到",
-    "en": "till"
-  },
-  {
-    "zh": "时间",
-    "en": "time"
-  },
-  {
-    "zh": "次数；时代",
-    "en": "times"
-  },
-  {
-    "zh": "微小的",
-    "en": "tiny"
-  },
-  {
-    "zh": "疲倦的",
-    "en": "tired"
-  },
-  {
-    "zh": "到；向",
-    "en": "to"
-  },
-  {
-    "zh": "今天",
-    "en": "today"
-  },
-  {
-    "zh": "脚趾",
-    "en": "toe"
-  },
-  {
-    "zh": "厕所",
-    "en": "toilet"
-  },
-  {
-    "zh": "番茄",
-    "en": "tomato"
-  },
-  {
-    "zh": "坟墓",
-    "en": "tomb"
-  },
-  {
-    "zh": "明天",
-    "en": "tomorrow"
-  },
-  {
-    "zh": "舌头",
-    "en": "tongue"
-  },
-  {
-    "zh": "今晚",
-    "en": "tonight"
-  },
-  {
-    "zh": "也；太",
-    "en": "too"
-  },
-  {
-    "zh": "工具",
-    "en": "tool"
-  },
-  {
-    "zh": "牙齿",
-    "en": "tooth"
-  },
-  {
-    "zh": "牙刷",
-    "en": "toothbrush"
-  },
-  {
-    "zh": "顶部",
-    "en": "top"
-  },
-  {
-    "zh": "触摸",
-    "en": "touch"
-  },
-  {
-    "zh": "坚韧的",
-    "en": "tough"
-  },
-  {
-    "zh": "旅行",
-    "en": "tour"
-  },
-  {
-    "zh": "拖",
-    "en": "tow"
-  },
-  {
-    "zh": "塔",
-    "en": "tower"
-  },
-  {
-    "zh": "城镇",
-    "en": "town"
-  },
-  {
-    "zh": "玩具",
-    "en": "toy"
-  },
-  {
-    "zh": "轨道；跟踪",
-    "en": "track"
-  },
-  {
-    "zh": "传统的",
-    "en": "traditional"
-  },
-  {
-    "zh": "交通",
-    "en": "traffic"
-  },
-  {
-    "zh": "旅行",
-    "en": "travel"
-  },
-  {
-    "zh": "宝藏",
-    "en": "treasure"
-  },
-  {
-    "zh": "树",
-    "en": "tree"
-  },
-  {
-    "zh": "三角形",
-    "en": "triangle"
-  },
-  {
-    "zh": "尝试（过去式）",
-    "en": "tried"
-  },
-  {
-    "zh": "旅行",
-    "en": "trip"
-  },
-  {
-    "zh": "麻烦",
-    "en": "trouble"
-  },
-  {
-    "zh": "裤子",
-    "en": "trousers"
-  },
-  {
-    "zh": "卡车",
-    "en": "truck"
-  },
-  {
-    "zh": "小号",
-    "en": "trumpet"
-  },
-  {
-    "zh": "树干；后备箱",
-    "en": "trunk"
-  },
-  {
-    "zh": "尝试",
-    "en": "try"
-  },
-  {
-    "zh": "管子",
-    "en": "tube"
-  },
-  {
-    "zh": "星期二",
-    "en": "tuesday"
-  },
-  {
-    "zh": "转弯",
-    "en": "turn"
-  },
-  {
-    "zh": "海龟",
-    "en": "turtle"
-  },
-  {
-    "zh": "十二",
-    "en": "twelve"
-  },
-  {
-    "zh": "二十",
-    "en": "twenty"
-  },
-  {
-    "zh": "二",
-    "en": "two"
-  },
-  {
-    "zh": "类型；打字",
-    "en": "type"
-  },
-  {
-    "zh": "丑陋的",
-    "en": "ugly"
-  },
-  {
-    "zh": "雨伞",
-    "en": "umbrella"
-  },
-  {
-    "zh": "叔叔",
-    "en": "uncle"
-  },
-  {
-    "zh": "在……下面",
-    "en": "under"
-  },
-  {
-    "zh": "地下的",
-    "en": "underground"
-  },
-  {
-    "zh": "理解",
-    "en": "understand"
-  },
-  {
-    "zh": "理解（过去式）",
-    "en": "understood"
-  },
-  {
-    "zh": "不公平的",
-    "en": "unfair"
-  },
-  {
-    "zh": "大学",
-    "en": "university"
-  },
-  {
-    "zh": "不幸地",
-    "en": "unluckily"
-  },
-  {
-    "zh": "不幸的",
-    "en": "unlucky"
-  },
-  {
-    "zh": "不确定的",
-    "en": "unsure"
-  },
-  {
-    "zh": "直到",
-    "en": "until"
-  },
-  {
-    "zh": "不寻常的",
-    "en": "unusual"
-  },
-  {
-    "zh": "向上",
-    "en": "up"
-  },
-  {
-    "zh": "在……上",
-    "en": "upon"
-  },
-  {
-    "zh": "沮丧的",
-    "en": "upset"
-  },
-  {
-    "zh": "楼上",
-    "en": "upstairs"
-  },
-  {
-    "zh": "我们（宾格）",
-    "en": "us"
-  },
-  {
-    "zh": "使用",
-    "en": "use"
-  },
-  {
-    "zh": "有用的",
-    "en": "useful"
-  },
-  {
-    "zh": "通常",
-    "en": "usually"
-  },
-  {
-    "zh": "价值",
-    "en": "value"
-  },
-  {
-    "zh": "非常",
-    "en": "very"
-  },
-  {
-    "zh": "背心",
-    "en": "vest"
-  },
-  {
-    "zh": "兽医",
-    "en": "vet"
-  },
-  {
-    "zh": "胜利",
-    "en": "victory"
-  },
-  {
-    "zh": "视频",
-    "en": "video"
-  },
-  {
-    "zh": "村庄",
-    "en": "village"
-  },
-  {
-    "zh": "藤蔓",
-    "en": "vine"
-  },
-  {
-    "zh": "小提琴",
-    "en": "violin"
-  },
-  {
-    "zh": "视力；愿景",
-    "en": "vision"
-  },
-  {
-    "zh": "参观",
-    "en": "visit"
-  },
-  {
-    "zh": "访客",
-    "en": "visitor"
-  },
-  {
-    "zh": "声音",
-    "en": "voice"
-  },
-  {
-    "zh": "音量；体积",
-    "en": "volume"
-  },
-  {
-    "zh": "投票",
-    "en": "vote"
-  },
-  {
-    "zh": "摇摆",
-    "en": "wag"
-  },
-  {
-    "zh": "工资",
-    "en": "wages"
-  },
-  {
-    "zh": "等待",
-    "en": "wait"
-  },
-  {
-    "zh": "醒来",
-    "en": "wake"
-  },
-  {
-    "zh": "走路",
-    "en": "walk"
-  },
-  {
-    "zh": "墙",
-    "en": "wall"
-  },
-  {
-    "zh": "钱包",
-    "en": "wallet"
-  },
-  {
-    "zh": "核桃",
-    "en": "walnut"
-  },
-  {
-    "zh": "想要",
-    "en": "want"
-  },
-  {
-    "zh": "战争",
-    "en": "war"
-  },
-  {
-    "zh": "温暖的",
-    "en": "warm"
-  },
-  {
-    "zh": "温暖",
-    "en": "warmth"
-  },
-  {
-    "zh": "警告",
-    "en": "warn"
-  },
-  {
-    "zh": "是（过去式）",
-    "en": "was"
-  },
-  {
-    "zh": "洗",
-    "en": "wash"
-  },
-  {
-    "zh": "手表；观看",
-    "en": "watch"
-  },
-  {
-    "zh": "水",
-    "en": "water"
-  },
-  {
-    "zh": "西瓜",
-    "en": "watermelon"
-  },
-  {
-    "zh": "方式；路",
-    "en": "way"
-  },
-  {
-    "zh": "我们",
-    "en": "we"
-  },
-  {
-    "zh": "穿",
-    "en": "wear"
-  },
-  {
-    "zh": "天气",
-    "en": "weather"
-  },
-  {
-    "zh": "星期三",
-    "en": "wednesday"
-  },
-  {
-    "zh": "周",
-    "en": "week"
-  },
-  {
-    "zh": "周末",
-    "en": "weekend"
-  },
-  {
-    "zh": "好；井",
-    "en": "well"
-  },
-  {
-    "zh": "去（过去式）",
-    "en": "went"
-  },
-  {
-    "zh": "是（过去式复数）",
-    "en": "were"
-  },
-  {
-    "zh": "西方",
-    "en": "west"
-  },
-  {
-    "zh": "湿的",
-    "en": "wet"
-  },
-  {
-    "zh": "什么",
-    "en": "what"
-  },
-  {
-    "zh": "当……时候",
-    "en": "when"
-  },
-  {
-    "zh": "哪里",
-    "en": "where"
-  },
-  {
-    "zh": "哪个",
-    "en": "which"
-  },
-  {
-    "zh": "当……时候",
-    "en": "while"
-  },
-  {
-    "zh": "口哨",
-    "en": "whistle"
-  },
-  {
-    "zh": "白色的",
-    "en": "white"
-  },
-  {
-    "zh": "谁",
-    "en": "who"
-  },
-  {
-    "zh": "整个的",
-    "en": "whole"
-  },
-  {
-    "zh": "谁（宾格）",
-    "en": "whom"
-  },
-  {
-    "zh": "谁的",
-    "en": "whose"
-  },
-  {
-    "zh": "将要",
-    "en": "will"
-  },
-  {
-    "zh": "赢",
-    "en": "win"
-  },
-  {
-    "zh": "窗户",
-    "en": "window"
-  },
-  {
-    "zh": "有风的",
-    "en": "windy"
-  },
-  {
-    "zh": "葡萄酒",
-    "en": "wine"
-  },
-  {
-    "zh": "冬天",
-    "en": "winter"
-  },
-  {
-    "zh": "希望",
-    "en": "wish"
-  },
-  {
-    "zh": "和；用",
-    "en": "with"
-  },
-  {
-    "zh": "狼",
-    "en": "wolf"
-  },
-  {
-    "zh": "女人",
-    "en": "woman"
-  },
-  {
-    "zh": "木头",
-    "en": "wood"
-  },
-  {
-    "zh": "羊毛",
-    "en": "wool"
-  },
-  {
-    "zh": "单词",
-    "en": "word"
-  },
-  {
-    "zh": "工人",
-    "en": "worker"
-  },
-  {
-    "zh": "作品；工厂",
-    "en": "works"
-  },
-  {
-    "zh": "世界",
-    "en": "world"
-  },
-  {
-    "zh": "蠕虫",
-    "en": "worm"
-  },
-  {
-    "zh": "更糟的",
-    "en": "worse"
-  },
-  {
-    "zh": "值得",
-    "en": "worth"
-  },
-  {
-    "zh": "伤口",
-    "en": "wound"
-  },
-  {
-    "zh": "哇",
-    "en": "wow"
-  },
-  {
-    "zh": "包裹",
-    "en": "wrap"
-  },
-  {
-    "zh": "花环",
-    "en": "wreath"
-  },
-  {
-    "zh": "残骸",
-    "en": "wreck"
-  },
-  {
-    "zh": "摔跤",
-    "en": "wrestle"
-  },
-  {
-    "zh": "蠕动",
-    "en": "wriggle"
-  },
-  {
-    "zh": "皱纹",
-    "en": "wrinkle"
-  },
-  {
-    "zh": "手腕",
-    "en": "wrist"
-  },
-  {
-    "zh": "作家",
-    "en": "writer"
-  },
-  {
-    "zh": "错误的",
-    "en": "wrong"
-  },
-  {
-    "zh": "年",
-    "en": "year"
-  },
-  {
-    "zh": "喊叫",
-    "en": "yell"
-  },
-  {
-    "zh": "黄色的",
-    "en": "yellow"
-  },
-  {
-    "zh": "是的",
-    "en": "yes"
-  },
-  {
-    "zh": "昨天",
-    "en": "yesterday"
-  },
-  {
-    "zh": "还；然而",
-    "en": "yet"
-  },
-  {
-    "zh": "你",
-    "en": "you"
-  },
-  {
-    "zh": "年轻的",
-    "en": "young"
-  },
-  {
-    "zh": "你的",
-    "en": "your"
-  },
-  {
-    "zh": "斑马",
-    "en": "zebra"
-  },
-  {
-    "zh": "零",
-    "en": "zero"
-  },
-  {
-    "zh": "拉链",
-    "en": "zip"
-  },
-  {
-    "zh": "区域",
-    "en": "zone"
-  },
-  {
-    "zh": "动物园",
-    "en": "zoo"
-  }
+module.exports = [
+  {en: "about", zh: "关于；大约", pos: "prep.", example: "This book is about animals.", exampleZh: "这本书是关于动物的。"},
+  {en: "above", zh: "在……上面", pos: "prep.", example: "The bird is flying above the tree.", exampleZh: "鸟儿在树上飞。"},
+  {en: "action", zh: "行动；动作", pos: "n.", example: "We need to take action now.", exampleZh: "我们现在需要采取行动。"},
+  {en: "actor", zh: "演员", pos: "n.", example: "He wants to be an actor.", exampleZh: "他想成为一名演员。"},
+  {en: "addition", zh: "加法；添加", pos: "n.", example: "In addition, we need more time.", exampleZh: "此外，我们需要更多时间。"},
+  {en: "admire", zh: "钦佩；赞美", pos: "v.", example: "I admire her courage.", exampleZh: "我钦佩她的勇气。"},
+  {en: "afire", zh: "着火的", pos: "adj.", example: "The house is afire.", exampleZh: "房子着火了。"},
+  {en: "after", zh: "在……之后", pos: "prep.", example: "We played after school.", exampleZh: "我们放学后玩了。"},
+  {en: "afternoon", zh: "下午", pos: "n.", example: "I have class this afternoon.", exampleZh: "我今天下午有课。"},
+  {en: "again", zh: "再一次", pos: "adv.", example: "Please say that again.", exampleZh: "请再说一遍。"},
+  {en: "age", zh: "年龄；时代", pos: "n.", example: "What is your age?", exampleZh: "你多大了？"},
+  {en: "ago", zh: "以前", pos: "adv.", example: "He left two hours ago.", exampleZh: "他两小时前离开了。"},
+  {en: "air", zh: "空气", pos: "n.", example: "The air is fresh here.", exampleZh: "这里的空气很新鲜。"},
+  {en: "airplane", zh: "飞机", pos: "n.", example: "I will travel by airplane.", exampleZh: "我将乘飞机旅行。"},
+  {en: "alarm", zh: "闹钟；警报", pos: "n.", example: "The alarm wakes me up.", exampleZh: "闹钟把我叫醒。"},
+  {en: "album", zh: "相册；专辑", pos: "n.", example: "This is my photo album.", exampleZh: "这是我的相册。"},
+  {en: "all", zh: "所有的；全部", pos: "adj.", example: "All students are here.", exampleZh: "所有学生都在这儿。"},
+  {en: "almond", zh: "杏仁", pos: "n.", example: "I like almond nuts.", exampleZh: "我喜欢杏仁。"},
+  {en: "alone", zh: "独自的", pos: "adj.", example: "She is alone at home.", exampleZh: "她一个人在家。"},
+  {en: "along", zh: "沿着", pos: "prep.", example: "Walk along this road.", exampleZh: "沿着这条路走。"},
+  {en: "aloud", zh: "大声地", pos: "adv.", example: "Please read aloud.", exampleZh: "请大声朗读。"},
+  {en: "also", zh: "也；同样", pos: "adv.", example: "I also like music.", exampleZh: "我也喜欢音乐。"},
+  {en: "always", zh: "总是；一直", pos: "adv.", example: "He always gets up early.", exampleZh: "他总是早起。"},
+  {en: "am", zh: "是（I am）", pos: "v.", example: "I am a student.", exampleZh: "我是一名学生。"},
+  {en: "amazing", zh: "令人惊叹的", pos: "adj.", example: "The view is amazing.", exampleZh: "这景色太美了。"},
+  {en: "among", zh: "在……之中", pos: "prep.", example: "She is among the best students.", exampleZh: "她是最好的学生之一。"},
+  {en: "an", zh: "一个（用于元音前）", pos: "art.", example: "I have an apple.", exampleZh: "我有一个苹果。"},
+  {en: "anchor", zh: "锚；主播", pos: "n.", example: "The ship dropped its anchor.", exampleZh: "船抛下了锚。"},
+  {en: "and", zh: "和；与", pos: "conj.", example: "You and I are friends.", exampleZh: "你和我都是朋友。"},
+  {en: "angry", zh: "生气的", pos: "adj.", example: "The teacher is angry.", exampleZh: "老师生气了。"},
+  {en: "animal", zh: "动物", pos: "n.", example: "Dogs are lovely animals.", exampleZh: "狗是可爱的动物。"},
+  {en: "ankle", zh: "脚踝", pos: "n.", example: "I hurt my ankle.", exampleZh: "我伤了脚踝。"},
+  {en: "annoy", zh: "使烦恼", pos: "v.", example: "Don't annoy your sister.", exampleZh: "别烦你的妹妹。"},
+  {en: "ant", zh: "蚂蚁", pos: "n.", example: "There is an ant on the table.", exampleZh: "桌子上有一只蚂蚁。"},
+  {en: "anxious", zh: "焦虑的", pos: "adj.", example: "She is anxious about the test.", exampleZh: "她担心考试。"},
+  {en: "any", zh: "任何的", pos: "adj.", example: "Do you have any questions?", exampleZh: "你有什么问题吗？"},
+  {en: "anything", zh: "任何事物", pos: "pron.", example: "Anything is possible.", exampleZh: "任何事情都有可能。"},
+  {en: "anywhere", zh: "任何地方", pos: "adv.", example: "You can sit anywhere.", exampleZh: "你可以坐在任何地方。"},
+  {en: "apart", zh: "分开地", pos: "adv.", example: "They live apart from each other.", exampleZh: "他们彼此分开住。"},
+  {en: "apiece", zh: "每个", pos: "adv.", example: "They cost ten yuan apiece.", exampleZh: "它们每个十元。"},
+  {en: "apple", zh: "苹果", pos: "n.", example: "An apple a day keeps the doctor away.", exampleZh: "一天一苹果，医生远离我。"},
+  {en: "april", zh: "四月", pos: "n.", example: "April is a rainy month.", exampleZh: "四月是多雨的月份。"},
+  {en: "are", zh: "是（复数）", pos: "v.", example: "You are my best friend.", exampleZh: "你是我最好的朋友。"},
+  {en: "area", zh: "地区；面积", pos: "n.", example: "This is a quiet area.", exampleZh: "这是一个安静的区域。"},
+  {en: "argue", zh: "争论", pos: "v.", example: "Don't argue with your mother.", exampleZh: "别和你妈妈争吵。"},
+  {en: "ark", zh: "方舟", pos: "n.", example: "Noah built an ark.", exampleZh: "诺亚建造了一艘方舟。"},
+  {en: "around", zh: "在……周围", pos: "prep.", example: "The earth moves around the sun.", exampleZh: "地球绕着太阳转。"},
+  {en: "art", zh: "艺术", pos: "n.", example: "She loves art class.", exampleZh: "她喜欢美术课。"},
+  {en: "as", zh: "作为；像", pos: "conj.", example: "I am as tall as you.", exampleZh: "我和你一样高。"},
+  {en: "ask", zh: "问；请求", pos: "v.", example: "May I ask you a question?", exampleZh: "我可以问你一个问题吗？"},
+  {en: "at", zh: "在", pos: "prep.", example: "I am good at math.", exampleZh: "我擅长数学。"},
+  {en: "attend", zh: "参加；出席", pos: "v.", example: "I will attend the meeting.", exampleZh: "我将参加会议。"},
+  {en: "attention", zh: "注意力", pos: "n.", example: "Pay attention to the teacher.", exampleZh: "注意听老师讲课。"},
+  {en: "august", zh: "八月", pos: "n.", example: "August is very hot.", exampleZh: "八月很热。"},
+  {en: "author", zh: "作者", pos: "n.", example: "She is a famous author.", exampleZh: "她是一位著名作家。"},
+  {en: "autumn", zh: "秋天", pos: "n.", example: "Leaves fall in autumn.", exampleZh: "秋天树叶落下。"},
+  {en: "avoid", zh: "避免", pos: "v.", example: "Avoid making the same mistake.", exampleZh: "避免犯同样的错误。"},
+  {en: "awake", zh: "醒着的", pos: "v.", example: "I awake at six every day.", exampleZh: "我每天六点醒来。"},
+  {en: "award", zh: "奖品；奖励", pos: "n.", example: "She won an award.", exampleZh: "她获得了一个奖项。"},
+  {en: "away", zh: "离开；远离", pos: "adv.", example: "Go away, please.", exampleZh: "请走开。"},
+  {en: "awful", zh: "糟糕的", pos: "adj.", example: "The weather is awful today.", exampleZh: "今天天气很糟糕。"},
+  {en: "baby", zh: "婴儿", pos: "n.", example: "The baby is sleeping.", exampleZh: "宝宝正在睡觉。"},
+  {en: "back", zh: "背部；回来", pos: "n.", example: "Please go back to your seat.", exampleZh: "请回到你的座位。"},
+  {en: "background", zh: "背景", pos: "n.", example: "She has a music background.", exampleZh: "她有音乐背景。"},
+  {en: "bad", zh: "坏的", pos: "adj.", example: "The weather is bad today.", exampleZh: "今天天气很糟。"},
+  {en: "bag", zh: "包；袋子", pos: "n.", example: "I have a school bag.", exampleZh: "我有一个书包。"},
+  {en: "bake", zh: "烘焙", pos: "v.", example: "Mom will bake a cake.", exampleZh: "妈妈要烤一个蛋糕。"},
+  {en: "bale", zh: "大捆", pos: "n.", example: "A bale of hay.", exampleZh: "一捆干草。"},
+  {en: "ball", zh: "球", pos: "n.", example: "He kicks the ball.", exampleZh: "他踢球。"},
+  {en: "ballet", zh: "芭蕾舞", pos: "n.", example: "She loves ballet.", exampleZh: "她喜欢芭蕾。"},
+  {en: "balloon", zh: "气球", pos: "n.", example: "The balloon flew away.", exampleZh: "气球飞走了。"},
+  {en: "bamboo", zh: "竹子", pos: "n.", example: "Pandas eat bamboo.", exampleZh: "熊猫吃竹子。"},
+  {en: "ban", zh: "禁止", pos: "v.", example: "Smoking is banned here.", exampleZh: "这里禁止吸烟。"},
+  {en: "banana", zh: "香蕉", pos: "n.", example: "I eat a banana every day.", exampleZh: "我每天吃一根香蕉。"},
+  {en: "band", zh: "乐队；带子", pos: "n.", example: "He is in the school band.", exampleZh: "他在学校乐队里。"},
+  {en: "bank", zh: "银行；河岸", pos: "n.", example: "I go to the bank.", exampleZh: "我去银行。"},
+  {en: "bar", zh: "酒吧；条", pos: "n.", example: "Let's meet at the coffee bar.", exampleZh: "我们在咖啡吧见面吧。"},
+  {en: "bark", zh: "树皮；吠叫", pos: "v.", example: "The dog barks at night.", exampleZh: "狗在夜里叫。"},
+  {en: "barn", zh: "谷仓", pos: "n.", example: "The barn is full of hay.", exampleZh: "谷仓里满是干草。"},
+  {en: "baseball", zh: "棒球", pos: "n.", example: "We play baseball after school.", exampleZh: "我们放学后打棒球。"},
+  {en: "basket", zh: "篮子", pos: "n.", example: "Put the apples in the basket.", exampleZh: "把苹果放进篮子里。"},
+  {en: "basketball", zh: "篮球", pos: "n.", example: "I like playing basketball.", exampleZh: "我喜欢打篮球。"},
+  {en: "bat", zh: "蝙蝠；球棒", pos: "n.", example: "A bat flies at night.", exampleZh: "蝙蝠在夜里飞。"},
+  {en: "bath", zh: "洗澡", pos: "n.", example: "I take a bath every day.", exampleZh: "我每天洗澡。"},
+  {en: "bathroom", zh: "浴室", pos: "n.", example: "The bathroom is downstairs.", exampleZh: "浴室在楼下。"},
+  {en: "bay", zh: "海湾", pos: "n.", example: "The ship is in the bay.", exampleZh: "船在海湾里。"},
+  {en: "be", zh: "是；存在", pos: "v.", example: "I want to be a teacher.", exampleZh: "我想成为一名老师。"},
+  {en: "beach", zh: "海滩", pos: "n.", example: "We play on the beach.", exampleZh: "我们在海滩上玩。"},
+  {en: "bean", zh: "豆子", pos: "n.", example: "Green beans are healthy.", exampleZh: "青豆很健康。"},
+  {en: "bear", zh: "熊；忍受", pos: "n.", example: "The bear lives in the forest.", exampleZh: "熊住在森林里。"},
+  {en: "beard", zh: "胡须", pos: "n.", example: "My father has a beard.", exampleZh: "我爸爸有胡子。"},
+  {en: "beautiful", zh: "美丽的", pos: "adj.", example: "The flower is beautiful.", exampleZh: "这朵花很美。"},
+  {en: "because", zh: "因为", pos: "conj.", example: "I am happy because it is sunny.", exampleZh: "我很开心，因为天气晴朗。"},
+  {en: "bed", zh: "床", pos: "n.", example: "It is time to go to bed.", exampleZh: "该睡觉了。"},
+  {en: "bedroom", zh: "卧室", pos: "n.", example: "My bedroom is small but clean.", exampleZh: "我的卧室小但干净。"},
+  {en: "bee", zh: "蜜蜂", pos: "n.", example: "A bee makes honey.", exampleZh: "蜜蜂酿蜜。"},
+  {en: "been", zh: "（be的过去分词）", pos: "v.", example: "I have been to Beijing.", exampleZh: "我去过北京。"},
+  {en: "beer", zh: "啤酒", pos: "n.", example: "My father drinks beer.", exampleZh: "我爸爸喝啤酒。"},
+  {en: "bees", zh: "蜜蜂（复数）", pos: "n.", example: "Bees are busy in spring.", exampleZh: "春天蜜蜂很忙。"},
+  {en: "before", zh: "在……之前", pos: "prep.", example: "Wash your hands before eating.", exampleZh: "吃东西前要洗手。"},
+  {en: "beg", zh: "乞求", pos: "v.", example: "Please do not beg for food.", exampleZh: "请不要乞讨食物。"},
+  {en: "beggar", zh: "乞丐", pos: "n.", example: "The beggar needs help.", exampleZh: "那个乞丐需要帮助。"},
+  {en: "behind", zh: "在……后面", pos: "prep.", example: "The cat is behind the door.", exampleZh: "猫在门后面。"},
+  {en: "bell", zh: "铃；钟", pos: "n.", example: "The school bell rings at eight.", exampleZh: "学校铃声八点响。"},
+  {en: "below", zh: "在……下面", pos: "prep.", example: "The fish are below the bridge.", exampleZh: "鱼在桥下面。"},
+  {en: "bend", zh: "弯曲", pos: "v.", example: "Bend your knees, please.", exampleZh: "请弯下膝盖。"},
+  {en: "best", zh: "最好的", pos: "adj.", example: "She is the best student in class.", exampleZh: "她是班上最好的学生。"},
+  {en: "bet", zh: "打赌", pos: "v.", example: "I bet you can do it.", exampleZh: "我打赌你能做到。"},
+  {en: "better", zh: "更好的", pos: "adj.", example: "Your English is better than mine.", exampleZh: "你的英语比我好。"},
+  {en: "between", zh: "在……之间", pos: "prep.", example: "The shop is between the bank and the school.", exampleZh: "商店在银行和"},
+  {en: "bias", zh: "偏见", pos: "n.", example: "We should avoid bias.", exampleZh: "我们应该避免偏见。"},
+  {en: "bicycle", zh: "自行车", pos: "n.", example: "I ride my bicycle to school.", exampleZh: "我骑自行车上学。"},
+  {en: "bid", zh: "出价；投标", pos: "v.", example: "He bid ten dollars for the book.", exampleZh: "他出十美元买这本书。"},
+  {en: "big", zh: "大的", pos: "adj.", example: "Elephants are big animals.", exampleZh: "大象是很大的动物。"},
+  {en: "bike", zh: "自行车", pos: "n.", example: "Can I ride your bike?", exampleZh: "我能骑你的自行车吗？"},
+  {en: "bill", zh: "账单；钞票", pos: "n.", example: "Please pay the bill.", exampleZh: "请付账单。"},
+  {en: "bin", zh: "垃圾箱", pos: "n.", example: "Put the trash in the bin.", exampleZh: "把垃圾放进垃圾桶。"},
+  {en: "bird", zh: "鸟", pos: "n.", example: "A bird is singing in the tree.", exampleZh: "一只鸟在树上唱歌。"},
+  {en: "birth", zh: "出生", pos: "n.", example: "Today is my birthday.", exampleZh: "今天是我的生日。"},
+  {en: "birthday", zh: "生日", pos: "n.", example: "Happy birthday to you!", exampleZh: "祝你生日快乐！"},
+  {en: "biscuit", zh: "饼干", pos: "n.", example: "Would you like a biscuit?", exampleZh: "你想要一块饼干吗？"},
+  {en: "bit", zh: "一点；少量", pos: "n.", example: "Wait a bit, please.", exampleZh: "请等一下。"},
+  {en: "bite", zh: "咬", pos: "v.", example: "Do not let the dog bite you.", exampleZh: "别让狗咬到你。"},
+  {en: "black", zh: "黑色的", pos: "adj.", example: "The cat is black.", exampleZh: "那只猫是黑的。"},
+  {en: "blackboard", zh: "黑板", pos: "n.", example: "Please write on the blackboard.", exampleZh: "请在黑板上写。"},
+  {en: "blank", zh: "空白的", pos: "adj.", example: "Please fill in the blank.", exampleZh: "请填写空白处。"},
+  {en: "bless", zh: "保佑；祝福", pos: "v.", example: "God bless you.", exampleZh: "上帝保佑你。"},
+  {en: "block", zh: "街区；阻塞", pos: "n.", example: "He is playing with blocks.", exampleZh: "他在玩积木。"},
+  {en: "blood", zh: "血液", pos: "n.", example: "Blood is red.", exampleZh: "血是红色的。"},
+  {en: "bloom", zh: "开花", pos: "v.", example: "Flowers bloom in spring.", exampleZh: "花儿在春天开放。"},
+  {en: "blow", zh: "吹", pos: "v.", example: "The wind blows strongly.", exampleZh: "风刮得很猛。"},
+  {en: "blue", zh: "蓝色的", pos: "adj.", example: "The sky is blue.", exampleZh: "天空是蓝色的。"},
+  {en: "blueberry", zh: "蓝莓", pos: "n.", example: "Blueberries are sweet and healthy.", exampleZh: "蓝莓又甜又健康。"},
+  {en: "blush", zh: "脸红", pos: "v.", example: "She blushes when she speaks.", exampleZh: "她说话时会脸红。"},
+  {en: "board", zh: "板；董事会", pos: "n.", example: "Please pass me the board.", exampleZh: "请把板子递给我。"},
+  {en: "boat", zh: "船", pos: "n.", example: "We go fishing by boat.", exampleZh: "我们乘船去钓鱼。"},
+  {en: "body", zh: "身体", pos: "n.", example: "Exercise is good for your body.", exampleZh: "锻炼对身体好。"},
+  {en: "boil", zh: "煮沸", pos: "v.", example: "Please boil some water.", exampleZh: "请烧一些水。"},
+  {en: "bomb", zh: "炸弹", pos: "n.", example: "The police found a bomb.", exampleZh: "警察发现了一枚炸弹。"},
+  {en: "bone", zh: "骨头", pos: "n.", example: "Dogs like to chew bones.", exampleZh: "狗喜欢啃骨头。"},
+  {en: "bonus", zh: "奖金；额外的", pos: "n.", example: "He got a bonus this month.", exampleZh: "他这个月拿到了奖金。"},
+  {en: "book", zh: "书", pos: "n.", example: "I am reading an interesting book.", exampleZh: "我在读一本有趣的书。"},
+  {en: "bookish", zh: "书呆子气的", pos: "adj.", example: "He is a bookish boy.", exampleZh: "他是一个书呆子气"},
+  {en: "bookstore", zh: "书店", pos: "n.", example: "I bought this book at the bookstore.", exampleZh: "我在书店买了这本书。"},
+  {en: "boring", zh: "无聊的", pos: "adj.", example: "The movie is boring.", exampleZh: "这部电影很无聊。"},
+  {en: "born", zh: "出生的", pos: "v.", example: "I was born in 2010.", exampleZh: "我出生于2010年。"},
+  {en: "borrow", zh: "借入", pos: "v.", example: "Can I borrow your pen?", exampleZh: "我能借你的笔吗？"},
+  {en: "both", zh: "两者都", pos: "pron.", example: "Both of my parents are teachers.", exampleZh: "我的父母都是老师。"},
+  {en: "bottle", zh: "瓶子", pos: "n.", example: "Please pass me the water bottle.", exampleZh: "请把水瓶递给我。"},
+  {en: "bought", zh: "买（过去式）", pos: "v.", example: "I bought a new shirt yesterday.", exampleZh: "我昨天买了一件新衬衫。"},
+  {en: "bow", zh: "弓；鞠躬", pos: "v.", example: "The actor bowed to the audience.", exampleZh: "演员向观众鞠躬。"},
+  {en: "bowl", zh: "碗", pos: "n.", example: "She ate a bowl of rice.", exampleZh: "她吃了一碗米饭。"},
+  {en: "box", zh: "盒子", pos: "n.", example: "There is a box on the table.", exampleZh: "桌子上有一个盒子。"},
+  {en: "boy", zh: "男孩", pos: "n.", example: "The boy is playing soccer.", exampleZh: "男孩在踢足球。"},
+  {en: "brain", zh: "大脑", pos: "n.", example: "Use your brain to solve this problem.", exampleZh: "用你的大脑解决这个问题。"},
+  {en: "brand", zh: "品牌", pos: "n.", example: "This is a famous brand.", exampleZh: "这是一个著名品牌。"},
+  {en: "brave", zh: "勇敢的", pos: "adj.", example: "The brave soldier saved the child.", exampleZh: "勇敢的士兵救了孩子。"},
+  {en: "bread", zh: "面包", pos: "n.", example: "I have bread and milk for breakfast.", exampleZh: "我早餐吃面包和牛奶。"},
+  {en: "break", zh: "打破；休息", pos: "v.", example: "Let's take a break.", exampleZh: "我们休息一下吧。"},
+  {en: "breakfast", zh: "早餐", pos: "n.", example: "I eat eggs for breakfast.", exampleZh: "我早餐吃鸡蛋。"},
+  {en: "breath", zh: "呼吸", pos: "n.", example: "Take a deep breath.", exampleZh: "深呼吸。"},
+  {en: "brick", zh: "砖", pos: "n.", example: "The house is made of bricks.", exampleZh: "房子是砖头建的。"},
+  {en: "bride", zh: "新娘", pos: "n.", example: "The bride looks beautiful.", exampleZh: "新娘看起来很美。"},
+  {en: "bridge", zh: "桥", pos: "n.", example: "We walked across the bridge.", exampleZh: "我们走过桥。"},
+  {en: "brim", zh: "边缘", pos: "n.", example: "The cup is full to the brim.", exampleZh: "杯子满到了边缘。"},
+  {en: "bring", zh: "带来", pos: "v.", example: "Please bring your book tomorrow.", exampleZh: "请明天带上你的书。"},
+  {en: "broken", zh: "破碎的", pos: "adj.", example: "The glass is broken.", exampleZh: "玻璃杯碎了。"},
+  {en: "broom", zh: "扫帚", pos: "n.", example: "She sweeps the floor with a broom.", exampleZh: "她用扫帚扫地。"},
+  {en: "brought", zh: "带来（过去式）", pos: "v.", example: "He brought his friend to school.", exampleZh: "他带朋友来学校了。"},
+  {en: "brown", zh: "棕色的", pos: "adj.", example: "The bear is brown.", exampleZh: "熊是棕色的。"},
+  {en: "brush", zh: "刷子；刷", pos: "n.", example: "I brush my teeth every morning.", exampleZh: "我每天早上刷牙。"},
+  {en: "buck", zh: "雄鹿；美元", pos: "n.", example: "The deer has antlers on its head.", exampleZh: "鹿头上有角。"},
+  {en: "build", zh: "建造", pos: "v.", example: "They build a new house.", exampleZh: "他们建了一栋新房子。"},
+  {en: "bun", zh: "小圆面包", pos: "n.", example: "I ate a bun for breakfast.", exampleZh: "我早餐吃了一个馒头。"},
+  {en: "burn", zh: "燃烧", pos: "v.", example: "Be careful not to burn your hand.", exampleZh: "小心别烫到手。"},
+  {en: "bus", zh: "公共汽车", pos: "n.", example: "I go to school by bus.", exampleZh: "我坐公交车上学。"},
+  {en: "business", zh: "商业；生意", pos: "n.", example: "His business is doing well.", exampleZh: "他的生意做得很好。"},
+  {en: "businessman", zh: "商人", pos: "n.", example: "My uncle is a businessman.", exampleZh: "我叔叔是一名商人。"},
+  {en: "busy", zh: "忙碌的", pos: "adj.", example: "My mother is very busy today.", exampleZh: "我妈妈今天很忙。"},
+  {en: "but", zh: "但是", pos: "conj.", example: "I like apples, but I do not like bananas.", exampleZh: "我喜欢苹果，但不喜欢香蕉。"},
+  {en: "butterfly", zh: "蝴蝶", pos: "n.", example: "A butterfly is flying in the garden.", exampleZh: "一只蝴蝶在花园里飞。"},
+  {en: "buy", zh: "买", pos: "v.", example: "I want to buy a new phone.", exampleZh: "我想买一部新手机。"},
+  {en: "by", zh: "通过；在旁边", pos: "prep.", example: "I go to school by bus every day.", exampleZh: "我每天乘公交车去上学。"},
+  {en: "bye", zh: "再见", pos: "int.", example: "Good bye, see you tomorrow!", exampleZh: "再见，明天见！"},
+  {en: "cake", zh: "蛋糕", pos: "n.", example: "I want to eat cake.", exampleZh: "我想吃蛋糕。"},
+  {en: "call", zh: "打电话；叫", pos: "v.", example: "Please call me tomorrow.", exampleZh: "请明天给我打电话。"},
+  {en: "calm", zh: "平静的", pos: "adj.", example: "Please calm down.", exampleZh: "请冷静下来。"},
+  {en: "came", zh: "来（过去式）", pos: "v.", example: "She came to school early.", exampleZh: "她很早就来学校了。"},
+  {en: "camera", zh: "照相机", pos: "n.", example: "I have a new camera.", exampleZh: "我有一台新相机。"},
+  {en: "camp", zh: "营地；露营", pos: "n.", example: "We go to summer camp.", exampleZh: "我们去夏令营。"},
+  {en: "can", zh: "能；罐头", pos: "modal v.", example: "Can you help me?", exampleZh: "你能帮我吗？"},
+  {en: "candy", zh: "糖果", pos: "n.", example: "Children love candy.", exampleZh: "孩子们喜欢糖果。"},
+  {en: "cannon", zh: "大炮", pos: "n.", example: "The old cannon is in the museum.", exampleZh: "那门旧大炮在博物馆里。"},
+  {en: "canoe", zh: "独木舟", pos: "n.", example: "We row a canoe on the lake.", exampleZh: "我们在湖上划独木舟。"},
+  {en: "capital", zh: "首都；资本", pos: "n.", example: "Beijing is the capital of China.", exampleZh: "北京是中国的首都。"},
+  {en: "capture", zh: "捕获", pos: "v.", example: "The photographer captured a beautiful moment.", exampleZh: "摄影师捕捉到了美好的瞬间。"},
+  {en: "car", zh: "汽车", pos: "n.", example: "My father drives a car.", exampleZh: "我爸爸开一辆车。"},
+  {en: "card", zh: "卡片", pos: "n.", example: "I made a birthday card.", exampleZh: "我做了一张生日卡片。"},
+  {en: "careful", zh: "小心的", pos: "adj.", example: "Be careful when you cross the road.", exampleZh: "过马路时要小心。"},
+  {en: "carrot", zh: "胡萝卜", pos: "n.", example: "Rabbits love carrots.", exampleZh: "兔子喜欢胡萝卜。"},
+  {en: "carry", zh: "搬运；携带", pos: "v.", example: "Can you carry this bag?", exampleZh: "你能提这个袋子吗？"},
+  {en: "castle", zh: "城堡", pos: "n.", example: "We visited a big castle.", exampleZh: "我们参观了一座大城堡。"},
+  {en: "cat", zh: "猫", pos: "n.", example: "The cat is sleeping on the sofa.", exampleZh: "猫在沙发上睡觉。"},
+  {en: "catch", zh: "抓住", pos: "v.", example: "Catch the ball!", exampleZh: "接住球！"},
+  {en: "caught", zh: "抓住（过去式）", pos: "v.", example: "The police caught the thief.", exampleZh: "警察抓住了小偷。"},
+  {en: "cause", zh: "原因；导致", pos: "n.", example: "What is the cause of the problem?", exampleZh: "问题的原因是什么？"},
+  {en: "cautious", zh: "谨慎的", pos: "adj.", example: "Be cautious when walking on ice.", exampleZh: "在冰上行走要小心。"},
+  {en: "cave", zh: "洞穴", pos: "n.", example: "Bats live in the cave.", exampleZh: "蝙蝠住在洞穴里。"},
+  {en: "cent", zh: "分（货币）", pos: "n.", example: "The candy costs fifty cents.", exampleZh: "这颗糖五十美分。"},
+  {en: "chair", zh: "椅子", pos: "n.", example: "Please sit on this chair.", exampleZh: "请坐在这把椅子上。"},
+  {en: "chalk", zh: "粉笔", pos: "n.", example: "The teacher writes with chalk.", exampleZh: "老师用粉笔写字。"},
+  {en: "champagne", zh: "香槟", pos: "n.", example: "We drink champagne to celebrate.", exampleZh: "我们喝香槟庆祝。"},
+  {en: "character", zh: "角色；性格", pos: "n.", example: "She has a strong character.", exampleZh: "她性格很坚强。"},
+  {en: "chart", zh: "图表", pos: "n.", example: "Look at the chart on the wall.", exampleZh: "看墙上的图表。"},
+  {en: "cheap", zh: "便宜的", pos: "adj.", example: "This shirt is cheap.", exampleZh: "这件衬衫很便宜。"},
+  {en: "cheek", zh: "脸颊", pos: "n.", example: "She has rosy cheeks.", exampleZh: "她脸颊红润。"},
+  {en: "cheer", zh: "欢呼", pos: "v.", example: "Let us cheer for our team!", exampleZh: "让我们为我们的队加油！"},
+  {en: "chef", zh: "厨师", pos: "n.", example: "The chef cooks delicious food.", exampleZh: "厨师做美味的食物。"},
+  {en: "cherry", zh: "樱桃", pos: "n.", example: "Cherries are red and sweet.", exampleZh: "樱桃又红又甜。"},
+  {en: "chess", zh: "国际象棋", pos: "n.", example: "I like playing chess.", exampleZh: "我喜欢下棋。"},
+  {en: "chick", zh: "小鸡", pos: "n.", example: "The chick follows its mother.", exampleZh: "小鸡跟着它的妈妈。"},
+  {en: "chicken", zh: "鸡；鸡肉", pos: "n.", example: "I like fried chicken.", exampleZh: "我喜欢炸鸡。"},
+  {en: "child", zh: "孩子", pos: "n.", example: "The child is playing in the park.", exampleZh: "孩子正在公园里玩。"},
+  {en: "childish", zh: "幼稚的", pos: "adj.", example: "Do not be so childish.", exampleZh: "别那么幼稚。"},
+  {en: "chin", zh: "下巴", pos: "n.", example: "He rests his chin on his hand.", exampleZh: "他把手托在下巴上。"},
+  {en: "chip", zh: "薯片；芯片", pos: "n.", example: "I ate a chip from the bag.", exampleZh: "我从袋子里拿了一片薯片吃。"},
+  {en: "chocolate", zh: "巧克力", pos: "n.", example: "I love dark chocolate.", exampleZh: "我喜爱黑巧克力。"},
+  {en: "choice", zh: "选择", pos: "n.", example: "You have a choice to make.", exampleZh: "你需要做一个选择。"},
+  {en: "choose", zh: "选择", pos: "v.", example: "You can choose any book you like.", exampleZh: "你可以选任何你喜欢的书。"},
+  {en: "chop", zh: "砍；切", pos: "v.", example: "Chop the vegetables, please.", exampleZh: "请把蔬菜切碎。"},
+  {en: "chore", zh: "家务；杂事", pos: "n.", example: "Doing chores helps the family.", exampleZh: "做家务有助于家庭。"},
+  {en: "christmas", zh: "圣诞节", pos: "n.", example: "We celebrate Christmas in December.", exampleZh: "我们在十二月庆祝圣诞节。"},
+  {en: "chuck", zh: "扔；抛", pos: "v.", example: "Chuck the ball to me.", exampleZh: "把球扔给我。"},
+  {en: "circle", zh: "圆；圈", pos: "n.", example: "Draw a circle on the paper.", exampleZh: "在纸上画一个圆。"},
+  {en: "city", zh: "城市", pos: "n.", example: "Shanghai is a big city.", exampleZh: "上海是一个大城市。"},
+  {en: "clap", zh: "拍手", pos: "v.", example: "Let us clap for the winner.", exampleZh: "让我们为获胜者鼓掌。"},
+  {en: "class", zh: "班级；课", pos: "n.", example: "Our class has thirty students.", exampleZh: "我们班有三十名学生。"},
+  {en: "classmate", zh: "同学", pos: "n.", example: "She is my classmate.", exampleZh: "她是我的同学。"},
+  {en: "classroom", zh: "教室", pos: "n.", example: "Our classroom is on the second floor.", exampleZh: "我们的教室在二楼。"},
+  {en: "clay", zh: "黏土", pos: "n.", example: "We make animals with clay.", exampleZh: "我们用粘土做动物。"},
+  {en: "clean", zh: "干净的；打扫", pos: "adj.", example: "The classroom is very clean.", exampleZh: "教室很干净。"},
+  {en: "clear", zh: "清楚的", pos: "adj.", example: "The water is clear.", exampleZh: "水很清澈。"},
+  {en: "clerk", zh: "职员", pos: "n.", example: "The clerk helps customers.", exampleZh: "店员帮助顾客。"},
+  {en: "click", zh: "点击", pos: "v.", example: "Click the mouse to open the file.", exampleZh: "点击鼠标打开文件。"},
+  {en: "climb", zh: "攀爬", pos: "v.", example: "Monkeys climb trees very fast.", exampleZh: "猴子爬树很快。"},
+  {en: "clock", zh: "时钟", pos: "n.", example: "The clock says three o'clock.", exampleZh: "钟显示三点了。"},
+  {en: "close", zh: "关闭；近的", pos: "v.", example: "Please close the door.", exampleZh: "请关上门。"},
+  {en: "closed", zh: "关闭的", pos: "adj.", example: "The shop is closed today.", exampleZh: "商店今天关门。"},
+  {en: "clothes", zh: "衣服", pos: "n.", example: "I wash my clothes every weekend.", exampleZh: "我每个周末洗衣服。"},
+  {en: "cloud", zh: "云", pos: "n.", example: "There are white clouds in the sky.", exampleZh: "天空中有白云。"},
+  {en: "clown", zh: "小丑", pos: "n.", example: "The clown makes children laugh.", exampleZh: "小丑让孩子们笑。"},
+  {en: "club", zh: "俱乐部", pos: "n.", example: "He joins the school football club.", exampleZh: "他加入了学校足球俱乐部。"},
+  {en: "clue", zh: "线索", pos: "n.", example: "The police found a clue.", exampleZh: "警察找到了一条线索。"},
+  {en: "coach", zh: "教练", pos: "n.", example: "The coach trains the team every day.", exampleZh: "教练每天训练球队。"},
+  {en: "coat", zh: "外套", pos: "n.", example: "Put on your coat, it is cold outside.", exampleZh: "穿上外套，外面很冷。"},
+  {en: "coconut", zh: "椰子", pos: "n.", example: "Coconut water is sweet.", exampleZh: "椰子水很甜。"},
+  {en: "coffee", zh: "咖啡", pos: "n.", example: "I drink a cup of coffee in the morning.", exampleZh: "我早上喝一杯咖啡。"},
+  {en: "coin", zh: "硬币", pos: "n.", example: "I found a coin on the ground.", exampleZh: "我在地上发现了一枚硬币。"},
+  {en: "cold", zh: "冷的；感冒", pos: "adj.", example: "It is very cold in winter.", exampleZh: "冬天很冷。"},
+  {en: "color", zh: "颜色", pos: "n.", example: "What is your favorite color?", exampleZh: "你最喜欢什么颜色？"},
+  {en: "colorful", zh: "多彩的", pos: "adj.", example: "The garden is colorful in spring.", exampleZh: "春天花园五彩缤纷。"},
+  {en: "comb", zh: "梳子；梳", pos: "n.", example: "I brush my hair with a comb.", exampleZh: "我用梳子梳头。"},
+  {en: "come", zh: "来", pos: "v.", example: "Please come to my birthday party.", exampleZh: "请来参加我的生日聚会。"},
+  {en: "comes", zh: "来（第三人称）", pos: "v.", example: "The bus comes at eight o'clock.", exampleZh: "公交车八点来。"},
+  {en: "comic", zh: "漫画；喜剧的", pos: "n.", example: "I like reading comic books.", exampleZh: "我喜欢看漫画书。"},
+  {en: "contest", zh: "比赛；竞赛", pos: "n.", example: "She won first prize in the contest.", exampleZh: "她在比赛中获得了一等奖。"},
+  {en: "continue", zh: "继续", pos: "v.", example: "Please continue your story.", exampleZh: "请继续你的故事。"},
+  {en: "cool", zh: "凉爽的；酷的", pos: "adj.", example: "The weather is cool today.", exampleZh: "今天天气很凉爽。"},
+  {en: "core", zh: "核心", pos: "n.", example: "An apple core is not sweet.", exampleZh: "苹果核不甜。"},
+  {en: "corn", zh: "玉米", pos: "n.", example: "We eat corn in summer.", exampleZh: "我们夏天吃玉米。"},
+  {en: "cough", zh: "咳嗽", pos: "v.", example: "Cover your mouth when you cough.", exampleZh: "咳嗽时捂住嘴。"},
+  {en: "count", zh: "数；计算", pos: "v.", example: "Count from one to one hundred.", exampleZh: "从一数到一百。"},
+  {en: "countryside", zh: "乡村", pos: "n.", example: "I love the fresh air in the countryside.", exampleZh: "我喜欢乡村的新鲜空气。"},
+  {en: "couple", zh: "一对；夫妻", pos: "n.", example: "The couple walks hand in hand.", exampleZh: "那对夫妇手牵手走路。"},
+  {en: "course", zh: "课程；过程", pos: "n.", example: "Of course, I will help you.", exampleZh: "当然，我会帮你。"},
+  {en: "cousin", zh: "堂/表兄弟姐妹", pos: "n.", example: "My cousin lives in Beijing.", exampleZh: "我的表兄住在北京。"},
+  {en: "cow", zh: "母牛", pos: "n.", example: "The cow gives us milk.", exampleZh: "奶牛给我们牛奶。"},
+  {en: "crab", zh: "螃蟹", pos: "n.", example: "We eat crab at the beach.", exampleZh: "我们在海边吃螃蟹。"},
+  {en: "crayon", zh: "蜡笔", pos: "n.", example: "I draw a picture with crayons.", exampleZh: "我用蜡笔画了一幅画。"},
+  {en: "crazy", zh: "疯狂的", pos: "adj.", example: "You are crazy to go out in this weather.", exampleZh: "这种天气出门你疯了。"},
+  {en: "creator", zh: "创造者", pos: "n.", example: "The creator of this game is very talented.", exampleZh: "这个游戏的创造者很有才华。"},
+  {en: "creature", zh: "生物", pos: "n.", example: "The sea creature swims very fast.", exampleZh: "这种海洋生物游得很快。"},
+  {en: "crew", zh: "船员；团队", pos: "n.", example: "The film crew is ready.", exampleZh: "电影摄制组准备好了。"},
+  {en: "cried", zh: "哭（过去式）", pos: "v.", example: "The baby cried all night.", exampleZh: "宝宝哭了一整夜。"},
+  {en: "crop", zh: "庄稼", pos: "n.", example: "The farmer grows rice crops.", exampleZh: "农民种植水稻作物。"},
+  {en: "cross", zh: "穿过；十字", pos: "v.", example: "Look both ways before you cross the street.", exampleZh: "过马路前两边都要看。"},
+  {en: "crowd", zh: "人群", pos: "n.", example: "A large crowd gathered in the square.", exampleZh: "一大群人聚集在广场上。"},
+  {en: "crown", zh: "王冠", pos: "n.", example: "The king wears a gold crown.", exampleZh: "国王戴着金王冠。"},
+  {en: "crush", zh: "压碎", pos: "v.", example: "Do not crush the empty can.", exampleZh: "别压扁空罐子。"},
+  {en: "cry", zh: "哭；喊", pos: "v.", example: "The little girl cried when she fell.", exampleZh: "小女孩摔倒时哭了。"},
+  {en: "cube", zh: "立方体", pos: "n.", example: "Ice cubes make the drink cold.", exampleZh: "冰块让饮料变冷。"},
+  {en: "culture", zh: "文化", pos: "n.", example: "Chinese culture is very rich.", exampleZh: "中国文化非常丰富。"},
+  {en: "cut", zh: "切；剪", pos: "v.", example: "Be careful not to cut your finger.", exampleZh: "小心别切到手指。"},
+  {en: "cute", zh: "可爱的", pos: "adj.", example: "The baby panda is very cute.", exampleZh: "熊猫宝宝非常可爱。"},
+  {en: "dad", zh: "爸爸", pos: "n.", example: "My dad is a teacher.", exampleZh: "我爸爸是一名老师。"},
+  {en: "damp", zh: "潮湿的", pos: "adj.", example: "The clothes are still damp.", exampleZh: "衣服还是湿的。"},
+  {en: "dance", zh: "跳舞", pos: "v.", example: "She can dance very well.", exampleZh: "她跳舞跳得很好。"},
+  {en: "dancer", zh: "舞者", pos: "n.", example: "The dancer is very graceful.", exampleZh: "舞者非常优雅。"},
+  {en: "danger", zh: "危险", pos: "n.", example: "Be careful! There is danger here.", exampleZh: "小心！这里有危险。"},
+  {en: "dangerous", zh: "危险的", pos: "adj.", example: "It is dangerous to swim alone.", exampleZh: "独自游泳很危险。"},
+  {en: "dark", zh: "黑暗的", pos: "adj.", example: "It gets dark very early in winter.", exampleZh: "冬天天黑得很早。"},
+  {en: "date", zh: "日期；约会", pos: "n.", example: "What is the date today?", exampleZh: "今天几号？"},
+  {en: "daughter", zh: "女儿", pos: "n.", example: "They have one daughter.", exampleZh: "他们有一个女儿。"},
+  {en: "day", zh: "天；白天", pos: "n.", example: "It is a sunny day today.", exampleZh: "今天是个晴朗的日子。"},
+  {en: "dead", zh: "死的", pos: "adj.", example: "The flowers are dead.", exampleZh: "花已经枯死了。"},
+  {en: "deal", zh: "交易；处理", pos: "v.", example: "How do you deal with stress?", exampleZh: "你怎么应对压力？"},
+  {en: "december", zh: "十二月", pos: "n.", example: "Christmas is in December.", exampleZh: "圣诞节在十二月。"},
+  {en: "decide", zh: "决定", pos: "v.", example: "I cannot decide which one to buy.", exampleZh: "我决定不了买哪一个。"},
+  {en: "decision", zh: "决定", pos: "n.", example: "It was a difficult decision.", exampleZh: "那是个艰难的决定。"},
+  {en: "deep", zh: "深的", pos: "adj.", example: "The lake is very deep.", exampleZh: "这个湖很深。"},
+  {en: "deer", zh: "鹿", pos: "n.", example: "We saw a deer in the forest.", exampleZh: "我们在森林里看到了一只鹿。"},
+  {en: "degree", zh: "度；学位", pos: "n.", example: "She has a degree in English.", exampleZh: "她有英语学位。"},
+  {en: "delete", zh: "删除", pos: "v.", example: "Please delete the wrong file.", exampleZh: "请删除错误的文件。"},
+  {en: "delicious", zh: "美味的", pos: "adj.", example: "The cake is delicious.", exampleZh: "蛋糕很好吃。"},
+  {en: "depend", zh: "依靠", pos: "v.", example: "It depends on the weather.", exampleZh: "这取决于天气。"},
+  {en: "describe", zh: "描述", pos: "v.", example: "Can you describe the man?", exampleZh: "你能描述一下那个人吗？"},
+  {en: "desert", zh: "沙漠", pos: "n.", example: "The desert is very dry.", exampleZh: "沙漠非常干燥。"},
+  {en: "desk", zh: "书桌", pos: "n.", example: "There is a book on the desk.", exampleZh: "桌子上有一本书。"},
+  {en: "destroy", zh: "破坏", pos: "v.", example: "The storm destroyed the house.", exampleZh: "暴风雨摧毁了房子。"},
+  {en: "detour", zh: "绕道", pos: "n.", example: "We had to take a detour.", exampleZh: "我们不得不绕道而行。"},
+  {en: "dew", zh: "露水", pos: "n.", example: "The grass is wet with dew.", exampleZh: "草上沾满了露水。"},
+  {en: "did", zh: "做（过去式）", pos: "v.", example: "Did you finish your homework?", exampleZh: "你做完作业了吗？"},
+  {en: "difficult", zh: "困难的", pos: "adj.", example: "Math is difficult for me.", exampleZh: "数学对我来说很难。"},
+  {en: "dig", zh: "挖", pos: "v.", example: "The dog dug a hole in the garden.", exampleZh: "狗在花园里挖了一个洞。"},
+  {en: "dinner", zh: "晚餐", pos: "n.", example: "What do you want for dinner?", exampleZh: "你晚饭想吃什么？"},
+  {en: "discuss", zh: "讨论", pos: "v.", example: "We need to discuss this problem.", exampleZh: "我们需要讨论这个问题。"},
+  {en: "discussion", zh: "讨论", pos: "n.", example: "The discussion was very helpful.", exampleZh: "这次讨论很有帮助。"},
+  {en: "dish", zh: "盘子；菜", pos: "n.", example: "Please wash the dishes.", exampleZh: "请洗碗。"},
+  {en: "division", zh: "除法；分割", pos: "n.", example: "We learned division in math class.", exampleZh: "我们在数学课上学了除法。"},
+  {en: "dog", zh: "狗", pos: "n.", example: "I want to have a dog.", exampleZh: "我想养一只狗。"},
+  {en: "dollar", zh: "美元", pos: "n.", example: "The book costs ten dollars.", exampleZh: "这本书十美元。"},
+  {en: "dolphin", zh: "海豚", pos: "n.", example: "Dolphins are very smart animals.", exampleZh: "海豚是非常聪明的动物。"},
+  {en: "done", zh: "完成的", pos: "adj.", example: "Dinner is done. Let us eat.", exampleZh: "晚饭做好了，我们吃吧。"},
+  {en: "donkey", zh: "驴", pos: "n.", example: "The donkey carries heavy bags.", exampleZh: "驴子驮着很重的袋子。"},
+  {en: "door", zh: "门", pos: "n.", example: "Please open the door.", exampleZh: "请开门。"},
+  {en: "doorbell", zh: "门铃", pos: "n.", example: "Someone is ringing the doorbell.", exampleZh: "有人在按门铃。"},
+  {en: "double", zh: "双倍的", pos: "adj.", example: "I would like a double scoop of ice cream.", exampleZh: "我想要双球冰淇淋。"},
+  {en: "down", zh: "向下", pos: "adv.", example: "Please sit down.", exampleZh: "请坐下。"},
+  {en: "drag", zh: "拖拽", pos: "v.", example: "Do not drag your feet when you walk.", exampleZh: "走路时不要拖着脚。"},
+  {en: "dragon", zh: "龙", pos: "n.", example: "The dragon is a symbol of China.", exampleZh: "龙是中国的象征。"},
+  {en: "drama", zh: "戏剧", pos: "n.", example: "We are going to watch a drama.", exampleZh: "我们要去看一场戏剧。"},
+  {en: "drank", zh: "喝（过去式）", pos: "v.", example: "He drank a glass of water.", exampleZh: "他喝了一杯水。"},
+  {en: "draw", zh: "画；拉", pos: "v.", example: "Please draw a picture for me.", exampleZh: "请为我画一幅画。"},
+  {en: "dream", zh: "梦；梦想", pos: "n.", example: "I had a very strange dream last night.", exampleZh: "我昨晚做了一个很奇怪的梦。"},
+  {en: "dress", zh: "连衣裙；穿衣", pos: "n.", example: "She wore a beautiful dress to the party.", exampleZh: "她穿了一件漂亮的连衣裙去参加聚会。"},
+  {en: "drew", zh: "画（过去式）", pos: "v.", example: "She drew a cat on the paper.", exampleZh: "她在纸上画了一只猫。"},
+  {en: "drill", zh: "钻头；训练", pos: "n.", example: "We have a fire drill every month.", exampleZh: "我们每个月都有消防演习。"},
+  {en: "drink", zh: "喝；饮料", pos: "v.", example: "Would you like something to drink?", exampleZh: "你想喝点什么吗？"},
+  {en: "drive", zh: "开车；驾驶", pos: "v.", example: "My father drives to work every day.", exampleZh: "我爸爸每天开车上班。"},
+  {en: "driver", zh: "司机", pos: "n.", example: "The bus driver is very friendly.", exampleZh: "公交车司机非常友好。"},
+  {en: "drop", zh: "掉落；滴", pos: "v.", example: "Be careful not to drop the glass.", exampleZh: "小心别把玻璃杯摔了。"},
+  {en: "drum", zh: "鼓", pos: "n.", example: "He plays the drum in the school band.", exampleZh: "他在学校乐队里打鼓。"},
+  {en: "drunk", zh: "喝醉的", pos: "adj.", example: "He got drunk at the party.", exampleZh: "他在聚会上喝醉了。"},
+  {en: "duck", zh: "鸭子", pos: "n.", example: "The duck is swimming in the river.", exampleZh: "鸭子在河里游泳。"},
+  {en: "duckling", zh: "小鸭子", pos: "n.", example: "The story is about an ugly duckling.", exampleZh: "这个故事是关于一只丑小鸭的。"},
+  {en: "dumb", zh: "哑的；愚蠢的", pos: "adj.", example: "He was born dumb.", exampleZh: "他天生是哑巴。"},
+  {en: "dump", zh: "倾倒", pos: "v.", example: "Do not dump trash in the river.", exampleZh: "不要把垃圾倾倒在河里。"},
+  {en: "dune", zh: "沙丘", pos: "n.", example: "We climbed to the top of the sand dune.", exampleZh: "我们爬上了沙丘的顶端。"},
+  {en: "each", zh: "每个", pos: "pron.", example: "Each student has a book.", exampleZh: "每个学生都有一本书。"},
+  {en: "ear", zh: "耳朵", pos: "n.", example: "I have two ears.", exampleZh: "我有两只耳朵。"},
+  {en: "earl", zh: "伯爵", pos: "n.", example: "The early bird catches the worm.", exampleZh: "早起的鸟儿有虫吃。"},
+  {en: "early", zh: "早的", pos: "adv.", example: "I get up early every day.", exampleZh: "我每天早起。"},
+  {en: "earn", zh: "赚取", pos: "v.", example: "I want to earn some money.", exampleZh: "我想挣一些钱。"},
+  {en: "easy", zh: "容易的", pos: "adj.", example: "This lesson is easy.", exampleZh: "这一课很容易。"},
+  {en: "eating", zh: "吃（进行时）", pos: "v.", example: "We are eating dinner now.", exampleZh: "我们现在在吃晚饭。"},
+  {en: "editor", zh: "编辑", pos: "n.", example: "She works as an editor.", exampleZh: "她是一名编辑。"},
+  {en: "egg", zh: "鸡蛋", pos: "n.", example: "I had an egg for breakfast.", exampleZh: "我早餐吃了一个鸡蛋。"},
+  {en: "eighteen", zh: "十八", pos: "num.", example: "She is eighteen years old.", exampleZh: "她十八岁了。"},
+  {en: "eighty", zh: "八十", pos: "num.", example: "My grandfather is eighty.", exampleZh: "我爷爷八十岁了。"},
+  {en: "either", zh: "任一；也", pos: "pron.", example: "You can take either one.", exampleZh: "你可以拿其中任何一个。"},
+  {en: "elbow", zh: "肘部", pos: "n.", example: "He hurt his elbow.", exampleZh: "他伤了手肘。"},
+  {en: "electrician", zh: "电工", pos: "n.", example: "We need an electrician to fix the light.", exampleZh: "我们需要电工来修灯。"},
+  {en: "electricity", zh: "电", pos: "n.", example: "The city has no electricity today.", exampleZh: "这座城市今天停电了。"},
+  {en: "elephant", zh: "大象", pos: "n.", example: "The elephant is the largest animal on land.", exampleZh: "大象是陆地上最大的动物。"},
+  {en: "end", zh: "结束；末端", pos: "n.", example: "At the end of the road, turn left.", exampleZh: "在路的尽头左转。"},
+  {en: "ending", zh: "结局", pos: "n.", example: "The movie has a happy ending.", exampleZh: "这部电影有个快乐的结局。"},
+  {en: "energy", zh: "能量；精力", pos: "n.", example: "Children have a lot of energy.", exampleZh: "孩子们精力很充沛。"},
+  {en: "english", zh: "英语", pos: "n.", example: "I am learning English.", exampleZh: "我在学英语。"},
+  {en: "enjoy", zh: "享受", pos: "v.", example: "I enjoy reading books.", exampleZh: "我喜欢看书。"},
+  {en: "enjoying", zh: "享受（进行时）", pos: "v.", example: "He is enjoying his holiday.", exampleZh: "他正在享受假期。"},
+  {en: "enough", zh: "足够的", pos: "adj.", example: "I have enough money.", exampleZh: "我有足够的钱。"},
+  {en: "ensure", zh: "确保", pos: "v.", example: "Please ensure the door is locked.", exampleZh: "请确保门已锁好。"},
+  {en: "envious", zh: "嫉妒的", pos: "adj.", example: "Do not be envious of others.", exampleZh: "不要羡慕别人。"},
+  {en: "eraser", zh: "橡皮擦", pos: "n.", example: "I need an eraser for my pencil.", exampleZh: "我需要一块橡皮擦铅笔字。"},
+  {en: "eve", zh: "前夕", pos: "n.", example: "Christmas Eve is on December 24th.", exampleZh: "平安夜在十二月二十四日。"},
+  {en: "evening", zh: "晚上", pos: "n.", example: "We watch TV in the evening.", exampleZh: "我们晚上看电视。"},
+  {en: "everything", zh: "一切", pos: "pron.", example: "Everything is ready.", exampleZh: "一切准备就绪。"},
+  {en: "everywhere", zh: "到处", pos: "adv.", example: "There are flowers everywhere.", exampleZh: "到处都是花。"},
+  {en: "exact", zh: "精确的", pos: "adj.", example: "What is the exact time?", exampleZh: "确切时间是几点？"},
+  {en: "exam", zh: "考试", pos: "n.", example: "We have an exam next week.", exampleZh: "我们下周有考试。"},
+  {en: "example", zh: "例子", pos: "n.", example: "Can you give me an example?", exampleZh: "你能给我举一个例子吗？"},
+  {en: "excited", zh: "兴奋的", pos: "adj.", example: "I am excited about the trip.", exampleZh: "我对这次旅行很兴奋。"},
+  {en: "excuse", zh: "借口；原谅", pos: "n.", example: "May I be excused?", exampleZh: "我可以离开一下吗？"},
+  {en: "exercise", zh: "锻炼；练习", pos: "n.", example: "Exercise is good for your health.", exampleZh: "锻炼对健康有益。"},
+  {en: "exist", zh: "存在", pos: "v.", example: "Does life exist on Mars?", exampleZh: "火星上有生命存在吗？"},
+  {en: "expansion", zh: "扩展", pos: "n.", example: "The expansion of the city is fast.", exampleZh: "城市的扩张很快。"},
+  {en: "expect", zh: "期望", pos: "v.", example: "I expect to see you tomorrow.", exampleZh: "我期待明天见到你。"},
+  {en: "expensive", zh: "昂贵的", pos: "adj.", example: "This shirt is too expensive.", exampleZh: "这件衬衫太贵了。"},
+  {en: "express", zh: "表达；快递", pos: "v.", example: "Can you express your idea clearly?", exampleZh: "你能清楚地表达你的想法吗？"},
+  {en: "expression", zh: "表达；表情", pos: "n.", example: "Her expression shows happiness.", exampleZh: "她的表情显示着快乐。"},
+  {en: "eye", zh: "眼睛", pos: "n.", example: "She has beautiful eyes.", exampleZh: "她有美丽的眼睛。"},
+  {en: "fable", zh: "寓言", pos: "n.", example: "The fable teaches us a lesson.", exampleZh: "这则寓言给我们一个教训。"},
+  {en: "factory", zh: "工厂", pos: "n.", example: "My father works in a factory.", exampleZh: "我爸爸在一家工厂工作。"},
+  {en: "fair", zh: "公平的；集市", pos: "adj.", example: "The result is fair.", exampleZh: "结果很公平。"},
+  {en: "fall", zh: "落下；秋天", pos: "v.", example: "Leaves fall in autumn.", exampleZh: "秋天树叶落下。"},
+  {en: "false", zh: "错误的；假的", pos: "adj.", example: "This news is false.", exampleZh: "这条消息是假的。"},
+  {en: "fame", zh: "名声", pos: "n.", example: "He became famous for his hard work.", exampleZh: "他因努力工作而出名。"},
+  {en: "family", zh: "家庭", pos: "n.", example: "I have a happy family.", exampleZh: "我有一个幸福的家庭。"},
+  {en: "famous", zh: "著名的", pos: "adj.", example: "He is a famous writer.", exampleZh: "他是一位著名作家。"},
+  {en: "fan", zh: "风扇；粉丝", pos: "n.", example: "I am a fan of basketball.", exampleZh: "我是篮球迷。"},
+  {en: "far", zh: "远的", pos: "adv.", example: "The school is not far from my home.", exampleZh: "学校离我家不远。"},
+  {en: "farm", zh: "农场", pos: "n.", example: "We visited a farm last weekend.", exampleZh: "我们上周末参观了一个农场。"},
+  {en: "fast", zh: "快的", pos: "adj.", example: "He runs very fast.", exampleZh: "他跑得很快。"},
+  {en: "fasten", zh: "系紧", pos: "v.", example: "Please fasten your seat belt.", exampleZh: "请系好安全带。"},
+  {en: "fat", zh: "胖的；脂肪", pos: "adj.", example: "The cat is very fat.", exampleZh: "这只猫很肥。"},
+  {en: "fate", zh: "命运", pos: "n.", example: "No one can escape fate.", exampleZh: "没人能逃脱命运。"},
+  {en: "father", zh: "父亲", pos: "n.", example: "My father is a teacher.", exampleZh: "我爸爸是一名老师。"},
+  {en: "fauld", zh: "围裙甲", pos: "n.", example: "The knight wore armor and a fauld.", exampleZh: "骑士穿着盔甲和护腿甲。"},
+  {en: "fault", zh: "错误；过失", pos: "n.", example: "It is not my fault.", exampleZh: "这不是我的错。"},
+  {en: "favorite", zh: "最喜欢的", pos: "adj.", example: "What is your favorite color?", exampleZh: "你最喜欢什么颜色？"},
+  {en: "fear", zh: "害怕；恐惧", pos: "n.", example: "She has a fear of dogs.", exampleZh: "她怕狗。"},
+  {en: "feat", zh: "壮举", pos: "n.", example: "Climbing the mountain was a great feat.", exampleZh: "爬那座山是一项伟大成就。"},
+  {en: "feature", zh: "特征", pos: "n.", example: "This phone has many new features.", exampleZh: "这部手机有许多新功能。"},
+  {en: "february", zh: "二月", pos: "n.", example: "My birthday is in February.", exampleZh: "我的生日在二月。"},
+  {en: "feed", zh: "喂养", pos: "v.", example: "I feed the cat every morning.", exampleZh: "我每天早上喂猫。"},
+  {en: "felt", zh: "感觉（过去式）", pos: "v.", example: "I felt very happy yesterday.", exampleZh: "我昨天感到很开心。"},
+  {en: "ferry", zh: "渡船", pos: "n.", example: "We took the ferry across the river.", exampleZh: "我们乘渡船过了河。"},
+  {en: "few", zh: "很少的", pos: "adj.", example: "Few people know this secret.", exampleZh: "很少人知道这个秘密。"},
+  {en: "fiction", zh: "小说；虚构", pos: "n.", example: "I like reading science fiction.", exampleZh: "我喜欢读科幻小说。"},
+  {en: "field", zh: "田地；领域", pos: "n.", example: "The farmers are working in the field.", exampleZh: "农民们正在田里干活。"},
+  {en: "fifteen", zh: "十五", pos: "num.", example: "I have fifteen books.", exampleZh: "我有十五本书。"},
+  {en: "fifth", zh: "第五", pos: "num.", example: "She came fifth in the race.", exampleZh: "她在赛跑中得了第五名。"},
+  {en: "fifty", zh: "五十", pos: "num.", example: "My mother is fifty years old.", exampleZh: "我妈妈五十岁了。"},
+  {en: "fight", zh: "打架；战斗", pos: "v.", example: "Do not fight with your brother.", exampleZh: "别和你弟弟打架。"},
+  {en: "filet", zh: "鱼片", pos: "n.", example: "I ordered a filet steak.", exampleZh: "我点了一份菲力牛排。"},
+  {en: "fill", zh: "填满", pos: "v.", example: "Please fill the glass with water.", exampleZh: "请把杯子装满水。"},
+  {en: "film", zh: "电影；胶卷", pos: "n.", example: "We watched a film last night.", exampleZh: "我们昨晚看了一部电影。"},
+  {en: "find", zh: "找到", pos: "v.", example: "I cannot find my keys.", exampleZh: "我找不到我的钥匙。"},
+  {en: "finish", zh: "完成", pos: "v.", example: "Please finish your homework.", exampleZh: "请完成你的作业。"},
+  {en: "fire", zh: "火；解雇", pos: "n.", example: "Fire is very dangerous.", exampleZh: "火很危险。"},
+  {en: "fired", zh: "被解雇的", pos: "v.", example: "He was fired from his job.", exampleZh: "他被解雇了。"},
+  {en: "first", zh: "第一", pos: "num.", example: "This is my first day at school.", exampleZh: "这是我在学校的第一天。"},
+  {en: "fish", zh: "鱼", pos: "n.", example: "I like eating fish.", exampleZh: "我喜欢吃鱼。"},
+  {en: "fishing", zh: "钓鱼", pos: "n.", example: "We went fishing yesterday.", exampleZh: "我们昨天去钓鱼了。"},
+  {en: "fissure", zh: "裂缝", pos: "n.", example: "There is a fissure in the rock.", exampleZh: "岩石上有一条裂缝。"},
+  {en: "fist", zh: "拳头", pos: "n.", example: "He clenched his fist.", exampleZh: "他握紧了拳头。"},
+  {en: "fit", zh: "适合；健康的", pos: "adj.", example: "This shirt does not fit me.", exampleZh: "这件衬衫不合我身。"},
+  {en: "five", zh: "五", pos: "num.", example: "I have five apples.", exampleZh: "我有五个苹果。"},
+  {en: "fixed", zh: "固定的", pos: "adj.", example: "The time is fixed.", exampleZh: "时间是固定的。"},
+  {en: "flag", zh: "旗帜", pos: "n.", example: "The flag is flying in the wind.", exampleZh: "国旗在风中飘扬。"},
+  {en: "flap", zh: "拍打", pos: "v.", example: "The bird flaps its wings.", exampleZh: "鸟儿拍打着翅膀。"},
+  {en: "flash", zh: "闪光", pos: "n.", example: "A flash of lightning lit up the sky.", exampleZh: "一道闪电照亮了天空。"},
+  {en: "flashlight", zh: "手电筒", pos: "n.", example: "I need a flashlight in the dark.", exampleZh: "我在黑暗中需要手电筒。"},
+  {en: "fled", zh: "逃跑（过去式）", pos: "v.", example: "The thief fled from the police.", exampleZh: "小偷从警察那里逃跑了。"},
+  {en: "flee", zh: "逃跑", pos: "v.", example: "They fled when they saw the bear.", exampleZh: "他们看到熊就逃跑了。"},
+  {en: "flew", zh: "飞（过去式）", pos: "v.", example: "The bird flew away.", exampleZh: "鸟儿飞走了。"},
+  {en: "flight", zh: "航班；飞行", pos: "n.", example: "Our flight leaves at ten.", exampleZh: "我们的航班十点起飞。"},
+  {en: "flood", zh: "洪水", pos: "n.", example: "The flood destroyed many houses.", exampleZh: "洪水摧毁了许多房屋。"},
+  {en: "floor", zh: "地板；楼层", pos: "n.", example: "Please sweep the floor.", exampleZh: "请扫地。"},
+  {en: "flour", zh: "面粉", pos: "n.", example: "She uses flour to make bread.", exampleZh: "她用面粉做面包。"},
+  {en: "flower", zh: "花", pos: "n.", example: "The flowers in the garden are beautiful.", exampleZh: "花园里的花很美。"},
+  {en: "flu", zh: "流感", pos: "n.", example: "She caught the flu.", exampleZh: "她得了流感。"},
+  {en: "fly", zh: "飞；苍蝇", pos: "v.", example: "Birds can fly high in the sky.", exampleZh: "鸟儿能在天空高飞。"},
+  {en: "follow", zh: "跟随", pos: "v.", example: "Please follow me.", exampleZh: "请跟着我。"},
+  {en: "foot", zh: "脚；英尺", pos: "n.", example: "My foot hurts.", exampleZh: "我的脚疼。"},
+  {en: "football", zh: "足球", pos: "n.", example: "I like playing football.", exampleZh: "我喜欢踢足球。"},
+  {en: "for", zh: "为了", pos: "prep.", example: "This gift is for you.", exampleZh: "这份礼物是给你的。"},
+  {en: "force", zh: "力量；强迫", pos: "n.", example: "We must use force to open it.", exampleZh: "我们必须用力才能打开它。"},
+  {en: "forehead", zh: "额头", pos: "n.", example: "She has a fever on her forehead.", exampleZh: "她额头发热。"},
+  {en: "forest", zh: "森林", pos: "n.", example: "We walked through the forest.", exampleZh: "我们穿过了森林。"},
+  {en: "forget", zh: "忘记", pos: "v.", example: "I forgot to bring my book.", exampleZh: "我忘记带书了。"},
+  {en: "fork", zh: "叉子", pos: "n.", example: "Please pass me the fork.", exampleZh: "请把叉子递给我。"},
+  {en: "forty", zh: "四十", pos: "num.", example: "There are forty students in our class.", exampleZh: "我们班上有四十名学生。"},
+  {en: "four", zh: "四", pos: "num.", example: "I have four lessons today.", exampleZh: "我今天有四节课。"},
+  {en: "fourth", zh: "第四", pos: "num.", example: "My birthday is on the fourth of May.", exampleZh: "我的生日在五月四日。"},
+  {en: "fox", zh: "狐狸", pos: "n.", example: "The fox is very clever.", exampleZh: "狐狸很聪明。"},
+  {en: "fresh", zh: "新鲜的", pos: "adj.", example: "The air in the mountains is fresh.", exampleZh: "山里的空气很新鲜。"},
+  {en: "friday", zh: "星期五", pos: "n.", example: "We have no school on Friday.", exampleZh: "我们周五不上课。"},
+  {en: "friend", zh: "朋友", pos: "n.", example: "She is my best friend.", exampleZh: "她是我最好的朋友。"},
+  {en: "friendly", zh: "友好的", pos: "adj.", example: "Our teacher is very friendly.", exampleZh: "我们的老师很友好。"},
+  {en: "frog", zh: "青蛙", pos: "n.", example: "The frog can jump very high.", exampleZh: "青蛙能跳得很高。"},
+  {en: "from", zh: "从", pos: "prep.", example: "I am from China.", exampleZh: "我来自中国。"},
+  {en: "front", zh: "前面", pos: "n.", example: "Please come to the front of the class.", exampleZh: "请到课堂前面来。"},
+  {en: "fruit", zh: "水果", pos: "n.", example: "Fruit is good for your health.", exampleZh: "水果对健康有益。"},
+  {en: "fry", zh: "油炸", pos: "v.", example: "She fries eggs for breakfast.", exampleZh: "她早餐煎鸡蛋。"},
+  {en: "fuel", zh: "燃料", pos: "n.", example: "The car needs more fuel.", exampleZh: "这辆车需要更多燃料。"},
+  {en: "full", zh: "满的", pos: "adj.", example: "The bus is full.", exampleZh: "公交车满了。"},
+  {en: "fun", zh: "乐趣", pos: "n.", example: "We had a lot of fun at the party.", exampleZh: "我们在聚会上玩得很开心。"},
+  {en: "furniture", zh: "家具", pos: "n.", example: "We bought new furniture for the house.", exampleZh: "我们给房子买了新家具。"},
+  {en: "future", zh: "未来", pos: "n.", example: "I want to be a doctor in the future.", exampleZh: "我将来想成为一名医生。"},
+  {en: "game", zh: "游戏", pos: "n.", example: "We play games after school.", exampleZh: "我们放学后玩游戏。"},
+  {en: "gate", zh: "大门", pos: "n.", example: "Please close the gate.", exampleZh: "请关上大门。"},
+  {en: "gesture", zh: "手势", pos: "n.", example: "He made a friendly gesture.", exampleZh: "他做了一个友好的手势。"},
+  {en: "get", zh: "得到", pos: "v.", example: "Please get me a glass of water.", exampleZh: "请给我拿一杯水。"},
+  {en: "gift", zh: "礼物", pos: "n.", example: "She gave me a gift.", exampleZh: "她给了我一份礼物。"},
+  {en: "giraffe", zh: "长颈鹿", pos: "n.", example: "The giraffe has a long neck.", exampleZh: "长颈鹿有很长的脖子。"},
+  {en: "girl", zh: "女孩", pos: "n.", example: "The girl is reading a book.", exampleZh: "女孩在看书。"},
+  {en: "girlish", zh: "少女般的", pos: "adj.", example: "She likes girlish clothes.", exampleZh: "她喜欢女孩子气的衣服。"},
+  {en: "give", zh: "给", pos: "v.", example: "Please give me the pen.", exampleZh: "请把笔给我。"},
+  {en: "glad", zh: "高兴的", pos: "adj.", example: "I am glad to see you.", exampleZh: "见到你我很高兴。"},
+  {en: "glass", zh: "玻璃；杯子", pos: "n.", example: "Please pass me a glass.", exampleZh: "请递给我一个玻璃杯。"},
+  {en: "glasses", zh: "眼镜", pos: "n.", example: "I need glasses to read.", exampleZh: "我需要眼镜才能看书。"},
+  {en: "globe", zh: "地球仪", pos: "n.", example: "We use a globe to learn geography.", exampleZh: "我们用地球仪学地理。"},
+  {en: "gloss", zh: "光泽", pos: "n.", example: "The paper has a nice gloss.", exampleZh: "这张纸有漂亮的光泽。"},
+  {en: "glove", zh: "手套", pos: "n.", example: "Wear gloves when it is cold.", exampleZh: "冷的时候戴手套。"},
+  {en: "glow", zh: "发光", pos: "v.", example: "The firefly glows at night.", exampleZh: "萤火虫在夜里发光。"},
+  {en: "glue", zh: "胶水", pos: "n.", example: "We need glue to stick the paper.", exampleZh: "我们需要胶水来粘纸。"},
+  {en: "go", zh: "去", pos: "v.", example: "Let us go to the park.", exampleZh: "我们去公园吧。"},
+  {en: "goal", zh: "目标；进球", pos: "n.", example: "Our goal is to win the game.", exampleZh: "我们的目标是要赢这场比赛。"},
+  {en: "goat", zh: "山羊", pos: "n.", example: "The goat eats grass.", exampleZh: "山羊吃草。"},
+  {en: "god", zh: "上帝", pos: "n.", example: "Many people believe in God.", exampleZh: "很多人相信上帝。"},
+  {en: "goes", zh: "去（第三人称）", pos: "v.", example: "The bus goes at eight.", exampleZh: "公交车八点开。"},
+  {en: "good", zh: "好的", pos: "adj.", example: "You are a good student.", exampleZh: "你是一个好学生。"},
+  {en: "got", zh: "得到（过去式）", pos: "v.", example: "I got an A in the exam.", exampleZh: "我考试得了A。"},
+  {en: "grade", zh: "年级；等级", pos: "n.", example: "I am in the fifth grade.", exampleZh: "我上五年级。"},
+  {en: "grammar", zh: "语法", pos: "n.", example: "We learn grammar in English class.", exampleZh: "我们在英语课上学语法。"},
+  {en: "grand", zh: "宏伟的", pos: "adj.", example: "The building looks grand.", exampleZh: "这栋建筑看起来很宏伟。"},
+  {en: "granddaughter", zh: "孙女", pos: "n.", example: "His granddaughter is very cute.", exampleZh: "他的孙女非常可爱。"},
+  {en: "grandfather", zh: "祖父", pos: "n.", example: "My grandfather tells good stories.", exampleZh: "我爷爷很会讲故事。"},
+  {en: "grandma", zh: "奶奶/外婆", pos: "n.", example: "Grandma makes delicious cakes.", exampleZh: "奶奶做美味的蛋糕。"},
+  {en: "grandmother", zh: "祖母", pos: "n.", example: "My grandmother is eighty years old.", exampleZh: "我奶奶八十岁了。"},
+  {en: "grandpa", zh: "爷爷/外公", pos: "n.", example: "Grandpa takes a walk every day.", exampleZh: "爷爷每天散步。"},
+  {en: "grandson", zh: "孙子", pos: "n.", example: "Her grandson is six years old.", exampleZh: "她的孙子六岁了。"},
+  {en: "grape", zh: "葡萄", pos: "n.", example: "Grapes are purple or green.", exampleZh: "葡萄是紫色或绿色的。"},
+  {en: "grass", zh: "草", pos: "n.", example: "The grass is green.", exampleZh: "草是绿色的。"},
+  {en: "great", zh: "伟大的；极好的", pos: "adj.", example: "China is a great country.", exampleZh: "中国是一个伟大的国家。"},
+  {en: "greatly", zh: "非常地", pos: "adv.", example: "I greatly appreciate your help.", exampleZh: "我非常感谢你的帮助。"},
+  {en: "green", zh: "绿色的", pos: "adj.", example: "The tree leaves are green.", exampleZh: "树叶是绿色的。"},
+  {en: "greet", zh: "问候", pos: "v.", example: "We greet the teacher every morning.", exampleZh: "我们每天早上向老师问好。"},
+  {en: "grew", zh: "生长（过去式）", pos: "v.", example: "The boy grew taller this year.", exampleZh: "男孩今年长高了。"},
+  {en: "grey", zh: "灰色的", pos: "adj.", example: "The sky is grey before the rain.", exampleZh: "下雨前天空是灰色的。"},
+  {en: "group", zh: "组；群", pos: "n.", example: "A group of students is playing.", exampleZh: "一群学生在玩耍。"},
+  {en: "grow", zh: "生长", pos: "v.", example: "Plants grow fast in spring.", exampleZh: "植物在春天长得很快。"},
+  {en: "guess", zh: "猜测", pos: "v.", example: "Can you guess my age?", exampleZh: "你能猜出我的年龄吗？"},
+  {en: "guide", zh: "指导；导游", pos: "n.", example: "We need a guide to visit the museum.", exampleZh: "我们需要导游来参观博物馆。"},
+  {en: "guilt", zh: "内疚", pos: "n.", example: "He felt guilt after breaking the window.", exampleZh: "他打碎玻璃后感到内疚。"},
+  {en: "guitar", zh: "吉他", pos: "n.", example: "She plays the guitar very well.", exampleZh: "她吉他弹得很好。"},
+  {en: "gush", zh: "涌出", pos: "v.", example: "Water gushed out of the pipe.", exampleZh: "水从管子里涌了出来。"},
+  {en: "gym", zh: "体育馆", pos: "n.", example: "We have gym class on Monday.", exampleZh: "我们周一有体育课。"},
+  {en: "habit", zh: "习惯", pos: "n.", example: "Reading is a good habit.", exampleZh: "阅读是一个好习惯。"},
+  {en: "had", zh: "有（过去式）", pos: "v.", example: "I had a cat before.", exampleZh: "我以前养过一只猫。"},
+  {en: "hairbrush", zh: "发刷", pos: "n.", example: "I brush my hair with a hairbrush.", exampleZh: "我用发刷梳头。"},
+  {en: "half", zh: "一半", pos: "n.", example: "Half of the students are boys.", exampleZh: "一半的学生是男孩。"},
+  {en: "hamburger", zh: "汉堡包", pos: "n.", example: "I ate a hamburger for lunch.", exampleZh: "我午餐吃了一个汉堡。"},
+  {en: "hand", zh: "手", pos: "n.", example: "Please raise your hand.", exampleZh: "请举手。"},
+  {en: "handball", zh: "手球", pos: "n.", example: "We play handball in PE class.", exampleZh: "我们体育课打手球。"},
+  {en: "hard", zh: "困难的；硬的", pos: "adj.", example: "The exam is hard.", exampleZh: "考试很难。"},
+  {en: "hare", zh: "野兔", pos: "n.", example: "The hare runs faster than the tortoise.", exampleZh: "兔子跑得比乌龟快。"},
+  {en: "harmful", zh: "有害的", pos: "adj.", example: "Smoking is harmful to your health.", exampleZh: "吸烟对健康有害。"},
+  {en: "hat", zh: "帽子", pos: "n.", example: "She wears a red hat.", exampleZh: "她戴着一顶红帽子。"},
+  {en: "hate", zh: "讨厌", pos: "v.", example: "I hate getting up early.", exampleZh: "我讨厌早起。"},
+  {en: "haul", zh: "拖；拉", pos: "v.", example: "They haul the net onto the boat.", exampleZh: "他们把网拉上船。"},
+  {en: "hauld", zh: "拖拉", pos: "v.", example: "The ship hauld in the anchor.", exampleZh: "船拉起了锚。"},
+  {en: "have", zh: "有", pos: "v.", example: "I have a new bicycle.", exampleZh: "我有一辆新自行车。"},
+  {en: "hawk", zh: "鹰", pos: "n.", example: "A hawk is flying in the sky.", exampleZh: "一只鹰在天空飞翔。"},
+  {en: "he", zh: "他", pos: "pron.", example: "He is my best friend.", exampleZh: "他是我最好的朋友。"},
+  {en: "head", zh: "头", pos: "n.", example: "Nod your head if you agree.", exampleZh: "同意就点头。"},
+  {en: "health", zh: "健康", pos: "n.", example: "Health is more important than money.", exampleZh: "健康比金钱更重要。"},
+  {en: "hear", zh: "听到", pos: "v.", example: "I can hear the birds singing.", exampleZh: "我能听到鸟儿在唱歌。"},
+  {en: "heat", zh: "热量；加热", pos: "n.", example: "The heat in summer is strong.", exampleZh: "夏天的热度很强。"},
+  {en: "heed", zh: "注意；留心", pos: "v.", example: "Please heed the teacher's advice.", exampleZh: "请注意老师的建议。"},
+  {en: "heir", zh: "继承人", pos: "n.", example: "The heir inherited the house.", exampleZh: "继承人继承了这栋房子。"},
+  {en: "hello", zh: "你好", pos: "int.", example: "Hello! How are you today?", exampleZh: "你好！你今天好吗？"},
+  {en: "help", zh: "帮助", pos: "v.", example: "Can you help me with my homework?", exampleZh: "你能帮我做作业吗？"},
+  {en: "helpful", zh: "有帮助的", pos: "adj.", example: "You are very helpful.", exampleZh: "你非常乐于助人。"},
+  {en: "hen", zh: "母鸡", pos: "n.", example: "The hen lays eggs every day.", exampleZh: "母鸡每天下蛋。"},
+  {en: "her", zh: "她的", pos: "pron.", example: "This is her book.", exampleZh: "这是她的书。"},
+  {en: "here", zh: "这里", pos: "adv.", example: "Come here, please.", exampleZh: "请过来。"},
+  {en: "hey", zh: "嘿", pos: "int.", example: "Hey! Wait for me!", exampleZh: "嘿！等等我！"},
+  {en: "hide", zh: "隐藏", pos: "v.", example: "The cat hides under the bed.", exampleZh: "猫躲在床底下。"},
+  {en: "high", zh: "高的", pos: "adj.", example: "The mountain is very high.", exampleZh: "这座山很高。"},
+  {en: "hill", zh: "小山", pos: "n.", example: "We climbed to the top of the hill.", exampleZh: "我们爬到了山顶。"},
+  {en: "him", zh: "他（宾格）", pos: "pron.", example: "I told him the news.", exampleZh: "我把消息告诉了他。"},
+  {en: "hip", zh: "臀部", pos: "n.", example: "She has a pain in her hip.", exampleZh: "她髋部疼痛。"},
+  {en: "hire", zh: "雇用", pos: "v.", example: "They hired a new teacher.", exampleZh: "他们雇了一名新老师。"},
+  {en: "his", zh: "他的", pos: "pron.", example: "This is his pen.", exampleZh: "这是他的笔。"},
+  {en: "hit", zh: "打；击中", pos: "v.", example: "Don't hit your brother.", exampleZh: "别打你弟弟。"},
+  {en: "hobby", zh: "爱好", pos: "n.", example: "My hobby is playing the piano.", exampleZh: "我的爱好是弹钢琴。"},
+  {en: "hockey", zh: "曲棍球", pos: "n.", example: "We watch a hockey game on TV.", exampleZh: "我们在电视上看曲棍球比赛。"},
+  {en: "hold", zh: "握住；举行", pos: "v.", example: "Please hold the door open.", exampleZh: "请拉住门别关。"},
+  {en: "hole", zh: "洞", pos: "n.", example: "There is a hole in my sock.", exampleZh: "我的袜子上有个洞。"},
+  {en: "holiday", zh: "假日", pos: "n.", example: "We travel during the holiday.", exampleZh: "我们假期去旅行。"},
+  {en: "home", zh: "家", pos: "n.", example: "I go home at five o'clock.", exampleZh: "我五点回家。"},
+  {en: "homework", zh: "家庭作业", pos: "n.", example: "I do my homework after dinner.", exampleZh: "我晚饭后做作业。"},
+  {en: "honest", zh: "诚实的", pos: "adj.", example: "He is an honest boy.", exampleZh: "他是一个诚实的男孩。"},
+  {en: "honey", zh: "蜂蜜", pos: "n.", example: "Honey is sweet.", exampleZh: "蜂蜜是甜的。"},
+  {en: "honor", zh: "荣誉", pos: "n.", example: "It is an honor to meet you.", exampleZh: "见到你是我的荣幸。"},
+  {en: "hopeful", zh: "有希望的", pos: "adj.", example: "I am hopeful about the future.", exampleZh: "我对未来充满希望。"},
+  {en: "horse", zh: "马", pos: "n.", example: "The horse runs very fast.", exampleZh: "马跑得很快。"},
+  {en: "host", zh: "主人；主持", pos: "n.", example: "Our host is very friendly.", exampleZh: "我们的主人非常友好。"},
+  {en: "hot", zh: "热的", pos: "adj.", example: "The weather is very hot in July.", exampleZh: "七月天气很热。"},
+  {en: "hotel", zh: "旅馆", pos: "n.", example: "We stay at a hotel near the station.", exampleZh: "我们住在车站附近的一家酒店。"},
+  {en: "hour", zh: "小时", pos: "n.", example: "The meeting lasts one hour.", exampleZh: "会议持续一个小时。"},
+  {en: "house", zh: "房子", pos: "n.", example: "They live in a big house.", exampleZh: "他们住在一栋大房子里。"},
+  {en: "how", zh: "怎样", pos: "adv.", example: "How old are you?", exampleZh: "你多大了？"},
+  {en: "huge", zh: "巨大的", pos: "adj.", example: "The whale is a huge animal.", exampleZh: "鲸鱼是巨大的动物。"},
+  {en: "human", zh: "人类的", pos: "n.", example: "Humans are intelligent animals.", exampleZh: "人类是聪明的动物。"},
+  {en: "humorous", zh: "幽默的", pos: "adj.", example: "He is a humorous teacher.", exampleZh: "他是一位幽默的老师。"},
+  {en: "hundred", zh: "百", pos: "num.", example: "The school has five hundred students.", exampleZh: "这所学校有五百名学生。"},
+  {en: "hungry", zh: "饥饿的", pos: "adj.", example: "I am very hungry. Let's eat.", exampleZh: "我很饿，我们吃饭吧。"},
+  {en: "hurt", zh: "伤害；受伤", pos: "v.", example: "Be careful not to hurt yourself.", exampleZh: "小心别伤到自己。"},
+  {en: "if", zh: "如果", pos: "conj.", example: "If it rains, we will stay home.", exampleZh: "如果下雨，我们就呆在家。"},
+  {en: "ill", zh: "生病的", pos: "adj.", example: "She is ill. She needs rest.", exampleZh: "她生病了，需要休息。"},
+  {en: "in", zh: "在……里面", pos: "prep.", example: "He is in the classroom.", exampleZh: "他在教室里。"},
+  {en: "ink", zh: "墨水", pos: "n.", example: "The pen has blue ink.", exampleZh: "这支笔有蓝色墨水。"},
+  {en: "insect", zh: "昆虫", pos: "n.", example: "Butterflies are beautiful insects.", exampleZh: "蝴蝶是美丽的昆虫。"},
+  {en: "insure", zh: "投保", pos: "v.", example: "You should insure your car.", exampleZh: "你应该给车买保险。"},
+  {en: "into", zh: "进入", pos: "prep.", example: "Come into the room, please.", exampleZh: "请进房间来。"},
+  {en: "invent", zh: "发明", pos: "v.", example: "Edison invented the light bulb.", exampleZh: "爱迪生发明了电灯泡。"},
+  {en: "invention", zh: "发明", pos: "n.", example: "The telephone is a great invention.", exampleZh: "电话是一项伟大的发明。"},
+  {en: "is", zh: "是", pos: "v.", example: "This is my friend.", exampleZh: "这是我的朋友。"},
+  {en: "it", zh: "它", pos: "pron.", example: "It is a nice day today.", exampleZh: "今天天气很好。"},
+  {en: "its", zh: "它的", pos: "pron.", example: "The dog wagged its tail.", exampleZh: "狗摇了摇它的尾巴。"},
+  {en: "jacket", zh: "夹克", pos: "n.", example: "Put on your jacket, it is cold.", exampleZh: "穿上你的夹克，很冷。"},
+  {en: "jam", zh: "果酱；堵塞", pos: "n.", example: "I am stuck in a traffic jam.", exampleZh: "我堵车了。"},
+  {en: "january", zh: "一月", pos: "n.", example: "January is the first month.", exampleZh: "一月是第一个月。"},
+  {en: "jaw", zh: "下巴", pos: "n.", example: "The dentist examined my jaw.", exampleZh: "牙医检查了我的下巴。"},
+  {en: "jeep", zh: "吉普车", pos: "n.", example: "We drove to the mountains in a jeep.", exampleZh: "我们开吉普车去山里。"},
+  {en: "jet", zh: "喷气式飞机", pos: "n.", example: "The jet flew across the sky.", exampleZh: "喷气式飞机飞过天空。"},
+  {en: "jill", zh: "吉尔（人名）", pos: "n.", example: "Jill and Jack went up the hill.", exampleZh: "吉尔和杰克一起上山。"},
+  {en: "job", zh: "工作", pos: "n.", example: "I have a part-time job.", exampleZh: "我有一份兼职工作。"},
+  {en: "jog", zh: "慢跑", pos: "v.", example: "I jog in the park every morning.", exampleZh: "我每天早上在公园慢跑。"},
+  {en: "join", zh: "加入", pos: "v.", example: "Can I join your game?", exampleZh: "我能加入你们的游戏吗？"},
+  {en: "joke", zh: "笑话", pos: "n.", example: "He told a funny joke.", exampleZh: "他讲了一个好笑的笑话。"},
+  {en: "journey", zh: "旅程", pos: "n.", example: "The journey took three hours.", exampleZh: "旅程花了三小时。"},
+  {en: "joy", zh: "快乐", pos: "n.", example: "We wish you joy and happiness.", exampleZh: "我们祝你快乐和幸福。"},
+  {en: "juice", zh: "果汁", pos: "n.", example: "Orange juice is my favorite.", exampleZh: "橙汁是我最喜欢的。"},
+  {en: "juicy", zh: "多汁的", pos: "adj.", example: "The watermelon is sweet and juicy.", exampleZh: "西瓜又甜又多汁。"},
+  {en: "july", zh: "七月", pos: "n.", example: "July is usually very hot.", exampleZh: "七月通常很热。"},
+  {en: "jump", zh: "跳", pos: "v.", example: "The horse can jump very high.", exampleZh: "马能跳得很高。"},
+  {en: "june", zh: "六月", pos: "n.", example: "School ends in June.", exampleZh: "学校六月放假。"},
+  {en: "junior", zh: "初级的", pos: "adj.", example: "He is a junior student.", exampleZh: "他是初中学生。"},
+  {en: "junk", zh: "垃圾", pos: "n.", example: "Throw away that old junk.", exampleZh: "扔掉那些旧垃圾。"},
+  {en: "just", zh: "刚刚；只是", pos: "adv.", example: "I just arrived home.", exampleZh: "我刚到家。"},
+  {en: "kangaroo", zh: "袋鼠", pos: "n.", example: "The kangaroo jumps very high.", exampleZh: "袋鼠跳得很高。"},
+  {en: "keen", zh: "热衷的", pos: "adj.", example: "She is keen on music.", exampleZh: "她热爱音乐。"},
+  {en: "keep", zh: "保持", pos: "v.", example: "Keep your room clean.", exampleZh: "保持你的房间干净。"},
+  {en: "key", zh: "钥匙；关键", pos: "n.", example: "I lost my key.", exampleZh: "我丢了钥匙。"},
+  {en: "kill", zh: "杀死", pos: "v.", example: "Do not kill animals.", exampleZh: "不要杀动物。"},
+  {en: "kin", zh: "亲属", pos: "n.", example: "We are next of kin.", exampleZh: "我们是近亲。"},
+  {en: "kind", zh: "善良的；种类", pos: "adj.", example: "She is a kind person.", exampleZh: "她是一个善良的人。"},
+  {en: "king", zh: "国王", pos: "n.", example: "The king lives in the palace.", exampleZh: "国王住在宫殿里。"},
+  {en: "kiss", zh: "亲吻", pos: "v.", example: "She kissed her mother.", exampleZh: "她吻了她的妈妈。"},
+  {en: "kit", zh: "工具包", pos: "n.", example: "The baby needs a new kit.", exampleZh: "宝宝需要一套新用具。"},
+  {en: "kitchen", zh: "厨房", pos: "n.", example: "Mom is cooking in the kitchen.", exampleZh: "妈妈在厨房做饭。"},
+  {en: "kite", zh: "风筝", pos: "n.", example: "I fly a kite in the park.", exampleZh: "我在公园放风筝。"},
+  {en: "kitten", zh: "小猫", pos: "n.", example: "The kitten is very cute.", exampleZh: "小猫咪非常可爱。"},
+  {en: "knack", zh: "诀窍", pos: "n.", example: "He has a knack for music.", exampleZh: "他有音乐天赋。"},
+  {en: "knee", zh: "膝盖", pos: "n.", example: "I hurt my knee.", exampleZh: "我伤了膝盖。"},
+  {en: "kneel", zh: "跪下", pos: "v.", example: "She kneels to pray.", exampleZh: "她跪下祈祷。"},
+  {en: "knife", zh: "刀", pos: "n.", example: "Be careful with the knife.", exampleZh: "小心用刀。"},
+  {en: "knight", zh: "骑士", pos: "n.", example: "The knight rode a horse.", exampleZh: "骑士骑着马。"},
+  {en: "knit", zh: "编织", pos: "v.", example: "Grandma knits a sweater.", exampleZh: "奶奶在织毛衣。"},
+  {en: "knock", zh: "敲", pos: "v.", example: "Please knock on the door.", exampleZh: "请敲门。"},
+  {en: "knoll", zh: "小丘", pos: "n.", example: "We sat on the grassy knoll.", exampleZh: "我们坐在小草丘上。"},
+  {en: "knot", zh: "结", pos: "n.", example: "Tie a knot in the rope.", exampleZh: "在绳子上打一个结。"},
+  {en: "know", zh: "知道", pos: "v.", example: "I know the answer.", exampleZh: "我知道答案。"},
+  {en: "knowledge", zh: "知识", pos: "n.", example: "Knowledge is power.", exampleZh: "知识就是力量。"},
+  {en: "known", zh: "已知的", pos: "adj.", example: "He is known for his kindness.", exampleZh: "他以善良而闻名。"},
+  {en: "lady", zh: "女士", pos: "n.", example: "The lady is reading a book.", exampleZh: "那位女士在看书。"},
+  {en: "lake", zh: "湖", pos: "n.", example: "We swam in the lake.", exampleZh: "我们在湖里游泳。"},
+  {en: "lamb", zh: "羊羔", pos: "n.", example: "The lamb follows its mother.", exampleZh: "小羊跟着它的妈妈。"},
+  {en: "lamp", zh: "灯", pos: "n.", example: "Please turn on the lamp.", exampleZh: "请打开灯。"},
+  {en: "land", zh: "陆地；着陆", pos: "n.", example: "The plane landed on the land.", exampleZh: "飞机降落在陆地上。"},
+  {en: "large", zh: "大的", pos: "adj.", example: "The school is very large.", exampleZh: "学校非常大。"},
+  {en: "last", zh: "最后的；持续", pos: "adj.", example: "This is my last chance.", exampleZh: "这是我最后的机会。"},
+  {en: "late", zh: "迟的", pos: "adj.", example: "He is always late for school.", exampleZh: "他上学总是迟到。"},
+  {en: "law", zh: "法律", pos: "n.", example: "We must obey the law.", exampleZh: "我们必须遵守法律。"},
+  {en: "lead", zh: "领导；铅", pos: "v.", example: "Please lead the way.", exampleZh: "请带路。"},
+  {en: "leak", zh: "泄漏", pos: "v.", example: "The roof leaks when it rains.", exampleZh: "下雨时屋顶漏雨。"},
+  {en: "learn", zh: "学习", pos: "v.", example: "I want to learn English.", exampleZh: "我想学英语。"},
+  {en: "learning", zh: "学习", pos: "n.", example: "Learning is a lifelong journey.", exampleZh: "学习是一生的旅程。"},
+  {en: "leave", zh: "离开", pos: "v.", example: "What time do you leave home?", exampleZh: "你几点离开家？"},
+  {en: "lecture", zh: "讲座", pos: "n.", example: "We listened to a lecture.", exampleZh: "我们听了一场讲座。"},
+  {en: "left", zh: "左边；离开（过去式）", pos: "adj.", example: "Turn left at the corner.", exampleZh: "在拐角处左转。"},
+  {en: "leg", zh: "腿", pos: "n.", example: "My leg hurts.", exampleZh: "我的腿疼。"},
+  {en: "leisure", zh: "休闲", pos: "n.", example: "I read books at leisure.", exampleZh: "我闲暇时看书。"},
+  {en: "lend", zh: "借出", pos: "v.", example: "Can you lend me your pen?", exampleZh: "你能借我你的笔吗？"},
+  {en: "lesson", zh: "课；教训", pos: "n.", example: "Our first lesson is English.", exampleZh: "我们的第一节课是英语。"},
+  {en: "let", zh: "让", pos: "v.", example: "Let me help you.", exampleZh: "让我帮你。"},
+  {en: "level", zh: "水平；级别", pos: "n.", example: "The water level is rising.", exampleZh: "水位在上升。"},
+  {en: "liar", zh: "骗子", pos: "n.", example: "Do not tell lies.", exampleZh: "不要说谎。"},
+  {en: "lick", zh: "舔", pos: "v.", example: "The dog licked its owner's hand.", exampleZh: "狗舔了主人的手。"},
+  {en: "lid", zh: "盖子", pos: "n.", example: "Put the lid on the pot.", exampleZh: "把盖子盖在锅上。"},
+  {en: "lie", zh: "躺；说谎", pos: "v.", example: "Do not lie to your parents.", exampleZh: "不要对你的父母说谎。"},
+  {en: "light", zh: "光；轻的", pos: "n.", example: "Please turn on the light.", exampleZh: "请开灯。"},
+  {en: "lightning", zh: "闪电", pos: "n.", example: "Lightning is very dangerous.", exampleZh: "闪电非常危险。"},
+  {en: "like", zh: "喜欢；像", pos: "v.", example: "I like playing basketball.", exampleZh: "我喜欢打篮球。"},
+  {en: "limb", zh: "肢体；树枝", pos: "n.", example: "He broke a limb while climbing.", exampleZh: "他爬树时折断了一根树枝。"},
+  {en: "line", zh: "线；排", pos: "n.", example: "Draw a straight line.", exampleZh: "画一条直线。"},
+  {en: "lip", zh: "嘴唇", pos: "n.", example: "She put lipstick on her lips.", exampleZh: "她把口红涂在嘴唇上。"},
+  {en: "list", zh: "列表；清单", pos: "n.", example: "Please make a list of things to buy.", exampleZh: "请列一个购物清单。"},
+  {en: "listen", zh: "听", pos: "v.", example: "Please listen to the teacher.", exampleZh: "请听老师讲课。"},
+  {en: "little", zh: "小的；少的", pos: "adj.", example: "The little girl is cute.", exampleZh: "小女孩很可爱。"},
+  {en: "live", zh: "住；活的", pos: "v.", example: "I live in Beijing.", exampleZh: "我住在北京。"},
+  {en: "lively", zh: "活泼的", pos: "adj.", example: "The class is very lively.", exampleZh: "课堂非常活跃。"},
+  {en: "locate", zh: "定位", pos: "v.", example: "Can you locate the school on the map?", exampleZh: "你能在地图上找到学校吗？"},
+  {en: "location", zh: "位置", pos: "n.", example: "The location of the hotel is good.", exampleZh: "酒店的位置很好。"},
+  {en: "lock", zh: "锁", pos: "n.", example: "Put a lock on your bicycle.", exampleZh: "给你的自行车上一把锁。"},
+  {en: "log", zh: "原木；日志", pos: "n.", example: "They sat on a log by the fire.", exampleZh: "他们坐在火边的原木上。"},
+  {en: "long", zh: "长的", pos: "adj.", example: "The Great Wall is very long.", exampleZh: "长城非常长。"},
+  {en: "look", zh: "看", pos: "v.", example: "You look very happy today.", exampleZh: "你今天看起来很开心。"},
+  {en: "looking", zh: "看（进行时）", pos: "v.", example: "He is looking for his keys.", exampleZh: "他在找他的钥匙。"},
+  {en: "lose", zh: "丢失；输", pos: "v.", example: "I do not want to lose the game.", exampleZh: "我不想输掉比赛。"},
+  {en: "losing", zh: "失去（进行时）", pos: "v.", example: "They are losing the match.", exampleZh: "他们正在输掉比赛。"},
+  {en: "lost", zh: "丢失的", pos: "adj.", example: "I am lost. Where is the station?", exampleZh: "我迷路了，车站在哪里？"},
+  {en: "lot", zh: "许多", pos: "n.", example: "There are a lot of people in the park.", exampleZh: "公园里有很多人。"},
+  {en: "lotus", zh: "莲花", pos: "n.", example: "The lotus flower is beautiful.", exampleZh: "荷花很美。"},
+  {en: "loud", zh: "大声的", pos: "adj.", example: "Please do not speak so loud.", exampleZh: "请别这么大声说话。"},
+  {en: "love", zh: "爱", pos: "v.", example: "I love my family.", exampleZh: "我爱我的家庭。"},
+  {en: "low", zh: "低的", pos: "adj.", example: "The price is very low.", exampleZh: "价格很低。"},
+  {en: "loyal", zh: "忠诚的", pos: "adj.", example: "A dog is a loyal animal.", exampleZh: "狗是忠诚的动物。"},
+  {en: "luck", zh: "运气", pos: "n.", example: "Good luck with your exam!", exampleZh: "祝你考试好运！"},
+  {en: "lucky", zh: "幸运的", pos: "adj.", example: "You are a lucky person.", exampleZh: "你是一个幸运的人。"},
+  {en: "lump", zh: "块；肿块", pos: "n.", example: "There is a lump in my pocket.", exampleZh: "我的口袋里有一块糖。"},
+  {en: "lunar", zh: "月亮的", pos: "adj.", example: "The Lunar New Year is in January or February.", exampleZh: "农历新年在一月或二月。"},
+  {en: "lush", zh: "茂盛的", pos: "adj.", example: "The garden is lush and green.", exampleZh: "花园郁郁葱葱。"},
+  {en: "machine", zh: "机器", pos: "n.", example: "The machine makes clothes.", exampleZh: "这台机器生产衣服。"},
+  {en: "mad", zh: "疯狂的；生气的", pos: "adj.", example: "The dog went mad.", exampleZh: "狗疯了。"},
+  {en: "made", zh: "制作（过去式）", pos: "v.", example: "She made a cake for me.", exampleZh: "她为我做了一个蛋糕。"},
+  {en: "magazine", zh: "杂志", pos: "n.", example: "I read a magazine on the train.", exampleZh: "我在火车上看了一本杂志。"},
+  {en: "magic", zh: "魔法", pos: "n.", example: "The magic show is amazing.", exampleZh: "魔术表演太神奇了。"},
+  {en: "magician", zh: "魔术师", pos: "n.", example: "The magician pulled a rabbit out of the hat.", exampleZh: "魔术师从帽子里变出了一只兔子。"},
+  {en: "mail", zh: "邮件", pos: "n.", example: "The mail arrives at nine.", exampleZh: "邮件九点到达。"},
+  {en: "mailed", zh: "邮寄的", pos: "v.", example: "I mailed the letter yesterday.", exampleZh: "我昨天寄了信。"},
+  {en: "make", zh: "制作；使", pos: "v.", example: "Please make a decision.", exampleZh: "请做一个决定。"},
+  {en: "mall", zh: "购物中心", pos: "n.", example: "We went to the shopping mall.", exampleZh: "我们去了购物中心。"},
+  {en: "man", zh: "男人", pos: "n.", example: "The old man is walking slowly.", exampleZh: "老人慢慢地走着。"},
+  {en: "mannish", zh: "男子气的", pos: "adj.", example: "She has a mannish haircut.", exampleZh: "她留着男生式的短发。"},
+  {en: "mansion", zh: "豪宅", pos: "n.", example: "They live in a big mansion.", exampleZh: "他们住在一栋大宅里。"},
+  {en: "many", zh: "许多", pos: "adj.", example: "How many students are there?", exampleZh: "有多少学生？"},
+  {en: "march", zh: "三月；行进", pos: "n.", example: "The band marched in the parade.", exampleZh: "乐队在游行中行进。"},
+  {en: "mark", zh: "标记；分数", pos: "n.", example: "Please put a mark here.", exampleZh: "请在这里做一个标记。"},
+  {en: "market", zh: "市场", pos: "n.", example: "We buy vegetables at the market.", exampleZh: "我们在市场买蔬菜。"},
+  {en: "mat", zh: "垫子", pos: "n.", example: "Put the plate on the mat.", exampleZh: "把盘子放在垫子上。"},
+  {en: "match", zh: "比赛；匹配", pos: "n.", example: "We watched a football match.", exampleZh: "我们看了一场足球比赛。"},
+  {en: "math", zh: "数学", pos: "n.", example: "Math is my favorite subject.", exampleZh: "数学是我最喜欢的科目。"},
+  {en: "matter", zh: "事情；物质", pos: "n.", example: "What is the matter with you?", exampleZh: "你怎么了？"},
+  {en: "may", zh: "可以；五月", pos: "modal v.", example: "May I come in?", exampleZh: "我可以进来吗？"},
+  {en: "me", zh: "我（宾格）", pos: "pron.", example: "Please give me the book.", exampleZh: "请把书给我。"},
+  {en: "meet", zh: "遇见", pos: "v.", example: "Let us meet at the school gate.", exampleZh: "我们在校门口见面吧。"},
+  {en: "meeting", zh: "会议", pos: "n.", example: "We have a meeting every Monday.", exampleZh: "我们每周一开会。"},
+  {en: "men", zh: "男人们", pos: "n.", example: "The men are working in the field.", exampleZh: "男人们正在田里干活。"},
+  {en: "mend", zh: "修补", pos: "v.", example: "Please mend the broken chair.", exampleZh: "请修理坏掉的椅子。"},
+  {en: "mention", zh: "提到", pos: "v.", example: "Do not mention it to anyone.", exampleZh: "别对任何人提起这件事。"},
+  {en: "mess", zh: "混乱", pos: "n.", example: "Your room is a mess.", exampleZh: "你的房间一团糟。"},
+  {en: "meter", zh: "米；仪表", pos: "n.", example: "The taxi meter shows fifty yuan.", exampleZh: "出租车计价器显示五十元。"},
+  {en: "midnight", zh: "午夜", pos: "n.", example: "We went to bed at midnight.", exampleZh: "我们半夜才睡觉。"},
+  {en: "milk", zh: "牛奶", pos: "n.", example: "I drink a glass of milk every morning.", exampleZh: "我每天早上喝一杯牛奶。"},
+  {en: "mill", zh: "磨坊", pos: "n.", example: "The old mill is by the river.", exampleZh: "旧磨坊在河边。"},
+  {en: "minute", zh: "分钟", pos: "n.", example: "Wait a minute, please.", exampleZh: "请等一下。"},
+  {en: "miss", zh: "想念；错过", pos: "v.", example: "I miss my hometown very much.", exampleZh: "我非常想念家乡。"},
+  {en: "mission", zh: "任务", pos: "n.", example: "The mission was successful.", exampleZh: "任务成功了。"},
+  {en: "mite", zh: "螨虫；小东西", pos: "n.", example: "Dust mites are very small.", exampleZh: "尘螨非常小。"},
+  {en: "mix", zh: "混合", pos: "v.", example: "Please mix the colors.", exampleZh: "请把颜色混合起来。"},
+  {en: "mixture", zh: "混合物", pos: "n.", example: "The mixture smells good.", exampleZh: "这种混合物闻起来很香。"},
+  {en: "monday", zh: "星期一", pos: "n.", example: "We have math class on Monday.", exampleZh: "我们周一有数学课。"},
+  {en: "money", zh: "钱", pos: "n.", example: "Money cannot buy happiness.", exampleZh: "金钱买不到幸福。"},
+  {en: "monkey", zh: "猴子", pos: "n.", example: "The monkey is eating a banana.", exampleZh: "猴子正在吃香蕉。"},
+  {en: "month", zh: "月", pos: "n.", example: "This is my favorite month.", exampleZh: "这是我最喜欢的月份。"},
+  {en: "moonlight", zh: "月光", pos: "n.", example: "We walked by moonlight.", exampleZh: "我们借着月光走路。"},
+  {en: "more", zh: "更多的", pos: "adj.", example: "I need more time.", exampleZh: "我需要更多时间。"},
+  {en: "morning", zh: "早上", pos: "n.", example: "I get up early every morning.", exampleZh: "我每天早上早起。"},
+  {en: "most", zh: "最多的", pos: "adj.", example: "Most students like sports.", exampleZh: "大多数学生喜欢运动。"},
+  {en: "motel", zh: "汽车旅馆", pos: "n.", example: "We stayed at a motel by the road.", exampleZh: "我们住在路边的一家汽车旅馆。"},
+  {en: "mother", zh: "母亲", pos: "n.", example: "My mother cooks very well.", exampleZh: "我妈妈做饭很好吃。"},
+  {en: "mountain", zh: "山", pos: "n.", example: "We climbed to the top of the mountain.", exampleZh: "我们爬到了山顶。"},
+  {en: "mouse", zh: "老鼠；鼠标", pos: "n.", example: "The cat caught a mouse.", exampleZh: "猫抓到了一只老鼠。"},
+  {en: "mouth", zh: "嘴", pos: "n.", example: "Please open your mouth.", exampleZh: "请张开你的嘴。"},
+  {en: "much", zh: "许多", pos: "adj.", example: "How much is this shirt?", exampleZh: "这件衬衫多少钱？"},
+  {en: "mud", zh: "泥", pos: "n.", example: "The children played in the mud.", exampleZh: "孩子们在泥里玩耍。"},
+  {en: "multiplication", zh: "乘法", pos: "n.", example: "We learned multiplication in math class.", exampleZh: "我们在数学课上学了乘法。"},
+  {en: "museum", zh: "博物馆", pos: "n.", example: "We visited the history museum.", exampleZh: "我们参观了历史博物馆。"},
+  {en: "mush", zh: "糊状物", pos: "n.", example: "The mushrooms are very fresh.", exampleZh: "蘑菇很新鲜。"},
+  {en: "music", zh: "音乐", pos: "n.", example: "I like listening to music.", exampleZh: "我喜欢听音乐。"},
+  {en: "must", zh: "必须", pos: "modal v.", example: "You must finish your homework.", exampleZh: "你必须完成你的作业。"},
+  {en: "mute", zh: "沉默的", pos: "adj.", example: "The boy has been mute since birth.", exampleZh: "这个男孩天生不会说话。"},
+  {en: "my", zh: "我的", pos: "pron.", example: "This is my book.", exampleZh: "这是我的书。"},
+  {en: "nail", zh: "钉子；指甲", pos: "n.", example: "She painted her nails red.", exampleZh: "她把指甲涂成了红色。"},
+  {en: "name", zh: "名字", pos: "n.", example: "What is your name?", exampleZh: "你叫什么名字？"},
+  {en: "nation", zh: "国家", pos: "n.", example: "China is a great nation.", exampleZh: "中国是一个伟大的国家。"},
+  {en: "nature", zh: "自然", pos: "n.", example: "I love the beauty of nature.", exampleZh: "我热爱大自然的美丽。"},
+  {en: "naughty", zh: "淘气的", pos: "adj.", example: "The naughty boy broke the window.", exampleZh: "那个淘气的男孩打碎了窗户。"},
+  {en: "near", zh: "近的", pos: "prep.", example: "The school is near my home.", exampleZh: "学校离我家很近。"},
+  {en: "neat", zh: "整洁的", pos: "adj.", example: "Her room is very neat.", exampleZh: "她的房间非常整洁。"},
+  {en: "neck", zh: "脖子", pos: "n.", example: "She wears a scarf around her neck.", exampleZh: "她脖子上围了一条围巾。"},
+  {en: "need", zh: "需要", pos: "v.", example: "I need your help.", exampleZh: "我需要你的帮助。"},
+  {en: "needs", zh: "需要（第三人称）", pos: "n.", example: "The needs of students are important.", exampleZh: "学生们的需求很重要。"},
+  {en: "nephew", zh: "侄子", pos: "n.", example: "My nephew is five years old.", exampleZh: "我的侄子五岁了。"},
+  {en: "nest", zh: "巢", pos: "n.", example: "The bird built a nest in the tree.", exampleZh: "鸟儿在树上筑了一个巢。"},
+  {en: "net", zh: "网", pos: "n.", example: "We play basketball with a net.", exampleZh: "我们打篮球用网。"},
+  {en: "never", zh: "从不", pos: "adv.", example: "I will never give up.", exampleZh: "我永远不会放弃。"},
+  {en: "new", zh: "新的", pos: "adj.", example: "I have a new bicycle.", exampleZh: "我有一辆新自行车。"},
+  {en: "next", zh: "下一个", pos: "adj.", example: "The next class is math.", exampleZh: "下一节课是数学。"},
+  {en: "nice", zh: "好的", pos: "adj.", example: "You are very nice to me.", exampleZh: "你对我非常好。"},
+  {en: "niece", zh: "侄女", pos: "n.", example: "My niece loves drawing.", exampleZh: "我的侄女喜欢画画。"},
+  {en: "night", zh: "夜晚", pos: "n.", example: "The night is dark and quiet.", exampleZh: "夜晚黑暗而安静。"},
+  {en: "nine", zh: "九", pos: "num.", example: "I have nine books.", exampleZh: "我有九本书。"},
+  {en: "nineteen", zh: "十九", pos: "num.", example: "She is nineteen years old.", exampleZh: "她十九岁了。"},
+  {en: "ninety", zh: "九十", pos: "num.", example: "My grandfather is ninety.", exampleZh: "我爷爷九十岁了。"},
+  {en: "ninth", zh: "第九", pos: "num.", example: "She got ninth place in the race.", exampleZh: "她在赛跑中得了第九名。"},
+  {en: "no", zh: "不", pos: "adv.", example: "No, I do not like coffee.", exampleZh: "不，我不喜欢咖啡。"},
+  {en: "nod", zh: "点头", pos: "v.", example: "Please nod if you agree.", exampleZh: "同意的话请点头。"},
+  {en: "noise", zh: "噪音", pos: "n.", example: "Please do not make noise.", exampleZh: "请别吵闹。"},
+  {en: "north", zh: "北方", pos: "n.", example: "Beijing is in the north of China.", exampleZh: "北京在中国的北方。"},
+  {en: "nose", zh: "鼻子", pos: "n.", example: "I have a cold in my nose.", exampleZh: "我鼻子感冒了。"},
+  {en: "not", zh: "不", pos: "adv.", example: "This is not my book.", exampleZh: "这不是我的书。"},
+  {en: "note", zh: "笔记；注意", pos: "n.", example: "Please take notes in class.", exampleZh: "上课请记笔记。"},
+  {en: "nothing", zh: "没有东西", pos: "pron.", example: "There is nothing in the box.", exampleZh: "盒子里什么都没有。"},
+  {en: "november", zh: "十一月", pos: "n.", example: "November is the eleventh month.", exampleZh: "十一月是第十一个月。"},
+  {en: "now", zh: "现在", pos: "adv.", example: "Please sit down now.", exampleZh: "现在请坐下。"},
+  {en: "numb", zh: "麻木的", pos: "adj.", example: "My fingers are numb with cold.", exampleZh: "我的手指冻僵了。"},
+  {en: "number", zh: "数字", pos: "n.", example: "What is your phone number?", exampleZh: "你的电话号码是多少？"},
+  {en: "numerous", zh: "众多的", pos: "adj.", example: "There are numerous stars in the sky.", exampleZh: "天空中有无数颗星星。"},
+  {en: "nurse", zh: "护士", pos: "n.", example: "The nurse is very kind.", exampleZh: "护士非常和蔼。"},
+  {en: "oak", zh: "橡树", pos: "n.", example: "The oak tree is very strong.", exampleZh: "橡树非常强壮。"},
+  {en: "oar", zh: "桨", pos: "n.", example: "He pulled the oar through the water.", exampleZh: "他把桨划过水面。"},
+  {en: "obey", zh: "服从", pos: "v.", example: "You must obey the rules.", exampleZh: "你必须遵守规则。"},
+  {en: "october", zh: "十月", pos: "n.", example: "Halloween is in October.", exampleZh: "万圣节在十月。"},
+  {en: "of", zh: "……的", pos: "prep.", example: "A cup of tea, please.", exampleZh: "请给我一杯茶。"},
+  {en: "off", zh: "离开；关", pos: "adv.", example: "Please turn off the light.", exampleZh: "请关掉灯。"},
+  {en: "office", zh: "办公室", pos: "n.", example: "My father works in an office.", exampleZh: "我爸爸在办公室工作。"},
+  {en: "often", zh: "经常", pos: "adv.", example: "I often go to the library.", exampleZh: "我经常去图书馆。"},
+  {en: "oh", zh: "哦", pos: "int.", example: "Oh! I forgot my book!", exampleZh: "哦！我忘记带书了！"},
+  {en: "ok", zh: "好的", pos: "adj.", example: "OK, I will come.", exampleZh: "好的，我会来。"},
+  {en: "old", zh: "老的；旧的", pos: "adj.", example: "My grandfather is very old.", exampleZh: "我爷爷非常老了。"},
+  {en: "on", zh: "在……上", pos: "prep.", example: "The book is on the table.", exampleZh: "书在桌子上。"},
+  {en: "once", zh: "一次；曾经", pos: "adv.", example: "I met her once.", exampleZh: "我曾经见过她一次。"},
+  {en: "one", zh: "一", pos: "num.", example: "I have one sister.", exampleZh: "我有一个妹妹。"},
+  {en: "open", zh: "打开", pos: "v.", example: "Please open the window.", exampleZh: "请打开窗户。"},
+  {en: "or", zh: "或者", pos: "conj.", example: "Tea or coffee?", exampleZh: "茶还是咖啡？"},
+  {en: "orange", zh: "橙子；橙色", pos: "n.", example: "I like eating oranges.", exampleZh: "我喜欢吃橙子。"},
+  {en: "other", zh: "其他的", pos: "adj.", example: "I will tell you other stories.", exampleZh: "我会告诉你其他的故事。"},
+  {en: "ouch", zh: "哎哟", pos: "int.", example: "Ouch! I hit my toe.", exampleZh: "哎哟！我撞到脚趾了。"},
+  {en: "our", zh: "我们的", pos: "pron.", example: "This is our classroom.", exampleZh: "这是我们的教室。"},
+  {en: "out", zh: "出去", pos: "adv.", example: "Please go out.", exampleZh: "请出去。"},
+  {en: "outside", zh: "外面", pos: "prep.", example: "We play outside after school.", exampleZh: "我们放学后在外面玩。"},
+  {en: "oval", zh: "椭圆形的", pos: "adj.", example: "The table is oval.", exampleZh: "桌子是椭圆形的。"},
+  {en: "over", zh: "在……上方", pos: "prep.", example: "The bridge goes over the river.", exampleZh: "桥横跨在河上。"},
+  {en: "overnight", zh: "一夜之间", pos: "adv.", example: "We stayed overnight at the hotel.", exampleZh: "我们在酒店住了一晚。"},
+  {en: "oversleep", zh: "睡过头", pos: "v.", example: "I overslept this morning.", exampleZh: "我今天早上睡过头了。"},
+  {en: "owl", zh: "猫头鹰", pos: "n.", example: "The owl comes out at night.", exampleZh: "猫头鹰在夜里出来。"},
+  {en: "own", zh: "自己的；拥有", pos: "v.", example: "I own a bicycle.", exampleZh: "我拥有一辆自行车。"},
+  {en: "pack", zh: "打包", pos: "n.", example: "Please pack your bag.", exampleZh: "请收拾你的包。"},
+  {en: "page", zh: "页", pos: "n.", example: "Turn to page ten.", exampleZh: "翻到第10页。"},
+  {en: "pain", zh: "疼痛", pos: "n.", example: "I have a pain in my leg.", exampleZh: "我的腿疼。"},
+  {en: "painful", zh: "痛苦的", pos: "adj.", example: "The test was painful.", exampleZh: "考试很痛苦。"},
+  {en: "paint", zh: "画；油漆", pos: "v.", example: "We paint the wall white.", exampleZh: "我们把墙刷成白色。"},
+  {en: "pair", zh: "一对", pos: "n.", example: "I have a pair of shoes.", exampleZh: "我有一双鞋。"},
+  {en: "pale", zh: "苍白的", pos: "adj.", example: "She looks pale today.", exampleZh: "她今天脸色苍白。"},
+  {en: "palm", zh: "手掌；棕榈", pos: "n.", example: "The palm tree is tall.", exampleZh: "棕榈树很高。"},
+  {en: "pan", zh: "平底锅", pos: "n.", example: "Please pass me the pan.", exampleZh: "请把平底锅递给我。"},
+  {en: "panda", zh: "熊猫", pos: "n.", example: "The panda is a national treasure.", exampleZh: "熊猫是国宝。"},
+  {en: "pants", zh: "裤子", pos: "n.", example: "Put on your pants.", exampleZh: "穿上你的裤子。"},
+  {en: "parent", zh: "父/母", pos: "n.", example: "My parents love me.", exampleZh: "我的父母爱我。"},
+  {en: "park", zh: "公园；停车", pos: "n.", example: "We play in the park.", exampleZh: "我们在公园玩。"},
+  {en: "parrot", zh: "鹦鹉", pos: "n.", example: "The parrot can speak.", exampleZh: "鹦鹉会说话。"},
+  {en: "party", zh: "聚会；政党", pos: "n.", example: "We had a birthday party.", exampleZh: "我们办了一个生日聚会。"},
+  {en: "paw", zh: "爪子", pos: "n.", example: "The dog put its paw on me.", exampleZh: "狗把爪子放在我身上。"},
+  {en: "pay", zh: "支付", pos: "v.", example: "Please pay the bill.", exampleZh: "请付账单。"},
+  {en: "peace", zh: "和平", pos: "n.", example: "We hope for world peace.", exampleZh: "我们希望世界和平。"},
+  {en: "peacock", zh: "孔雀", pos: "n.", example: "The peacock has beautiful feathers.", exampleZh: "孔雀有美丽的羽毛。"},
+  {en: "peanut", zh: "花生", pos: "n.", example: "I like eating peanuts.", exampleZh: "我喜欢吃花生。"},
+  {en: "peek", zh: "偷看", pos: "v.", example: "Do not peek at my paper.", exampleZh: "别偷看我的试卷。"},
+  {en: "pen", zh: "钢笔", pos: "n.", example: "May I borrow your pen?", exampleZh: "我能借你的笔吗？"},
+  {en: "pencil", zh: "铅笔", pos: "n.", example: "I write with a pencil.", exampleZh: "我用铅笔写字。"},
+  {en: "people", zh: "人们", pos: "n.", example: "Many people like sports.", exampleZh: "很多人喜欢运动。"},
+  {en: "perfect", zh: "完美的", pos: "adj.", example: "Your English is perfect.", exampleZh: "你的英语很完美。"},
+  {en: "person", zh: "人", pos: "n.", example: "She is a kind person.", exampleZh: "她是一个善良的人。"},
+  {en: "pest", zh: "害虫", pos: "n.", example: "The pest ate our food.", exampleZh: "害虫吃了我们的食物。"},
+  {en: "pet", zh: "宠物", pos: "n.", example: "I have a pet dog.", exampleZh: "我有一只宠物狗。"},
+  {en: "phoenix", zh: "凤凰", pos: "n.", example: "The phoenix rises from ashes.", exampleZh: "凤凰从灰烬中重生。"},
+  {en: "phone", zh: "电话", pos: "n.", example: "Please answer the phone.", exampleZh: "请接电话。"},
+  {en: "photo", zh: "照片", pos: "n.", example: "I took a photo of the mountain.", exampleZh: "我拍了山的照片。"},
+  {en: "physician", zh: "医生", pos: "n.", example: "The physician gave me medicine.", exampleZh: "医生给了我药。"},
+  {en: "pick", zh: "挑选；摘", pos: "v.", example: "Please pick up the pen.", exampleZh: "请捡起那支笔。"},
+  {en: "pie", zh: "馅饼", pos: "n.", example: "I ate a piece of pie.", exampleZh: "我吃了一块派。"},
+  {en: "piece", zh: "片；块", pos: "n.", example: "Please give me a piece of paper.", exampleZh: "请给我一张纸。"},
+  {en: "pig", zh: "猪", pos: "n.", example: "The pig is eating.", exampleZh: "猪在吃东西。"},
+  {en: "pill", zh: "药丸", pos: "n.", example: "Take this pill after meals.", exampleZh: "饭后吃这片药。"},
+  {en: "pilot", zh: "飞行员", pos: "n.", example: "The pilot landed the plane safely.", exampleZh: "飞行员安全降落了飞机。"},
+  {en: "pin", zh: "别针", pos: "n.", example: "I need a pin to fix it.", exampleZh: "我需要一根针来固定它。"},
+  {en: "pineapple", zh: "菠萝", pos: "n.", example: "Pineapple is sweet and sour.", exampleZh: "菠萝又甜又酸。"},
+  {en: "place", zh: "地方", pos: "n.", example: "This is a good place to study.", exampleZh: "这是一个学习的好地方。"},
+  {en: "plain", zh: "朴素的；平原", pos: "adj.", example: "The food tastes plain.", exampleZh: "这食物味道清淡。"},
+  {en: "plan", zh: "计划", pos: "n.", example: "We have a plan for the trip.", exampleZh: "我们有旅行的计划。"},
+  {en: "plane", zh: "飞机", pos: "n.", example: "I will travel by plane.", exampleZh: "我将乘飞机旅行。"},
+  {en: "plant", zh: "植物；种植", pos: "n.", example: "We plant trees in spring.", exampleZh: "我们在春天种树。"},
+  {en: "plate", zh: "盘子", pos: "n.", example: "Please pass me the plate.", exampleZh: "请把盘子递给我。"},
+  {en: "play", zh: "玩；播放", pos: "v.", example: "I play basketball after school.", exampleZh: "我放学后打篮球。"},
+  {en: "player", zh: "运动员；播放器", pos: "n.", example: "He is a football player.", exampleZh: "他是一名足球运动员。"},
+  {en: "playground", zh: "操场", pos: "n.", example: "We run on the playground.", exampleZh: "我们在操场上跑步。"},
+  {en: "please", zh: "请", pos: "int.", example: "Please sit down.", exampleZh: "请坐下。"},
+  {en: "plot", zh: "情节；阴谋", pos: "n.", example: "The plot of the story is good.", exampleZh: "这个故事的情节很好。"},
+  {en: "plum", zh: "李子", pos: "n.", example: "Plums are sweet and sour.", exampleZh: "李子又甜又酸。"},
+  {en: "pocket", zh: "口袋", pos: "n.", example: "There is a key in my pocket.", exampleZh: "我口袋里有一把钥匙。"},
+  {en: "point", zh: "点；指", pos: "v.", example: "Please point to the door.", exampleZh: "请指向门。"},
+  {en: "poison", zh: "毒药", pos: "n.", example: "Poison is very dangerous.", exampleZh: "毒药非常危险。"},
+  {en: "police", zh: "警察", pos: "n.", example: "The police caught the thief.", exampleZh: "警察抓住了小偷。"},
+  {en: "policeman", zh: "警察", pos: "n.", example: "The policeman helps people.", exampleZh: "警察帮助人们。"},
+  {en: "polish", zh: "擦亮", pos: "v.", example: "Please polish your shoes.", exampleZh: "请把你的鞋擦亮。"},
+  {en: "polite", zh: "有礼貌的", pos: "adj.", example: "She is a polite girl.", exampleZh: "她是一个有礼貌的女孩。"},
+  {en: "politician", zh: "政治家", pos: "n.", example: "The politician gave a speech.", exampleZh: "政治家发表了演讲。"},
+  {en: "politics", zh: "政治", pos: "n.", example: "He is not interested in politics.", exampleZh: "他对政治不感兴趣。"},
+  {en: "pool", zh: "游泳池", pos: "n.", example: "We swim in the pool.", exampleZh: "我们在泳池里游泳。"},
+  {en: "pop", zh: "流行的", pos: "v.", example: "The balloon popped.", exampleZh: "气球爆了。"},
+  {en: "pork", zh: "猪肉", pos: "n.", example: "I like eating pork.", exampleZh: "我喜欢吃猪肉。"},
+  {en: "post", zh: "邮寄；柱子", pos: "n.", example: "I will post the letter.", exampleZh: "我要去寄信。"},
+  {en: "posture", zh: "姿势", pos: "n.", example: "Good posture is important.", exampleZh: "好的姿势很重要。"},
+  {en: "pot", zh: "锅；壶", pos: "n.", example: "The pot is on the stove.", exampleZh: "锅在炉子上。"},
+  {en: "potato", zh: "土豆", pos: "n.", example: "I like fried potatoes.", exampleZh: "我喜欢炸土豆。"},
+  {en: "pour", zh: "倒；灌", pos: "v.", example: "Please pour me a glass of water.", exampleZh: "请给我倒一杯水。"},
+  {en: "practice", zh: "练习", pos: "v.", example: "Practice makes perfect.", exampleZh: "熟能生巧。"},
+  {en: "praise", zh: "赞扬", pos: "v.", example: "The teacher praised her.", exampleZh: "老师表扬了她。"},
+  {en: "precious", zh: "珍贵的", pos: "adj.", example: "Time is precious.", exampleZh: "时间很宝贵。"},
+  {en: "present", zh: "礼物；现在的", pos: "n.", example: "I got a present for my birthday.", exampleZh: "我生日收到了一份礼物。"},
+  {en: "pressure", zh: "压力", pos: "n.", example: "Do not give him too much pressure.", exampleZh: "别给他太大压力。"},
+  {en: "price", zh: "价格", pos: "n.", example: "The price is too high.", exampleZh: "价格太高了。"},
+  {en: "print", zh: "打印", pos: "v.", example: "Please print the document.", exampleZh: "请打印这份文件。"},
+  {en: "prize", zh: "奖品", pos: "n.", example: "She won the first prize.", exampleZh: "她得了一等奖。"},
+  {en: "problem", zh: "问题", pos: "n.", example: "I have a math problem.", exampleZh: "我有一道数学题。"},
+  {en: "produce", zh: "生产", pos: "v.", example: "The factory produces cars.", exampleZh: "这家工厂生产汽车。"},
+  {en: "production", zh: "生产", pos: "n.", example: "Car production is fast.", exampleZh: "汽车生产很快。"},
+  {en: "program", zh: "程序；节目", pos: "n.", example: "I watched a good TV program.", exampleZh: "我看了一个好电视节目。"},
+  {en: "progress", zh: "进步", pos: "n.", example: "I made good progress in English.", exampleZh: "我的英语进步很大。"},
+  {en: "pull", zh: "拉", pos: "v.", example: "Please pull the door open.", exampleZh: "请把门拉开。"},
+  {en: "punishment", zh: "惩罚", pos: "n.", example: "Punishment is not the best way.", exampleZh: "惩罚不是最好的方法。"},
+  {en: "pupil", zh: "学生；瞳孔", pos: "n.", example: "There are thirty pupils in our class.", exampleZh: "我们班有三十名学生。"},
+  {en: "puppy", zh: "小狗", pos: "n.", example: "The puppy is very cute.", exampleZh: "小狗非常可爱。"},
+  {en: "purple", zh: "紫色的", pos: "adj.", example: "I like the color purple.", exampleZh: "我喜欢紫色。"},
+  {en: "push", zh: "推", pos: "v.", example: "Please push the door.", exampleZh: "请推门。"},
+  {en: "put", zh: "放", pos: "v.", example: "Please put the book on the desk.", exampleZh: "请把书放在桌子上。"},
+  {en: "puzzle", zh: "谜；困惑", pos: "n.", example: "I like doing puzzles.", exampleZh: "我喜欢玩拼图。"},
+  {en: "quack", zh: "嘎嘎叫", pos: "n.", example: "The duck went quack.", exampleZh: "鸭子嘎嘎叫。"},
+  {en: "quarter", zh: "四分之一", pos: "n.", example: "The shop is a quarter past ten.", exampleZh: "商店十点一刻开门。"},
+  {en: "queen", zh: "女王", pos: "n.", example: "The queen lives in the palace.", exampleZh: "女王住在宫殿里。"},
+  {en: "question", zh: "问题", pos: "n.", example: "May I ask a question?", exampleZh: "我可以问一个问题吗？"},
+  {en: "quick", zh: "快的", pos: "adj.", example: "Be quick! We are late.", exampleZh: "快点！我们迟到了。"},
+  {en: "quiet", zh: "安静的", pos: "adj.", example: "Please be quiet in the library.", exampleZh: "在图书馆请保持安静。"},
+  {en: "quilt", zh: "被子", pos: "n.", example: "The quilt is warm.", exampleZh: "被子很暖和。"},
+  {en: "quit", zh: "退出", pos: "v.", example: "Do not quit when things get hard.", exampleZh: "困难时不要放弃。"},
+  {en: "quite", zh: "相当", pos: "adv.", example: "The film is quite good.", exampleZh: "这部电影相当好。"},
+  {en: "rabbit", zh: "兔子", pos: "n.", example: "The rabbit has long ears.", exampleZh: "兔子有很长耳朵。"},
+  {en: "raccoon", zh: "浣熊", pos: "n.", example: "The raccoon washes food in water.", exampleZh: "浣熊在水里洗食物。"},
+  {en: "radio", zh: "收音机", pos: "n.", example: "I listen to the radio every morning.", exampleZh: "我每天早上听收音机。"},
+  {en: "rag", zh: "抹布", pos: "n.", example: "She cleans the floor with a rag.", exampleZh: "她用抹布擦地板。"},
+  {en: "rain", zh: "雨", pos: "n.", example: "The rain is heavy today.", exampleZh: "今天雨很大。"},
+  {en: "rainy", zh: "下雨的", pos: "adj.", example: "It is a rainy day.", exampleZh: "今天是个雨天。"},
+  {en: "raw", zh: "生的", pos: "adj.", example: "Sushi is made with raw fish.", exampleZh: "寿司是生鱼做的。"},
+  {en: "ray", zh: "光线", pos: "n.", example: "A ray of sunlight came in.", exampleZh: "一束阳光照了进来。"},
+  {en: "read", zh: "读", pos: "v.", example: "I read a book every night.", exampleZh: "我每晚读一本书。"},
+  {en: "really", zh: "真正地", pos: "adv.", example: "I really like this song.", exampleZh: "我真的很喜欢这首歌。"},
+  {en: "rectangle", zh: "长方形", pos: "n.", example: "A rectangle has four sides.", exampleZh: "长方形有四条边。"},
+  {en: "recycle", zh: "回收", pos: "v.", example: "We should recycle plastic bottles.", exampleZh: "我们应该回收塑料瓶。"},
+  {en: "red", zh: "红色的", pos: "adj.", example: "The apple is red.", exampleZh: "苹果是红色的。"},
+  {en: "regret", zh: "后悔", pos: "v.", example: "I regret not studying harder.", exampleZh: "我后悔没有更努力学习。"},
+  {en: "relax", zh: "放松", pos: "v.", example: "Please relax and take a rest.", exampleZh: "请放松休息一下。"},
+  {en: "relief", zh: "解脱", pos: "n.", example: "I felt great relief after the exam.", exampleZh: "考试后我感到大大松了口气。"},
+  {en: "report", zh: "报告", pos: "n.", example: "I need to write a report.", exampleZh: "我需要写一份报告。"},
+  {en: "rest", zh: "休息", pos: "n.", example: "Let us take a rest.", exampleZh: "我们休息一下吧。"},
+  {en: "reward", zh: "奖励", pos: "n.", example: "He got a reward for good work.", exampleZh: "他因工作好而得到了奖励。"},
+  {en: "rice", zh: "米饭", pos: "n.", example: "We eat rice every day.", exampleZh: "我们每天都吃米饭。"},
+  {en: "rich", zh: "富有的", pos: "adj.", example: "The rich man has many houses.", exampleZh: "那个富人有很多房子。"},
+  {en: "ride", zh: "骑", pos: "v.", example: "I ride my bicycle to school.", exampleZh: "我骑自行车上学。"},
+  {en: "right", zh: "右边；正确的", pos: "adj.", example: "Turn right at the corner.", exampleZh: "在拐角处右转。"},
+  {en: "rim", zh: "边缘", pos: "n.", example: "The cup is full to the rim.", exampleZh: "杯子满到了边沿。"},
+  {en: "ring", zh: "戒指；铃声", pos: "n.", example: "She wears a ring on her finger.", exampleZh: "她手指上戴着一枚戒指。"},
+  {en: "rink", zh: "溜冰场", pos: "n.", example: "We go skating at the ice rink.", exampleZh: "我们在溜冰场滑冰。"},
+  {en: "ripen", zh: "成熟", pos: "v.", example: "The fruit ripens in the sun.", exampleZh: "水果在阳光下成熟。"},
+  {en: "rise", zh: "上升", pos: "v.", example: "The sun rises in the east.", exampleZh: "太阳从东方升起。"},
+  {en: "river", zh: "河流", pos: "n.", example: "The river flows to the sea.", exampleZh: "河水流入大海。"},
+  {en: "road", zh: "路", pos: "n.", example: "The road is under repair.", exampleZh: "这条路正在修。"},
+  {en: "robot", zh: "机器人", pos: "n.", example: "The robot can clean the floor.", exampleZh: "机器人能清扫地板。"},
+  {en: "rock", zh: "岩石；摇滚", pos: "n.", example: "The rock is very heavy.", exampleZh: "石头非常重。"},
+  {en: "rocket", zh: "火箭", pos: "n.", example: "The rocket flew into space.", exampleZh: "火箭飞向了太空。"},
+  {en: "room", zh: "房间", pos: "n.", example: "My room is on the second floor.", exampleZh: "我的房间在二楼。"},
+  {en: "rope", zh: "绳子", pos: "n.", example: "We tied the boat with a rope.", exampleZh: "我们用绳子把船系住。"},
+  {en: "rose", zh: "玫瑰", pos: "n.", example: "The rose is red and beautiful.", exampleZh: "玫瑰是红色而美丽的。"},
+  {en: "row", zh: "排；划船", pos: "n.", example: "We sit in the front row.", exampleZh: "我们坐在前排。"},
+  {en: "rubbish", zh: "垃圾", pos: "n.", example: "Please throw the rubbish in the bin.", exampleZh: "请把垃圾扔进垃圾桶。"},
+  {en: "rude", zh: "粗鲁的", pos: "adj.", example: "It is rude to interrupt others.", exampleZh: "打断别人说话是很礼貌的。"},
+  {en: "rule", zh: "规则", pos: "n.", example: "We must follow the rules.", exampleZh: "我们必须遵守规则。"},
+  {en: "ruler", zh: "尺子；统治者", pos: "n.", example: "Please measure with a ruler.", exampleZh: "请用尺子量一下。"},
+  {en: "run", zh: "跑", pos: "v.", example: "I run every morning.", exampleZh: "我每天早上跑步。"},
+  {en: "rush", zh: "冲；匆忙", pos: "v.", example: "Do not rush when you walk.", exampleZh: "走路时不要跑。"},
+  {en: "rust", zh: "生锈", pos: "n.", example: "The old iron has rust.", exampleZh: "旧铁上有了锈。"},
+  {en: "rustle", zh: "沙沙声", pos: "v.", example: "The leaves rustled in the wind.", exampleZh: "树叶在风中沙沙作响。"},
+  {en: "sad", zh: "悲伤的", pos: "adj.", example: "I am sad today.", exampleZh: "我今天很伤心。"},
+  {en: "said", zh: "说（过去式）", pos: "v.", example: "She said she would come.", exampleZh: "她说她会来。"},
+  {en: "sail", zh: "航行", pos: "v.", example: "The boat sails on the lake.", exampleZh: "小船在湖上航行。"},
+  {en: "sailor", zh: "水手", pos: "n.", example: "The sailor works on the ship.", exampleZh: "水手在船上工作。"},
+  {en: "salad", zh: "沙拉", pos: "n.", example: "I like eating salad.", exampleZh: "我喜欢吃沙拉。"},
+  {en: "sale", zh: "销售", pos: "n.", example: "The sale ends today.", exampleZh: "促销今天结束。"},
+  {en: "salt", zh: "盐", pos: "n.", example: "Please pass the salt.", exampleZh: "请把盐递给我。"},
+  {en: "same", zh: "相同的", pos: "adj.", example: "We are in the same class.", exampleZh: "我们在同一个班。"},
+  {en: "sand", zh: "沙子", pos: "n.", example: "The beach is full of sand.", exampleZh: "沙滩上满是沙子。"},
+  {en: "sander", zh: "砂光机", pos: "n.", example: "Sander is a lovely name.", exampleZh: "桑德尔是一个好听的名字。"},
+  {en: "sandwich", zh: "三明治", pos: "n.", example: "I ate a sandwich for lunch.", exampleZh: "我午餐吃了一个三明治。"},
+  {en: "sank", zh: "沉（过去式）", pos: "v.", example: "The ship sank in the storm.", exampleZh: "船在风暴中沉了。"},
+  {en: "sat", zh: "坐（过去式）", pos: "v.", example: "I sat on the chair.", exampleZh: "我坐在椅子上。"},
+  {en: "saturday", zh: "星期六", pos: "n.", example: "We have no school on Saturday.", exampleZh: "我们周六不上课。"},
+  {en: "sauce", zh: "酱汁", pos: "n.", example: "The sauce is very tasty.", exampleZh: "酱汁非常美味。"},
+  {en: "save", zh: "救；节省", pos: "v.", example: "Please save your work.", exampleZh: "请保存你的作业。"},
+  {en: "saw", zh: "看见（过去式）；锯", pos: "v.", example: "I saw a bird in the tree.", exampleZh: "我在树上看到了一只鸟。"},
+  {en: "say", zh: "说", pos: "v.", example: "Please say that again.", exampleZh: "请再说一遍。"},
+  {en: "scale", zh: "规模；秤", pos: "n.", example: "We weigh fruit on a scale.", exampleZh: "我们用秤称水果。"},
+  {en: "scan", zh: "扫描", pos: "v.", example: "Please scan the QR code.", exampleZh: "请扫描二维码。"},
+  {en: "scanner", zh: "扫描仪", pos: "n.", example: "The scanner is on the desk.", exampleZh: "扫描仪在桌子上。"},
+  {en: "scarf", zh: "围巾", pos: "n.", example: "She wears a red scarf.", exampleZh: "她围了一条红围巾。"},
+  {en: "scary", zh: "可怕的", pos: "adj.", example: "The movie is scary.", exampleZh: "这部电影很恐怖。"},
+  {en: "scene", zh: "场景", pos: "n.", example: "The scene in the park is beautiful.", exampleZh: "公园里的景色很美。"},
+  {en: "scheme", zh: "计划；方案", pos: "n.", example: "We made a scheme for the trip.", exampleZh: "我们为旅行制定了一个计划。"},
+  {en: "scholar", zh: "学者", pos: "n.", example: "He is a famous scholar.", exampleZh: "他是一位著名学者。"},
+  {en: "scholarship", zh: "奖学金", pos: "n.", example: "She won a scholarship.", exampleZh: "她获得了奖学金。"},
+  {en: "school", zh: "学校", pos: "n.", example: "Our school is very big.", exampleZh: "我们的学校非常大。"},
+  {en: "schoolbag", zh: "书包", pos: "n.", example: "I put my books in my schoolbag.", exampleZh: "我把书放进书包里。"},
+  {en: "schoolmate", zh: "校友", pos: "n.", example: "She is my schoolmate.", exampleZh: "她是我的校友。"},
+  {en: "schoolyard", zh: "校园", pos: "n.", example: "We play in the schoolyard.", exampleZh: "我们在校园里玩。"},
+  {en: "scissors", zh: "剪刀", pos: "n.", example: "Please pass me the scissors.", exampleZh: "请把剪刀递给我。"},
+  {en: "score", zh: "分数", pos: "n.", example: "What is the score of the game?", exampleZh: "比赛比分是多少？"},
+  {en: "scratch", zh: "抓；划痕", pos: "v.", example: "The cat scratched the door.", exampleZh: "猫抓了门。"},
+  {en: "scream", zh: "尖叫", pos: "v.", example: "She screamed when she saw the mouse.", exampleZh: "她看到老鼠时尖叫起来。"},
+  {en: "screen", zh: "屏幕", pos: "n.", example: "Please turn off the screen.", exampleZh: "请关掉屏幕。"},
+  {en: "script", zh: "剧本；手稿", pos: "n.", example: "He wrote the script for the play.", exampleZh: "他为戏剧写了剧本。"},
+  {en: "sea", zh: "海", pos: "n.", example: "The sea is blue.", exampleZh: "大海是蓝色的。"},
+  {en: "season", zh: "季节", pos: "n.", example: "Spring is my favorite season.", exampleZh: "春天是我最喜欢的季节。"},
+  {en: "second", zh: "第二；秒", pos: "num.", example: "This is my second book.", exampleZh: "这是我的第二本书。"},
+  {en: "secret", zh: "秘密", pos: "n.", example: "Please keep this secret.", exampleZh: "请保守这个秘密。"},
+  {en: "see", zh: "看见", pos: "v.", example: "I can see the mountain.", exampleZh: "我能看到那座山。"},
+  {en: "seed", zh: "种子", pos: "n.", example: "The farmer plants seeds.", exampleZh: "农民播种。"},
+  {en: "seek", zh: "寻找", pos: "v.", example: "I seek the answer.", exampleZh: "我寻找答案。"},
+  {en: "seem", zh: "似乎", pos: "v.", example: "You seem very happy.", exampleZh: "你看起来很开心。"},
+  {en: "seen", zh: "看见（过去分词）", pos: "v.", example: "I have seen that movie.", exampleZh: "我看过那部电影。"},
+  {en: "seesaw", zh: "跷跷板", pos: "n.", example: "We played on the seesaw.", exampleZh: "我们玩了跷跷板。"},
+  {en: "sell", zh: "卖", pos: "v.", example: "The shop sells books.", exampleZh: "这家店卖书。"},
+  {en: "send", zh: "发送", pos: "v.", example: "Please send me a message.", exampleZh: "请给我发一条消息。"},
+  {en: "sent", zh: "发送（过去式）", pos: "v.", example: "I sent a letter to my friend.", exampleZh: "我给朋友寄了一封信。"},
+  {en: "september", zh: "九月", pos: "n.", example: "School starts in September.", exampleZh: "学校九月开学。"},
+  {en: "serious", zh: "严肃的", pos: "adj.", example: "This is a serious problem.", exampleZh: "这是一个严重的问题。"},
+  {en: "serve", zh: "服务", pos: "v.", example: "She serves food at the restaurant.", exampleZh: "她在餐厅端菜。"},
+  {en: "set", zh: "设置；一套", pos: "v.", example: "Please set the table.", exampleZh: "请摆好餐具。"},
+  {en: "seventeen", zh: "十七", pos: "num.", example: "She is seventeen years old.", exampleZh: "她十七岁了。"},
+  {en: "seventh", zh: "第七", pos: "num.", example: "Today is the seventh day.", exampleZh: "今天是第七天。"},
+  {en: "shadow", zh: "影子", pos: "n.", example: "The tree has a long shadow.", exampleZh: "树有很长的影子。"},
+  {en: "shall", zh: "将要", pos: "modal v.", example: "Shall we go now?", exampleZh: "我们现在走吗？"},
+  {en: "share", zh: "分享", pos: "v.", example: "Please share your food with me.", exampleZh: "请和我分享你的食物。"},
+  {en: "shark", zh: "鲨鱼", pos: "n.", example: "The shark is a dangerous animal.", exampleZh: "鲨鱼是一种危险的动物。"},
+  {en: "she", zh: "她", pos: "pron.", example: "She is my good friend.", exampleZh: "她是我的好朋友。"},
+  {en: "shed", zh: "棚子", pos: "n.", example: "We keep tools in the shed.", exampleZh: "我们把工具放在棚子里。"},
+  {en: "sheep", zh: "绵羊", pos: "n.", example: "The sheep eats grass.", exampleZh: "羊吃草。"},
+  {en: "shell", zh: "壳", pos: "n.", example: "I found a shell on the beach.", exampleZh: "我在海边捡到了一个贝壳。"},
+  {en: "shine", zh: "发光", pos: "v.", example: "The sun shines brightly.", exampleZh: "太阳明亮地照耀着。"},
+  {en: "ship", zh: "船", pos: "n.", example: "The ship sails on the sea.", exampleZh: "船在海上航行。"},
+  {en: "shirt", zh: "衬衫", pos: "n.", example: "I bought a new shirt.", exampleZh: "我买了一件新衬衫。"},
+  {en: "shoe", zh: "鞋", pos: "n.", example: "Put on your shoes.", exampleZh: "穿上你的鞋。"},
+  {en: "shoot", zh: "射击", pos: "v.", example: "Don't shoot the birds.", exampleZh: "不要射杀鸟儿。"},
+  {en: "shop", zh: "商店", pos: "n.", example: "We buy food at the shop.", exampleZh: "我们在商店买食物。"},
+  {en: "short", zh: "短的；矮的", pos: "adj.", example: "The film is very short.", exampleZh: "这部电影很短。"},
+  {en: "shorts", zh: "短裤", pos: "n.", example: "I wear shorts in summer.", exampleZh: "我夏天穿短裤。"},
+  {en: "shot", zh: "射击；镜头", pos: "n.", example: "He took a shot at the goal.", exampleZh: "他射了一次门。"},
+  {en: "should", zh: "应该", pos: "modal v.", example: "You should study hard.", exampleZh: "你应该努力学习。"},
+  {en: "shoulder", zh: "肩膀", pos: "n.", example: "My shoulder hurts.", exampleZh: "我的肩膀疼。"},
+  {en: "shout", zh: "喊叫", pos: "v.", example: "Don't shout in the library.", exampleZh: "不要在图书馆里喊叫。"},
+  {en: "show", zh: "展示", pos: "v.", example: "Please show me your book.", exampleZh: "请给我看你的书。"},
+  {en: "shrimp", zh: "虾", pos: "n.", example: "I like eating shrimp.", exampleZh: "我喜欢吃虾。"},
+  {en: "shrink", zh: "缩小", pos: "v.", example: "The shirt shrank in the wash.", exampleZh: "衬衫洗后缩水了。"},
+  {en: "shrub", zh: "灌木", pos: "n.", example: "We planted a shrub in the garden.", exampleZh: "我们在花园里种了一棵灌木。"},
+  {en: "shut", zh: "关闭", pos: "v.", example: "Please shut the window.", exampleZh: "请关上窗户。"},
+  {en: "shy", zh: "害羞的", pos: "adj.", example: "She is a shy girl.", exampleZh: "她是一个害羞的女孩。"},
+  {en: "sick", zh: "生病的", pos: "adj.", example: "I feel sick today.", exampleZh: "我今天感觉不舒服。"},
+  {en: "sight", zh: "视力；景象", pos: "n.", example: "The sunset is a beautiful sight.", exampleZh: "日落是一幅美丽的景象。"},
+  {en: "sincere", zh: "真诚的", pos: "adj.", example: "She is a sincere friend.", exampleZh: "她是一个真诚的朋友。"},
+  {en: "sing", zh: "唱歌", pos: "v.", example: "I like to sing.", exampleZh: "我喜欢唱歌。"},
+  {en: "singing", zh: "唱歌", pos: "n.", example: "Singing makes me happy.", exampleZh: "唱歌让我快乐。"},
+  {en: "sink", zh: "水槽；下沉", pos: "v.", example: "The stone sank in the water.", exampleZh: "石头沉入了水中。"},
+  {en: "sister", zh: "姐妹", pos: "n.", example: "My sister is a teacher.", exampleZh: "我的姐姐是一名老师。"},
+  {en: "sit", zh: "坐", pos: "v.", example: "Please sit down.", exampleZh: "请坐下。"},
+  {en: "six", zh: "六", pos: "num.", example: "I have six pencils.", exampleZh: "我有六支铅笔。"},
+  {en: "sixteen", zh: "十六", pos: "num.", example: "She is sixteen years old.", exampleZh: "她十六岁了。"},
+  {en: "sixth", zh: "第六", pos: "num.", example: "This is the sixth lesson.", exampleZh: "这是第六课。"},
+  {en: "sixty", zh: "六十", pos: "num.", example: "My grandfather is sixty.", exampleZh: "我的爷爷六十岁了。"},
+  {en: "size", zh: "大小", pos: "n.", example: "What size is your shirt?", exampleZh: "你的衬衫是多大号的？"},
+  {en: "skate", zh: "滑冰", pos: "v.", example: "I skate on the ice.", exampleZh: "我在冰上滑冰。"},
+  {en: "skater", zh: "滑冰者", pos: "n.", example: "The skater moves very fast.", exampleZh: "溜冰者滑得很快。"},
+  {en: "skating", zh: "滑冰", pos: "n.", example: "Skating is my favorite sport.", exampleZh: "滑冰是我最喜欢的运动。"},
+  {en: "skeen", zh: "斜视", pos: "n.", example: "A skeen of thread.", exampleZh: "一卷线。"},
+  {en: "ski", zh: "滑雪", pos: "v.", example: "We ski in winter.", exampleZh: "我们冬天滑雪。"},
+  {en: "skin", zh: "皮肤", pos: "n.", example: "She has fair skin.", exampleZh: "她的皮肤很白。"},
+  {en: "skirt", zh: "裙子", pos: "n.", example: "She wears a red skirt.", exampleZh: "她穿着一条红裙子。"},
+  {en: "skunk", zh: "臭鼬", pos: "n.", example: "The skunk sprays a bad smell.", exampleZh: "臭鼬会喷出一种难闻的气味。"},
+  {en: "slap", zh: "拍打", pos: "v.", example: "Don't slap your brother.", exampleZh: "别打你弟弟。"},
+  {en: "sled", zh: "雪橇", pos: "n.", example: "We go down the hill on a sled.", exampleZh: "我们坐雪橇滑下山坡。"},
+  {en: "sleep", zh: "睡觉", pos: "v.", example: "I sleep eight hours every night.", exampleZh: "我每晚睡八小时。"},
+  {en: "sleepless", zh: "失眠的", pos: "adj.", example: "I had a sleepless night.", exampleZh: "我度过了一个不眠之夜。"},
+  {en: "sleepy", zh: "困倦的", pos: "adj.", example: "I am very sleepy.", exampleZh: "我非常困。"},
+  {en: "slide", zh: "滑动", pos: "v.", example: "The children slide on the snow.", exampleZh: "孩子们在雪上滑行。"},
+  {en: "slip", zh: "滑倒", pos: "v.", example: "Don't slip on the ice.", exampleZh: "不要在冰上滑倒。"},
+  {en: "slow", zh: "慢的", pos: "adj.", example: "The turtle is very slow.", exampleZh: "乌龟非常慢。"},
+  {en: "small", zh: "小的", pos: "adj.", example: "The room is very small.", exampleZh: "这个房间很小。"},
+  {en: "smart", zh: "聪明的", pos: "adj.", example: "She is a smart student.", exampleZh: "她是一个聪明的学生。"},
+  {en: "smell", zh: "闻；气味", pos: "v.", example: "I smell flowers.", exampleZh: "我闻到了花香。"},
+  {en: "smelled", zh: "闻到（过去式）", pos: "v.", example: "The fish smelled bad.", exampleZh: "鱼有臭味了。"},
+  {en: "smile", zh: "微笑", pos: "v.", example: "She smiles at me.", exampleZh: "她对我微笑。"},
+  {en: "smog", zh: "雾霾", pos: "n.", example: "The city has heavy smog.", exampleZh: "这座城市有严重的雾霾。"},
+  {en: "smoke", zh: "烟；吸烟", pos: "n.", example: "Don't smoke in the room.", exampleZh: "不要在房间里抽烟。"},
+  {en: "snack", zh: "零食", pos: "n.", example: "I ate a snack after school.", exampleZh: "我放学后吃了一份零食。"},
+  {en: "snail", zh: "蜗牛", pos: "n.", example: "The snail moves very slowly.", exampleZh: "蜗牛爬得非常慢。"},
+  {en: "snake", zh: "蛇", pos: "n.", example: "The snake is dangerous.", exampleZh: "蛇是危险的。"},
+  {en: "snap", zh: "折断", pos: "v.", example: "The twig snapped.", exampleZh: "树枝啪的一声断了。"},
+  {en: "snow", zh: "雪", pos: "n.", example: "We play in the snow.", exampleZh: "我们在雪里玩。"},
+  {en: "snowy", zh: "下雪的", pos: "adj.", example: "It is a snowy day.", exampleZh: "今天是一个雪天。"},
+  {en: "so", zh: "所以；如此", pos: "adv.", example: "I am tired, so I go to bed.", exampleZh: "我累了，所以去睡觉了。"},
+  {en: "soap", zh: "肥皂", pos: "n.", example: "Please wash your hands with soap.", exampleZh: "请用肥皂洗手。"},
+  {en: "social", zh: "社会的", pos: "adj.", example: "We are social animals.", exampleZh: "我们是社交性动物。"},
+  {en: "sock", zh: "袜子", pos: "n.", example: "I put on my socks.", exampleZh: "我穿上了袜子。"},
+  {en: "sofa", zh: "沙发", pos: "n.", example: "Please sit on the sofa.", exampleZh: "请坐在沙发上。"},
+  {en: "soil", zh: "土壤", pos: "n.", example: "The soil is good for plants.", exampleZh: "这种土壤适合植物生长。"},
+  {en: "some", zh: "一些", pos: "adj.", example: "I have some questions.", exampleZh: "我有一些问题。"},
+  {en: "something", zh: "某事", pos: "pron.", example: "I want something to eat.", exampleZh: "我想吃点什么。"},
+  {en: "song", zh: "歌曲", pos: "n.", example: "She sings a beautiful song.", exampleZh: "她唱了一首美妙的歌。"},
+  {en: "soon", zh: "不久", pos: "adv.", example: "See you soon!", exampleZh: "很快见！"},
+  {en: "sore", zh: "疼痛的", pos: "adj.", example: "My throat is sore.", exampleZh: "我的喉咙疼。"},
+  {en: "sorry", zh: "对不起", pos: "adj.", example: "I am sorry for being late.", exampleZh: "对不起，我迟到了。"},
+  {en: "sound", zh: "声音", pos: "n.", example: "The sound of rain is nice.", exampleZh: "雨声很悦耳。"},
+  {en: "sour", zh: "酸的", pos: "adj.", example: "The milk tastes sour.", exampleZh: "牛奶尝起来酸了。"},
+  {en: "space", zh: "空间；太空", pos: "n.", example: "The desk takes up too much space.", exampleZh: "桌子占用了太多空间。"},
+  {en: "speak", zh: "说话", pos: "v.", example: "Please speak loudly.", exampleZh: "请大声说话。"},
+  {en: "special", zh: "特别的", pos: "adj.", example: "Today is a special day.", exampleZh: "今天是一个特别的日子。"},
+  {en: "speed", zh: "速度", pos: "n.", example: "The speed of the car is fast.", exampleZh: "车的速度很快。"},
+  {en: "spell", zh: "拼写", pos: "v.", example: "Please spell your name.", exampleZh: "请拼写你的名字。"},
+  {en: "spend", zh: "花费", pos: "v.", example: "I spend two hours on homework.", exampleZh: "我花两小时做作业。"},
+  {en: "spent", zh: "花费（过去式）", pos: "v.", example: "I spent my holiday at home.", exampleZh: "我在家度过了假期。"},
+  {en: "sphere", zh: "球体", pos: "n.", example: "The earth is a sphere.", exampleZh: "地球是一个球体。"},
+  {en: "spit", zh: "吐", pos: "v.", example: "Don't spit on the ground.", exampleZh: "不要在地上吐痰。"},
+  {en: "splash", zh: "溅", pos: "v.", example: "The water splashed on me.", exampleZh: "水溅在了我身上。"},
+  {en: "splendid", zh: "辉煌的", pos: "adj.", example: "The view is splendid.", exampleZh: "景色非常壮丽。"},
+  {en: "split", zh: "分裂", pos: "v.", example: "Please split the cake.", exampleZh: "请把蛋糕切开。"},
+  {en: "spoil", zh: "宠坏；破坏", pos: "v.", example: "Don't spoil the food.", exampleZh: "不要浪费食物。"},
+  {en: "spoon", zh: "勺子", pos: "n.", example: "Please pass me a spoon.", exampleZh: "请递给我一把勺子。"},
+  {en: "sport", zh: "运动", pos: "n.", example: "I like sports.", exampleZh: "我喜欢运动。"},
+  {en: "sports", zh: "运动", pos: "n.", example: "Sports are good for health.", exampleZh: "运动对健康有益。"},
+  {en: "spray", zh: "喷雾", pos: "v.", example: "Please spray water on the flowers.", exampleZh: "请给花喷水。"},
+  {en: "spread", zh: "传播", pos: "v.", example: "Please spread the map.", exampleZh: "请把地图摊开。"},
+  {en: "spring", zh: "春天；弹簧", pos: "n.", example: "Spring is warm and sunny.", exampleZh: "春天温暖而阳光明媚。"},
+  {en: "sprite", zh: "精灵", pos: "n.", example: "I drank a can of Sprite.", exampleZh: "我喝了一罐雪碧。"},
+  {en: "square", zh: "广场；正方形", pos: "n.", example: "We sat in the town square.", exampleZh: "我们坐在城镇广场上。"},
+  {en: "squeeze", zh: "挤压", pos: "v.", example: "Don't squeeze the toothpaste too hard.", exampleZh: "不要用力挤牙膏。"},
+  {en: "squid", zh: "鱿鱼", pos: "n.", example: "We ate squid at the restaurant.", exampleZh: "我们在餐厅吃了鱿鱼。"},
+  {en: "stalk", zh: "茎；跟踪", pos: "n.", example: "The stalk of the flower is green.", exampleZh: "花茎是绿色的。"},
+  {en: "stand", zh: "站立", pos: "v.", example: "Please stand up.", exampleZh: "请站起来。"},
+  {en: "star", zh: "星星", pos: "n.", example: "The stars shine at night.", exampleZh: "星星在夜里闪耀。"},
+  {en: "start", zh: "开始", pos: "v.", example: "Let's start the lesson.", exampleZh: "我们开始上课吧。"},
+  {en: "state", zh: "状态；州", pos: "n.", example: "China is a big state.", exampleZh: "中国是一个大国。"},
+  {en: "station", zh: "车站", pos: "n.", example: "The train station is near.", exampleZh: "火车站在附近。"},
+  {en: "stay", zh: "停留", pos: "v.", example: "Please stay here.", exampleZh: "请呆在这里。"},
+  {en: "steak", zh: "牛排", pos: "n.", example: "I ate a steak for dinner.", exampleZh: "我晚餐吃了一块牛排。"},
+  {en: "sticks", zh: "棍子（复数）", pos: "n.", example: "I eat with chopsticks.", exampleZh: "我用筷子吃饭。"},
+  {en: "still", zh: "仍然", pos: "adv.", example: "I am still doing my homework.", exampleZh: "我还在做作业。"},
+  {en: "stomach", zh: "胃", pos: "n.", example: "I have a stomach ache.", exampleZh: "我肚子疼。"},
+  {en: "stone", zh: "石头", pos: "n.", example: "The stone is heavy.", exampleZh: "石头很重。"},
+  {en: "stood", zh: "站（过去式）", pos: "v.", example: "I stood up to answer the question.", exampleZh: "我站起来回答问题。"},
+  {en: "stop", zh: "停止", pos: "v.", example: "Please stop talking.", exampleZh: "请停止说话。"},
+  {en: "store", zh: "商店；储存", pos: "n.", example: "I bought it at the store.", exampleZh: "我在商店买了它。"},
+  {en: "story", zh: "故事", pos: "n.", example: "She told me an interesting story.", exampleZh: "她给我讲了一个有趣的故事。"},
+  {en: "storybook", zh: "故事书", pos: "n.", example: "I read a storybook every night.", exampleZh: "我每晚读一本故事书。"},
+  {en: "straight", zh: "直的", pos: "adj.", example: "Go straight ahead.", exampleZh: "一直往前走。"},
+  {en: "strange", zh: "奇怪的", pos: "adj.", example: "This is a strange dream.", exampleZh: "这是一个奇怪的梦。"},
+  {en: "strawberry", zh: "草莓", pos: "n.", example: "I like eating strawberries.", exampleZh: "我喜欢吃草莓。"},
+  {en: "street", zh: "街道", pos: "n.", example: "The street is busy.", exampleZh: "街道很繁忙。"},
+  {en: "strict", zh: "严格的", pos: "adj.", example: "Our teacher is very strict.", exampleZh: "我们的老师非常严格。"},
+  {en: "strong", zh: "强壮的", pos: "adj.", example: "He is a strong boy.", exampleZh: "他是一个强壮的男孩。"},
+  {en: "stuck", zh: "卡住的", pos: "adj.", example: "The door is stuck.", exampleZh: "门卡住了。"},
+  {en: "student", zh: "学生", pos: "n.", example: "I am a student.", exampleZh: "我是一名学生。"},
+  {en: "submarine", zh: "潜水艇", pos: "n.", example: "The submarine is under the sea.", exampleZh: "潜水艇在海底。"},
+  {en: "subtitle", zh: "字幕", pos: "n.", example: "The movie has Chinese subtitles.", exampleZh: "这部电影有中文字幕。"},
+  {en: "subtraction", zh: "减法", pos: "n.", example: "We learned subtraction in math class.", exampleZh: "我们在数学课上学了减法。"},
+  {en: "subway", zh: "地铁", pos: "n.", example: "I go to school by subway.", exampleZh: "我坐地铁上学。"},
+  {en: "suck", zh: "吸", pos: "v.", example: "Don't suck your thumb.", exampleZh: "不要吮吸你的大拇指。"},
+  {en: "sugar", zh: "糖", pos: "n.", example: "I like coffee with sugar.", exampleZh: "我喜欢加糖的咖啡。"},
+  {en: "suit", zh: "适合；套装", pos: "n.", example: "He wears a suit to work.", exampleZh: "他穿西装去上班。"},
+  {en: "summer", zh: "夏天", pos: "n.", example: "I like summer best.", exampleZh: "我最喜欢夏天。"},
+  {en: "sun", zh: "太阳", pos: "n.", example: "The sun rises in the east.", exampleZh: "太阳从东方升起。"},
+  {en: "sunday", zh: "星期日", pos: "n.", example: "We have no school on Sunday.", exampleZh: "我们周日不上课。"},
+  {en: "sunlight", zh: "阳光", pos: "n.", example: "The sunlight is warm.", exampleZh: "阳光很温暖。"},
+  {en: "sunny", zh: "晴朗的", pos: "adj.", example: "It is a sunny day.", exampleZh: "今天是个晴天。"},
+  {en: "super", zh: "超级的", pos: "adj.", example: "This is a super market.", exampleZh: "这是一家超市。"},
+  {en: "superman", zh: "超人", pos: "n.", example: "Superman can fly.", exampleZh: "超人能飞行。"},
+  {en: "supermarket", zh: "超市", pos: "n.", example: "We buy food at the supermarket.", exampleZh: "我们在超市买食物。"},
+  {en: "sure", zh: "确定的", pos: "adj.", example: "Are you sure?", exampleZh: "你确定吗？"},
+  {en: "swan", zh: "天鹅", pos: "n.", example: "The swan swims on the lake.", exampleZh: "天鹅在湖上游泳。"},
+  {en: "sweater", zh: "毛衣", pos: "n.", example: "I wear a sweater in autumn.", exampleZh: "我秋天穿毛衣。"},
+  {en: "sweet", zh: "甜的", pos: "adj.", example: "The cake is very sweet.", exampleZh: "蛋糕非常甜。"},
+  {en: "swim", zh: "游泳", pos: "v.", example: "I swim every weekend.", exampleZh: "我每个周末游泳。"},
+  {en: "swing", zh: "摇摆", pos: "n.", example: "We play on the swing.", exampleZh: "我们荡秋千。"},
+  {en: "syllable", zh: "音节", pos: "n.", example: "This word has three syllables.", exampleZh: "这个词有三个音节。"},
+  {en: "table", zh: "桌子", pos: "n.", example: "The book is on the table.", exampleZh: "书在桌子上。"},
+  {en: "tag", zh: "标签", pos: "n.", example: "He put a tag on the bag.", exampleZh: "他给袋子上了个标签。"},
+  {en: "tail", zh: "尾巴", pos: "n.", example: "The dog wags its tail.", exampleZh: "狗摇着它的尾巴。"},
+  {en: "take", zh: "拿；带", pos: "v.", example: "Please take the book.", exampleZh: "请把书拿走。"},
+  {en: "taller", zh: "更高的", pos: "adj.", example: "He is taller than me.", exampleZh: "他比我高。"},
+  {en: "tank", zh: "坦克；水箱", pos: "n.", example: "The fish tank is big.", exampleZh: "鱼缸很大。"},
+  {en: "tape", zh: "磁带；胶带", pos: "n.", example: "Please pass me the tape.", exampleZh: "请把胶带递给我。"},
+  {en: "task", zh: "任务", pos: "n.", example: "Finish your task, please.", exampleZh: "请完成你的任务。"},
+  {en: "tea", zh: "茶", pos: "n.", example: "I drink tea every morning.", exampleZh: "我每天早上喝茶。"},
+  {en: "teach", zh: "教", pos: "v.", example: "She teaches English.", exampleZh: "她教英语。"},
+  {en: "teacher", zh: "老师", pos: "n.", example: "Our teacher is very kind.", exampleZh: "我们的老师非常和蔼。"},
+  {en: "team", zh: "团队", pos: "n.", example: "We are a good team.", exampleZh: "我们是很好的团队。"},
+  {en: "teapot", zh: "茶壶", pos: "n.", example: "The teapot is on the stove.", exampleZh: "茶壶在炉子上。"},
+  {en: "television", zh: "电视", pos: "n.", example: "We watch television every night.", exampleZh: "我们每晚看电视。"},
+  {en: "ten", zh: "十", pos: "num.", example: "I have ten books.", exampleZh: "我有十本书。"},
+  {en: "tension", zh: "紧张", pos: "n.", example: "Too much tension is bad.", exampleZh: "压力太大不好。"},
+  {en: "tent", zh: "帐篷", pos: "n.", example: "We sleep in a tent.", exampleZh: "我们睡在帐篷里。"},
+  {en: "tenth", zh: "第十", pos: "num.", example: "This is the tenth day.", exampleZh: "这是第十天。"},
+  {en: "term", zh: "学期；术语", pos: "n.", example: "The term ends in June.", exampleZh: "学期六月结束。"},
+  {en: "terrible", zh: "可怕的", pos: "adj.", example: "The weather is terrible.", exampleZh: "天气很糟糕。"},
+  {en: "test", zh: "测试", pos: "n.", example: "We have a test next week.", exampleZh: "我们下周有考试。"},
+  {en: "text", zh: "文本", pos: "n.", example: "Please read the text aloud.", exampleZh: "请大声朗读这篇课文。"},
+  {en: "than", zh: "比", pos: "conj.", example: "I am taller than you.", exampleZh: "我比你高。"},
+  {en: "thank", zh: "感谢", pos: "v.", example: "Thank you for your help.", exampleZh: "谢谢你的帮助。"},
+  {en: "thankful", zh: "感激的", pos: "adj.", example: "I am thankful for your help.", exampleZh: "感谢你的帮助。"},
+  {en: "that", zh: "那个", pos: "pron.", example: "That is my book.", exampleZh: "那是我的书。"},
+  {en: "the", zh: "这/那（定冠词）", pos: "art.", example: "The book is on the table.", exampleZh: "书在桌子上。"},
+  {en: "them", zh: "他们（宾格）", pos: "pron.", example: "I will tell them the news.", exampleZh: "我会告诉他们这个消息。"},
+  {en: "then", zh: "然后", pos: "adv.", example: "Wash your hands, then eat.", exampleZh: "洗手，然后吃饭。"},
+  {en: "there", zh: "那里", pos: "adv.", example: "There is a book on the desk.", exampleZh: "桌子上有一本书。"},
+  {en: "these", zh: "这些", pos: "pron.", example: "These are my books.", exampleZh: "这些是我的书。"},
+  {en: "they", zh: "他们", pos: "pron.", example: "They are my friends.", exampleZh: "他们是我的朋友。"},
+  {en: "thief", zh: "小偷", pos: "n.", example: "The thief ran away.", exampleZh: "小偷跑掉了。"},
+  {en: "thin", zh: "薄的；瘦的", pos: "adj.", example: "She is thin.", exampleZh: "她很瘦。"},
+  {en: "thing", zh: "东西", pos: "n.", example: "This is a good thing.", exampleZh: "这是一件好事。"},
+  {en: "think", zh: "想；认为", pos: "v.", example: "I think you are right.", exampleZh: "我认为你是对的。"},
+  {en: "third", zh: "第三", pos: "num.", example: "This is the third time.", exampleZh: "这是第三次了。"},
+  {en: "thirst", zh: "口渴", pos: "n.", example: "I have a thirst.", exampleZh: "我渴了。"},
+  {en: "thirteen", zh: "十三", pos: "num.", example: "She is thirteen years old.", exampleZh: "她十三岁了。"},
+  {en: "thirty", zh: "三十", pos: "num.", example: "There are thirty students.", exampleZh: "有三十名学生。"},
+  {en: "this", zh: "这个", pos: "pron.", example: "This is my book.", exampleZh: "这是我的书。"},
+  {en: "those", zh: "那些", pos: "pron.", example: "Those are my friends.", exampleZh: "那些是我的朋友。"},
+  {en: "thought", zh: "想法", pos: "v.", example: "I thought about it.", exampleZh: "我考虑过这件事。"},
+  {en: "thousand", zh: "千", pos: "num.", example: "A thousand people came.", exampleZh: "来了一千人。"},
+  {en: "thread", zh: "线", pos: "n.", example: "I need a thread to sew.", exampleZh: "我需要一根线来缝。"},
+  {en: "threat", zh: "威胁", pos: "n.", example: "There is a threat of rain.", exampleZh: "有下雨的威胁。"},
+  {en: "three", zh: "三", pos: "num.", example: "I have three apples.", exampleZh: "我有三个苹果。"},
+  {en: "threw", zh: "扔（过去式）", pos: "v.", example: "He threw the ball.", exampleZh: "他扔了球。"},
+  {en: "thrive", zh: "茁壮成长", pos: "v.", example: "Plants thrive in spring.", exampleZh: "植物在春天茁壮生长。"},
+  {en: "throne", zh: "王座", pos: "n.", example: "The king sits on the throne.", exampleZh: "国王坐在王座上。"},
+  {en: "through", zh: "通过", pos: "prep.", example: "We walked through the park.", exampleZh: "我们穿过了公园。"},
+  {en: "throw", zh: "扔", pos: "v.", example: "Please throw the ball to me.", exampleZh: "请把球扔给我。"},
+  {en: "thursday", zh: "星期四", pos: "n.", example: "We have music on Thursday.", exampleZh: "我们周四有音乐课。"},
+  {en: "ticket", zh: "票", pos: "n.", example: "I bought a ticket.", exampleZh: "我买了一张票。"},
+  {en: "tie", zh: "领带；系", pos: "n.", example: "He wears a tie to work.", exampleZh: "他上班打领带。"},
+  {en: "tiger", zh: "老虎", pos: "n.", example: "The tiger is a strong animal.", exampleZh: "老虎是一种强壮的动物。"},
+  {en: "tight", zh: "紧的", pos: "adj.", example: "The shoes are too tight.", exampleZh: "鞋子太紧了。"},
+  {en: "till", zh: "直到", pos: "prep.", example: "Wait till tomorrow.", exampleZh: "等到明天。"},
+  {en: "time", zh: "时间", pos: "n.", example: "What time is it?", exampleZh: "现在几点？"},
+  {en: "times", zh: "次数；时代", pos: "n.", example: "I go there three times a week.", exampleZh: "我每周去那里三次。"},
+  {en: "tiny", zh: "微小的", pos: "adj.", example: "The baby is tiny.", exampleZh: "宝宝很小。"},
+  {en: "tired", zh: "疲倦的", pos: "adj.", example: "I am very tired.", exampleZh: "我很累。"},
+  {en: "to", zh: "到；向", pos: "prep.", example: "I go to school every day.", exampleZh: "我每天去上学。"},
+  {en: "today", zh: "今天", pos: "adv.", example: "Today is a nice day.", exampleZh: "今天天气很好。"},
+  {en: "toe", zh: "脚趾", pos: "n.", example: "I hurt my toe.", exampleZh: "我伤了脚趾。"},
+  {en: "toilet", zh: "厕所", pos: "n.", example: "Where is the toilet?", exampleZh: "厕所在哪里？"},
+  {en: "tomato", zh: "番茄", pos: "n.", example: "I like eating tomatoes.", exampleZh: "我喜欢吃西红柿。"},
+  {en: "tomb", zh: "坟墓", pos: "n.", example: "We visited the tomb.", exampleZh: "我们参观了陵墓。"},
+  {en: "tomorrow", zh: "明天", pos: "adv.", example: "I will go tomorrow.", exampleZh: "我明天去。"},
+  {en: "tongue", zh: "舌头", pos: "n.", example: "Don't put out your tongue.", exampleZh: "别吐出你的舌头。"},
+  {en: "tonight", zh: "今晚", pos: "adv.", example: "I will stay home tonight.", exampleZh: "我今晚呆在家。"},
+  {en: "too", zh: "也；太", pos: "adv.", example: "This shirt is too big.", exampleZh: "这件衬衫太大了。"},
+  {en: "tool", zh: "工具", pos: "n.", example: "I need a tool to fix it.", exampleZh: "我需要工具来修理它。"},
+  {en: "tooth", zh: "牙齿", pos: "n.", example: "I brush my teeth every day.", exampleZh: "我每天刷牙。"},
+  {en: "toothbrush", zh: "牙刷", pos: "n.", example: "I need a new toothbrush.", exampleZh: "我需要一把新牙刷。"},
+  {en: "top", zh: "顶部", pos: "n.", example: "The book is on the top shelf.", exampleZh: "书在最上面的架子上。"},
+  {en: "touch", zh: "触摸", pos: "v.", example: "Don't touch the wet paint.", exampleZh: "别碰未干的油漆。"},
+  {en: "tough", zh: "坚韧的", pos: "adj.", example: "The meat is tough.", exampleZh: "肉很硬。"},
+  {en: "tour", zh: "旅行", pos: "n.", example: "We went on a tour of the city.", exampleZh: "我们参加了城市观光。"},
+  {en: "tow", zh: "拖", pos: "v.", example: "We tow the car to the garage.", exampleZh: "我们把车拖到修车厂。"},
+  {en: "tower", zh: "塔", pos: "n.", example: "The tower is very tall.", exampleZh: "塔很高。"},
+  {en: "town", zh: "城镇", pos: "n.", example: "I live in a small town.", exampleZh: "我住在一个小镇上。"},
+  {en: "toy", zh: "玩具", pos: "n.", example: "The child plays with toys.", exampleZh: "孩子玩玩具。"},
+  {en: "track", zh: "轨道；跟踪", pos: "n.", example: "We run on the track.", exampleZh: "我们在跑道上跑步。"},
+  {en: "traditional", zh: "传统的", pos: "adj.", example: "This is a traditional custom.", exampleZh: "这是一个传统习俗。"},
+  {en: "traffic", zh: "交通", pos: "n.", example: "The traffic is heavy.", exampleZh: "交通很拥挤。"},
+  {en: "travel", zh: "旅行", pos: "v.", example: "I love to travel.", exampleZh: "我喜欢旅行。"},
+  {en: "treasure", zh: "宝藏", pos: "n.", example: "We found a treasure box.", exampleZh: "我们找到了一个宝箱。"},
+  {en: "tree", zh: "树", pos: "n.", example: "The tree is tall.", exampleZh: "这棵树很高。"},
+  {en: "triangle", zh: "三角形", pos: "n.", example: "A triangle has three sides.", exampleZh: "三角形有三条边。"},
+  {en: "tried", zh: "尝试（过去式）", pos: "v.", example: "I tried to help.", exampleZh: "我努力帮忙了。"},
+  {en: "trip", zh: "旅行", pos: "n.", example: "We went on a trip.", exampleZh: "我们去旅行了。"},
+  {en: "trouble", zh: "麻烦", pos: "n.", example: "What is the trouble?", exampleZh: "有什么麻烦？"},
+  {en: "trousers", zh: "裤子", pos: "n.", example: "These trousers are nice.", exampleZh: "这条裤子很好看。"},
+  {en: "truck", zh: "卡车", pos: "n.", example: "The truck carries goods.", exampleZh: "卡车运货。"},
+  {en: "trumpet", zh: "小号", pos: "n.", example: "He plays the trumpet.", exampleZh: "他吹小号。"},
+  {en: "trunk", zh: "树干；后备箱", pos: "n.", example: "The elephant has a long trunk.", exampleZh: "大象有一个长鼻子。"},
+  {en: "try", zh: "尝试", pos: "v.", example: "Please try again.", exampleZh: "请再试一次。"},
+  {en: "tube", zh: "管子", pos: "n.", example: "The tube is long.", exampleZh: "管子很长。"},
+  {en: "tuesday", zh: "星期二", pos: "n.", example: "We have PE on Tuesday.", exampleZh: "我们周二有体育课。"},
+  {en: "turn", zh: "转弯", pos: "v.", example: "Please turn left.", exampleZh: "请左转。"},
+  {en: "turtle", zh: "海龟", pos: "n.", example: "The turtle walks slowly.", exampleZh: "乌龟爬得很慢。"},
+  {en: "twelve", zh: "十二", pos: "num.", example: "I have twelve books.", exampleZh: "我有十二本书。"},
+  {en: "twenty", zh: "二十", pos: "num.", example: "There are twenty students.", exampleZh: "有二十名学生。"},
+  {en: "two", zh: "二", pos: "num.", example: "I have two pencils.", exampleZh: "我有两支铅笔。"},
+  {en: "type", zh: "类型；打字", pos: "v.", example: "Please type the letter.", exampleZh: "请把这封信打出来。"},
+  {en: "ugly", zh: "丑陋的", pos: "adj.", example: "The bug is ugly.", exampleZh: "这只虫子很丑。"},
+  {en: "umbrella", zh: "雨伞", pos: "n.", example: "I need an umbrella when it rains.", exampleZh: "下雨时我需要伞。"},
+  {en: "uncle", zh: "叔叔", pos: "n.", example: "My uncle lives in Beijing.", exampleZh: "我叔叔住在北京。"},
+  {en: "under", zh: "在……下面", pos: "prep.", example: "The cat is under the table.", exampleZh: "猫在桌子底下。"},
+  {en: "underground", zh: "地下的", pos: "adj.", example: "We go to work by underground.", exampleZh: "我们坐地铁上班。"},
+  {en: "understand", zh: "理解", pos: "v.", example: "I understand the question.", exampleZh: "我理解这个问题。"},
+  {en: "understood", zh: "理解（过去式）", pos: "v.", example: "He understood the lesson.", exampleZh: "他听懂了这课。"},
+  {en: "unfair", zh: "不公平的", pos: "adj.", example: "This is unfair.", exampleZh: "这不公平。"},
+  {en: "university", zh: "大学", pos: "n.", example: "He studies at a university.", exampleZh: "他在一所大学读书。"},
+  {en: "unluckily", zh: "不幸地", pos: "adv.", example: "Unluckily, I missed the bus.", exampleZh: "不幸的是，我错过了公交车。"},
+  {en: "unlucky", zh: "不幸的", pos: "adj.", example: "He is unlucky today.", exampleZh: "他今天运气不好。"},
+  {en: "unsure", zh: "不确定的", pos: "adj.", example: "I am unsure about the answer.", exampleZh: "我对答案不确定。"},
+  {en: "until", zh: "直到", pos: "prep.", example: "Wait here until I come back.", exampleZh: "在这里等到我回来。"},
+  {en: "unusual", zh: "不寻常的", pos: "adj.", example: "This is an unusual day.", exampleZh: "这是不寻常的一天。"},
+  {en: "up", zh: "向上", pos: "adv.", example: "Please stand up.", exampleZh: "请站起来。"},
+  {en: "upon", zh: "在……上", pos: "prep.", example: "Once upon a time, there was a king.", exampleZh: "从前有一位国王。"},
+  {en: "upset", zh: "沮丧的", pos: "adj.", example: "I am upset about the news.", exampleZh: "我对这个消息感到难过。"},
+  {en: "upstairs", zh: "楼上", pos: "adv.", example: "My bedroom is upstairs.", exampleZh: "我的卧室在楼上。"},
+  {en: "us", zh: "我们（宾格）", pos: "pron.", example: "Please give us the books.", exampleZh: "请把书给我们。"},
+  {en: "use", zh: "使用", pos: "v.", example: "You can use my pen.", exampleZh: "你可以用我的笔。"},
+  {en: "useful", zh: "有用的", pos: "adj.", example: "This tool is very useful.", exampleZh: "这个工具非常有用。"},
+  {en: "usually", zh: "通常", pos: "adv.", example: "I usually get up at seven.", exampleZh: "我通常七点起床。"},
+  {en: "value", zh: "价值", pos: "n.", example: "This watch has great value.", exampleZh: "这块手表价值很高。"},
+  {en: "very", zh: "非常", pos: "adv.", example: "Thank you very much.", exampleZh: "非常感谢你。"},
+  {en: "vest", zh: "背心", pos: "n.", example: "He wears a vest in winter.", exampleZh: "他冬天穿背心。"},
+  {en: "vet", zh: "兽医", pos: "n.", example: "We took the dog to the vet.", exampleZh: "我们带狗去看兽医。"},
+  {en: "victory", zh: "胜利", pos: "n.", example: "We won a great victory.", exampleZh: "我们赢得了伟大的胜利。"},
+  {en: "video", zh: "视频", pos: "n.", example: "I watched a video online.", exampleZh: "我在网上看了一个视频。"},
+  {en: "village", zh: "村庄", pos: "n.", example: "I grew up in a small village.", exampleZh: "我在一个小村子里长大。"},
+  {en: "vine", zh: "藤蔓", pos: "n.", example: "Grapes grow on vines.", exampleZh: "葡萄长在藤上。"},
+  {en: "violin", zh: "小提琴", pos: "n.", example: "She plays the violin beautifully.", exampleZh: "她小提琴拉得很美。"},
+  {en: "vision", zh: "视力；愿景", pos: "n.", example: "She has good vision.", exampleZh: "她的视力很好。"},
+  {en: "visit", zh: "参观", pos: "v.", example: "I will visit my friend tomorrow.", exampleZh: "我明天会去拜访我的朋友。"},
+  {en: "visitor", zh: "访客", pos: "n.", example: "We have a visitor today.", exampleZh: "今天我们有一位访客。"},
+  {en: "voice", zh: "声音", pos: "n.", example: "She has a beautiful voice.", exampleZh: "她有很美的嗓音。"},
+  {en: "volume", zh: "音量；体积", pos: "n.", example: "Please turn up the volume.", exampleZh: "请把音量调大。"},
+  {en: "vote", zh: "投票", pos: "v.", example: "I will vote in the election.", exampleZh: "我会参加选举投票。"},
+  {en: "wag", zh: "摇摆", pos: "v.", example: "The dog wags its tail.", exampleZh: "狗摇着它的尾巴。"},
+  {en: "wages", zh: "工资", pos: "n.", example: "He gets his wages every month.", exampleZh: "他每月领工资。"},
+  {en: "wait", zh: "等待", pos: "v.", example: "Please wait for me.", exampleZh: "请等我一下。"},
+  {en: "wake", zh: "醒来", pos: "v.", example: "I wake up at six every day.", exampleZh: "我每天六点醒来。"},
+  {en: "walk", zh: "走路", pos: "v.", example: "I walk to school every day.", exampleZh: "我每天走路去上学。"},
+  {en: "wall", zh: "墙", pos: "n.", example: "The wall is white.", exampleZh: "墙是白色的。"},
+  {en: "wallet", zh: "钱包", pos: "n.", example: "I left my wallet at home.", exampleZh: "我把钱包落在家里了。"},
+  {en: "walnut", zh: "核桃", pos: "n.", example: "Walnuts are good for your brain.", exampleZh: "核桃对大脑有益。"},
+  {en: "want", zh: "想要", pos: "v.", example: "I want to be a teacher.", exampleZh: "我想成为一名老师。"},
+  {en: "war", zh: "战争", pos: "n.", example: "We hope for no more wars.", exampleZh: "我们希望不再有战争。"},
+  {en: "warm", zh: "温暖的", pos: "adj.", example: "The weather is warm today.", exampleZh: "今天天气很温暖。"},
+  {en: "warmth", zh: "温暖", pos: "n.", example: "I feel the warmth of the sun.", exampleZh: "我感受到太阳的温暖。"},
+  {en: "warn", zh: "警告", pos: "v.", example: "Please warn him about the dog.", exampleZh: "请提醒他关于那条狗。"},
+  {en: "was", zh: "是（过去式）", pos: "v.", example: "I was at home yesterday.", exampleZh: "我昨天在家里。"},
+  {en: "wash", zh: "洗", pos: "v.", example: "Please wash your hands before eating.", exampleZh: "吃东西前请洗手。"},
+  {en: "watch", zh: "手表；观看", pos: "v.", example: "I watch TV every night.", exampleZh: "我每晚看电视。"},
+  {en: "water", zh: "水", pos: "n.", example: "We need to drink water every day.", exampleZh: "我们每天需要喝水。"},
+  {en: "watermelon", zh: "西瓜", pos: "n.", example: "Watermelon is sweet and juicy.", exampleZh: "西瓜又甜又多汁。"},
+  {en: "way", zh: "方式；路", pos: "n.", example: "This way to the station, please.", exampleZh: "请走这条路去车站。"},
+  {en: "we", zh: "我们", pos: "pron.", example: "We are good friends.", exampleZh: "我们是好朋友。"},
+  {en: "wear", zh: "穿", pos: "v.", example: "I wear a coat in winter.", exampleZh: "我冬天穿外套。"},
+  {en: "weather", zh: "天气", pos: "n.", example: "The weather is nice today.", exampleZh: "今天天气很好。"},
+  {en: "wednesday", zh: "星期三", pos: "n.", example: "We have math on Wednesday.", exampleZh: "我们周三有数学课。"},
+  {en: "week", zh: "周", pos: "n.", example: "There are seven days in a week.", exampleZh: "一周有七天。"},
+  {en: "weekend", zh: "周末", pos: "n.", example: "I visit my grandparents on the weekend.", exampleZh: "我周末去看望爷爷奶奶。"},
+  {en: "well", zh: "好；井", pos: "adv.", example: "I am very well, thank you.", exampleZh: "我很好，谢谢你。"},
+  {en: "went", zh: "去（过去式）", pos: "v.", example: "I went to the park yesterday.", exampleZh: "我昨天去了公园。"},
+  {en: "were", zh: "是（过去式复数）", pos: "v.", example: "They were at school yesterday.", exampleZh: "他们昨天在学校。"},
+  {en: "west", zh: "西方", pos: "n.", example: "The sun sets in the west.", exampleZh: "太阳从西边落下。"},
+  {en: "wet", zh: "湿的", pos: "adj.", example: "The clothes are still wet.", exampleZh: "衣服还是湿的。"},
+  {en: "what", zh: "什么", pos: "pron.", example: "What is your name?", exampleZh: "你叫什么名字？"},
+  {en: "when", zh: "当……时候", pos: "adv.", example: "When do you go to school?", exampleZh: "你什么时候去上学？"},
+  {en: "where", zh: "哪里", pos: "adv.", example: "Where is the bathroom?", exampleZh: "洗手间在哪里？"},
+  {en: "which", zh: "哪个", pos: "pron.", example: "Which book do you like?", exampleZh: "你喜欢哪本书？"},
+  {en: "while", zh: "当……时候", pos: "conj.", example: "Please be quiet while I study.", exampleZh: "我学习时请保持安静。"},
+  {en: "whistle", zh: "口哨", pos: "v.", example: "He whistles a happy tune.", exampleZh: "他吹着一支欢快的曲子。"},
+  {en: "white", zh: "白色的", pos: "adj.", example: "Snow is white.", exampleZh: "雪是白色的。"},
+  {en: "who", zh: "谁", pos: "pron.", example: "Who is your English teacher?", exampleZh: "你的英语老师是谁？"},
+  {en: "whole", zh: "整个的", pos: "adj.", example: "I ate the whole cake.", exampleZh: "我吃了整个蛋糕。"},
+  {en: "whom", zh: "谁（宾格）", pos: "pron.", example: "Whom did you give the book to?", exampleZh: "你把书给了谁？"},
+  {en: "whose", zh: "谁的", pos: "pron.", example: "Whose pen is this?", exampleZh: "这是谁的笔？"},
+  {en: "will", zh: "将要", pos: "modal v.", example: "I will help you.", exampleZh: "我会帮助你的。"},
+  {en: "win", zh: "赢", pos: "v.", example: "I hope our team will win.", exampleZh: "我希望我们队能赢。"},
+  {en: "window", zh: "窗户", pos: "n.", example: "Please open the window.", exampleZh: "请打开窗户。"},
+  {en: "windy", zh: "有风的", pos: "adj.", example: "It is windy today.", exampleZh: "今天风很大。"},
+  {en: "wine", zh: "葡萄酒", pos: "n.", example: "We drink wine at the party.", exampleZh: "我们在聚会上喝葡萄酒。"},
+  {en: "winter", zh: "冬天", pos: "n.", example: "Winter is very cold.", exampleZh: "冬天很冷。"},
+  {en: "wish", zh: "希望", pos: "v.", example: "I wish you a happy birthday.", exampleZh: "我祝你生日快乐。"},
+  {en: "with", zh: "和；用", pos: "prep.", example: "I go to school with my friend.", exampleZh: "我和朋友一起去上学。"},
+  {en: "wolf", zh: "狼", pos: "n.", example: "The wolf lives in the forest.", exampleZh: "狼住在森林里。"},
+  {en: "woman", zh: "女人", pos: "n.", example: "The woman is a doctor.", exampleZh: "那位女士是一名医生。"},
+  {en: "wood", zh: "木头", pos: "n.", example: "The table is made of wood.", exampleZh: "桌子是木头做的。"},
+  {en: "wool", zh: "羊毛", pos: "n.", example: "Sweaters are made of wool.", exampleZh: "毛衣是羊毛做的。"},
+  {en: "word", zh: "单词", pos: "n.", example: "What is the English word for this?", exampleZh: "这个的英语单词是什么？"},
+  {en: "worker", zh: "工人", pos: "n.", example: "My father is a factory worker.", exampleZh: "我爸爸是一名工厂工人。"},
+  {en: "works", zh: "作品；工厂", pos: "v.", example: "He works in a big company.", exampleZh: "他在一家大公司工作。"},
+  {en: "world", zh: "世界", pos: "n.", example: "The world is a big place.", exampleZh: "世界是一个很大的地方。"},
+  {en: "worm", zh: "蠕虫", pos: "n.", example: "The bird ate a worm.", exampleZh: "鸟儿吃了一条虫。"},
+  {en: "worse", zh: "更糟的", pos: "adj.", example: "My cold is getting worse.", exampleZh: "我的感冒越来越严重了。"},
+  {en: "worth", zh: "值得", pos: "adj.", example: "This book is worth reading.", exampleZh: "这本书值得一读。"},
+  {en: "wound", zh: "伤口", pos: "n.", example: "He got a wound on his arm.", exampleZh: "他手臂上有一条伤口。"},
+  {en: "wow", zh: "哇", pos: "int.", example: "Wow! That is amazing!", exampleZh: "哇！太神奇了！"},
+  {en: "wrap", zh: "包裹", pos: "v.", example: "Please wrap the gift for me.", exampleZh: "请把礼物帮我包起来。"},
+  {en: "wreath", zh: "花环", pos: "n.", example: "We hang a wreath on the door at Christmas.", exampleZh: "圣诞节时我们在门上挂花环。"},
+  {en: "wreck", zh: "残骸", pos: "n.", example: "They found the wreck of an old ship.", exampleZh: "他们找到了一艘旧船的残骸。"},
+  {en: "wrestle", zh: "摔跤", pos: "v.", example: "They wrestle in the match.", exampleZh: "他们在比赛中摔跤。"},
+  {en: "wriggle", zh: "蠕动", pos: "v.", example: "The fish wriggles in the water.", exampleZh: "鱼在水里扭动着。"},
+  {en: "wrinkle", zh: "皱纹", pos: "n.", example: "My grandfather has wrinkles on his face.", exampleZh: "我爷爷脸上有皱纹。"},
+  {en: "wrist", zh: "手腕", pos: "n.", example: "He broke his wrist when he fell.", exampleZh: "他摔倒时摔断了手腕。"},
+  {en: "writer", zh: "作家", pos: "n.", example: "She is a famous writer.", exampleZh: "她是一位著名作家。"},
+  {en: "wrong", zh: "错误的", pos: "adj.", example: "I think you have the wrong answer.", exampleZh: "我认为你的答案错了。"},
+  {en: "year", zh: "年", pos: "n.", example: "She spent a year traveling around Asia.", exampleZh: "她花了一年时间环游亚洲。"},
+  {en: "yell", zh: "喊叫", pos: "v.", example: "The coach yelled at the players to run faster.", exampleZh: "教练大声喊叫着让球员们跑快点。"},
+  {en: "yellow", zh: "黄色的", pos: "adj.", example: "The school bus is always painted bright yellow.", exampleZh: "校车总是漆成亮黄色。"},
+  {en: "yes", zh: "是的", pos: "adv.", example: "Yes, I would love to join you for dinner.", exampleZh: "是的，我很愿意和你一起吃晚饭。"},
+  {en: "yesterday", zh: "昨天", pos: "adv.", example: "I met your sister at the supermarket yesterday.", exampleZh: "我昨天在超市遇到了你妹妹。"},
+  {en: "yet", zh: "还；然而", pos: "adv.", example: "I haven't finished my homework yet.", exampleZh: "我还没有完成我的家庭作业。"},
+  {en: "you", zh: "你", pos: "pron.", example: "You are the only person I can trust.", exampleZh: "你是我唯一可以信任的人。"},
+  {en: "young", zh: "年轻的", pos: "adj.", example: "The young tree needs to be watered every day.", exampleZh: "这棵小树需要每天浇水。"},
+  {en: "your", zh: "你的", pos: "det.", example: "Is this your jacket on the chair?", exampleZh: "椅子上是你的夹克吗？"},
+  {en: "zebra", zh: "斑马", pos: "n.", example: "The zebra has black and white stripes all over its body.", exampleZh: "斑马全身都有黑白相间的条纹。"},
+  {en: "zero", zh: "零", pos: "num.", example: "The temperature dropped to zero degrees last night.", exampleZh: "昨晚气温降到了零度。"},
+  {en: "zip", zh: "拉链", pos: "v.", example: "Please zip up your coat before going outside.", exampleZh: "出去前请把外套拉链拉上。"},
+  {en: "zone", zh: "区域", pos: "n.", example: "This area is a no-parking zone.", exampleZh: "这个区域是禁止停车区。"},
+  {en: "zoo", zh: "动物园", pos: "n.", example: "We took the kids to the zoo to see the pandas.", exampleZh: "我们带孩子们去动物园看熊猫。"}
 ];
