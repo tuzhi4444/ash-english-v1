@@ -1,4 +1,4 @@
-module.exports = [
+var WORDS_DATA = [
   {en: "about", zh: "关于；大约", pos: "prep.", example: "This book is about animals.", exampleZh: "这本书是关于动物的。"},
   {en: "above", zh: "在……上面", pos: "prep.", example: "The bird is flying above the tree.", exampleZh: "鸟儿在树上飞。"},
   {en: "action", zh: "行动；动作", pos: "n.", example: "We need to take action now.", exampleZh: "我们现在需要采取行动。"},

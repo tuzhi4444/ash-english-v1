@@ -1,474 +1,305 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ASH英语 - 单词学习</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6f8; min-height: 100vh; color: #333; }
-    .page { min-height: 100vh; padding: 0 24px 80px; }
-    .topbar { padding: 32px 0 16px; text-align: center; }
-    .title { font-size: 26px; font-weight: 800; color: #7a3fd4; }
-    .day-badge { text-align: center; font-size: 14px; color: #888; margin-bottom: 24px; }
-    .mode-cards { display: flex; gap: 16px; margin-bottom: 24px; }
-    .mode-card { flex: 1; background: #fff; border-radius: 20px; padding: 28px 12px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 8px; cursor: pointer; transition: transform 0.2s; }
-    .mode-card:active { transform: scale(0.97); }
-    .mode-icon { font-size: 24px; }
-    .mode-name { font-size: 15px; font-weight: 700; color: #1e2430; }
-    .mode-desc { font-size: 12px; color: #888; }
-    .stat-row { display: flex; gap: 16px; margin-bottom: 20px; }
-    .stat-box { flex: 1; background: #f2f4f7; border-radius: 18px; padding: 22px 0; text-align: center; }
-    .s-label { display: block; font-size: 13px; color: #888; }
-    .s-val { display: block; font-size: 22px; font-weight: 700; color: #111; margin-top: 4px; }
-    .tool-list { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 20px; }
-    .tool-item { padding: 28px 32px; font-size: 15px; color: #2a3040; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
-    .tool-item:last-child { border-bottom: none; }
-    .tool-item:active { background: #f5f6f8; }
-    .game-header { display: flex; justify-content: space-between; padding: 20px 0 12px; }
-    .hstat { flex: 1; text-align: center; }
-    .hl { display: block; font-size: 12px; color: #888; }
-    .hv { display: block; font-size: 20px; font-weight: 700; color: #111; }
-    .mode-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .mode-text { font-size: 13px; color: #7a3fd4; }
-    .progress-text { font-size: 13px; color: #888; }
-    .word-card { min-height: 170px; background: #fff; border-radius: 24px; border: 2px solid #e8ebf0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-    .word-card.revealed { border-color: #a5d6a7; }
-    .prompt-text { font-size: 30px; font-weight: 700; color: #0f1522; text-align: center; }
-    .answer-text { font-size: 26px; font-weight: 600; color: #2360a8; text-align: center; margin-top: 12px; }
-    .answer-placeholder { font-size: 16px; color: #ccc; margin-top: 12px; }
-    .example-box { width: 100%; margin-top: 28px; background: linear-gradient(135deg, #f0f7ff, #e8f5e9); border-radius: 16px; padding: 20px 24px; border-left: 6px solid #7a3fd4; box-sizing: border-box; }
-    .example-label { display: block; font-size: 12px; font-weight: 700; color: #7a3fd4; margin-bottom: 8px; letter-spacing: 1px; }
-    .example-en { display: block; font-size: 14px; color: #2a3040; line-height: 1.7; font-style: italic; }
-    .example-zh { display: block; font-size: 14px; color: #2a3040; line-height: 1.7; }
-    .spell-box { background: #fff; border-radius: 18px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid #e0e4ea; }
-    .spell-input { width: 100%; height: 36px; font-size: 16px; border-bottom: 2px solid #e0e4ea; padding: 0 8px; outline: none; border-top: none; border-left: none; border-right: none; }
-    .btn-check { margin-top: 16px; height: 36px; display: flex; align-items: center; justify-content: center; background: #f0f4ff; color: #4f7df0; border-radius: 14px; font-size: 15px; font-weight: 600; border: none; width: 100%; cursor: pointer; }
-    .spell-result { display: block; margin-top: 12px; font-size: 14px; color: #555; text-align: center; }
-    .spell-result-wrong { color: #ef5350; font-size: 15px; font-weight: 600; }
-    .btn-flip { width: 100%; height: 45px; display: flex; align-items: center; justify-content: center; background: #4f7df0; color: #fff; border-radius: 22px; font-size: 17px; font-weight: 700; border: none; margin-bottom: 18px; cursor: pointer; }
-    .btn-flip:disabled { background: #b0bec5; }
-    .judge-row { display: flex; gap: 20px; margin-bottom: 18px; }
-    .btn-know { flex: 1; height: 45px; display: flex; align-items: center; justify-content: center; background: #4caf50; color: #fff; border-radius: 22px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; }
-    .btn-dont { flex: 1; height: 45px; display: flex; align-items: center; justify-content: center; background: #ef5350; color: #fff; border-radius: 22px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; }
-    .aux-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-    .aux-btn { flex: 1; min-width: 90px; height: 30px; display: flex; align-items: center; justify-content: center; background: #f5f6f8; border-radius: 30px; font-size: 13px; color: #555; text-align: center; border: 1px solid #e0e4ea; cursor: pointer; }
-    .aux-btn.on { background: #fff3cd; color: #b8860b; border-color: #ffe082; }
-    .tools-toggle { text-align: center; padding: 14px; font-size: 14px; color: #7a3fd4; cursor: pointer; }
-    .tools-panel { background: #fff; border-radius: 20px; overflow: hidden; margin-top: 8px; margin-bottom: 20px; }
-    .tools-panel .tool-item { padding: 28px 32px; }
-    .result-page { padding: 40px 0; }
-    .result-title { display: block; font-size: 24px; font-weight: 800; color: #7a3fd4; text-align: center; margin-bottom: 32px; }
-    .result-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
-    .rg-item { width: calc(50% - 8px); background: #fff; border-radius: 18px; padding: 24px; text-align: center; box-sizing: border-box; }
-    .rl { display: block; font-size: 13px; color: #888; margin-bottom: 6px; }
-    .rv { display: block; font-size: 22px; font-weight: 700; color: #111; }
-    .rv.accent { color: #7a3fd4; }
-    .rv.green { color: #4caf50; }
-    .rv.red { color: #ef5350; }
-    .btn-primary { width: 100%; height: 44px; display: flex; align-items: center; justify-content: center; background: #7a3fd4; color: #fff; border-radius: 22px; font-size: 17px; font-weight: 700; border: none; margin-bottom: 16px; cursor: pointer; }
-    .btn-secondary { width: 100%; height: 40px; display: flex; align-items: center; justify-content: center; background: #fff; color: #555; border-radius: 22px; font-size: 15px; border: 1px solid #dde2e8; margin-bottom: 14px; cursor: pointer; }
-    .hidden { display: none !important; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Ash英语</title>
+<link rel="icon" href="assets/logo.jpg" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page" id="pageIntro">
-    <div class="topbar"><span class="title">单词学习</span></div>
-    <div class="day-badge">第 <span id="dayNumber">1</span> 天 · 艾宾浩斯计划</div>
+
+<!-- ===================== 首页 ===================== -->
+<div id="view-home" class="page">
+  <div class="topbar">
+    <div class="title">Ash英语</div>
+    <div class="subtitle">英语学习助手</div>
+  </div>
+
+  <div class="logo-card">
+    <img class="logo" src="assets/logo.jpg" alt="logo" />
+  </div>
+
+  <div class="entry-cards">
+    <div class="entry-card words-card" id="btn-go-words">
+      <div class="entry-icon">📚</div>
+      <div class="entry-info">
+        <div class="entry-name">单词学习</div>
+        <div class="entry-desc">第 <span id="home-day-number">1</span> 天 · 最高分 <span id="home-high-score">0</span></div>
+      </div>
+      <div class="entry-arrow">&rsaquo;</div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature-item">
+      <div class="fi-icon">🧠</div>
+      <div class="fi-info">
+        <div class="fi-title">艾宾浩斯复习</div>
+        <div class="fi-desc">1/2/4/7/15天间隔，科学记忆</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="fi-icon">🎯</div>
+      <div class="fi-info">
+        <div class="fi-title">多遍强化拼写</div>
+        <div class="fi-desc">错词必须拼写通过，直到零错误</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 单词学习 ===================== -->
+<div id="view-words" class="page" style="display:none;">
+
+  <!-- ===== 介绍/选模式页 ===== -->
+  <div id="words-intro" class="words-sub">
+    <div class="topbar"><div class="title">单词学习</div></div>
+    <div class="day-badge">第 <span id="intro-day-number">1</span> 天 · 艾宾浩斯计划</div>
+
     <div class="mode-cards">
-      <div class="mode-card" onclick="startCard()"><span class="mode-icon">📖</span><span class="mode-name">普通翻卡</span><span class="mode-desc">看中文翻牌认识英文</span></div>
-      <div class="mode-card" onclick="startDictation()"><span class="mode-icon">✍️</span><span class="mode-name">听写模式</span><span class="mode-desc">先输入拼写再翻卡</span></div>
-      <div class="mode-card" onclick="startSpelling()"><span class="mode-icon">🎯</span><span class="mode-name">拼写模式</span><span class="mode-desc">拼对=认识，拼错=不认识</span></div>
+      <div class="mode-card" id="btn-start-card">
+        <div class="mode-icon">📇</div>
+        <div class="mode-name">普通翻卡</div>
+        <div class="mode-desc">看中文翻牌认识英文</div>
+      </div>
+      <div class="mode-card" id="btn-start-dictation">
+        <div class="mode-icon">✍️</div>
+        <div class="mode-name">听写模式</div>
+        <div class="mode-desc">先输入拼写再翻卡</div>
+      </div>
+      <div class="mode-card" id="btn-start-spelling">
+        <div class="mode-icon">🎯</div>
+        <div class="mode-name">拼写模式</div>
+        <div class="mode-desc">拼对=认识，拼错=不认识</div>
+      </div>
     </div>
+
     <div class="stat-row">
-      <div class="stat-box"><span class="s-label">最高分</span><span class="s-val" id="highScore">0</span></div>
-      <div class="stat-box"><span class="s-label">今天第几天</span><span class="s-val" id="dayNumber2">1</span></div>
+      <div class="stat-box"><div class="s-label">最高分</div><div class="s-val" id="intro-high-score">0</div></div>
+      <div class="stat-box"><div class="s-label">今天第几天</div><div class="s-val" id="intro-day-number2">1</div></div>
     </div>
+
     <div class="tool-list">
-      <div class="tool-item" onclick="onSelectDay()">📅 选择学习天数</div>
-      <div class="tool-item" onclick="onShowStats()">📊 学习统计</div>
-      <div class="tool-item" onclick="onShowLearned()">📚 已学习单词</div>
-      <div class="tool-item" onclick="onShowFavorites()">⭐ 收藏单词</div>
-      <div class="tool-item" onclick="onFavoriteDrill()">⭐ 练收藏词</div>
-      <div class="tool-item" onclick="onWrongDrill()">🔁 错词重练</div>
-      <div class="tool-item" onclick="onShowTomorrow()">📅 明日计划</div>
-      <div class="tool-item" onclick="onShowMastered()">✅ 已掌握管理</div>
+      <div class="tool-item" id="tool-select-day">📅 选择学习天数</div>
+      <div class="tool-item" id="tool-show-stats">📊 学习统计</div>
+      <div class="tool-item" id="tool-show-learned">📚 已学习单词</div>
+      <div class="tool-item" id="tool-show-favorites">⭐ 收藏单词</div>
+      <div class="tool-item" id="tool-favorite-drill">⭐ 练收藏词</div>
+      <div class="tool-item" id="tool-wrong-drill">🔁 错词重练</div>
+      <div class="tool-item" id="tool-show-tomorrow">🔭 明日计划</div>
+      <div class="tool-item" id="tool-show-mastered">✅ 已掌握管理</div>
+      <div class="tool-item" id="tool-show-wordpool">🗑️ 词库管理（删除已会词）</div>
+      <div class="tool-item" id="tool-show-customwords">📝 自定义单词表</div>
+    </div>
+
+    <div class="tool-list" style="margin-top:16px;">
+      <div class="tool-item" id="btn-back-home">⬅ 返回首页</div>
     </div>
   </div>
 
-  <div class="page hidden" id="pageGame">
+  <!-- ===== 游戏页 ===== -->
+  <div id="words-game" class="words-sub" style="display:none;">
     <div class="game-header">
-      <div class="hstat"><span class="hl">分数</span><span class="hv" id="score">0</span></div>
-      <div class="hstat"><span class="hl">最高</span><span class="hv" id="highScore2">0</span></div>
-      <div class="hstat"><span class="hl">连击</span><span class="hv" id="streak">0</span></div>
-      <div class="hstat"><span class="hl">剩余</span><span class="hv" id="remain">0</span></div>
+      <div class="hstat"><div class="hl">分数</div><div class="hv" id="g-score">0</div></div>
+      <div class="hstat"><div class="hl">最高</div><div class="hv" id="g-high">0</div></div>
+      <div class="hstat"><div class="hl">连击</div><div class="hv" id="g-streak">0</div></div>
+      <div class="hstat"><div class="hl">剩余</div><div class="hv" id="g-remain">0</div></div>
     </div>
+
     <div class="mode-bar">
-      <span class="mode-text" id="modeInfo">普通翻卡</span>
-      <span class="progress-text" id="progressText">0/0</span>
+      <div class="mode-text" id="g-modeinfo"></div>
+      <div class="progress-text" id="g-progress">0/0</div>
     </div>
-    <div class="word-card" id="wordCard">
-      <span class="prompt-text" id="promptText">中文提示</span>
-      <span class="answer-text hidden" id="answerText">English</span>
-      <span class="answer-placeholder" id="answerPlaceholder">（点翻卡查看）</span>
-      <div class="example-box hidden" id="exampleBox">
-        <span class="example-label" id="exampleLabel">📝 例句（n.）</span>
-        <span class="example-en" id="exampleEn"></span>
-        <span class="example-zh" id="exampleZh"></span>
+
+    <div class="word-card" id="g-wordcard">
+      <div class="prompt-text" id="g-prompt"></div>
+      <div class="answer-text" id="g-answer" style="display:none;"></div>
+      <div class="answer-placeholder" id="g-answer-placeholder">（点翻卡查看）</div>
+      <div class="memory-tip-box" id="g-tipbox" style="display:none;">
+        <div class="memory-tip-label" id="g-tip-label"></div>
+        <div class="memory-tip-text" id="g-tip-sentence"></div>
+        <div class="memory-tip-text" id="g-tip-sentencezh"></div>
       </div>
     </div>
-    <div class="spell-box hidden" id="spellBox">
-      <input type="text" class="spell-input" id="spellInput" placeholder="输入英文拼写" onkeypress="onSpellKeyPress(event)" autocomplete="off" autocorrect="off" autocapitalize="off">
-      <button class="btn-check" onclick="onCheckInput()">提交</button>
-      <span class="spell-result" id="spellResult"></span>
+
+    <div class="spell-box" id="g-spellbox" style="display:none;">
+      <input class="spell-input" id="g-input" placeholder="输入英文拼写" autocomplete="off" autocorrect="off" autocapitalize="none" />
+      <button class="btn-check" id="g-btn-check">提交</button>
+      <div class="spell-result" id="g-inputresult" style="display:none;"></div>
+      <div class="btn-confirm-wrong" id="g-btn-confirm-wrong" style="display:none;">
+        <span class="confirm-wrong-icon">👆</span>
+        <span class="confirm-wrong-text">我记住了，下一个</span>
+      </div>
     </div>
-    <button class="btn-flip" id="btnFlip" onclick="onFlip()">翻卡</button>
+
+    <button class="btn-flip" id="g-btn-flip">翻卡</button>
+
     <div class="judge-row">
-      <button class="btn-know" id="btnKnow" onclick="onKnow()">✅ 认识</button>
-      <button class="btn-dont" id="btnDont" onclick="onDont()">❌ 不认识</button>
+      <button class="btn-know" id="g-btn-know" disabled>✅ 认识</button>
+      <button class="btn-dont" id="g-btn-dont" disabled>❌ 不认识</button>
     </div>
+
     <div class="aux-row">
-      <div class="aux-btn" id="btnFav" onclick="onToggleFav()">☆ 收藏</div>
-      <div class="aux-btn" onclick="onDeleteWord()">🗑️ 删除</div>
+      <div class="aux-btn" id="g-btn-fav">☆ 收藏</div>
+      <div class="aux-btn" id="g-btn-delete">🗑️ 删除</div>
+      <div class="aux-btn" id="g-btn-speak">🔊 发音</div>
     </div>
-    <div class="tools-toggle" onclick="toggleTools()">⚙️ 工具 <span id="toolsArrow">▼</span></div>
-    <div class="tools-panel hidden" id="toolsPanel">
-      <div class="tool-item" onclick="onShowStats()">📊 学习统计</div>
-      <div class="tool-item" onclick="onShowLearned()">📚 已学习单词</div>
-      <div class="tool-item" onclick="onShowFavorites()">⭐ 收藏单词</div>
-      <div class="tool-item" onclick="onFavoriteDrill()">⭐ 练收藏词</div>
-      <div class="tool-item" onclick="onWrongDrill()">🔁 错词重练</div>
-      <div class="tool-item" onclick="onShowTomorrow()">📅 明日计划</div>
-      <div class="tool-item" onclick="onShowMastered()">✅ 已掌握管理</div>
-      <div class="tool-item" onclick="onSelectDay()">📅 切换天数</div>
+
+    <div class="tools-toggle" id="g-tools-toggle">⚙️ 工具 ▼</div>
+    <div class="tools-panel" id="g-tools-panel" style="display:none;">
+      <div class="tool-item" id="g-tool-stats">📊 学习统计</div>
+      <div class="tool-item" id="g-tool-learned">📚 已学习单词</div>
+      <div class="tool-item" id="g-tool-favorites">⭐ 收藏单词</div>
+      <div class="tool-item" id="g-tool-favoritedrill">⭐ 练收藏词</div>
+      <div class="tool-item" id="g-tool-wrongdrill">🔁 错词重练</div>
+      <div class="tool-item" id="g-tool-tomorrow">🔭 明日计划</div>
+      <div class="tool-item" id="g-tool-mastered">✅ 已掌握管理</div>
+      <div class="tool-item" id="g-tool-selectday">📅 切换天数</div>
+      <div class="tool-item" id="g-tool-autospeak">🔊 自动发音：开</div>
     </div>
   </div>
 
-  <div class="page hidden" id="pageResult">
-    <div class="result-page">
-      <span class="result-title" id="resultTitle">🎉 完成！</span>
-      <div class="result-grid">
-        <div class="rg-item"><span class="rl">本局得分</span><span class="rv accent" id="rScore">0</span></div>
-        <div class="rg-item"><span class="rl">历史最高</span><span class="rv" id="rHigh">0</span></div>
-        <div class="rg-item"><span class="rl">认识</span><span class="rv green" id="rKnow">0</span></div>
-        <div class="rg-item"><span class="rl">不认识</span><span class="rv red" id="rDont">0</span></div>
-        <div class="rg-item"><span class="rl">最高连击</span><span class="rv" id="rStreak">0</span></div>
-        <div class="rg-item"><span class="rl">总练习次数</span><span class="rv" id="rRuns">0</span></div>
+  <!-- ===== 结算页 ===== -->
+  <div id="words-result" class="words-sub result-page" style="display:none;">
+    <div class="result-title" id="r-title">✅ 完成今日任务</div>
+    <div class="result-grid">
+      <div class="rg-item"><div class="rl">本局得分</div><div class="rv accent" id="r-score">0</div></div>
+      <div class="rg-item"><div class="rl">历史最高</div><div class="rv" id="r-high">0</div></div>
+      <div class="rg-item"><div class="rl">认识</div><div class="rv green" id="r-know">0</div></div>
+      <div class="rg-item"><div class="rl">不认识</div><div class="rv red" id="r-dont">0</div></div>
+      <div class="rg-item"><div class="rl">最高连击</div><div class="rv" id="r-streak">0</div></div>
+      <div class="rg-item"><div class="rl">总练习次数</div><div class="rv" id="r-runs">0</div></div>
+    </div>
+    <button class="btn-primary" id="r-btn-restart">再来一轮</button>
+    <button class="btn-secondary" id="r-btn-replaywrong" style="display:none;">练错词</button>
+    <button class="btn-secondary" id="r-btn-backintro">返回首页</button>
+  </div>
+
+  <!-- ===== 已掌握管理 ===== -->
+  <div id="words-mastered" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">已掌握词（<span id="mastered-count">0</span>）</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="empty-tip" id="mastered-empty" style="display:none;">暂无已掌握词</div>
+    <div id="mastered-list"></div>
+  </div>
+
+  <!-- ===== 收藏单词 ===== -->
+  <div id="words-favorites" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">收藏单词（<span id="favorites-count">0</span>）</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <button class="btn-primary" id="favorites-drill-btn" style="display:none;">开始练收藏词</button>
+    <div class="empty-tip" id="favorites-empty" style="display:none;">暂无收藏单词</div>
+    <div id="favorites-list"></div>
+  </div>
+
+  <!-- ===== 已学习单词 ===== -->
+  <div id="words-learned" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">已学习单词（<span id="learned-count">0</span>）</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="empty-tip" id="learned-empty" style="display:none;">暂时还没有已学习单词</div>
+    <div id="learned-list"></div>
+  </div>
+
+  <!-- ===== 学习统计 ===== -->
+  <div id="words-stats" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">学习统计</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="result-grid stats-grid">
+      <div class="rg-item"><div class="rl">总练习次数</div><div class="rv accent" id="stats-runs">0</div></div>
+      <div class="rg-item"><div class="rl">最高分</div><div class="rv" id="stats-high">0</div></div>
+      <div class="rg-item"><div class="rl">已学习单词</div><div class="rv" id="stats-learned">0</div></div>
+      <div class="rg-item"><div class="rl">已掌握词</div><div class="rv green" id="stats-mastered">0</div></div>
+      <div class="rg-item"><div class="rl">收藏词数</div><div class="rv" id="stats-fav">0</div></div>
+      <div class="rg-item"><div class="rl">当前天数</div><div class="rv" id="stats-day">1</div></div>
+    </div>
+  </div>
+
+  <!-- ===== 明日计划 ===== -->
+  <div id="words-tomorrow" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">明日计划</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="plan-section">
+      <div class="plan-label">🆕 明日新词（<span id="tomorrow-new-count">0</span>）</div>
+      <div id="tomorrow-new-list"></div>
+    </div>
+    <div class="plan-section">
+      <div class="plan-label">🔁 明日复习（<span id="tomorrow-review-count">0</span>）</div>
+      <div id="tomorrow-review-list"></div>
+    </div>
+  </div>
+
+  <!-- ===== 词库管理 ===== -->
+  <div id="words-wordpool" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">词库管理（<span id="wordpool-active-count">0</span>/<span id="wordpool-total">0</span>）</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="search-box">
+      <input class="search-input" id="wordpool-search" placeholder="搜索单词（英文或中文）..." />
+    </div>
+    <div class="wordpool-toggle">
+      <div class="wpt-tab active" id="wpt-all" data-filter="all">全部</div>
+      <div class="wpt-tab" id="wpt-active" data-filter="active">学习中</div>
+      <div class="wpt-tab" id="wpt-deleted" data-filter="deleted">已删除</div>
+    </div>
+    <div class="empty-tip" id="wordpool-empty" style="display:none;">没有匹配的单词</div>
+    <div id="wordpool-list"></div>
+  </div>
+
+  <!-- ===== 自定义单词表 ===== -->
+  <div id="words-customwords" class="words-sub list-page" style="display:none;">
+    <div class="list-header">
+      <div class="list-title">自定义单词表（<span id="custom-count">0</span>）</div>
+      <div class="back-btn" data-back="intro">← 返回</div>
+    </div>
+    <div class="custom-add-box">
+      <div class="custom-add-title">添加单词</div>
+      <div class="custom-add-row">
+        <input class="custom-input-en" id="custom-en" placeholder="英文" />
+        <input class="custom-input-zh" id="custom-zh" placeholder="中文释义" />
+        <button class="custom-btn-add" id="custom-btn-add" disabled>添加</button>
       </div>
-      <button class="btn-primary" onclick="onRestart()">再来一轮</button>
-      <button class="btn-secondary hidden" id="btnReplayWrong" onclick="onReplayWrong()">练错词</button>
-      <button class="btn-secondary" onclick="onBackToIntro()">返回首页</button>
     </div>
+    <div class="custom-add-box">
+      <div class="custom-add-title">批量导入（每行格式：英文 中文）</div>
+      <textarea class="custom-textarea" id="custom-batch" placeholder="apple 苹果&#10;hello 你好&#10;goodbye 再见" maxlength="5000"></textarea>
+      <button class="btn-primary" id="custom-btn-import" disabled>批量导入</button>
+    </div>
+    <div class="empty-tip" id="custom-empty" style="display:none;">暂无自定义单词</div>
+    <div id="custom-list"></div>
   </div>
 
-  <script>
-    const WORDS = [
-      {en: "about", zh: "关于；大约", pos: "prep.", example: "This book is about animals.", exampleZh: "这本书是关于动物的。"},
-      {en: "above", zh: "在……上面", pos: "prep.", example: "The bird is flying above the tree.", exampleZh: "鸟儿在树上飞。"},
-      {en: "across", zh: "穿过；横过", pos: "prep.", example: "Walk across the street carefully.", exampleZh: "小心地过马路。"},
-      {en: "action", zh: "行动；动作", pos: "n.", example: "We need to take action now.", exampleZh: "我们现在需要采取行动。"},
-      {en: "actor", zh: "演员", pos: "n.", example: "He wants to be an actor.", exampleZh: "他想成为一名演员。"},
-      {en: "actress", zh: "女演员", pos: "n.", example: "She is a famous actress.", exampleZh: "她是一位著名的女演员。"},
-      {en: "address", zh: "地址", pos: "n.", example: "What is your home address?", exampleZh: "你的家庭地址是什么？"},
-      {en: "adult", zh: "成年人", pos: "n.", example: "An adult should take responsibility.", exampleZh: "成年人应该承担责任。"},
-      {en: "adventure", zh: "冒险；奇遇", pos: "n.", example: "They went on an adventure in the forest.", exampleZh: "他们去森林里冒险了。"},
-      {en: "advice", zh: "建议；忠告", pos: "n.", example: "Can you give me some advice?", exampleZh: "你能给我一些建议吗？"},
-      {en: "afraid", zh: "害怕的", pos: "adj.", example: "She is afraid of dogs.", exampleZh: "她害怕狗。"},
-      {en: "after", zh: "在……之后", pos: "prep.", example: "Let's play after school.", exampleZh: "放学后我们玩吧。"},
-      {en: "afternoon", zh: "下午", pos: "n.", example: "I have a meeting this afternoon.", exampleZh: "我今天下午有个会议。"},
-      {en: "again", zh: "再次；又", pos: "adv.", example: "Can you say that again?", exampleZh: "你能再说一遍吗？"},
-      {en: "against", zh: "反对；靠着", pos: "prep.", example: "He is against the plan.", exampleZh: "他反对这个计划。"},
-      {en: "age", zh: "年龄；时代", pos: "n.", example: "What is your age?", exampleZh: "你多大了？"},
-      {en: "ago", zh: "以前", pos: "adv.", example: "He left home two years ago.", exampleZh: "他两年前离开了家。"},
-      {en: "agree", zh: "同意", pos: "v.", example: "I agree with you.", exampleZh: "我同意你的看法。"},
-      {en: "air", zh: "空气", pos: "n.", example: "The air is fresh in the mountains.", exampleZh: "山里的空气很新鲜。"},
-      {en: "airport", zh: "机场", pos: "n.", example: "We arrived at the airport early.", exampleZh: "我们很早就到了机场。"},
-      {en: "alive", zh: "活着的", pos: "adj.", example: "The fish is still alive.", exampleZh: "这条鱼还活着。"},
-      {en: "all", zh: "所有的；全部", pos: "adj.", example: "All students are here.", exampleZh: "所有的学生都在这儿。"},
-      {en: "allow", zh: "允许", pos: "v.", example: "My parents allow me to watch TV.", exampleZh: "我父母允许我看电视。"},
-      {en: "almost", zh: "几乎；差不多", pos: "adv.", example: "It's almost 5 o'clock.", exampleZh: "差不多5点钟了。"},
-      {en: "alone", zh: "独自的", pos: "adj.", example: "She lives alone in the city.", exampleZh: "她独自住在城市里。"}
-    ];
+</div>
 
-    let state = {
-      mode: 'card',
-      view: 'intro',
-      words: [],
-      currentIdx: 0,
-      score: 0,
-      highScore: 0,
-      streak: 0,
-      maxStreak: 0,
-      knowCount: 0,
-      dontCount: 0,
-      waitingConfirm: false,
-      revealed: false,
-      dayNumber: 1
-    };
+<!-- 提示 toast -->
+<div id="toast" class="toast" style="display:none;"></div>
 
-    function init() {
-      loadProgress();
-      updateIntroStats();
-    }
+<!-- 简易模态弹窗（替代 wx.showModal / showToast 的输入框场景） -->
+<div id="modal-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-content" id="modal-content"></div>
+    <input class="modal-input" id="modal-input" style="display:none;" />
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" id="modal-btn-cancel">取消</button>
+      <button class="modal-btn modal-btn-confirm" id="modal-btn-confirm">确认</button>
+    </div>
+  </div>
+</div>
 
-    function loadProgress() {
-      try {
-        const saved = localStorage.getItem('ash_english_web_v2');
-        if (saved) {
-          const data = JSON.parse(saved);
-          state.highScore = data.highScore || 0;
-          state.dayNumber = data.dayNumber || 1;
-        }
-        const lastDate = localStorage.getItem('ash_english_web_date');
-        const today = new Date().toDateString();
-        if (lastDate !== today) {
-          state.dayNumber = (state.dayNumber || 0) + 1;
-          localStorage.setItem('ash_english_web_date', today);
-          saveProgress();
-        }
-      } catch(e) { console.error(e); }
-    }
-
-    function saveProgress() {
-      try {
-        const data = { highScore: state.highScore, dayNumber: state.dayNumber };
-        localStorage.setItem('ash_english_web_v2', JSON.stringify(data));
-      } catch(e) { console.error(e); }
-    }
-
-    function updateIntroStats() {
-      document.getElementById('highScore').textContent = state.highScore;
-      document.getElementById('dayNumber').textContent = state.dayNumber;
-      document.getElementById('dayNumber2').textContent = state.dayNumber;
-    }
-
-    function startGame(mode) {
-      state.mode = mode;
-      state.words = [...WORDS];
-      state.currentIdx = 0;
-      state.score = 0;
-      state.streak = 0;
-      state.maxStreak = 0;
-      state.knowCount = 0;
-      state.dontCount = 0;
-      state.waitingConfirm = false;
-      state.revealed = false;
-      showView('game');
-      updateGameUI();
-    }
-
-    function startCard() { startGame('card'); }
-    function startDictation() { startGame('dictation'); }
-    function startSpelling() { startGame('spelling'); }
-
-    function showView(view) {
-      document.getElementById('pageIntro').classList.add('hidden');
-      document.getElementById('pageGame').classList.add('hidden');
-      document.getElementById('pageResult').classList.add('hidden');
-      document.getElementById('page' + view.charAt(0).toUpperCase() + view.slice(1)).classList.remove('hidden');
-      state.view = view;
-    }
-
-    function updateGameUI() {
-      const word = state.words[state.currentIdx];
-      document.getElementById('score').textContent = state.score;
-      document.getElementById('highScore2').textContent = state.highScore;
-      document.getElementById('streak').textContent = state.streak;
-      document.getElementById('remain').textContent = state.words.length - state.currentIdx;
-      
-      const modeNames = { card: '普通翻卡', dictation: '听写模式', spelling: '拼写模式' };
-      document.getElementById('modeInfo').textContent = modeNames[state.mode];
-      document.getElementById('progressText').textContent = (state.currentIdx + 1) + '/' + state.words.length;
-      
-      document.getElementById('promptText').textContent = word.zh;
-      document.getElementById('answerText').textContent = word.en;
-      
-      if (word.pos && word.example) {
-        document.getElementById('exampleLabel').textContent = '📝 例句（' + word.pos + '）';
-        document.getElementById('exampleEn').textContent = word.example;
-        document.getElementById('exampleZh').textContent = word.exampleZh;
-      }
-      document.getElementById('exampleBox').classList.add('hidden');
-      
-      state.revealed = false;
-      document.getElementById('answerText').classList.add('hidden');
-      document.getElementById('answerPlaceholder').classList.remove('hidden');
-      document.getElementById('wordCard').classList.remove('revealed');
-      
-      document.getElementById('btnFlip').disabled = false;
-      document.getElementById('btnFlip').textContent = '翻卡';
-      document.getElementById('btnKnow').disabled = false;
-      document.getElementById('btnDont').disabled = false;
-      
-      document.getElementById('spellBox').classList.add('hidden');
-      document.getElementById('spellInput').value = '';
-      document.getElementById('spellResult').textContent = '';
-      
-      if (state.mode === 'spelling') {
-        document.getElementById('spellBox').classList.remove('hidden');
-        document.getElementById('btnFlip').classList.add('hidden');
-        document.getElementById('btnKnow').classList.add('hidden');
-        document.getElementById('btnDont').classList.add('hidden');
-        document.getElementById('spellInput').focus();
-      } else {
-        document.getElementById('btnFlip').classList.remove('hidden');
-        document.getElementById('btnKnow').classList.remove('hidden');
-        document.getElementById('btnDont').classList.remove('hidden');
-      }
-      
-      if (state.mode === 'dictation') {
-        document.getElementById('spellBox').classList.remove('hidden');
-        document.getElementById('btnFlip').classList.remove('hidden');
-        document.getElementById('btnFlip').disabled = true;
-        document.getElementById('btnKnow').classList.add('hidden');
-        document.getElementById('btnDont').classList.add('hidden');
-      }
-    }
-
-    function onFlip() {
-      if (state.waitingConfirm) return;
-      state.revealed = true;
-      document.getElementById('answerText').classList.remove('hidden');
-      document.getElementById('answerPlaceholder').classList.add('hidden');
-      document.getElementById('wordCard').classList.add('revealed');
-      document.getElementById('exampleBox').classList.remove('hidden');
-      
-      if (state.mode === 'dictation') {
-        document.getElementById('btnFlip').classList.add('hidden');
-        document.getElementById('btnKnow').classList.remove('hidden');
-        document.getElementById('btnDont').classList.remove('hidden');
-      }
-    }
-
-    function onKnow() {
-      if (!state.revealed && state.mode !== 'spelling') return;
-      state.score += 10;
-      state.streak++;
-      if (state.streak > state.maxStreak) state.maxStreak = state.streak;
-      state.knowCount++;
-      if (state.score > state.highScore) {
-        state.highScore = state.score;
-        saveProgress();
-      }
-      nextWord();
-    }
-
-    function onDont() {
-      if (!state.revealed && state.mode !== 'spelling') return;
-      state.streak = 0;
-      state.dontCount++;
-      nextWord();
-    }
-
-    function nextWord() {
-      state.currentIdx++;
-      if (state.currentIdx >= state.words.length) {
-        showResult();
-        return;
-      }
-      updateGameUI();
-    }
-
-    function onSpellKeyPress(event) {
-      if (event.key === 'Enter') onCheckInput();
-    }
-
-    function onCheckInput() {
-      const input = document.getElementById('spellInput');
-      const userInput = input.value.trim().toLowerCase();
-      const correctAnswer = state.words[state.currentIdx].en.toLowerCase();
-      if (userInput === correctAnswer) {
-        document.getElementById('spellResult').textContent = '✅ 正确！';
-        document.getElementById('spellResult').className = 'spell-result';
-        state.revealed = true;
-        setTimeout(onKnow, 500);
-      } else {
-        document.getElementById('spellResult').textContent = '❌ 正确答案：' + correctAnswer;
-        document.getElementById('spellResult').className = 'spell-result-wrong';
-        state.revealed = true;
-        state.waitingConfirm = true;
-        document.getElementById('btnFlip').classList.remove('hidden');
-        document.getElementById('btnFlip').textContent = '我记住了，下一个';
-        document.getElementById('btnFlip').onclick = function() {
-          state.waitingConfirm = false;
-          onDont();
-          document.getElementById('btnFlip').textContent = '翻卡';
-          document.getElementById('btnFlip').onclick = onFlip;
-        };
-      }
-    }
-
-    function showResult() {
-      const isNew = state.score > state.highScore;
-      document.getElementById('resultTitle').textContent = isNew ? '🎉 新纪录！' : '✅ 完成今日任务';
-      document.getElementById('rScore').textContent = state.score;
-      document.getElementById('rHigh').textContent = state.highScore;
-      document.getElementById('rKnow').textContent = state.knowCount;
-      document.getElementById('rDont').textContent = state.dontCount;
-      document.getElementById('rStreak').textContent = state.maxStreak;
-      const runs = parseInt(localStorage.getItem('ash_english_runs') || '0') + 1;
-      localStorage.setItem('ash_english_runs', runs);
-      document.getElementById('rRuns').textContent = runs;
-      showView('result');
-    }
-
-    function onRestart() { startGame(state.mode); }
-    function onReplayWrong() { alert('功能开发中...'); }
-    function onBackToIntro() { showView('intro'); updateIntroStats(); }
-
-    function toggleTools() {
-      const panel = document.getElementById('toolsPanel');
-      const arrow = document.getElementById('toolsArrow');
-      if (panel.classList.contains('hidden')) {
-        panel.classList.remove('hidden');
-        arrow.textContent = '▲';
-      } else {
-        panel.classList.add('hidden');
-        arrow.textContent = '▼';
-      }
-    }
-
-    function onToggleFav() {
-      state.isFav = !state.isFav;
-      const btn = document.getElementById('btnFav');
-      btn.textContent = state.isFav ? '★ 已收藏' : '☆ 收藏';
-      btn.classList.toggle('on', state.isFav);
-    }
-
-    function onDeleteWord() {
-      if (confirm('确定要删除这个单词吗？')) {
-        state.words.splice(state.currentIdx, 1);
-        if (state.currentIdx >= state.words.length) showResult();
-        else updateGameUI();
-      }
-    }
-
-    function onSelectDay() {
-      const day = prompt('输入学习天数：', state.dayNumber);
-      if (day && !isNaN(day)) {
-        state.dayNumber = parseInt(day);
-        saveProgress();
-        updateIntroStats();
-      }
-    }
-
-    function onShowStats() {
-      alert('学习统计\n\n总练习次数：' + (localStorage.getItem('ash_english_runs') || '0') + 
-            '\n最高分：' + state.highScore + 
-            '\n当前天数：' + state.dayNumber);
-    }
-
-    function onShowLearned() {
-      alert('已学习单词：' + state.currentIdx + ' 个');
-    }
-
-    function onShowFavorites() { alert('收藏功能开发中...'); }
-    function onFavoriteDrill() { alert('练收藏词功能开发中...'); }
-    function onWrongDrill() { alert('错词重练功能开发中...'); }
-    function onShowTomorrow() { alert('明日计划功能开发中...'); }
-    function onShowMastered() { alert('已掌握管理功能开发中...'); }
-
-    window.onload = init;
-  </script>
+<script src="words-data.js"></script>
+<script src="app.js"></script>
+<script src="words-game.js"></script>
 </body>
 </html>
